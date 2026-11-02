@@ -37,16 +37,38 @@ struct PetOrbLayoutTests {
         #expect(PetOrbLayout.indices(count: 9, page: -1) == 0..<8)
     }
 
-    @Test("Pet floats above the dot and moves to the expanded centre")
+    @Test("Pet stays inside and centred in both the collapsed dot and expanded circle")
     func petPlacement() {
-        let layout = PetOrbLayout(size: CGSize(width: 600, height: 560), scale: 1, cardOnLeft: true)
-        for size in [0.7, 1, 1.3] {
-            let collapsed = layout.petFrame(expanded: false, petSize: size)
-            let expanded = layout.petFrame(expanded: true, petSize: size)
-            #expect(expanded.midX == layout.centre.x)
-            #expect(expanded.midY == layout.centre.y)
-            #expect(collapsed.midY < layout.centre.y - layout.dotDiameter / 2)
-            #expect(layout.containsOrb(CGPoint(x: collapsed.midX, y: collapsed.minY), expanded: false, petSize: size))
+        for scale in [0.8, 1, 1.2] {
+            for left in [false, true] {
+                let layout = PetOrbLayout(size: CGSize(width: 760, height: 640), scale: scale, cardOnLeft: left)
+                for size in [0.7, 1, 1.3] {
+                    for expanded in [false, true] {
+                        let pet = layout.petFrame(expanded: expanded, petSize: size)
+                        let diameter = expanded ? layout.diameter : layout.dotDiameter
+                        #expect(abs(pet.midX - layout.centre.x) < 0.001)
+                        #expect(abs(pet.midY - layout.centre.y) < 0.001)
+                        #expect(pet.width <= diameter)
+                        #expect(pet.height <= diameter)
+                        #expect(layout.containsOrb(layout.centre, expanded: expanded, petSize: size))
+                    }
+                }
+            }
+        }
+    }
+
+    @Test("Sun animation moves its rays, pulses and blinks, but is neutral when paused")
+    func sunMotion() {
+        let start = SunPetPose(time: 0, isAnimated: true)
+        let moving = SunPetPose(time: 0.85, isAnimated: true)
+        #expect(moving.rayAngle != start.rayAngle)
+        #expect(moving.glowOpacity > start.glowOpacity)
+        #expect(SunPetPose(time: 4.7, isAnimated: true).eyeHeight < start.eyeHeight)
+        for time in [0.0, 0.85, 4.7, 24, 1000] {
+            let paused = SunPetPose(time: time, isAnimated: false)
+            #expect(paused.rayAngle == 0)
+            #expect(paused.glowOpacity == 0.14)
+            #expect(paused.eyeHeight == 7)
         }
     }
 
@@ -78,6 +100,21 @@ struct PetOrbLayoutTests {
 @Suite("Pet orb settings")
 @MainActor
 struct PetOrbSettingsTests {
+    @Test("Sun is the default without replacing saved pet choices")
+    func defaultPet() {
+        let (defaults, cleanup) = TestDefaults.make("PetOrbDefault")
+        defer { cleanup() }
+        let fresh = AppSettings(defaults: defaults)
+        #expect(fresh.orbPet == .sun)
+        fresh.restorePetOrb(from: defaults)
+        #expect(fresh.orbPet == .sun)
+        for pet in OrbPet.allCases {
+            defaults.set(pet.rawValue, forKey: "settings.orbPet")
+            fresh.restorePetOrb(from: defaults)
+            #expect(fresh.orbPet == pet)
+        }
+    }
+
     @Test("Pet settings persist locally without refreshing providers")
     func persistence() {
         let (defaults, cleanup) = TestDefaults.make("PetOrb")
@@ -117,7 +154,7 @@ struct PetOrbSettingsTests {
         let restored = AppSettings(defaults: defaults)
         restored.restorePetOrb(from: defaults)
         #expect(restored.panelPresentation == .petOrb)
-        #expect(restored.orbPet == .cat)
+        #expect(restored.orbPet == .sun)
         #expect(restored.orbPetSize == 1.3)
         restored.orbPetSize = .nan
         #expect(restored.orbPetSize == 1)

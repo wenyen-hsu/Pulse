@@ -42,7 +42,7 @@ final class AppSettings {
             onLayoutChange?()
         }
     }
-    var orbPet: OrbPet = .cat {
+    var orbPet: OrbPet = .sun {
         didSet {
             guard orbPet != oldValue else { return }
             defaults.set(orbPet.rawValue, forKey: Key.orbPet)

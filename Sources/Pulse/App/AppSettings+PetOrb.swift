@@ -14,10 +14,11 @@ enum PanelPresentation: String, CaseIterable, Identifiable {
 }
 
 enum OrbPet: String, CaseIterable, Identifiable {
-    case cat, fox, rabbit
+    case sun, cat, fox, rabbit
     var id: String { rawValue }
     var title: String {
         switch self {
+        case .sun: .localized("Little sun")
         case .cat: .localized("Cat")
         case .fox: .localized("Fox")
         case .rabbit: .localized("Rabbit")
@@ -41,7 +42,7 @@ extension AppSettings {
     func restorePetOrb(from defaults: UserDefaults) {
         panelPresentation = defaults.string(forKey: Key.panelPresentation)
             .flatMap(PanelPresentation.init(rawValue:)) ?? .petOrb
-        orbPet = defaults.string(forKey: Key.orbPet).flatMap(OrbPet.init(rawValue:)) ?? .cat
+        orbPet = defaults.string(forKey: Key.orbPet).flatMap(OrbPet.init(rawValue:)) ?? .sun
         orbPetSize = Self.boundedPetSize(defaults.object(forKey: Key.orbPetSize) as? Double ?? 1)
         orbPetImage = defaults.data(forKey: Key.orbPetImage)
     }

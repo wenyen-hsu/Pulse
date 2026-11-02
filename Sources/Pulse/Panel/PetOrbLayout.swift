@@ -6,9 +6,9 @@ extension PanelMetrics {
     static var orbUnitDotDiameter: CGFloat { 38 }
     static var orbUnitOrbitRadius: CGFloat { 96 }
     static var orbUnitPetDiameter: CGFloat { 66 }
+    static var orbUnitCollapsedPetDiameter: CGFloat { 28 }
     static var orbUnitMargin: CGFloat { 12 }
     static var orbUnitRingHitRadius: CGFloat { 24 }
-    static var orbUnitPetLift: CGFloat { 48 }
     static var orbUnitGap: CGFloat { 8 }
     static var orbUnitPetHalo: CGFloat { 6 }
     static var orbUnitWindowHeight: CGFloat { 560 }
@@ -73,9 +73,9 @@ struct PetOrbLayout {
     }
 
     func petFrame(expanded: Bool, petSize: Double) -> CGRect {
-        let side = PanelMetrics.orbUnitPetDiameter * scale * AppSettings.boundedPetSize(petSize)
-        let y = centre.y - (expanded ? 0 : PanelMetrics.orbUnitPetLift * scale)
-        return CGRect(x: centre.x - side / 2, y: y - side / 2, width: side, height: side)
+        let unit = expanded ? PanelMetrics.orbUnitPetDiameter : PanelMetrics.orbUnitCollapsedPetDiameter
+        let side = unit * scale * AppSettings.boundedPetSize(petSize)
+        return CGRect(x: centre.x - side / 2, y: centre.y - side / 2, width: side, height: side)
     }
 
     func containsOrb(_ point: CGPoint, expanded: Bool, petSize: Double) -> Bool {

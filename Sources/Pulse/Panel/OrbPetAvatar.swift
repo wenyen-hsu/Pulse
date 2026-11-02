@@ -4,11 +4,15 @@ import SwiftUI
 struct OrbPetAvatar: View {
     let pet: OrbPet
     let imageData: Data?
+    var isAnimating = true
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Group {
             if let imageData, let image = NSImage(data: imageData) {
                 Image(nsImage: image).resizable().interpolation(.high).scaledToFit()
+            } else if pet == .sun {
+                sun
             } else {
                 Canvas { context, size in
                     let unit = min(size.width, size.height)
@@ -39,4 +43,50 @@ struct OrbPetAvatar: View {
         }
         .accessibilityLabel(pet.title)
     }
+
+    private var sun: some View {
+        TimelineView(.animation(minimumInterval: 1.0 / 24, paused: !isAnimating || reduceMotion)) { timeline in
+            let pose = SunPetPose(time: timeline.date.timeIntervalSinceReferenceDate,
+                                  isAnimated: isAnimating && !reduceMotion)
+            Canvas { context, size in
+                let unit = min(size.width, size.height)
+                context.scaleBy(x: unit / 100, y: unit / 100)
+                let gold = Color(red: 1, green: 0.67, blue: 0.13)
+                context.fill(Path(ellipseIn: CGRect(x: 3, y: 3, width: 94, height: 94)),
+                             with: .color(gold.opacity(pose.glowOpacity)))
+                for index in 0..<12 {
+                    let angle = Double(index) * .pi / 6 + pose.rayAngle
+                    var ray = Path()
+                    ray.move(to: CGPoint(x: 50 + cos(angle) * 35, y: 50 + sin(angle) * 35))
+                    ray.addLine(to: CGPoint(x: 50 + cos(angle) * 43, y: 50 + sin(angle) * 43))
+                    context.stroke(ray, with: .color(gold), style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                }
+                context.fill(Path(ellipseIn: CGRect(x: 22, y: 22, width: 56, height: 56)),
+                             with: .linearGradient(Gradient(colors: [.init(red: 1, green: 0.91, blue: 0.35), gold]),
+                                                   startPoint: CGPoint(x: 35, y: 25), endPoint: CGPoint(x: 65, y: 78)))
+                let ink = Color(red: 0.38, green: 0.22, blue: 0.08)
+                for x: CGFloat in [38, 58] {
+                    context.fill(Path(ellipseIn: CGRect(x: x, y: 47 - pose.eyeHeight / 2,
+                                                        width: 4, height: pose.eyeHeight)), with: .color(ink))
+                }
+                for x: CGFloat in [29, 62] {
+                    context.fill(Path(ellipseIn: CGRect(x: x, y: 54, width: 9, height: 5)),
+                                 with: .color(.pink.opacity(0.5)))
+                }
+                var smile = Path()
+                smile.move(to: CGPoint(x: 43, y: 57))
+                smile.addQuadCurve(to: CGPoint(x: 57, y: 57), control: CGPoint(x: 50, y: 65))
+                context.stroke(smile, with: .color(ink), style: StrokeStyle(lineWidth: 2, lineCap: .round))
+            }
+        }
+    }
+}
+
+struct SunPetPose {
+    let time: TimeInterval
+    let isAnimated: Bool
+
+    var glowOpacity: Double { isAnimated ? 0.14 + 0.05 * sin(time * 2 * .pi / 3.4) : 0.14 }
+    var rayAngle: Double { isAnimated ? time.truncatingRemainder(dividingBy: 24) * 2 * .pi / 24 : 0 }
+    var eyeHeight: CGFloat { isAnimated && time.truncatingRemainder(dividingBy: 4.8) > 4.6 ? 1 : 7 }
 }
