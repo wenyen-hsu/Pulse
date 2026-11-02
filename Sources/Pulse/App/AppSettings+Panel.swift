@@ -349,6 +349,7 @@ extension AppSettings {
 
     /// The settings `init` has no parameter for.
     func restorePanel(from defaults: UserDefaults) {
+        restorePetOrb(from: defaults)
         detailedCards = Set(defaults.stringArray(forKey: Key.detailedCards) ?? [])
         robotAccounts = Set(defaults.stringArray(forKey: Key.robotAccounts) ?? [])
         robotColours = defaults.dictionary(forKey: Key.robotColours) as? [String: String] ?? [:]

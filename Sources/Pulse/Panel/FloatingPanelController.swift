@@ -107,6 +107,7 @@ final class FloatingPanelController {
     /// Where the panel is parked. The drag handle writes to this and moves the
     /// window itself; this class reads it when first placing the panel.
     private let placement: PanelPlacement
+    private let orbController: PetOrbPanelController
     /// Watches which display the pointer is on, while that is switched on.
     private let displayFollower = ActiveDisplayFollower()
 
@@ -114,6 +115,7 @@ final class FloatingPanelController {
         self.store = store
         self.settings = settings
         self.placement = placement
+        orbController = PetOrbPanelController(store: store, settings: settings, placement: placement)
         placement.snapsToEdges = settings.snapsToEdges
         placement.liquidDocking = settings.liquidDocking
 
@@ -252,7 +254,7 @@ final class FloatingPanelController {
         if let screenObserver { NotificationCenter.default.removeObserver(screenObserver) }
     }
 
-    var isVisible: Bool { panel.isVisible }
+    var isVisible: Bool { settings.panelPresentation == .petOrb ? orbController.isVisible : panel.isVisible }
 
     /// The menu a secondary click on the rail puts up.
     ///
@@ -262,10 +264,20 @@ final class FloatingPanelController {
     /// last one is on it.
     var contextMenu: (() -> NSMenu)? {
         get { panel.contextMenu }
-        set { panel.contextMenu = newValue }
+        set {
+            panel.contextMenu = newValue
+            orbController.contextMenu = newValue
+        }
     }
 
     func show() {
+        if settings.panelPresentation == .petOrb {
+            panel.orderOut(nil)
+            displayFollower.stop()
+            orbController.show()
+            return
+        }
+        orbController.hide()
         // **Placed, shown, then placed again**, and the second one is the one
         // that counts.
         //
@@ -290,12 +302,23 @@ final class FloatingPanelController {
     }
 
     func toggle() {
+        if settings.panelPresentation == .petOrb {
+            orbController.isVisible ? orbController.hide() : show()
+            return
+        }
         panel.isVisible ? panel.orderOut(nil) : show()
         applyDisplayFollowing()
     }
 
     /// Brings the panel in line with settings that were just changed.
     func settingsChanged() {
+        if settings.panelPresentation == .petOrb {
+            panel.orderOut(nil)
+            displayFollower.stop()
+            orbController.settingsChanged()
+            return
+        }
+        orbController.hide()
         if placement.snapsToEdges != settings.snapsToEdges {
             keepFreeRailInPlace(snaps: settings.snapsToEdges)
         }
@@ -449,6 +472,7 @@ final class FloatingPanelController {
     }
 
     private func placePanel() {
+        guard settings.panelPresentation == .rail else { return }
         guard let screen = placementScreen else { return }
 
         let edge = placement.edge

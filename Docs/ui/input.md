@@ -8,6 +8,8 @@ Why enter/leave are split, why the window owns the drag, and the Liquid Glass ep
 
 ## Hover (open / close the card)
 
+The pet presentation uses `PetOrbContent` and the same enter-only reporter plus sampled-pointer approach. Collapsed hit geometry includes the dot, the pet and a small approach halo; expanded geometry includes the circle, selected card and connecting bridge. A 350ms cancellable departure delay clears the card and collapses the orb when **Hide until pointed at** is on. Holding the panel suspends departure. `PetOrbPanel.sendEvent` owns drag and ring-refresh clicks; a press in the first 300ms after expansion cannot refresh an account. Pager buttons are left to SwiftUI. Geometry checks do not prove that these controls receive real input.
+
 `FloatingUsagePanelView` builds rail readings from observed store/settings inputs; `FloatingUsagePanelContent` owns pointer, hover and card state below it. Layout and pointer hit tests share the same entry array, so pointer samples do not reconstruct account slots, labels and quota readings.
 
 Two `NSViewRepresentable` backgrounds:

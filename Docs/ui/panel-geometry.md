@@ -4,6 +4,16 @@
 
 The window **may** resize when the rail is re-docked onto the other axis (side ↔ top), under the pointer with no card open. Why: [../decisions/panel-frame.md](../decisions/panel-frame.md).
 
+## Pet orb presentation
+
+The custom build defaults to **Pet orb**; **Appearance → Panel style → Classic rail** restores the existing rail. `FloatingPanelController` shows only the selected presentation. Both use the same `FloatingUsagePanelView` account/slot builder and `UsageDetailCard`; switching presentation does not refresh providers.
+
+`PetOrbPanelController` reserves a fixed window for the circle and a scrolling details card. Hovering, switching accounts and opening a card never resize that window. `PetOrbLayout` is the shared top-left coordinate space for rendering, pointer samples and window input. Its dimensions come from `PanelMetrics`; the orb is 272 points across at normal scale, with up to eight account slots on a 96-point orbit. Additional slots are paginated without changing account order or split-account identity. The central pet floats above a 38-point dot when collapsed and sits in the circle's centre when expanded. Reduced Motion disables the expansion spring.
+
+The card opens on the side with room, with a pointer bridge that keeps it open while the reader moves from an account to its card. Height is limited to the reserved window and the existing card scrolls when necessary. Orb position is stored independently of rail docking as normalized visible-screen coordinates (`settings.orbPosition`); dragging or display changes clamp the window and expanded circle inside the visible screen. Rail docking and notch settings remain rail-only. Screen-capture, full-screen and active-display preferences apply to both presentations.
+
+`PetOrbLayoutTests` checks slot targets, paging, pet placement, card bounds and the bridge. It does not prove real mouse delivery or glass appearance; those require desktop input on the bundled app.
+
 ## Overlay and height
 
 - Apply `.padding(.top, railTop)` **after** the card overlay. Before it, the card is anchored to the panel top and sliced `railTop` too high (shipped once; invisible while the rail is centred).

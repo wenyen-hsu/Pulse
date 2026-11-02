@@ -1,3 +1,27 @@
+// Pet orb
+"Pet orb" = "Сфера с питомцем";
+"Classic rail" = "Обычная боковая панель";
+"Cat" = "Кошка";
+"Fox" = "Лиса";
+"Rabbit" = "Кролик";
+"Panel style" = "Вид панели";
+"Hover over your pet to reveal accounts around it." = "Наведите указатель на питомца, чтобы увидеть аккаунты вокруг него.";
+"Pet" = "Питомец";
+"Choose a companion or import a transparent PNG." = "Выберите встроенного питомца или загрузите PNG с прозрачным фоном.";
+"Pet image" = "Изображение питомца";
+"Use built-in pet" = "Использовать встроенного питомца";
+"Import PNG…" = "Загрузить PNG…";
+"Pet size" = "Размер питомца";
+"The pet orb always uses Liquid Glass. Rail docking options apply to the classic rail." = "Сфера с питомцем всегда использует Liquid Glass. Настройки закрепления относятся только к обычной боковой панели.";
+"Could not import image" = "Не удалось загрузить изображение";
+"OK" = "ОК";
+"Choose a PNG smaller than 20 MB. The image is stored locally at up to 512 pixels." = "Выберите PNG размером менее 20 МБ. Изображение будет сохранено на этом Mac с длинной стороной не более 512 пикселей.";
+"Show accounts" = "Показать аккаунты";
+"Hide accounts" = "Скрыть аккаунты";
+"Show details" = "Показать подробности";
+"Previous accounts" = "Предыдущие аккаунты";
+"Next accounts" = "Следующие аккаунты";
+
 "Runs dim usage --json with the CLI's saved login. Pulse does not read or store its credentials." = "Запускает dim usage --json с сохранённым входом CLI. Pulse не читает и не сохраняет учётные данные.";
 "Uses the login saved by dim auth login." = "Использует вход, сохранённый командой dim auth login.";
 

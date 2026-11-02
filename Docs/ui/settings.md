@@ -48,6 +48,8 @@ Settings stays reachable after dismissing the initial chooser; Appearance points
 
 ## Copy
 
+**Pet orb** is the default presentation in this custom build. Appearance adds **Panel style**, **Pet**, **Pet image** and **Pet size** (`PetOrbSettingsGroup`). The three built-in pets can be replaced with a PNG selected using `NSOpenPanel`. `PetImageImport` limits input to 20 MB and downsamples to a longest edge of 512 pixels; the normalized PNG is stored locally in `settings.orbPetImage`, not linked to the original file. **Use built-in pet** removes it. Size is clamped to 0.7–1.3. These settings use `onLayoutChange`, never the provider refresh callback. The orb always uses Liquid Glass (the existing material fallback on pre-26 macOS); the original rail retains its glass/solid and docking options.
+
 **Subtitles are one line.** Say what the control does; reasoning belongs in docs. Exceptions: the money card's provenance and the estimate caption, which exist so an inferred figure is not read as reported.
 
 **A joined sentence needs no extra space after a Chinese full stop (`。`).** `UsageAlerts.joined` inserts a separator only when the first half does not end in one.
