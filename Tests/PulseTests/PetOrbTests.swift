@@ -142,6 +142,11 @@ struct PetOrbSettingsTests {
         #expect(restored.orbPetImage == settings.orbPetImage)
         settings.orbPetImage = nil
         #expect(defaults.object(forKey: "settings.orbPetImage") == nil)
+        settings.panelPresentation = .liquidPet
+        #expect(AppSettings.restoredSettings(from: defaults, detected: [], scan: ExtensionCatalog.Scan())
+            .panelPresentation == .liquidPet)
+        #expect(PanelPresentation.petOrb.usesOrb && PanelPresentation.liquidPet.usesOrb)
+        #expect(!PanelPresentation.rail.usesOrb)
     }
 
     @Test("Invalid choices and sizes fall back to safe defaults")

@@ -1,4 +1,5 @@
 // Copyright (c) 2026 qunqin24. Licensed under the Apache License, Version 2.0.
+// Modified by wenyen-hsu: liquid pet mode and independent-fork attribution.
 import AppKit
 import SwiftUI
 
@@ -47,7 +48,7 @@ struct AboutPane: View {
 
                 SettingsRow(
                     String.localized("Usage data"),
-                    subtitle: String.localized("Read from each provider's own account. Pulse shows the figures they report; where it has to infer one, the figure itself says so.")
+                    subtitle: String.localized("Read from each provider's own account. \(AppIdentity.name) shows the figures they report; where it has to infer one, the figure itself says so.")
                 ) {
                     EmptyView()
                 }
@@ -68,6 +69,17 @@ struct AboutPane: View {
             }
 
             SettingsGroup(String.localized("Credits")) {
+                SettingsRow(
+                    "Pulse · qunqin24",
+                    subtitle: String.localized("Based on Pulse by qunqin24, licensed under Apache 2.0. Thank you to the original author and contributors. This independent version is not endorsed by them.")
+                ) {
+                    Button(String.localized("Open")) {
+                        NSWorkspace.shared.open(URL(string: "https://github.com/qunqin24/Pulse")!)
+                    }
+                }
+
+                SettingsRowDivider()
+
                 SettingsRow(
                     "Vinz (@hivinz_)",
                     subtitle: String.localized("Panel design inspired by Vinz's work shared on X.")

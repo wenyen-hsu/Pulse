@@ -637,7 +637,7 @@ final class UsageAlerts {
 
         let content = UNMutableNotificationContent()
         content.title = AppIdentity.name
-        content.body = .localized("This is a test notification. Pulse's notifications look like this.")
+        content.body = .localized("This is a test notification. \(AppIdentity.name)'s notifications look like this.")
         content.sound = .default
         let request = UNNotificationRequest(identifier: "pulse.test", content: content, trigger: nil)
         do {

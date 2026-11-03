@@ -1,6 +1,8 @@
 # Releasing
 
-> This fork is **Pulse Pet**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#pulse-pet-independent-application). Packaging produces `build.noindex/Pulse Pet.app`, `PulsePet-<version>.zip` and `PulsePet-<version>.dmg`; no upstream updater is enabled.
+Release-note headings, installer filenames and compare links are read from AppIdentity.json by `Scripts/changelog.py`. Both installation languages describe the independent app and disabled updates; historical CHANGELOG entries remain unchanged. Existing `cn-pulse-<version>` / `en-pulse-<version>` anchors are retained for link compatibility. Verify with `python3 -m unittest discover -s Scripts/tests -p 'test_*.py'`.
+
+> This fork is **Nokori**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#nokori-independent-application). Packaging produces `build.noindex/Nokori.app`, `Nokori-<version>.zip` and `Nokori-<version>.dmg`; no upstream updater is enabled.
 
 There is no Xcode project. `Scripts/bundle.sh` turns the package executable into something macOS treats as an app. Without a bundle there is no `Bundle.main` (no version for the update check, no `SMAppService` login item — hence the launch-agent fallback), and nothing to hand anyone but a build folder.
 
@@ -8,13 +10,17 @@ Toolchain and local `swift build`: [build-from-source.md](build-from-source.md).
 
 ## Trial packaging
 
-Run `./Scripts/bundle.sh --zip` and `./Scripts/dmg.sh`. Identity and filenames come from `Sources/Pulse/Resources/AppIdentity.json`. The bundled executable is PulsePet; the SwiftPM target remains Pulse. No tag, release, upstream feed, or settings migration is needed for a trial package.
+Run `./Scripts/bundle.sh --zip` and `./Scripts/dmg.sh`. Identity and filenames come from `Sources/Pulse/Resources/AppIdentity.json`. The bundled executable is Nokori; the SwiftPM target remains Pulse. No tag, release, upstream feed, or settings migration is needed for a trial package.
 
 After signing, bundling runs the packaged executable's read-only `--json` startup probe before producing an archive. A failed or timed-out launch stops packaging; unit tests alone are not evidence that the installed app can bootstrap.
 
+Trial bundles include `LICENSE`, `NOTICE` and `THIRD_PARTY_NOTICES.md` in `Contents/Resources`. Preserve these when distributing a modified build. `NOTICE` credits qunqin24 and identifies this independent fork's modifications; the About pane and installer backdrop also thank the original author. Apache 2.0 permits modification and redistribution subject to its conditions; it does not grant trademark rights or imply endorsement.
+
+Run `swift Scripts/make-dmg-background.swift` from the repository root after changing installer branding. It generates the 1x/2x TIFF from the current application identity and retains the original author credit. The Nokori brand and stable former Pulse Pet data identity are described in [branding.md](branding.md).
+
 ## Upstream release machinery (reference)
 
-The tagged release and Sparkle machinery below is retained from upstream. It is not configured as the Pulse Pet update channel. Establish a separately signed fork feed and update the release pipeline before enabling in-app updates; the current trial bundle deliberately contains no feed or update verification key.
+The tagged release and Sparkle machinery below is retained from upstream. It is not configured as the Nokori update channel. Establish a separately signed fork feed and update the release pipeline before enabling in-app updates; the current trial bundle deliberately contains no feed or update verification key.
 
 ## Version and tag
 
@@ -59,7 +65,7 @@ The image is the install guide: Pulse is not notarised, and on macOS 15+ Control
 
 Finder window layout is a committed `Scripts/dmg-DS_Store` (AppleScript cannot run on CI). Recapture with `./Scripts/dmg.sh --relayout` after changing the backdrop or icon positions. Finder `bounds` **include the title bar** (~28pt taller than a 660×420 backdrop). Backdrop: `Scripts/dmg-background.tiff` (1x and 2x).
 
-The backdrop names Pulse Pet in the heading, drag instruction and first-launch guidance. Refresh this image when changing the display name in `AppIdentity.json`; changing only the bundle filename leaves misleading original-Pulse installation text.
+The backdrop names Nokori in the heading, drag instruction and first-launch guidance. Refresh this image when changing the display name in `AppIdentity.json`; changing only the bundle filename leaves misleading original-Pulse installation text.
 
 Sparkle updates from the **zip**, not the DMG. The image is for people.
 

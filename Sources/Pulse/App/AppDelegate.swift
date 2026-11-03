@@ -427,7 +427,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
         if let newer = update.newer {
             let item = NSMenuItem(
-                title: .localized("Pulse \(newer.version) is available"),
+                title: .localized("\(AppIdentity.name) \(newer.version) is available"),
                 action: #selector(checkForUpdate),
                 keyEquivalent: ""
             )

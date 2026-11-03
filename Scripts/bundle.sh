@@ -1,4 +1,5 @@
 #!/bin/bash
+# Modified by wenyen-hsu: independent application and bundled attribution.
 #
 # Assembles Pulse.app from the SwiftPM build.
 #
@@ -8,8 +9,8 @@
 # version number to compare against (so no update check), `SMAppService` cannot
 # register a login item, and there is nothing to hand anyone but a build folder.
 #
-#   ./Scripts/bundle.sh            → build.noindex/Pulse Pet.app
-#   ./Scripts/bundle.sh --zip      → and build.noindex/PulsePet-<version>.zip to attach
+#   ./Scripts/bundle.sh            → build.noindex/Nokori.app
+#   ./Scripts/bundle.sh --zip      → and build.noindex/Nokori-<version>.zip to attach
 #                                    to the release
 #   ./Scripts/bundle.sh --open     → and reveal it in Finder
 #
@@ -84,6 +85,7 @@ cp "$BUILT/Pulse" "$APP/Contents/MacOS/$EXECUTABLE"
 # folders. `Bundle.module` looks in the main bundle's Resources, so this is
 # where it has to land — the app is silently English with no icons without it.
 cp -R "$BUILT/Pulse_Pulse.bundle" "$APP/Contents/Resources/"
+cp LICENSE NOTICE THIRD_PARTY_NOTICES.md "$APP/Contents/Resources/"
 # The icon is an Icon Composer document, compiled the way Xcode would: an
 # Assets.car that macOS 26 draws as Liquid Glass — light, dark, clear and
 # tinted — and an AppIcon.icns that actool flattens for the systems before it.

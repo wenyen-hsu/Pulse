@@ -15,8 +15,8 @@ struct DeveloperIntegrationsView: View {
         VStack(alignment: .leading, spacing: 22) {
             SettingsGroup(String.localized("Read cached usage")) {
                 SettingsRow(
-                    "Pulse --json",
-                    subtitle: String.localized("Prints Pulse's saved readings, not the provider's original reply, without fetching or opening credentials.")
+                    "\(AppIdentity.executableName) --json",
+                    subtitle: String.localized("Prints \(AppIdentity.name)'s saved readings, not the provider's original reply, without fetching or opening credentials.")
                 ) {
                     Button(String.localized("Copy command")) { copy(Self.quote(executable) + " --json") }
                 }
@@ -48,7 +48,7 @@ struct DeveloperIntegrationsView: View {
                 SettingsRowDivider()
                 SettingsRow(
                     String.localized("Account link"),
-                    subtitle: String.localized("Opens this account's settings in the installed Pulse app.")
+                    subtitle: String.localized("Opens this account's settings in the installed \(AppIdentity.name) app.")
                 ) {
                     Button(String.localized("Copy link")) {
                         copy(PulseLink.account(selectedAccount).url.absoluteString)
@@ -62,7 +62,7 @@ struct DeveloperIntegrationsView: View {
                 }
             }
 
-            Text(localized: "Keep Pulse running to update the cache. Every reading includes its age; an old reading is not a live check.")
+            Text(localized: "Keep \(AppIdentity.name) running to update the cache. Every reading includes its age; an old reading is not a live check.")
                 .font(.system(size: 12)).foregroundStyle(.secondary)
             if let message {
                 Text(message).font(.system(size: 12)).foregroundStyle(.secondary)
@@ -102,11 +102,11 @@ struct DeveloperIntegrationsView: View {
         panel.prompt = String.localized("Export")
         panel.begin { response in
             guard response == .OK, let directory = panel.url else { return }
-            let destination = directory.appending(path: "Pulse Integrations")
+            let destination = directory.appending(path: "\(AppIdentity.name) Integrations")
             let staging = directory.appending(path: ".pulse-export-\(UUID().uuidString)")
             do {
                 guard !FileManager.default.fileExists(atPath: destination.path) else {
-                    message = String.localized("Pulse Integrations already exists here. Choose another folder.")
+                    message = String.localized("\(AppIdentity.name) Integrations already exists here. Choose another folder.")
                     return
                 }
                 try FileManager.default.createDirectory(at: staging, withIntermediateDirectories: false)

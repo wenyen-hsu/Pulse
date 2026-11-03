@@ -1,8 +1,8 @@
 # Architecture
 
-## Pulse Pet independent application
+## Nokori independent application
 
-This fork installs as **Pulse Pet.app**, executable **PulsePet**, identifier **io.github.wenyen-hsu.PulsePet**. Identity is defined in `Sources/Pulse/Resources/AppIdentity.json` and read by the app and packaging scripts. The SwiftPM module remains `Pulse`.
+This fork installs as **Nokori.app**, executable **Nokori**, identifier **io.github.wenyen-hsu.PulsePet**. The identifier deliberately remains stable across the rename from Pulse Pet; see [branding and compatibility](branding.md). Identity is defined in `Sources/Pulse/Resources/AppIdentity.json` and read by the app and packaging scripts. The SwiftPM module remains `Pulse`.
 
 Preferences always use the Pulse Pet identifier's domain: `UserDefaults.standard` inside its app bundle, an explicit named suite for unbundled development builds. Files (including encrypted account stores, caches and history) live in `~/Library/Application Support/Pulse Pet`. No original Pulse preferences or data are migrated. Provider accounts must be configured separately; provider-owned CLI sessions/logs can still be read through the existing read-only channels.
 
@@ -10,9 +10,9 @@ The navigation scheme is `pulse-pet://`; the original `pulse://` handler is not 
 
 No Sparkle feed or signing public key is embedded in this trial bundle: updates are disabled rather than pointing to the upstream app. A separately signed fork feed and release pipeline are required before enabling updates.
 
-Claude Code has only one status-line configuration. Pulse Pet uses `~/.claude/pulse-pet-usage.json`, never automatically repairs/disconnects a foreign status line, and does not offer to replace an existing one at startup. Explicit connection from Settings can chain and restore the previous command; do not connect both apps to the shared hook if independent concurrent operation is required. Shared external CLI integrations are not per-app storage.
+Claude Code has only one status-line configuration. Nokori uses `~/.claude/pulse-pet-usage.json`, never automatically repairs/disconnects a foreign status line, and does not offer to replace an existing one at startup. Explicit connection from Settings can chain and restore the previous command; do not connect both apps to the shared hook if independent concurrent operation is required. Shared external CLI integrations are not per-app storage.
 
-Install Pulse Pet beside Pulse, not over it. The two app names, preferences, caches, login registrations and URL handlers are distinct. Existing Pulse installations remain untouched; previous trial builds named Pulse are not migrated. App bundles remain ad-hoc signed and unnotarized.
+Install Nokori beside Pulse, not over it. Quit the former Pulse Pet and remove only its application bundle, not its data; both names use the same stable independent identity. The two app names, preferences, caches, login registrations and URL handlers are distinct. Existing Pulse installations remain untouched; previous trial builds named Pulse are not migrated. App bundles remain ad-hoc signed and unnotarized.
 
 Single executable target `Pulse` at `Sources/Pulse`. No internal modules. The floating monitor is **not** a SwiftUI `WindowGroup` scene.
 
