@@ -20,19 +20,23 @@ import SwiftUI
 ///
 /// Attach as a background of a view that fills the panel.
 struct PanelPointerWatcher: NSViewRepresentable {
+    static let defaultInterval: TimeInterval = 0.15
     let onChange: (CGPoint?) -> Void
     /// Answers where the pointer is now, in the same space, between samples.
     var probe: PointerProbe?
+    var interval: TimeInterval = Self.defaultInterval
 
     func makeNSView(context: Context) -> WatcherView {
         let view = WatcherView()
         view.onChange = onChange
+        view.interval = interval
         probe?.view = view
         return view
     }
 
     func updateNSView(_ view: WatcherView, context: Context) {
         view.onChange = onChange
+        view.interval = interval
         probe?.view = view
     }
 
@@ -47,9 +51,13 @@ struct PanelPointerWatcher: NSViewRepresentable {
         /// compared against SwiftUI frames without flipping it first.
         override var isFlipped: Bool { true }
 
-        /// Fast enough to feel immediate when the pointer leaves, slow enough
-        /// to be free.
-        private static let interval: TimeInterval = 0.15
+        var interval = PanelPointerWatcher.defaultInterval {
+            didSet {
+                guard interval != oldValue, timer != nil else { return }
+                stop()
+                start()
+            }
+        }
 
         private var timer: Timer?
         private var lastReported: CGPoint??
@@ -68,7 +76,7 @@ struct PanelPointerWatcher: NSViewRepresentable {
         private func start() {
             guard timer == nil else { return }
 
-            let timer = Timer.scheduledTimer(withTimeInterval: Self.interval, repeats: true) { [weak self] _ in
+            let timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { [weak self] _ in
                 MainActor.assumeIsolated { self?.sample() }
             }
             // Keep sampling while menus or other modal run loops are up.

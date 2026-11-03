@@ -2,6 +2,15 @@
 // Modified by wenyen-hsu: liquid pet mode and independent-fork attribution.
 import SwiftUI
 
+enum PetOrbTiming {
+    static let pointerInterval: TimeInterval = 0.05
+    static let animationResponse: TimeInterval = 0.2
+
+    static func departureDelay(hasCard: Bool) -> Duration {
+        hasCard ? .milliseconds(200) : .milliseconds(120)
+    }
+}
+
 struct PetOrbContent: View {
     let store: UsageStore
     let settings: AppSettings
@@ -18,7 +27,9 @@ struct PetOrbContent: View {
     private var cardRect: CGRect {
         layout.cardFrame(height: cardHeight, width: DetailCardLayout.width + DetailCardLayout.pointerWidth)
     }
-    private var animation: Animation? { reduceMotion ? nil : .spring(response: 0.36, dampingFraction: 0.83) }
+    private var animation: Animation? {
+        reduceMotion ? nil : .spring(response: PetOrbTiming.animationResponse, dampingFraction: 0.9)
+    }
 
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -51,7 +62,8 @@ struct PetOrbContent: View {
         .frame(width: layout.size.width, height: layout.size.height)
         .scaleEffect(state.viewportScale, anchor: .topLeading)
         .frame(width: state.size.width, height: state.size.height, alignment: .topLeading)
-        .background(PanelPointerWatcher(onChange: pointerMoved, probe: state.probe))
+        .background(PanelPointerWatcher(onChange: pointerMoved, probe: state.probe,
+                                        interval: PetOrbTiming.pointerInterval))
         .animation(animation, value: state.isExpanded)
         .foregroundStyle(PanelGlass.ink(transparency: settings.glassTransparency).map(AnyShapeStyle.init) ?? AnyShapeStyle(.primary))
         .environment(\.colorScheme, PanelGlass.scheme(transparency: settings.glassTransparency))
@@ -218,8 +230,9 @@ struct PetOrbContent: View {
             if !state.isExpanded { state.expand() }
             if let point, let index = layout.ringIndex(at: state.drawingPoint(point), count: visible.count) { select(visible[index]) }
         } else if hideTask == nil {
+            let delay = PetOrbTiming.departureDelay(hasCard: selected != nil)
             hideTask = Task { @MainActor in
-                try? await Task.sleep(for: .milliseconds(350))
+                do { try await Task.sleep(for: delay) } catch { return }
                 guard !Task.isCancelled else { return }
                 hideTask = nil
                 guard state.isPresented, !state.isHeld else { return }
