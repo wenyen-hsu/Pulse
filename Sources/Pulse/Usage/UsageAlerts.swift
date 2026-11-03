@@ -5,16 +5,28 @@ import UserNotifications
 
 /// How full a limit has to get before Pulse says something unprompted.
 ///
-/// A list rather than a free number: the point of the setting is to pick the
-/// moment you want to hear about, and four of them cover it. `off` is the
-/// default, because a menu-bar app that starts posting notifications on its
-/// own the day you install it has changed what you agreed to.
-enum AlertThreshold: Int, CaseIterable, Identifiable, Sendable {
-    case off = 0
-    case seventyFive = 75
-    case eighty = 80
-    case ninety = 90
-    case ninetyFive = 95
+/// Zero is off; enabled thresholds are whole percentages from 1 through 100.
+/// The raw integer preserves existing preferences.
+struct AlertThreshold: RawRepresentable, Hashable, Identifiable, Sendable {
+    let rawValue: Int
+
+    init?(rawValue: Int) {
+        guard (0...100).contains(rawValue) else { return nil }
+        self.rawValue = rawValue
+    }
+
+    init?(percentText: String) {
+        guard let value = Int(percentText.trimmingCharacters(in: .whitespacesAndNewlines)),
+              value > 0 else { return nil }
+        self.init(rawValue: value)
+    }
+
+    static let off = Self(rawValue: 0)!
+    static let seventyFive = Self(rawValue: 75)!
+    static let eighty = Self(rawValue: 80)!
+    static let ninety = Self(rawValue: 90)!
+    static let ninetyFive = Self(rawValue: 95)!
+    static let presets: [Self] = [.off, .seventyFive, .eighty, .ninety, .ninetyFive]
 
     static let `default` = AlertThreshold.off
 

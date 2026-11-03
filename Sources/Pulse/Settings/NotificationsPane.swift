@@ -9,6 +9,7 @@ struct NotificationsPane: View {
     /// What the last test came to, said in the row until the pane closes.
     @State private var testOutcome: UsageAlerts.TestOutcome?
     @State private var isSendingTest = false
+    @State private var thresholdInput = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
@@ -19,21 +20,40 @@ struct NotificationsPane: View {
                 ) {
                     Picker("", selection: Binding(
                         get: { settings.alertThreshold },
-                        set: {
-                            settings.alertThreshold = $0
-                            Task {
-                                if await alerts.requestAuthorizationIfNeeded() {
-                                    store.reconsiderAlerts()
-                                }
-                            }
-                        }
+                        set: { setThreshold($0) }
                     )) {
-                        ForEach(AlertThreshold.allCases) { threshold in
+                        ForEach(AlertThreshold.presets) { threshold in
                             Text(threshold.title).tag(threshold)
+                        }
+                        if !AlertThreshold.presets.contains(settings.alertThreshold) {
+                            Text(settings.alertThreshold.title).tag(settings.alertThreshold)
                         }
                     }
                     .labelsHidden()
                     .frame(maxWidth: SettingsLayout.controlWidth, alignment: .trailing)
+                    .disabled(!UsageAlerts.isSupported)
+                }
+
+                SettingsRowDivider()
+
+                SettingsRow(
+                    String.localized("Custom percentage"),
+                    subtitle: String.localized("Enter a whole number from 1 to 100.")
+                ) {
+                    HStack(spacing: 8) {
+                        TextField("", text: $thresholdInput)
+                            .textFieldStyle(.roundedBorder)
+                            .frame(width: 62)
+                            .accessibilityLabel(Text(localized: "Custom percentage"))
+                            .onSubmit { applyCustomThreshold() }
+                        Text(verbatim: "%")
+                        Button {
+                            applyCustomThreshold()
+                        } label: {
+                            Text(localized: "Apply")
+                        }
+                        .disabled(AlertThreshold(percentText: thresholdInput) == nil)
+                    }
                     .disabled(!UsageAlerts.isSupported)
                 }
 
@@ -145,6 +165,25 @@ struct NotificationsPane: View {
                 }
             }
         }
+        .onAppear { thresholdInput = String(settings.alertThreshold.percent ?? 90) }
+        .onChange(of: settings.alertThreshold) { _, threshold in
+            thresholdInput = String(threshold.percent ?? 90)
+        }
+    }
+
+    private func setThreshold(_ threshold: AlertThreshold) {
+        settings.alertThreshold = threshold
+        Task {
+            if await alerts.requestAuthorizationIfNeeded() {
+                store.reconsiderAlerts()
+            }
+        }
+    }
+
+    private func applyCustomThreshold() {
+        guard let threshold = AlertThreshold(percentText: thresholdInput) else { return }
+        thresholdInput = String(threshold.rawValue)
+        setThreshold(threshold)
     }
 
     /// What the test row says: what the button does, or what came of it when

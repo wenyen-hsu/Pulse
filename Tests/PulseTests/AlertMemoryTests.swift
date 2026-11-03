@@ -229,6 +229,28 @@ struct AlertMemoryTests {
 
     // MARK: - Thresholds
 
+    @Test("A custom threshold warns on crossing, only once, and still reports exhaustion")
+    func customThreshold() throws {
+        let threshold = try #require(AlertThreshold(rawValue: 83))
+        var memory = AlertMemory()
+        #expect(run(&memory, Self.live(Self.window(used: 0.829)), threshold: threshold).isEmpty)
+        #expect(run(&memory, Self.live(Self.window(used: 0.83)), threshold: threshold).map(\.kind)
+            == [.approaching(percent: 83)])
+        #expect(run(&memory, Self.live(Self.window(used: 0.86)), threshold: threshold).isEmpty)
+        #expect(run(&memory, Self.live(Self.window(used: 1, exhausted: true)), threshold: threshold).map(\.kind)
+            == [.spent])
+    }
+
+    @Test("A 100 percent threshold does not warn early or announce exhaustion twice")
+    func fullThreshold() throws {
+        let threshold = try #require(AlertThreshold(rawValue: 100))
+        var memory = AlertMemory()
+        #expect(run(&memory, Self.live(Self.window(used: 0.996)), threshold: threshold).isEmpty)
+        #expect(run(&memory, Self.live(Self.window(used: 1, exhausted: true)), threshold: threshold).map(\.kind)
+            == [.spent])
+        #expect(run(&memory, Self.live(Self.window(used: 1, exhausted: true)), threshold: threshold).isEmpty)
+    }
+
     @Test("A limit already past the line is announced once, immediately")
     func firstSightingOverTheLine() {
         var memory = AlertMemory()
