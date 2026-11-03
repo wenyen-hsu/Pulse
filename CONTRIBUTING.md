@@ -2,7 +2,7 @@
 
 **[English project page](README.md) · [繁體中文專案說明](README.zh-Hant.md)**
 
-This repository maintains the independent Pulse Pet fork. Send its issues and pull requests to [wenyen-hsu/Pulse](https://github.com/wenyen-hsu/Pulse), not the original author's repository. Preserve the original attribution, LICENSE, NOTICE and third-party notices. Read [SECURITY.md](SECURITY.md) before reporting a security problem. The README language links switch documentation; the application's interface language is configured separately.
+This repository maintains the independent Nokori fork. Send its issues and pull requests to [wenyen-hsu/Pulse](https://github.com/wenyen-hsu/Pulse), not the original author's repository. Preserve the original attribution, LICENSE, NOTICE and third-party notices. Read [SECURITY.md](SECURITY.md) before reporting a security problem. The README language links switch documentation; the application's interface language is configured separately.
 
 Pulse is a macOS menu-bar app. There is no linter; there is a test target (`swift test`) covering rules, cache reconciliation and provider fixtures — see [Docs/testing.md](Docs/testing.md) for what it does and does not reach. Review is human plus whatever the author ran. This file is for people changing the repo; [CLAUDE.md](CLAUDE.md) is the short AI entry.
 

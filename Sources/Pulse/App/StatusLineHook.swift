@@ -143,7 +143,7 @@ enum StatusLineHook {
         }
         guard !path.isEmpty else { return false }
         let url = URL(fileURLWithPath: path)
-        if url.lastPathComponent == AppIdentity.executableName { return true }
+        if AppIdentity.statusLineExecutableNames.contains(url.lastPathComponent) { return true }
         guard let executable = Bundle.main.executableURL else { return false }
         return url.resolvingSymlinksInPath() == executable.resolvingSymlinksInPath()
     }

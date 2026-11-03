@@ -1,6 +1,6 @@
 # Build from source
 
-> This fork is **Pulse Pet**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#pulse-pet-independent-application). Packaging produces `build.noindex/Pulse Pet.app`, `PulsePet-<version>.zip` and `PulsePet-<version>.dmg`; no upstream updater is enabled.
+> This fork is **Nokori**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#nokori-independent-application). Packaging produces `build.noindex/Nokori.app`, `Nokori-<version>.zip` and `Nokori-<version>.dmg`; no upstream updater is enabled.
 
 Pulse is a Swift package (`Package.swift`), macOS 14+, Swift tools 6.0. No linter; `swift test` covers rules and parsing ([testing.md](testing.md)). Open the package in Xcode or use the CLI.
 
@@ -9,8 +9,8 @@ User-facing clone-and-run stays in the README. **This file is the toolchain cont
 ```bash
 swift run Pulse              # build and run (no app bundle, no Sparkle, no SMAppService)
 swift build                  # type-check, including #Preview
-./Scripts/bundle.sh          # → build.noindex/Pulse Pet.app
-./Scripts/dmg.sh             # → build.noindex/PulsePet-<version>.dmg
+./Scripts/bundle.sh          # → build.noindex/Nokori.app
+./Scripts/dmg.sh             # → build.noindex/Nokori-<version>.dmg
 ./Scripts/check-localization.sh
 ```
 
@@ -49,7 +49,7 @@ macOS also draws an app's controls to the SDK recorded in its binary, not to the
 
 ## What `swift run` is not
 
-A loose executable and `Pulse Pet.app` share the Pulse Pet preferences domain, but differ in system integration:
+A loose executable and `Nokori.app` share the existing independent preferences domain, but differ in system integration:
 
 - Independent `AppIdentity.defaults` domain in both builds: standard defaults in the app bundle, a named suite in the loose executable ([architecture.md](architecture.md))
 - Launch-agent login item instead of `SMAppService`

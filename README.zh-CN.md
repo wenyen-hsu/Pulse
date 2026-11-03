@@ -1,11 +1,13 @@
-# Pulse Pet
+<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori liquid sun logo" /></p>
+
+# Nokori
 
 **[English](README.md) · [繁體中文](README.zh-Hant.md)**<br>
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)
 
 原生 macOS AI 用量监视器：中央小太阳宠物，可切换圆形或液态玻璃外观。
 
-> 本项目是 [qunqin24 开发的 Pulse](https://github.com/qunqin24/Pulse) 的独立定制版，不代表原作者背书。当前名称仍为 **Pulse Pet**；新名称与 logo 尚待确认。
+> 本项目是 [qunqin24 开发的 Pulse](https://github.com/qunqin24/Pulse) 的独立定制版，不代表原作者背书。本独立版本正式采用 **Nokori（原名 Pulse Pet）**。
 
 ## 定制功能
 
@@ -19,9 +21,9 @@
 
 ## 安装与设置
 
-请使用维护者提供或[本仓库 Releases](https://github.com/wenyen-hsu/Pulse/releases) 列出的 **Pulse Pet** 试用包。若无定制安装包，请从源码构建；上游 Pulse 安装包不包含本版功能。
+请使用维护者提供或[本仓库 Releases](https://github.com/wenyen-hsu/Pulse/releases) 列出的 **Nokori** 试用包。若无定制安装包，请从源码构建；上游 Pulse 安装包不包含本版功能。
 
-1. 打开 DMG，把 **Pulse Pet.app** 拖到“应用程序”，不要替换原版 **Pulse.app**。
+1. 打开 DMG，把 **Nokori.app** 拖到“应用程序”，不要替换原版 **Pulse.app**。
 2. 设置、应用数据、登录项和 URL scheme 独立，不迁移原版设置；上游自动更新已关闭。
 3. 启动后选择要监控的服务。应用常驻菜单栏，也可右键点击面板打开设置。
 4. 试用包仅临时签名，**未经 Apple 公证**。只对可信安装包使用“系统设置 → 隐私与安全性 → 仍要打开”。
@@ -34,13 +36,15 @@
 - **设置 → 通用 → 界面语言：** 英语、繁体中文、简体中文、日语、韩语、俄语或跟随系统。页首链接只切换 README。
 - **设置 → 通知：** 选择门槛或输入自定义百分比、应用并允许系统通知。提醒取决于实际读到的用量，不是连续实时监控。
 
+> **从 Pulse Pet 升级：** 退出旧版、安装 Nokori，再移除旧 Pulse Pet 的应用本体，不要删除数据。保留原有独立设置与数据标识；不要同时运行新旧名称的同一应用。原版 Pulse 仍可与 Nokori 同时运行。[品牌与兼容性](Docs/branding.md)。
+
 ## 从源码构建
 
 需要完整 Xcode、macOS 26 或更新 SDK、Swift tools 6.0+ 和 Python 3；不可删除预览或仅使用 Command Line Tools。
 
 ```bash
-git clone https://github.com/wenyen-hsu/Pulse.git PulsePet
-cd PulsePet
+git clone https://github.com/wenyen-hsu/Pulse.git Nokori
+cd Nokori
 swift build
 TZ=UTC swift test
 ./Scripts/check-localization.sh
@@ -48,7 +52,7 @@ TZ=UTC swift test
 ./Scripts/dmg.sh
 ```
 
-产物为 `build.noindex/Pulse Pet.app`、`PulsePet-<version>.zip` 和 `PulsePet-<version>.dmg`。本地打包不创建公开 Release。[工具链](Docs/build-from-source.md) · [打包说明](Docs/releasing.md)。
+产物为 `build.noindex/Nokori.app`、`Nokori-<version>.zip` 和 `Nokori-<version>.dmg`。本地打包不创建公开 Release。[工具链](Docs/build-from-source.md) · [打包说明](Docs/releasing.md)。
 
 ## 隐私、参与与授权
 
@@ -56,7 +60,7 @@ TZ=UTC swift test
 
 定制版问题请到[本仓库 Issues](https://github.com/wenyen-hsu/Pulse/issues) 提交系统版本、架构、面板样式和重现步骤，不要要求上游作者支持。[贡献指南](CONTRIBUTING.md) · [安全回报](SECURITY.md) · [文档目录](Docs/README.md)。
 
-感谢 **qunqin24 和 Pulse 贡献者**。保留 [Apache 2.0](LICENSE)、[NOTICE](NOTICE) 和[第三方声明](THIRD_PARTY_NOTICES.md)，安装界面与“关于”也保留致谢。Apache 2.0 允许按条款修改与再分发，但须保留必要授权和声明、标明修改并遵守第三方条款；不授予商标权或原作者背书。新名称和 logo 须另行确认。
+感谢 **qunqin24 和 Pulse 贡献者**。保留 [Apache 2.0](LICENSE)、[NOTICE](NOTICE) 和[第三方声明](THIRD_PARTY_NOTICES.md)，安装界面与“关于”也保留致谢。Apache 2.0 允许按条款修改与再分发，但须保留必要授权和声明、标明修改并遵守第三方条款；不授予商标权或原作者背书。名称与 logo 的选用不代表已通过商标查核。
 
 **[English](README.md) · [繁體中文](README.zh-Hant.md)**<br>
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)

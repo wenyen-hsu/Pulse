@@ -1,8 +1,10 @@
 # Docs
 
+[Nokori branding and upgrade compatibility](branding.md)
+
 [English project page](../README.md) · [繁體中文專案說明](../README.zh-Hant.md) · [Security / 安全回報](../SECURITY.md)
 
-The root READMEs describe the independent Pulse Pet fork and link to this repository's packages. Core provider documentation and historical release notes retain the original Pulse terminology and attribution; upstream update/feed deployment is reference material, not the fork's active update channel. See [trial packaging](releasing.md#trial-packaging).
+The root READMEs describe the independent Nokori fork and link to this repository's packages. Core provider documentation and historical release notes retain the original Pulse terminology and attribution; upstream update/feed deployment is reference material, not the fork's active update channel. See [trial packaging](releasing.md#trial-packaging).
 
 Maintained map. Change the topic file that owns a behaviour in the same patch as the code. [CLAUDE.md](../CLAUDE.md) is a short AI entry; [CONTRIBUTING.md](../CONTRIBUTING.md) is the human process.
 

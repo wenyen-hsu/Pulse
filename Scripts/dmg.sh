@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Builds build.noindex/PulsePet-<version>.dmg: the app, a shortcut to Applications, and a
+# Builds build.noindex/Nokori-<version>.dmg: the app, a shortcut to Applications, and a
 # backdrop telling you what to do with them.
 #
 # The disk image is the install guide. Pulse is not signed with an Apple

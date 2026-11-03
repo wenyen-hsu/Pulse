@@ -2,7 +2,7 @@
 
 ## English
 
-This policy is for the independent Pulse Pet fork, not upstream Pulse.
+This policy is for the independent Nokori fork, not upstream Pulse.
 
 - Never attach API keys, cookies, login tokens, keychain contents or unredacted logs to a public issue or pull request.
 - If **Report a vulnerability** is available in [this fork's Security tab](https://github.com/wenyen-hsu/Pulse/security), use that private channel.
@@ -13,7 +13,7 @@ Private vulnerability reporting is a repository setting; this file does not enab
 
 ## 繁體中文
 
-本政策適用於獨立客製版 Pulse Pet，不是上游 Pulse。
+本政策適用於獨立客製版 Nokori，不是上游 Pulse。
 
 - 請勿在公開 Issue 或 PR 附上 API Key、Cookie、登入 Token、鑰匙圈內容或未遮蔽的紀錄。
 - 若[本儲存庫 Security 頁面](https://github.com/wenyen-hsu/Pulse/security)提供 **Report a vulnerability**，請使用該私密管道。

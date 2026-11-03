@@ -1,11 +1,13 @@
-# Pulse Pet
+<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori liquid sun logo" /></p>
+
+# Nokori
 
 **[English](README.md) · 繁體中文**<br>
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)
 
 原生 macOS AI 用量監視器：中央小太陽寵物，可切換圓形或液態玻璃外觀。
 
-> 本專案是 [qunqin24 開發的 Pulse](https://github.com/qunqin24/Pulse) 的獨立客製版。**目前應用程式名稱仍為 Pulse Pet**，新名稱與 logo 尚在確認。本儲存庫不是上游正式版本，也不代表原作者背書。
+> 本專案是 [qunqin24 開發的 Pulse](https://github.com/qunqin24/Pulse) 的獨立客製版。本獨立版本正式採用 **Nokori（原名 Pulse Pet）**。本儲存庫不是上游正式版本，也不代表原作者背書。
 
 ## 這個版本改了什麼？
 
@@ -23,11 +25,11 @@
 
 ## 安裝，不取代原版 Pulse
 
-請使用維護者提供，或[本客製版 Releases](https://github.com/wenyen-hsu/Pulse/releases) 列出的 **Pulse Pet** 試用包。若尚無客製版安裝包，請依下方原始碼步驟建置。上游 Pulse 的下載包不含本版客製功能。
+請使用維護者提供，或[本客製版 Releases](https://github.com/wenyen-hsu/Pulse/releases) 列出的 **Nokori** 試用包。若尚無客製版安裝包，請依下方原始碼步驟建置。上游 Pulse 的下載包不含本版客製功能。
 
-1. 開啟客製版 DMG，將 **Pulse Pet.app** 拖進「應用程式」。
+1. 開啟客製版 DMG，將 **Nokori.app** 拖進「應用程式」。
 2. 保留原本的 **Pulse.app**。兩者設定、應用程式資料、登入項目與 URL scheme 分開，不遷移原版設定。
-3. 開啟 Pulse Pet，選擇要監控的服務。程式常駐選單列；也可右鍵點按浮動面板開啟設定。
+3. 開啟 Nokori，選擇要監控的服務。程式常駐選單列；也可右鍵點按浮動面板開啟設定。
 4. 試用包使用臨時簽章，**未經 Apple 公證**。若受阻擋，僅在信任安裝包時，使用「系統設定 → 隱私權與安全性 → 仍要打開」。
 
 **系統需求：** macOS 14 以上，完整 Liquid Glass 外觀需要 macOS 26 以上。Universal 安裝包包含 Apple Silicon 與 Intel；本客製面板尚未在 Intel 硬體及舊版 macOS 實測。已停用上游自動更新。
@@ -42,13 +44,15 @@
 
 頁首連結用來切換 GitHub 說明文件的語言；應用程式語言需在設定中另外選擇。
 
+> **從 Pulse Pet 升級：** 先結束舊版、安裝 Nokori，再移除舊 Pulse Pet 的程式本體，不要刪除資料。原有獨立設定與資料識別保留；不要同時執行新舊名稱的同一程式。原版 Pulse 仍可與 Nokori 雙開。[品牌與相容性](Docs/branding.md)。
+
 ## 從原始碼建置與檢查
 
 需要完整 Xcode、**macOS 26 或更新 SDK**、Swift tools 6.0 以上，以及供腳本使用的 Python 3。不可刪除 SwiftUI 預覽來通過編譯，也不可僅使用 Command Line Tools。
 
 ```bash
-git clone https://github.com/wenyen-hsu/Pulse.git PulsePet
-cd PulsePet
+git clone https://github.com/wenyen-hsu/Pulse.git Nokori
+cd Nokori
 swift build
 TZ=UTC swift test
 ./Scripts/check-localization.sh
@@ -56,7 +60,7 @@ TZ=UTC swift test
 ./Scripts/dmg.sh
 ```
 
-產出：`build.noindex/Pulse Pet.app`、`PulsePet-<version>.zip`、`PulsePet-<version>.dmg`。本機打包不會建立公開 Release。[工具鏈說明](Docs/build-from-source.md) · [打包及發版界線](Docs/releasing.md)。
+產出：`build.noindex/Nokori.app`、`Nokori-<version>.zip`、`Nokori-<version>.dmg`。本機打包不會建立公開 Release。[工具鏈說明](Docs/build-from-source.md) · [打包及發版界線](Docs/releasing.md)。
 
 ## 隱私與參與方式
 
@@ -68,6 +72,6 @@ TZ=UTC swift test
 
 感謝 **qunqin24 與 Pulse 貢獻者**建立原始專案。本獨立版本保留 [Apache 2.0 授權](LICENSE)、[NOTICE](NOTICE) 與[第三方聲明](THIRD_PARTY_NOTICES.md)，安裝畫面及「關於」也會顯示致謝。
 
-Apache 2.0 允許在遵守條款下修改與再散布，包括保留必要聲明及授權、標示修改，並遵守第三方素材條款；不授予商標權，也不表示原作者背書。新名稱與 logo 仍需另外確認使用風險。
+Apache 2.0 允許在遵守條款下修改與再散布，包括保留必要聲明及授權、標示修改，並遵守第三方素材條款；不授予商標權，也不表示原作者背書。名稱與 logo 的選用不代表已通過商標查核。
 
 **[English](README.md)** · [繁體中文](README.zh-Hant.md)

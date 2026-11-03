@@ -4,6 +4,6 @@ set -euo pipefail
 export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 directory="$(dirname "$0")"
 if ! label="$(/bin/bash "$directory/pulse-status.sh")"; then
-    label="Pulse Pet —"
+    label="Nokori —"
 fi
 sketchybar --set "${NAME:-pulse}" label="$label"

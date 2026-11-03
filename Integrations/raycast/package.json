@@ -2,8 +2,8 @@
   "$schema": "https://www.raycast.com/schemas/extension.json",
   "name": "pulse-pet-usage",
   "type": "module",
-  "title": "Pulse Pet Usage",
-  "description": "Search your Pulse Pet accounts and inspect cached usage, reset times, and reading age.",
+  "title": "Nokori Usage",
+  "description": "Search your Nokori accounts and inspect cached usage, reset times, and reading age.",
   "icon": "icon.png",
   "author": "qunqin24",
   "license": "Apache-2.0",
@@ -12,8 +12,8 @@
     {
       "name": "usage",
       "title": "Show AI Usage",
-      "subtitle": "Pulse Pet",
-      "description": "Search accounts, inspect limits, and open account settings in Pulse Pet.",
+      "subtitle": "Nokori",
+      "description": "Search accounts, inspect limits, and open account settings in Nokori.",
       "mode": "view"
     }
   ],
@@ -21,10 +21,10 @@
     {
       "name": "pulsePath",
       "type": "textfield",
-      "title": "Pulse Pet Executable",
-      "description": "Full path to the executable inside Pulse Pet.app. Spaces are supported; do not add shell quotes.",
+      "title": "Nokori Executable",
+      "description": "Full path to the executable inside Nokori.app. Spaces are supported; do not add shell quotes.",
       "required": false,
-      "default": "/Applications/Pulse Pet.app/Contents/MacOS/PulsePet"
+      "default": "/Applications/Nokori.app/Contents/MacOS/Nokori"
     }
   ],
   "scripts": {

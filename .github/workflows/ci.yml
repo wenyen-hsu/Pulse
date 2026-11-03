@@ -87,7 +87,7 @@ jobs:
 
       # Proves the thing that actually ships can be assembled, not just that
       # the sources compile.
-      - name: Assemble Pulse Pet.app
+      - name: Assemble the independent app
         run: ./Scripts/bundle.sh
 
       - name: Check the bundle

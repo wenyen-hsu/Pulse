@@ -1,11 +1,13 @@
-# Pulse Pet
+<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori liquid sun logo" /></p>
+
+# Nokori
 
 **[English](README.md) · [繁體中文](README.zh-Hant.md)**<br>
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)
 
 中央の太陽ペットと、円形・液体ガラスの表示を備えた macOS 用 AI 使用量モニター。
 
-> [qunqin24 氏の Pulse](https://github.com/qunqin24/Pulse) を基にした独立版です。原作者による公認を意味しません。現在のアプリ名は **Pulse Pet** で、新名称とロゴは検討中です。
+> [qunqin24 氏の Pulse](https://github.com/qunqin24/Pulse) を基にした独立版です。原作者による公認を意味しません。本独立版の名前は **Nokori（旧 Pulse Pet）** に決定しました。
 
 ## この版の機能
 
@@ -19,9 +21,9 @@
 
 ## インストールと設定
 
-管理者が提供する、または[このリポジトリの Releases](https://github.com/wenyen-hsu/Pulse/releases) にある **Pulse Pet** 試用版を使ってください。なければソースからビルドしてください。上流の Pulse 配布物には本版の変更は含まれません。
+管理者が提供する、または[このリポジトリの Releases](https://github.com/wenyen-hsu/Pulse/releases) にある **Nokori** 試用版を使ってください。なければソースからビルドしてください。上流の Pulse 配布物には本版の変更は含まれません。
 
-1. DMG を開き、**Pulse Pet.app** をアプリケーションへ移動します。元の **Pulse.app** は置き換えません。
+1. DMG を開き、**Nokori.app** をアプリケーションへ移動します。元の **Pulse.app** は置き換えません。
 2. 設定、アプリデータ、ログイン項目、URL スキームは独立し、元の設定は移行しません。上流の自動更新は無効です。
 3. 起動後に監視するサービスを選びます。メニューバーに常駐し、パネルの右クリックでも設定を開けます。
 4. 試用版はアドホック署名のみで **Apple 未公証**です。信頼できる配布物に限り、システム設定 → プライバシーとセキュリティ → このまま開くを使用してください。
@@ -34,13 +36,15 @@ macOS 14 以降、完全な Liquid Glass 表示には macOS 26 以降が必要�
 - **設定 → 一般 → インターフェイス言語：** 英語、繁体字・簡体字中国語、日本語、韓国語、ロシア語、またはシステム設定に従う。冒頭のリンクは README のみを切り替えます。
 - **設定 → 通知：** しきい値か任意の割合を選んで適用し、macOS の通知を許可します。取得した値に基づく通知で、連続したリアルタイム監視ではありません。
 
+> **Pulse Pet からの更新：** 旧版を終了し、Nokori をインストールしてから古い Pulse Pet のアプリ本体だけを削除してください。設定とデータは削除せず、従来の独立した識別情報を維持します。新旧名の同じアプリを同時に起動しないでください。原版 Pulse と Nokori は同時に使えます。[ブランドと互換性](Docs/branding.md)。
+
 ## ソースからビルド
 
 完全な Xcode、macOS 26 以降の SDK、Swift tools 6.0 以降、Python 3 が必要です。プレビューを削除したり、Command Line Tools だけでビルドしたりしないでください。
 
 ```bash
-git clone https://github.com/wenyen-hsu/Pulse.git PulsePet
-cd PulsePet
+git clone https://github.com/wenyen-hsu/Pulse.git Nokori
+cd Nokori
 swift build
 TZ=UTC swift test
 ./Scripts/check-localization.sh
@@ -48,7 +52,7 @@ TZ=UTC swift test
 ./Scripts/dmg.sh
 ```
 
-出力は `build.noindex/Pulse Pet.app`、`PulsePet-<version>.zip`、`PulsePet-<version>.dmg` です。ローカルでのパッケージ作成は公開リリースを作成しません。[ツールチェーン](Docs/build-from-source.md) · [配布について](Docs/releasing.md)。
+出力は `build.noindex/Nokori.app`、`Nokori-<version>.zip`、`Nokori-<version>.dmg` です。ローカルでのパッケージ作成は公開リリースを作成しません。[ツールチェーン](Docs/build-from-source.md) · [配布について](Docs/releasing.md)。
 
 ## プライバシー・参加・ライセンス
 
@@ -56,7 +60,7 @@ Pulse のサーバーやアカウントはありません。有効にしたサ�
 
 本版の問題は[このリポジトリの Issues](https://github.com/wenyen-hsu/Pulse/issues)へ、macOS、アーキテクチャ、表示モード、再現手順を添えて報告してください。上流作者への本版のサポート依頼は控えてください。[貢献](CONTRIBUTING.md) · [セキュリティ](SECURITY.md) · [文書一覧](Docs/README.md)。
 
-**qunqin24 氏と Pulse の貢献者の皆様に感謝します。** [Apache 2.0](LICENSE)、[NOTICE](NOTICE)、[第三者ライセンス](THIRD_PARTY_NOTICES.md)を維持し、インストーラと「このアプリについて」にも謝辞を表示します。変更・再配布はライセンス条件に従い、必要な表記とライセンス、変更表示、第三者の条件を守ってください。商標権や原作者の公認は付与されません。新名称とロゴは別途確認が必要です。
+**qunqin24 氏と Pulse の貢献者の皆様に感謝します。** [Apache 2.0](LICENSE)、[NOTICE](NOTICE)、[第三者ライセンス](THIRD_PARTY_NOTICES.md)を維持し、インストーラと「このアプリについて」にも謝辞を表示します。変更・再配布はライセンス条件に従い、必要な表記とライセンス、変更表示、第三者の条件を守ってください。商標権や原作者の公認は付与されません。名称とロゴの選択は商標調査の完了を意味しません。
 
 **[English](README.md) · [繁體中文](README.zh-Hant.md)**<br>
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)

@@ -1,6 +1,6 @@
 {
-  "name": "Pulse Pet",
-  "executableName": "PulsePet",
+  "name": "Nokori",
+  "executableName": "Nokori",
   "bundleIdentifier": "io.github.wenyen-hsu.PulsePet",
   "storageDirectory": "Pulse Pet",
   "urlScheme": "pulse-pet",

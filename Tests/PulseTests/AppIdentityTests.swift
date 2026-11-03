@@ -2,12 +2,12 @@ import Foundation
 import Testing
 @testable import Pulse
 
-@Suite("Independent Pulse Pet identity")
+@Suite("Independent Nokori identity")
 struct AppIdentityTests {
     @Test("App, storage, links and login agent cannot resolve to the original Pulse")
     func identity() {
-        #expect(AppIdentity.name == "Pulse Pet")
-        #expect(AppIdentity.executableName == "PulsePet")
+        #expect(AppIdentity.name == "Nokori")
+        #expect(AppIdentity.executableName == "Nokori")
         #expect(AppIdentity.bundleIdentifier == "io.github.wenyen-hsu.PulsePet")
         #expect(PulseStorage.directory.lastPathComponent == "Pulse Pet")
         #expect(PulseStorage.directory != URL.applicationSupportDirectory.appending(path: "Pulse"))
@@ -42,12 +42,18 @@ struct AppIdentityTests {
     }
 
     @Test("Only this app's status line is repaired or disconnected", arguments: [
+        ("\"/Applications/Nokori.app/Contents/MacOS/Nokori\" --statusline", true),
+        ("\"/Users/me/Old Location/Nokori\" --statusline", true),
+        ("/tmp/Nokori --statusline", true),
+        ("Nokori --statusline", true),
         ("\"/Applications/Pulse Pet.app/Contents/MacOS/PulsePet\" --statusline", true),
         ("\"/Users/me/Old Location/PulsePet\" --statusline", true),
         ("/tmp/PulsePet --statusline", true),
         ("PulsePet --statusline", true),
         ("\"/Applications/Pulse.app/Contents/MacOS/Pulse\" --statusline", false),
         ("echo PulsePet --statusline", false),
+        ("echo Nokori --statusline", false),
+        ("Nokori --statusline-extra", false),
         ("other --statusline", false),
         (" --statusline", false),
         ("PulsePet --statusline-extra", false)
