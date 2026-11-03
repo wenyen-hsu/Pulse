@@ -6,6 +6,10 @@ Do not treat `hitTest` or synthesised `NSEvent`s as proof that a real click arri
 
 Why enter/leave are split, why the window owns the drag, and the Liquid Glass episode: [../decisions/hover-and-drag.md](../decisions/hover-and-drag.md), [../decisions/liquid-glass.md](../decisions/liquid-glass.md).
 
+## Liquid pet input
+
+Liquid mode retains the enter-only tracker, sampled-pointer departure and window-owned drag. Its glass `contentShape`, `PetOrbLayout.containsOrb` and `PetOrbPanel.sendEvent` use the same liquid outline and motion state, with a small approach halo for pointer intent. The tail and recoil never alter ring positions, the pet centre, or window size. A new press cancels recoil; hiding or switching presentation also cancels it. These geometry checks still require bundled desktop input testing.
+
 ## Hover (open / close the card)
 
 The pet presentation uses `PetOrbContent` and the same enter-only reporter plus sampled-pointer approach. Collapsed hit geometry includes the dot, the pet and a small approach halo; expanded geometry includes the circle, selected card and connecting bridge. A 350ms cancellable departure delay clears the card and collapses the orb when **Hide until pointed at** is on. Holding the panel suspends departure. `PetOrbPanel.sendEvent` owns drag and ring-refresh clicks; a press in the first 300ms after expansion cannot refresh an account. Pager buttons are left to SwiftUI. Geometry checks do not prove that these controls receive real input.

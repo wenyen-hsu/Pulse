@@ -21,12 +21,15 @@ empty dialog.
 from __future__ import annotations
 
 import html
+import json
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CHANGELOG = ROOT / "CHANGELOG.md"
+IDENTITY = json.loads((ROOT / "Sources/Pulse/Resources/AppIdentity.json").read_text())
+REPOSITORY = f"https://github.com/{IDENTITY['repository']}"
 
 
 def entry(version: str) -> str | None:
@@ -69,11 +72,12 @@ LANGUAGES: list[dict[str, str]] = [
     {
         "name": "中文",
         "id": "cn",
-        "upgrade": "**已经在运行 {previous}？** 会自动提示更新，也可在 **设置 → 关于 → 检查更新** 手动检查。",
+        "upgrade": "**已经在运行 {previous}？** 请下载本仓库的新版安装包；此独立版本未启用自动更新。",
         "install_heading": "安装",
         "install": (
-            "下载 **Pulse-{version}.dmg**，打开后拖入「应用程序」。未公证，首次启动会被阻止："
-            "先打开 Pulse 并关闭警告，再到 **系统设置 → 隐私与安全性 → 安全性 → 仍要打开**。"
+            "下载 **{executable}-{version}.dmg**，打开后将 **{name}.app** 拖入「应用程序」，不要替换原版 Pulse。"
+            "从 Pulse Pet 升级时，先退出旧版，再移除旧应用本体，保留设置与数据。"
+            "未公证，首次启动会被阻止：先打开 {name} 并关闭警告，再到 **系统设置 → 隐私与安全性 → 安全性 → 仍要打开**。"
             "只需操作一次。\n\n需要 macOS 14 或更高版本，支持 Apple 芯片和 Intel。"
         ),
         "changelog": "**完整更新记录**：{compare}",
@@ -81,20 +85,18 @@ LANGUAGES: list[dict[str, str]] = [
     {
         "name": "English",
         "id": "en",
-        "upgrade": "**Already running {previous}?** Pulse will offer {version} on its own — or use **Settings → About → Check now**.",
+        "upgrade": "**Already running {previous}?** Download the new package from this repository; automatic updates are disabled in this independent build.",
         "install_heading": "Install",
         "install": (
-            "Download **Pulse-{version}.dmg** and drag Pulse into Applications. Not notarized, "
-            "so macOS blocks the first launch: open Pulse, dismiss the warning, then go to "
+            "Download **{executable}-{version}.dmg** and drag **{name}.app** into Applications without replacing original Pulse. "
+            "When upgrading from Pulse Pet, quit it and remove only the old application, keeping its settings and data. "
+            "Not notarized, so macOS blocks the first launch: open {name}, dismiss the warning, then go to "
             "**System Settings → Privacy & Security → Security → Open Anyway**. Once only."
             "\n\nRequires macOS 14 or newer. Universal (Apple Silicon and Intel)."
         ),
         "changelog": "**Full Changelog**: {compare}",
     },
 ]
-
-REPOSITORY = "https://github.com/qunqin24/Pulse"
-
 
 def release_notes(version: str, markdown: str) -> str:
     """The GitHub release page: one section per language, with an anchor each.
@@ -129,12 +131,12 @@ def release_notes(version: str, markdown: str) -> str:
     for index, (language, body) in enumerate(sections):
         if index:
             parts.append("---")
-        parts.append(f"<h2 id=\"{language['id']}-pulse-{version}\">Pulse {version}</h2>")
+        parts.append(f"<h2 id=\"{language['id']}-pulse-{version}\">{html.escape(IDENTITY['name'])} {version}</h2>")
         if before:
             parts.append(language["upgrade"].format(previous=before, version=version))
         parts.append(promote_headings(body))
         parts.append(f"## {language['install_heading']}")
-        parts.append(language["install"].format(version=version))
+        parts.append(language["install"].format(version=version, name=IDENTITY["name"], executable=IDENTITY["executableName"]))
         parts.append(language["changelog"].format(compare=compare))
 
     return "\n\n".join(part for part in parts if part)

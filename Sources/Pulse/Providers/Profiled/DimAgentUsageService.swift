@@ -7,7 +7,7 @@ extension ProviderProfile {
         iconResource: "dimagent",
         credential: .localLogin,
         accessDescription: {
-            .localized("Runs dim usage --json with the CLI's saved login. Pulse does not read or store its credentials.")
+            .localized("Runs dim usage --json with the CLI's saved login. \(AppIdentity.name) does not read or store its credentials.")
         },
         soleRoute: {
             ("Dim CLI", .localized("Uses the login saved by dim auth login."))

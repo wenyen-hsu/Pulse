@@ -1,6 +1,6 @@
 # Developer integrations / 开发者集成
 
-> This fork is **Pulse Pet**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#pulse-pet-independent-application). Packaging produces `build.noindex/Pulse Pet.app`, `PulsePet-<version>.zip` and `PulsePet-<version>.dmg`; no upstream updater is enabled.
+> This fork is **Nokori**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#nokori-independent-application). Packaging produces `build.noindex/Nokori.app`, `Nokori-<version>.zip` and `Nokori-<version>.dmg`; no upstream updater is enabled.
 
 Open **Pulse Settings → Developer integrations → Export integration files…**. Choose a folder; Pulse creates `Pulse Integrations` inside it. The kit contains a Raycast extension and scripts for tmux, sketchybar and a shell prompt. From a source checkout, the same files are in [`Integrations/`](../Integrations/).
 
@@ -24,7 +24,7 @@ Once Raycast registers the extension, search for **Show AI Usage**. Search by pr
 
 在 Raycast 搜索 **Show AI Usage**，可按服务商或账户名称筛选。回车直达对应账户设置；**⌘R 仅读取最新缓存**，不会强制请求服务商。
 
-If Pulse is installed outside `/Applications`, set the extension's **Pulse Pet Executable** preference to the full path ending in `Pulse Pet.app/Contents/MacOS/PulsePet`. Enter a plain path, without shell quotes. An unreadable executable or malformed report shows an error with a retry action; an empty cache offers Pulse Settings.
+If Pulse is installed outside `/Applications`, set the extension's **Nokori Executable** preference to the full path ending in `Nokori.app/Contents/MacOS/Nokori`. Enter a plain path, without shell quotes. An unreadable executable or malformed report shows an error with a retry action; an empty cache offers Pulse Settings.
 
 ## Shell and tmux
 
@@ -41,14 +41,14 @@ Environment variables:
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `PULSE_BIN` | `\"/Applications/Pulse Pet.app/Contents/MacOS/PulsePet\"`, then `~/Applications` | Executable path, passed as one argument |
+| `PULSE_BIN` | `\"/Applications/Nokori.app/Contents/MacOS/Nokori\"`, then `~/Applications` | Executable path, passed as one argument |
 | `PULSE_ACCOUNT` | All enabled accounts | Exact account id, including an added account's `#slot` |
 | `PULSE_MAX_AGE` | `1800` | Seconds before appending `(old)` |
 
 Find account ids with the command copied from Settings:
 
 ```bash
-\"/Applications/Pulse Pet.app/Contents/MacOS/PulsePet\" --json | jq -r '.accounts[] | [.id, .label] | @tsv'
+\"/Applications/Nokori.app/Contents/MacOS/Nokori\" --json | jq -r '.accounts[] | [.id, .label] | @tsv'
 ```
 
 Add to `~/.tmux.conf`:

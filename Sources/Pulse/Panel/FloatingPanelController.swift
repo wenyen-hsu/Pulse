@@ -1,4 +1,5 @@
 // Copyright (c) 2026 qunqin24. Licensed under the Apache License, Version 2.0.
+// Modified by wenyen-hsu: liquid pet mode and independent-fork attribution.
 import AppKit
 import SwiftUI
 
@@ -254,7 +255,7 @@ final class FloatingPanelController {
         if let screenObserver { NotificationCenter.default.removeObserver(screenObserver) }
     }
 
-    var isVisible: Bool { settings.panelPresentation == .petOrb ? orbController.isVisible : panel.isVisible }
+    var isVisible: Bool { settings.panelPresentation.usesOrb ? orbController.isVisible : panel.isVisible }
 
     /// The menu a secondary click on the rail puts up.
     ///
@@ -271,7 +272,7 @@ final class FloatingPanelController {
     }
 
     func show() {
-        if settings.panelPresentation == .petOrb {
+        if settings.panelPresentation.usesOrb {
             panel.orderOut(nil)
             displayFollower.stop()
             orbController.show()
@@ -302,7 +303,7 @@ final class FloatingPanelController {
     }
 
     func toggle() {
-        if settings.panelPresentation == .petOrb {
+        if settings.panelPresentation.usesOrb {
             orbController.isVisible ? orbController.hide() : show()
             return
         }
@@ -312,7 +313,7 @@ final class FloatingPanelController {
 
     /// Brings the panel in line with settings that were just changed.
     func settingsChanged() {
-        if settings.panelPresentation == .petOrb {
+        if settings.panelPresentation.usesOrb {
             panel.orderOut(nil)
             displayFollower.stop()
             orbController.settingsChanged()

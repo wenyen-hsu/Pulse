@@ -1,6 +1,10 @@
 # Settings window
 
+Application-name references in localized interface text interpolate `AppIdentity.name`, including login/menu-bar help, notifications, provider/access explanations and the current-app description in About. All six language tables use matching format keys; original Pulse/qunqin24 attribution remains literal. Multi-argument translations keep explicit format positions so the app name cannot replace a provider name. Exported developer integration folders use the current name; data domains and navigation schemes retain the stable identity documented in [branding](../branding.md).
+
 Chrome and why it is AppKit-owned: [../architecture.md](../architecture.md). Localization rules: [../development.md](../development.md).
+
+When a translation repeats the app name, reuse its positional argument (for example `%1$@`) rather than another unindexed `%@`. The localization tests render the extension description and window-starter warning in all six languages and validate every table's referenced argument positions against its keys.
 
 `SettingsView` / `SettingsRow`: a `NavigationSplitView` source list, panes built from `SettingsGroup` + `SettingsRow` (title and optional subtitle on the left, control on the right; `controlBelow: true` puts the control under the label). **A choice in a settings row is a pop-up menu** (`.pickerStyle(.menu)`), as in System Settings, never a segmented control: one control everywhere, and a menu fits beside its label however many options it has (Position's six segments had to move under the label to fit). Segmented controls are kept for switching what a view shows — Token activity's view, the recap's Month / Year. `SettingsPane` includes `.account(AccountKey)`, so every account — each provider's first, plus any added login — has a sidebar row.
 
@@ -160,13 +164,15 @@ In the sidebar's last, untitled section. It copies the actual executable's `--js
 
 **`ImageRenderer` cannot draw this window** (split view + AppKit controls). Check by running the app.
 
+**Liquid pet** is an optional third Panel style alongside Pet orb and Classic rail. It shares the pet, PNG and size controls, and persists as `liquidPet` without changing existing saved styles. The sun remains centred. See [liquid geometry](panel-geometry.md#liquid-pet) for drag deformation, recoil and Reduced Motion.
+
 ## About
 
 Two groups. The first is the app: version and update state, where the usage figures come from, and the **source address**, with the URL itself as the subtitle so it can be typed.
 
 **Opening the pane checks for an update** (`AppUpdate.probe`, Sparkle's `checkForUpdateInformation`), unless a check or update is already running: no Sparkle window, only the Version subtitle changes ("Checking…", then the answer), so "up to date" is current. It runs **even with Check automatically off** — that switch covers Pulse's own schedule; opening About is the reader asking. **Check now** still puts up Sparkle's window.
 
-The second group is **Credits**: anything shipped here that somebody else made — the design it was built from, the provider marks, and the robot (CX ArtLab's Agent Robot Avatar, said to be a port of an original character under the MIT License, with **Open** for its repository).
+The second group is **Credits**: the original Pulse by qunqin24 (Apache 2.0), with thanks and an explicit independent-version/no-endorsement notice, followed by the design it was built from, the provider marks, and CX ArtLab's Agent Robot Avatar (MIT). Each source with a link offers **Open**.
 
 ## Provider panes
 
