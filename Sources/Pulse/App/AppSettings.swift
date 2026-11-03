@@ -35,6 +35,37 @@ final class AppSettings {
     /// `UserDefaults.standard`; a test passes a throwaway suite.
     @ObservationIgnored let defaults: UserDefaults
 
+    var panelPresentation: PanelPresentation = .petOrb {
+        didSet {
+            guard panelPresentation != oldValue else { return }
+            defaults.set(panelPresentation.rawValue, forKey: Key.panelPresentation)
+            onLayoutChange?()
+        }
+    }
+    var orbPet: OrbPet = .sun {
+        didSet {
+            guard orbPet != oldValue else { return }
+            defaults.set(orbPet.rawValue, forKey: Key.orbPet)
+            onLayoutChange?()
+        }
+    }
+    var orbPetSize: Double = 1 {
+        didSet {
+            let bounded = Self.boundedPetSize(orbPetSize)
+            if orbPetSize != bounded { orbPetSize = bounded }
+            guard orbPetSize != oldValue else { return }
+            defaults.set(orbPetSize, forKey: Key.orbPetSize)
+            onLayoutChange?()
+        }
+    }
+    var orbPetImage: Data? {
+        didSet {
+            guard orbPetImage != oldValue else { return }
+            defaults.set(orbPetImage, forKey: Key.orbPetImage)
+            onLayoutChange?()
+        }
+    }
+
     // MARK: - Callbacks
 
     /// Called after any change the usage loop has to react to — a provider

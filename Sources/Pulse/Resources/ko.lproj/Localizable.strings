@@ -1,3 +1,28 @@
+// Pet orb
+"Pet orb" = "반려동물 오브";
+"Classic rail" = "기존 사이드바";
+"Cat" = "고양이";
+"Little sun" = "작은 태양";
+"Fox" = "여우";
+"Rabbit" = "토끼";
+"Panel style" = "패널 표시 방식";
+"Hover over your pet to reveal accounts around it." = "반려동물에 포인터를 가까이 대면 주변에 계정이 표시됩니다.";
+"Pet" = "반려동물";
+"Choose a companion or import a transparent PNG." = "기본 반려동물을 선택하거나 배경이 투명한 PNG 이미지를 가져오세요.";
+"Pet image" = "반려동물 이미지";
+"Use built-in pet" = "기본 반려동물 사용";
+"Import PNG…" = "PNG 가져오기…";
+"Pet size" = "반려동물 크기";
+"The pet orb always uses Liquid Glass. Rail docking options apply to the classic rail." = "반려동물 오브에는 항상 Liquid Glass가 적용됩니다. 도킹 설정은 기존 사이드바에만 적용됩니다.";
+"Could not import image" = "이미지를 가져올 수 없습니다";
+"OK" = "확인";
+"Choose a PNG smaller than 20 MB. The image is stored locally at up to 512 pixels." = "20 MB 미만의 PNG 이미지를 선택하세요. 긴 변을 최대 512픽셀로 줄여 이 Mac에 저장합니다.";
+"Show accounts" = "계정 표시";
+"Hide accounts" = "계정 숨기기";
+"Show details" = "세부 정보 표시";
+"Previous accounts" = "이전 계정";
+"Next accounts" = "다음 계정";
+
 "Runs dim usage --json with the CLI's saved login. Pulse does not read or store its credentials." = "CLI에 저장된 로그인으로 dim usage --json을 실행합니다. Pulse는 인증 정보를 읽거나 저장하지 않습니다.";
 "Uses the login saved by dim auth login." = "dim auth login으로 저장한 로그인을 사용합니다.";
 

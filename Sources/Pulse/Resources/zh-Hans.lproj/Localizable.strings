@@ -1,3 +1,28 @@
+// Pet orb
+"Pet orb" = "宠物浮点";
+"Classic rail" = "经典侧边栏";
+"Cat" = "猫";
+"Little sun" = "小太阳";
+"Fox" = "狐狸";
+"Rabbit" = "兔子";
+"Panel style" = "面板样式";
+"Hover over your pet to reveal accounts around it." = "将鼠标移近宠物，即可展开周围的账号。";
+"Pet" = "宠物";
+"Choose a companion or import a transparent PNG." = "选择内置宠物，或导入透明背景的 PNG 图片。";
+"Pet image" = "宠物图片";
+"Use built-in pet" = "使用内置宠物";
+"Import PNG…" = "导入 PNG…";
+"Pet size" = "宠物大小";
+"The pet orb always uses Liquid Glass. Rail docking options apply to the classic rail." = "宠物浮点始终使用液态玻璃效果；侧边栏停靠设置仅适用于经典模式。";
+"Could not import image" = "无法导入图片";
+"OK" = "确定";
+"Choose a PNG smaller than 20 MB. The image is stored locally at up to 512 pixels." = "请选择小于 20 MB 的 PNG 图片。图片会缩小至最长边 512 像素，并保存在本机。";
+"Show accounts" = "显示账号";
+"Hide accounts" = "隐藏账号";
+"Show details" = "显示详情";
+"Previous accounts" = "上一页账号";
+"Next accounts" = "下一页账号";
+
 "Runs dim usage --json with the CLI's saved login. Pulse does not read or store its credentials." = "通过 dim usage --json 读取用量，使用 CLI 已保存的登录。Pulse 不读取或保存其凭据。";
 "Uses the login saved by dim auth login." = "使用 dim auth login 保存的登录。";
 

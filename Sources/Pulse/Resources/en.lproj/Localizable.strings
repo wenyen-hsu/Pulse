@@ -1,3 +1,28 @@
+// Pet orb
+"Pet orb" = "Pet orb";
+"Classic rail" = "Classic rail";
+"Little sun" = "Little sun";
+"Cat" = "Cat";
+"Fox" = "Fox";
+"Rabbit" = "Rabbit";
+"Panel style" = "Panel style";
+"Hover over your pet to reveal accounts around it." = "Hover over your pet to reveal accounts around it.";
+"Pet" = "Pet";
+"Choose a companion or import a transparent PNG." = "Choose a companion or import a transparent PNG.";
+"Pet image" = "Pet image";
+"Use built-in pet" = "Use built-in pet";
+"Import PNG…" = "Import PNG…";
+"Pet size" = "Pet size";
+"The pet orb always uses Liquid Glass. Rail docking options apply to the classic rail." = "The pet orb always uses Liquid Glass. Rail docking options apply to the classic rail.";
+"Could not import image" = "Could not import image";
+"OK" = "OK";
+"Choose a PNG smaller than 20 MB. The image is stored locally at up to 512 pixels." = "Choose a PNG smaller than 20 MB. The image is stored locally at up to 512 pixels.";
+"Show accounts" = "Show accounts";
+"Hide accounts" = "Hide accounts";
+"Show details" = "Show details";
+"Previous accounts" = "Previous accounts";
+"Next accounts" = "Next accounts";
+
 "Runs dim usage --json with the CLI's saved login. Pulse does not read or store its credentials." = "Runs dim usage --json with the CLI's saved login. Pulse does not read or store its credentials.";
 "Uses the login saved by dim auth login." = "Uses the login saved by dim auth login.";
 

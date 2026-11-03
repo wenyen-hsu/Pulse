@@ -12,6 +12,8 @@ struct AppearancePane: View {
                     .foregroundStyle(.secondary)
             }
 
+            PetOrbSettingsGroup(settings: settings)
+
             SettingsGroup {
                 SettingsRow(
                     String.localized("Size"),

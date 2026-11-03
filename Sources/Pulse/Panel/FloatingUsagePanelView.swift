@@ -7,6 +7,7 @@ struct FloatingUsagePanelView: View {
     let store: UsageStore
     let settings: AppSettings
     let placement: PanelPlacement
+    var orb: PetOrbState? = nil
 
     /// The clock arc moves to the minute even when quota refresh backs off.
     @State private var minute = Date()
@@ -15,7 +16,13 @@ struct FloatingUsagePanelView: View {
         // Formatting reads the selected language through a plain function.
         let _ = settings.language
         let entries = entries
-        FloatingUsagePanelContent(store: store, settings: settings, entries: entries, placement: placement)
+        Group {
+            if let orb {
+                PetOrbContent(store: store, settings: settings, entries: entries, state: orb)
+            } else {
+                FloatingUsagePanelContent(store: store, settings: settings, entries: entries, placement: placement)
+            }
+        }
             .task(id: settings.showsWindowClock) {
                 guard settings.showsWindowClock else { return }
                 while !Task.isCancelled {

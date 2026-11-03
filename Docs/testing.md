@@ -37,6 +37,7 @@ Geometry checks, not real input; see [ui/panel-geometry.md](ui/panel-geometry.md
 
 | Suite | Pins |
 |---|---|
+| `PetOrbLayoutTests`, `PetOrbSettingsTests` | Circular slot targets, pagination, centred/bounded pets in both states, card bounds and pointer bridge; sun animation poses and neutral paused poses; default sun and preserved saved choices; presentation/pet persistence and layout-only callbacks; PNG size limits, downsampling and transparency. These do not verify mouse delivery, dragging, animation scheduling or glass rendering. |
 | `RailGeometryTests` | Every ring is reachable on every edge, docked or floating: centre inside the rail, last ring whole, each ring hit-testing to its own slot. `shownSlotCount` gets a reading that really splits, so a window counting accounts instead of rings fails (verified by reintroducing the bug). |
 | `FreeLyingRailProportionTests` | A free-lying rail's spacing with figures under or beside it, docked rails untouched, and extra edge room for the time arc. |
 | `NotchGeometryTests` | Notch docking: public screen area on offset displays, physical-top placement with controls below the housing, the warning edge inside it, minimum housing width, and padding/card/window budgets across every scale, top-label setting and end style; non-notch placement unchanged. |
