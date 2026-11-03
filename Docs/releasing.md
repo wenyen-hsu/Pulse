@@ -59,6 +59,8 @@ The image is the install guide: Pulse is not notarised, and on macOS 15+ Control
 
 Finder window layout is a committed `Scripts/dmg-DS_Store` (AppleScript cannot run on CI). Recapture with `./Scripts/dmg.sh --relayout` after changing the backdrop or icon positions. Finder `bounds` **include the title bar** (~28pt taller than a 660×420 backdrop). Backdrop: `Scripts/dmg-background.tiff` (1x and 2x).
 
+The backdrop names Pulse Pet in the heading, drag instruction and first-launch guidance. Refresh this image when changing the display name in `AppIdentity.json`; changing only the bundle filename leaves misleading original-Pulse installation text.
+
 Sparkle updates from the **zip**, not the DMG. The image is for people.
 
 ## Sparkle
