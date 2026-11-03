@@ -58,6 +58,9 @@ jobs:
       - name: Localization keys
         run: ./Scripts/check-localization.sh
 
+      - name: Release-note identity
+        run: python3 -m unittest discover -s Scripts/tests -p 'test_*.py'
+
       # `#Preview` is expanded by a plugin that ships with Xcode, so the
       # previews are compiled here too — which is the point. Stripping them
       # would leave any error inside them completely unreported.

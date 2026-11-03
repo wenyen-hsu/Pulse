@@ -1,5 +1,7 @@
 # Releasing
 
+Release-note headings, installer filenames and compare links are read from AppIdentity.json by `Scripts/changelog.py`. Both installation languages describe the independent app and disabled updates; historical CHANGELOG entries remain unchanged. Existing `cn-pulse-<version>` / `en-pulse-<version>` anchors are retained for link compatibility. Verify with `python3 -m unittest discover -s Scripts/tests -p 'test_*.py'`.
+
 > This fork is **Nokori**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#nokori-independent-application). Packaging produces `build.noindex/Nokori.app`, `Nokori-<version>.zip` and `Nokori-<version>.dmg`; no upstream updater is enabled.
 
 There is no Xcode project. `Scripts/bundle.sh` turns the package executable into something macOS treats as an app. Without a bundle there is no `Bundle.main` (no version for the update check, no `SMAppService` login item — hence the launch-agent fallback), and nothing to hand anyone but a build folder.
