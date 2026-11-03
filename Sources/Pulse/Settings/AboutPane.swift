@@ -59,10 +59,10 @@ struct AboutPane: View {
                 // and half of them will want to type it rather than click.
                 SettingsRow(
                     String.localized("Source code"),
-                    subtitle: "github.com/qunqin24/Pulse"
+                    subtitle: "github.com/\(AppIdentity.repository)"
                 ) {
                     Button(String.localized("Open")) {
-                        NSWorkspace.shared.open(URL(string: "https://github.com/qunqin24/Pulse")!)
+                        NSWorkspace.shared.open(AppIdentity.repositoryURL)
                     }
                 }
             }

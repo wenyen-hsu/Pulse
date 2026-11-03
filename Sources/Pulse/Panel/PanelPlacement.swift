@@ -307,7 +307,7 @@ final class PanelPlacement {
     var isDocked: Bool { dock.isDocked }
 
     /// `defaults` is only ever not `.standard` in a test.
-    static func restored(from defaults: UserDefaults = .standard) -> PanelPlacement {
+    static func restored(from defaults: UserDefaults = AppIdentity.defaults) -> PanelPlacement {
 
         let dock: PanelDock = if defaults.object(forKey: Key.floating) as? Bool == true {
             // Absent for anyone who floated the panel before there was a
@@ -403,7 +403,7 @@ final class PanelPlacement {
         self.display = display
         guard persist else { return }
 
-        let defaults = UserDefaults.standard
+        let defaults = AppIdentity.defaults
         defaults.set(!dock.isDocked, forKey: Key.floating)
         switch dock {
         case .edge(let edge): defaults.set(edge.rawValue, forKey: Key.edge)

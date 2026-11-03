@@ -92,11 +92,11 @@ enum ClaudeAccountIdentity {
     static func remember(_ fingerprint: Fingerprint) {
         guard !fingerprint.isEmpty else { return }
         guard let data = try? JSONEncoder().encode(fingerprint) else { return }
-        UserDefaults.standard.set(data, forKey: key)
+        AppIdentity.defaults.set(data, forKey: key)
     }
 
     static var remembered: Fingerprint? {
-        guard let data = UserDefaults.standard.data(forKey: key) else { return nil }
+        guard let data = AppIdentity.defaults.data(forKey: key) else { return nil }
         return try? JSONDecoder().decode(Fingerprint.self, from: data)
     }
 

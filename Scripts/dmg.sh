@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Builds build.noindex/Pulse-<version>.dmg: the app, a shortcut to Applications, and a
+# Builds build.noindex/PulsePet-<version>.dmg: the app, a shortcut to Applications, and a
 # backdrop telling you what to do with them.
 #
 # The disk image is the install guide. Pulse is not signed with an Apple
@@ -26,18 +26,19 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
+source Scripts/app-identity.sh
 VERSION="$(tr -d '[:space:]' < VERSION)"
-VOLUME="Pulse"
+VOLUME="$APP_NAME"
 STAGING="build.noindex/dmg"
 WRITABLE="build.noindex/pulse-rw.dmg"
-FINAL="build.noindex/Pulse-$VERSION.dmg"
+FINAL="build.noindex/$EXECUTABLE-$VERSION.dmg"
 
 ./Scripts/bundle.sh
 
 echo "Staging the disk image…"
 rm -rf "$STAGING" "$WRITABLE" "$FINAL"
 mkdir -p "$STAGING/.background"
-cp -R "build.noindex/Pulse.app" "$STAGING/"
+cp -R "build.noindex/$APP_NAME.app" "$STAGING/"
 ln -s /Applications "$STAGING/Applications"
 cp Scripts/dmg-background.tiff "$STAGING/.background/background.tiff"
 
@@ -71,7 +72,7 @@ tell application "Finder"
         set arrangement of options to not arranged
         set icon size of options to 96
         set background picture of options to file ".background:background.tiff"
-        set position of item "Pulse.app" of container window to {170, 205}
+        set position of item "$APP_NAME.app" of container window to {170, 205}
         set position of item "Applications" of container window to {490, 205}
         close
         open

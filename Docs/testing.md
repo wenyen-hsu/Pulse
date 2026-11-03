@@ -1,5 +1,7 @@
 # Testing
 
+> This fork is **Pulse Pet**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#pulse-pet-independent-application). Packaging produces `build.noindex/Pulse Pet.app`, `PulsePet-<version>.zip` and `PulsePet-<version>.dmg`; no upstream updater is enabled.
+
 Owns: what `swift test` covers, what it deliberately does not, and the conventions the suite depends on. Toolchain and build flags: [build-from-source.md](build-from-source.md).
 
 ```bash

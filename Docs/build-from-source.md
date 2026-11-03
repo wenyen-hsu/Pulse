@@ -1,5 +1,7 @@
 # Build from source
 
+> This fork is **Pulse Pet**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#pulse-pet-independent-application). Packaging produces `build.noindex/Pulse Pet.app`, `PulsePet-<version>.zip` and `PulsePet-<version>.dmg`; no upstream updater is enabled.
+
 Pulse is a Swift package (`Package.swift`), macOS 14+, Swift tools 6.0. No linter; `swift test` covers rules and parsing ([testing.md](testing.md)). Open the package in Xcode or use the CLI.
 
 User-facing clone-and-run stays in the README. **This file is the toolchain contract.** Shipping a tagged build, Sparkle, and the DMG: [releasing.md](releasing.md).
@@ -7,7 +9,7 @@ User-facing clone-and-run stays in the README. **This file is the toolchain cont
 ```bash
 swift run Pulse              # build and run (no app bundle, no Sparkle, no SMAppService)
 swift build                  # type-check, including #Preview
-./Scripts/bundle.sh          # → build.noindex/Pulse.app
+./Scripts/bundle.sh          # → build.noindex/Pulse Pet.app
 ./Scripts/dmg.sh             # → build.noindex/Pulse-<version>.dmg
 ./Scripts/check-localization.sh
 ```
@@ -51,9 +53,9 @@ macOS also draws an app's controls to the SDK recorded in its binary, not to the
 
 ## What `swift run` is not
 
-A loose executable is a different app from `Pulse.app`:
+A loose executable and `Pulse Pet.app` share the Pulse Pet preferences suite, but differ in system integration:
 
-- Different `UserDefaults` domain ([architecture.md](architecture.md))
+- Explicit independent `AppIdentity.defaults` suite in both builds ([architecture.md](architecture.md))
 - Launch-agent login item instead of `SMAppService`
 - No Sparkle (`SUFeedURL` / framework missing)
 - Safari Full Disk Access, if ever needed for a session cookie, is granted **per application** — the bundled app and `swift run` are not the same grant

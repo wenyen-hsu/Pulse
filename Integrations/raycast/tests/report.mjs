@@ -26,7 +26,7 @@ test("age is measured from the observation, not frozen at JSON generation", () =
 });
 
 test("deep links preserve the full added-account id", () => {
-  assert.equal(accountURL(account.id), "pulse://account/claudeCode%23work");
+  assert.equal(accountURL(account.id), "pulse-pet://account/claudeCode%23work");
 });
 
 test("the consumer accepts additive fields and rejects malformed nested readings", () => {
@@ -54,7 +54,7 @@ test("shell integration handles gaps, estimates, stale readings and exact accoun
   assert.equal(shell([{ ...account, ageSeconds: 1800 }]), "Work: 99% used (old)");
   assert.equal(shell([{ ...account, windows: [{ ...account.windows[0], estimated: true }] }]), "Work: ≈99% used");
   assert.equal(shell([account, missing], [], { PULSE_ACCOUNT: account.id }), "Work: 99% used");
-  assert.equal(shell([]), "Pulse —");
+  assert.equal(shell([]), "Pulse Pet —");
 });
 
 test("tmux labels cannot inject formatting or additional lines", () => {

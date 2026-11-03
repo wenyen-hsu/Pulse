@@ -87,13 +87,20 @@ jobs:
 
       # Proves the thing that actually ships can be assembled, not just that
       # the sources compile.
-      - name: Assemble Pulse.app
+      - name: Assemble Pulse Pet.app
         run: ./Scripts/bundle.sh
 
       - name: Check the bundle
         run: |
-          APP="build.noindex/Pulse.app"
-          test -x "$APP/Contents/MacOS/Pulse"
+          source Scripts/app-identity.sh
+          APP="build.noindex/$APP_NAME.app"
+          test -x "$APP/Contents/MacOS/$EXECUTABLE"
+          test "$(plutil -extract CFBundleIdentifier raw -o - "$APP/Contents/Info.plist")" = "$BUNDLE_ID"
+          test "$(plutil -extract CFBundleURLTypes.0.CFBundleURLSchemes.0 raw -o - "$APP/Contents/Info.plist")" = "$URL_SCHEME"
+          if plutil -extract SUFeedURL raw -o - "$APP/Contents/Info.plist" >/dev/null 2>&1; then
+            echo "::error::An independent trial bundle must not embed an updater feed."
+            exit 1
+          fi
           test -d "$APP/Contents/Resources/Pulse_Pulse.bundle"
           test -f "$APP/Contents/Resources/AppIcon.icns"
           test "$(defaults read "$PWD/$APP/Contents/Info.plist" LSUIElement)" = "1"
@@ -111,4 +118,4 @@ jobs:
             find "$APP/Contents/Resources/Pulse_Pulse.bundle/Contents/Resources" -iname "$language.lproj" | grep -q .
           done
           echo "Version: $(defaults read "$PWD/$APP/Contents/Info.plist" CFBundleShortVersionString)"
-          echo "Architectures: $(lipo -archs "$APP/Contents/MacOS/Pulse")"
+          echo "Architectures: $(lipo -archs "$APP/Contents/MacOS/$EXECUTABLE")"

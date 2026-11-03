@@ -1,5 +1,7 @@
 # Developer integrations / 开发者集成
 
+> This fork is **Pulse Pet**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#pulse-pet-independent-application). Packaging produces `build.noindex/Pulse Pet.app`, `PulsePet-<version>.zip` and `PulsePet-<version>.dmg`; no upstream updater is enabled.
+
 Open **Pulse Settings → Developer integrations → Export integration files…**. Choose a folder; Pulse creates `Pulse Integrations` inside it. The kit contains a Raycast extension and scripts for tmux, sketchybar and a shell prompt. From a source checkout, the same files are in [`Integrations/`](../Integrations/).
 
 在 **Pulse 设置 → 开发者集成 → 导出集成文件…** 中选择目录，即可获得 `Pulse Integrations` 文件夹。下方示例假定导出到了「下载」目录；其他位置请替换路径。Raycast 扩展通过本地导入安装，终端脚本需要 `jq`。
@@ -22,7 +24,7 @@ Once Raycast registers the extension, search for **Show AI Usage**. Search by pr
 
 在 Raycast 搜索 **Show AI Usage**，可按服务商或账户名称筛选。回车直达对应账户设置；**⌘R 仅读取最新缓存**，不会强制请求服务商。
 
-If Pulse is installed outside `/Applications`, set the extension's **Pulse Executable** preference to the full path ending in `Pulse.app/Contents/MacOS/Pulse`. Enter a plain path, without shell quotes. An unreadable executable or malformed report shows an error with a retry action; an empty cache offers Pulse Settings.
+If Pulse is installed outside `/Applications`, set the extension's **Pulse Pet Executable** preference to the full path ending in `Pulse Pet.app/Contents/MacOS/PulsePet`. Enter a plain path, without shell quotes. An unreadable executable or malformed report shows an error with a retry action; an empty cache offers Pulse Settings.
 
 ## Shell and tmux
 
@@ -39,14 +41,14 @@ Environment variables:
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `PULSE_BIN` | `/Applications/Pulse.app/Contents/MacOS/Pulse`, then `~/Applications` | Executable path, passed as one argument |
+| `PULSE_BIN` | `\"/Applications/Pulse Pet.app/Contents/MacOS/PulsePet\"`, then `~/Applications` | Executable path, passed as one argument |
 | `PULSE_ACCOUNT` | All enabled accounts | Exact account id, including an added account's `#slot` |
 | `PULSE_MAX_AGE` | `1800` | Seconds before appending `(old)` |
 
 Find account ids with the command copied from Settings:
 
 ```bash
-/Applications/Pulse.app/Contents/MacOS/Pulse --json | jq -r '.accounts[] | [.id, .label] | @tsv'
+\"/Applications/Pulse Pet.app/Contents/MacOS/PulsePet\" --json | jq -r '.accounts[] | [.id, .label] | @tsv'
 ```
 
 Add to `~/.tmux.conf`:
@@ -80,7 +82,7 @@ Keep `pulse-sketchybar.sh` beside `pulse-status.sh`. Add to `sketchybarrc`:
 sketchybar --add item pulse right \
   --set pulse update_freq=60 \
     script="PULSE_ACCOUNT=claudeCode /bin/bash \"$HOME/Downloads/Pulse Integrations/pulse-sketchybar.sh\"" \
-    click_script="open 'pulse://account/claudeCode'"
+    click_script="open 'pulse-pet://account/claudeCode'"
 ```
 
 The plugin uses sketchybar's `NAME` variable. A failed cache read replaces the label with `Pulse —`, rather than leaving an old figure unmarked. Change `PULSE_ACCOUNT` and the click link together for another account. Remove the item with `sketchybar --remove pulse`.
@@ -90,10 +92,10 @@ The plugin uses sketchybar's `NAME` variable. A failed cache read replaces the l
 Copy an account link or its `open` command from **Developer integrations** in Settings:
 
 ```bash
-open 'pulse://settings'
-open 'pulse://integrations'
-open 'pulse://account/codex'
-open 'pulse://account/claudeCode%23YOUR-SLOT'
+open 'pulse-pet://settings'
+open 'pulse-pet://integrations'
+open 'pulse-pet://account/codex'
+open 'pulse-pet://account/claudeCode%23YOUR-SLOT'
 ```
 
 `%23` is the encoded `#` in an added account id. Use the copied link or the JSON `settingsURL` field instead of composing it by hand. Links select an existing account, clear the sidebar search, and open the settings window. They do not create accounts, change settings, or run a refresh/login command. A removed or unknown account does not create a pane. Query strings, fragments and unsupported routes are rejected.

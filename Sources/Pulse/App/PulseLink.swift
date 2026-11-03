@@ -9,7 +9,7 @@ enum PulseLink: Equatable {
 
     init?(url: URL) {
         guard let parts = URLComponents(url: url, resolvingAgainstBaseURL: false),
-              parts.scheme?.lowercased() == "pulse", parts.user == nil,
+              parts.scheme?.lowercased() == AppIdentity.urlScheme, parts.user == nil,
               parts.password == nil, parts.port == nil, parts.query == nil,
               parts.fragment == nil else { return nil }
         switch parts.host?.lowercased() {
@@ -29,7 +29,7 @@ enum PulseLink: Equatable {
 
     var url: URL {
         var parts = URLComponents()
-        parts.scheme = "pulse"
+        parts.scheme = AppIdentity.urlScheme
         switch self {
         case .settings: parts.host = "settings"
         case .integrations: parts.host = "integrations"

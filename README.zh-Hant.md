@@ -2,7 +2,9 @@
   <img src="AppIcon/pulse-icon-1024.png" width="112" alt="Pulse">
 </p>
 
-<h1 align="center">Pulse</h1>
+<h1 align="center">Pulse Pet</h1>
+
+> **獨立客製版 Pulse Pet。** 可與原版 Pulse 並存，不遷移原版設定或資料。下方保留的上游發行連結不是此客製版安裝包；請使用另行提供的 Pulse Pet 試用包，或依[原始碼建置說明](Docs/build-from-source.md)打包。此試用包不啟用上游更新。
 
 <p align="center">
   <b>不用逐一打開用量頁面，就知道 Claude Code、Codex、Cursor 還剩多少額度。</b><br>
@@ -56,7 +58,7 @@
 > - **方式 1（圖形介面）**：啟動 Pulse，關閉警示，打開 **系統設定 → 隱私權與安全性**，然後點按 **仍要打開**。
 > - **方式 2（終端機）**：
 >   ```bash
->   xattr -cr /Applications/Pulse.app
+>   xattr -cr "/Applications/Pulse Pet.app"
 >   ```
 >   *更新透過應用程式內的 Sparkle 提供。更新後，macOS 可能再次要求瀏覽器鑰匙圈存取權。*
 
@@ -132,7 +134,7 @@ cd Pulse
 ./Scripts/bundle.sh
 
 # 啟動
-open build.noindex/Pulse.app
+open "build.noindex/Pulse Pet.app"
 ```
 
 `swift run Pulse` 是不打包套件、快速建置並執行的方式，但通知與應用程式內更新只有在打包後的應用程式才能運作。工具鏈設定請見 [Docs/build-from-source.md](Docs/build-from-source.md)。發佈版本：[Docs/releasing.md](Docs/releasing.md)。

@@ -544,7 +544,7 @@ struct ExtensionAccountTests {
 
     @Test("A settings link to an extension opens it")
     func link() throws {
-        let url = try #require(URL(string: "pulse://account/extension%23acme"))
+        let url = try #require(URL(string: "pulse-pet://account/extension%23acme"))
         #expect(PulseLink(url: url) == .account(found.account))
     }
 }

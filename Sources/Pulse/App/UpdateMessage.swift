@@ -26,7 +26,7 @@ enum UpdateMessage {
     /// spelling. Anything else reads the English one.
     static let languages = ["en", "zh-Hans", "zh-Hant", "ja", "ko", "ru"]
 
-    static let base = URL(string: "https://raw.githubusercontent.com/qunqin24/Pulse/main/Messages")!
+    static let base = URL(string: "https://raw.githubusercontent.com/\(AppIdentity.repository)/main/Messages")!
 
     /// What one launch decides, kept apart from `UserDefaults` so it can be
     /// tested.
@@ -59,7 +59,7 @@ enum UpdateMessage {
     /// Records this launch. **Called before settings are restored**, which
     /// is what writes `hasRun` on a fresh install; asked afterwards, every
     /// first launch would look like an update.
-    static func noteLaunch(current: String? = bundleVersion, defaults: UserDefaults = .standard) {
+    static func noteLaunch(current: String? = bundleVersion, defaults: UserDefaults = AppIdentity.defaults) {
         guard let current else { return }
         let decision = launch(
             current: current,
@@ -73,7 +73,7 @@ enum UpdateMessage {
     }
 
     /// The version whose message is due on this launch, or nil.
-    static func due(current: String? = bundleVersion, defaults: UserDefaults = .standard) -> String? {
+    static func due(current: String? = bundleVersion, defaults: UserDefaults = AppIdentity.defaults) -> String? {
         guard let current,
               defaults.string(forKey: Key.pending) == current,
               defaults.string(forKey: Key.dismissed) != current
@@ -83,7 +83,7 @@ enum UpdateMessage {
 
     /// "Don't show again", for this version only: the next update's message
     /// still shows.
-    static func dismiss(_ version: String, defaults: UserDefaults = .standard) {
+    static func dismiss(_ version: String, defaults: UserDefaults = AppIdentity.defaults) {
         defaults.set(version, forKey: Key.dismissed)
     }
 

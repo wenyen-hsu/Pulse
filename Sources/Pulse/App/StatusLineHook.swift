@@ -24,7 +24,7 @@ enum StatusLineHook {
     /// Where the captured usage is parked for the app to pick up.
     static var cacheFile: URL {
         URL(fileURLWithPath: NSHomeDirectory())
-            .appending(path: ".claude/pulse-usage.json")
+            .appending(path: ".claude/\(AppIdentity.urlScheme)-usage.json")
     }
 
     static var settingsFile: URL {
@@ -83,7 +83,7 @@ enum StatusLineHook {
     /// with the same input and show its output, so installing Pulse doesn't
     /// quietly throw away their own status line.
     private static func chainedOutput(for input: Data) -> String? {
-        guard let command = UserDefaults.standard.string(forKey: Key.previousCommand),
+        guard let command = AppIdentity.defaults.string(forKey: Key.previousCommand),
               !command.isEmpty
         else { return nil }
 
@@ -131,6 +131,23 @@ enum StatusLineHook {
         return number
     }
 
+    static func owns(_ command: String) -> Bool {
+        let suffix = " " + modeArgument
+        guard command.hasSuffix(suffix) else { return false }
+        var path = String(command.dropLast(suffix.count))
+        if path.hasPrefix("\""), path.hasSuffix("\"") {
+            path = String(path.dropFirst().dropLast())
+            guard !path.contains("\"") else { return false }
+        } else if path.contains(where: { $0.isWhitespace }) {
+            return false
+        }
+        guard !path.isEmpty else { return false }
+        let url = URL(fileURLWithPath: path)
+        if url.lastPathComponent == AppIdentity.executableName { return true }
+        guard let executable = Bundle.main.executableURL else { return false }
+        return url.resolvingSymlinksInPath() == executable.resolvingSymlinksInPath()
+    }
+
     // MARK: - Installing
 
     static var isInstalled: Bool {
@@ -138,7 +155,7 @@ enum StatusLineHook {
               let line = settings["statusLine"] as? [String: Any],
               let command = line["command"] as? String
         else { return false }
-        return command.contains(modeArgument)
+        return owns(command)
     }
 
     /// Points Claude Code's status line at this executable, remembering any
@@ -155,8 +172,8 @@ enum StatusLineHook {
 
         if let previous = settings["statusLine"] as? [String: Any],
            let command = previous["command"] as? String,
-           !command.contains(modeArgument) {
-            UserDefaults.standard.set(command, forKey: Key.previousCommand)
+           !owns(command) {
+            AppIdentity.defaults.set(command, forKey: Key.previousCommand)
         }
 
         let executable = ProcessInfo.processInfo.arguments.first.map {
@@ -173,14 +190,14 @@ enum StatusLineHook {
     /// Puts the status line back the way it was.
     @discardableResult
     static func uninstall() -> Bool {
-        guard var settings = readSettings() else { return false }
+        guard isInstalled, var settings = readSettings() else { return false }
 
-        if let previous = UserDefaults.standard.string(forKey: Key.previousCommand), !previous.isEmpty {
+        if let previous = AppIdentity.defaults.string(forKey: Key.previousCommand), !previous.isEmpty {
             settings["statusLine"] = ["type": "command", "command": previous]
         } else {
             settings.removeValue(forKey: "statusLine")
         }
-        UserDefaults.standard.removeObject(forKey: Key.previousCommand)
+        AppIdentity.defaults.removeObject(forKey: Key.previousCommand)
 
         return writeSettings(settings)
     }
@@ -226,7 +243,7 @@ enum StatusLineHook {
         ) else { return false }
 
         // Keep a copy of the file as it was before Pulse first touched it.
-        let backup = settingsFile.appendingPathExtension("pulse-backup")
+        let backup = settingsFile.appendingPathExtension("\(AppIdentity.urlScheme)-backup")
         if !FileManager.default.fileExists(atPath: backup.path),
            let original = try? Data(contentsOf: settingsFile) {
             try? original.write(to: backup)
@@ -256,7 +273,7 @@ enum StatusLineHook {
     @MainActor
     static func offerOnFirstRun(willBeUsed: Bool) {
         guard willBeUsed else { return }
-        let defaults = UserDefaults.standard
+        let defaults = AppIdentity.defaults
         guard !defaults.bool(forKey: Key.offered) else { return }
 
         // Nothing to offer someone who doesn't have Claude Code.
@@ -266,6 +283,9 @@ enum StatusLineHook {
 
         defaults.set(true, forKey: Key.offered)
         guard !isInstalled else { return }
+        // An existing status line belongs to its current owner until explicitly connected in Settings.
+        if let line = readSettings()?["statusLine"] as? [String: Any],
+           let command = line["command"] as? String, !command.isEmpty { return }
 
         let alert = NSAlert()
         alert.messageText = .localized("Keep reading Claude Code's usage after its login expires?")

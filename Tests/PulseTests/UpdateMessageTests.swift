@@ -53,7 +53,7 @@ struct UpdateMessageTests {
         #expect(UpdateMessage.language(for: .system, preferences: ["zh-Hans-CN"]) == "zh-Hans")
         #expect(UpdateMessage.language(for: .system, preferences: ["fr-FR"]) == "en")
         #expect(UpdateMessage.url(version: "1.12.5", language: "zh-Hans").absoluteString
-            == "https://raw.githubusercontent.com/qunqin24/Pulse/main/Messages/1.12.5/zh-Hans.md")
+            == "https://raw.githubusercontent.com/wenyen-hsu/Pulse/main/Messages/1.12.5/zh-Hans.md")
     }
 
     @Test("Paragraphs split on blank lines; an empty file is no message")

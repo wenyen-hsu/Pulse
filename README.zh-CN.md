@@ -2,7 +2,9 @@
   <img src="AppIcon/pulse-icon-1024.png" width="112" alt="Pulse">
 </p>
 
-<h1 align="center">Pulse</h1>
+<h1 align="center">Pulse Pet</h1>
+
+> **独立定制版 Pulse Pet。** 可与原版 Pulse 并存，不迁移原版设置或数据。下方保留的上游发布链接不是此定制版安装包；请使用单独提供的 Pulse Pet 试用包，或按[源码构建说明](Docs/build-from-source.md)打包。此试用包不启用上游更新。
 
 <p align="center">
   <b>不用挨个打开用量页面，就知道 Claude Code、Codex、Cursor 还剩多少额度。</b><br>
@@ -56,7 +58,7 @@
 > - **图形界面方式**：启动 Pulse，关闭拦截弹窗，打开 **系统设置 → 隐私与安全性**，点击 **“仍要打开”**。
 > - **终端方式**：
 >   ```bash
->   xattr -cr /Applications/Pulse.app
+>   xattr -cr "/Applications/Pulse Pet.app"
 >   ```
 >   *应用内通过 Sparkle 提供更新。更新后，macOS 可能再次请求浏览器钥匙串访问权限。*
 
@@ -132,7 +134,7 @@ cd Pulse
 ./Scripts/bundle.sh
 
 # 启动
-open build.noindex/Pulse.app
+open "build.noindex/Pulse Pet.app"
 ```
 
 `swift run Pulse` 可快速编译运行而不打 Bundle，但通知与应用内更新只有打包后的应用才具备。开发环境配置见 [Docs/build-from-source.md](Docs/build-from-source.md)；发版说明见 [Docs/releasing.md](Docs/releasing.md)。

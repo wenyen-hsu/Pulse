@@ -2,7 +2,9 @@
   <img src="AppIcon/pulse-icon-1024.png" width="112" alt="Pulse">
 </p>
 
-<h1 align="center">Pulse</h1>
+<h1 align="center">Pulse Pet</h1>
+
+> **独立したカスタム版 Pulse Pet です。** 元の Pulse と併用でき、設定やデータは移行しません。以下に残している上流のリリースリンクは、このカスタム版のものではありません。別途提供する試用パッケージを使うか、[ソースからビルド](Docs/build-from-source.md)してください。上流からの更新は無効です。
 
 <p align="center">
   <b>使用量のページを開かなくても、Claude Code・Codex・Cursor の残りがわかる。</b><br>
@@ -56,7 +58,7 @@
 > - **方法 1（GUI）**：Pulse を起動し、警告を閉じ、**システム設定 → プライバシーとセキュリティ** を開き、**このまま開く** をクリックします。
 > - **方法 2（ターミナル）**：
 >   ```bash
->   xattr -cr /Applications/Pulse.app
+>   xattr -cr "/Applications/Pulse Pet.app"
 >   ```
 >   *更新はアプリ内の Sparkle で提供されます。更新後、macOS がブラウザのキーチェーンへのアクセスを再び求めることがあります。*
 
@@ -132,7 +134,7 @@ cd Pulse
 ./Scripts/bundle.sh
 
 # 起動
-open build.noindex/Pulse.app
+open "build.noindex/Pulse Pet.app"
 ```
 
 `swift run Pulse` はバンドルなしで手早くビルドして実行する方法ですが、通知とアプリ内更新はバンドルしたアプリでのみ動作します。ツールチェーンの設定は [Docs/build-from-source.md](Docs/build-from-source.md) を参照してください。リリースの手順：[Docs/releasing.md](Docs/releasing.md)。

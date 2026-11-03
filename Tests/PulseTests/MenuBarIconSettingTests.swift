@@ -9,7 +9,7 @@ struct MenuBarIconSettingTests {
     @MainActor
     func defaultAndCallback() {
         let key = "settings.hidesMenuBarIcon"
-        defer { UserDefaults.standard.removeObject(forKey: key) }
+        defer { AppIdentity.defaults.removeObject(forKey: key) }
 
         let settings = AppSettings()
         #expect(!settings.hidesMenuBarIcon)

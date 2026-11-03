@@ -162,7 +162,7 @@ extension MenuBarReading {
             button.image = pulseMark(height: 16)
             button.attributedTitle = NSAttributedString()
             button.imagePosition = .imageOnly
-            button.toolTip = "Pulse"
+            button.toolTip = AppIdentity.name
             return
         }
 
@@ -241,7 +241,7 @@ extension MenuBarReading {
             return true
         }
         image.isTemplate = true
-        image.accessibilityDescription = "Pulse"
+        image.accessibilityDescription = AppIdentity.name
         return image
     }
 

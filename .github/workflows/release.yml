@@ -136,13 +136,13 @@ jobs:
           if gh release view "v$VERSION" >/dev/null 2>&1; then
             echo "Release exists — replacing its assets."
             gh release upload "v$VERSION" \
-              "build.noindex/Pulse-$VERSION.dmg" \
-              "build.noindex/Pulse-$VERSION.zip" \
+              "build.noindex/PulsePet-$VERSION.dmg" \
+              "build.noindex/PulsePet-$VERSION.zip" \
               --clobber
           else
             gh release create "v$VERSION" \
-              "build.noindex/Pulse-$VERSION.dmg" \
-              "build.noindex/Pulse-$VERSION.zip" \
+              "build.noindex/PulsePet-$VERSION.dmg" \
+              "build.noindex/PulsePet-$VERSION.zip" \
               --title "Pulse $VERSION" \
               --notes-file notes.md \
               $PRERELEASE
@@ -174,13 +174,13 @@ jobs:
             exit 1
           fi
 
-          URL="https://github.com/${{ github.repository }}/releases/download/v$VERSION/Pulse-$VERSION.zip"
+          URL="https://github.com/${{ github.repository }}/releases/download/v$VERSION/PulsePet-$VERSION.zip"
 
           # The tag was checked out detached; the feed lives on main.
           git fetch origin main
           git checkout -B main origin/main
 
-          Scripts/appcast.py "$VERSION" "build.noindex/Pulse-$VERSION.zip" "$URL"
+          Scripts/appcast.py "$VERSION" "build.noindex/PulsePet-$VERSION.zip" "$URL"
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

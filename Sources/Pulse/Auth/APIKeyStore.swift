@@ -107,7 +107,7 @@ enum APIKeyStore {
 
     /// Distinct from the account logins' purpose, so a box from one store can
     /// never be opened by the other.
-    private static let purpose = "Pulse api keys"
+    private static var purpose: String { "\(AppIdentity.bundleIdentifier) api keys" }
 
     // MARK: - The file
 
