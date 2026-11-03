@@ -1,13 +1,17 @@
 // Copyright (c) 2026 qunqin24. Licensed under the Apache License, Version 2.0.
+// Modified by wenyen-hsu: liquid pet mode and independent-fork attribution.
 import AppKit
 import ImageIO
 
 enum PanelPresentation: String, CaseIterable, Identifiable {
-    case petOrb, rail
+    case petOrb, liquidPet, rail
     var id: String { rawValue }
+    /// Both pet surfaces share the orb window, layout and input.
+    var usesOrb: Bool { self != .rail }
     var title: String {
         switch self {
         case .petOrb: .localized("Pet orb")
+        case .liquidPet: .localized("Liquid pet")
         case .rail: .localized("Classic rail")
         }
     }

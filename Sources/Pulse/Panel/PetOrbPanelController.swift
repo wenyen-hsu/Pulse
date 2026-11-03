@@ -1,4 +1,5 @@
 // Copyright (c) 2026 qunqin24. Licensed under the Apache License, Version 2.0.
+// Modified by wenyen-hsu: liquid pet mode and independent-fork attribution.
 import AppKit
 import Observation
 import SwiftUI
@@ -14,10 +15,49 @@ final class PetOrbState {
     var cardOnLeft = true
     var verticalCentre: CGFloat?
     var openedAt = Date.distantPast
+    var isLiquid = false
+    /// Liquid pet only: the drag's trailing pull and the nearest edge's draw.
+    var stretch = CGVector.zero
+    var wetting = CGVector.zero
     @ObservationIgnored let probe = PointerProbe()
+    @ObservationIgnored private var recoilTask: Task<Void, Never>?
 
     var layout: PetOrbLayout {
-        PetOrbLayout(size: size, scale: PanelMetrics.scale, cardOnLeft: cardOnLeft, verticalCentre: verticalCentre)
+        PetOrbLayout(size: size, scale: PanelMetrics.scale, cardOnLeft: cardOnLeft, verticalCentre: verticalCentre,
+                     isLiquid: isLiquid, stretch: stretch, wetting: wetting)
+    }
+
+    func stopRecoil() {
+        recoilTask?.cancel()
+        recoilTask = nil
+        stretch = .zero
+    }
+
+    func recoil() {
+        recoilTask?.cancel()
+        guard stretch != .zero, !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion else {
+            stopRecoil()
+            return
+        }
+        let initial = stretch
+        recoilTask = Task { @MainActor [weak self] in
+            let clock = ContinuousClock()
+            let start = clock.now
+            while !Task.isCancelled {
+                do { try await Task.sleep(for: .milliseconds(16)) } catch { return }
+                guard let self else { return }
+                let elapsed = start.duration(to: clock.now)
+                let seconds = Double(elapsed.components.seconds) + Double(elapsed.components.attoseconds) / 1e18
+                guard seconds < 1, self.isPresented, self.isLiquid,
+                      !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion else {
+                    self.stopRecoil()
+                    self.probe.reportAgain()
+                    return
+                }
+                self.stretch = LiquidMotion.rebound(initial: initial, elapsed: seconds)
+                self.probe.reportAgain()
+            }
+        }
     }
 
     func expand() {
@@ -71,6 +111,7 @@ final class PetOrbPanelController {
             store.refresh(slots[range.lowerBound + local].account)
         }
         panel.didMoveOrb = { [weak self] in self?.savePosition() }
+        panel.didDragOrb = { [weak self] in self?.updateWetting() }
         follower.onEnter = { [weak self] identifier in
             guard let self, !self.state.isHeld,
                   let screen = NSScreen.screens.first(where: { PanelScreen.identifier(of: $0) == identifier })
@@ -104,6 +145,7 @@ final class PetOrbPanelController {
     }
 
     func hide() {
+        state.stopRecoil()
         state.isPresented = false
         panel.orderOut(nil)
         follower.stop()
@@ -128,10 +170,12 @@ final class PetOrbPanelController {
     }
 
     private func place(on screen: NSScreen?) {
+        state.isLiquid = settings.panelPresentation == .liquidPet
+        if !state.isLiquid { state.stopRecoil() }
         guard let screen, !state.isHeld else { return }
         let room = screen.visibleFrame
         let scale = PanelMetrics.scale
-        let width = min((PanelMetrics.orbUnitDiameter + PanelMetrics.orbUnitGap + PanelMetrics.orbUnitMargin * 2) * scale
+        let width = min(state.layout.diameter + state.layout.gap + state.layout.margin * 2
                         + DetailCardLayout.width + DetailCardLayout.pointerWidth, room.width)
         let height = min(PanelMetrics.orbUnitWindowHeight * scale, room.height)
         state.size = CGSize(width: width.rounded(.down), height: height.rounded(.down))
@@ -150,7 +194,21 @@ final class PetOrbPanelController {
                              y: min(max(desired.y, room.minY), room.maxY - state.size.height))
         state.verticalCentre = origin.y + state.size.height - targetY
         panel.setFrame(CGRect(origin: origin, size: state.size), display: true)
+        updateWetting()
         state.probe.reportAgain()
+    }
+
+    private func updateWetting() {
+        guard settings.panelPresentation == .liquidPet, let room = (panel.screen ?? NSScreen.main)?.visibleFrame else {
+            state.wetting = .zero
+            return
+        }
+        let layout = state.layout
+        let centre = CGPoint(x: panel.frame.minX + layout.centre.x, y: panel.frame.maxY - layout.centre.y)
+        let wetting = LiquidMotion.wetting(centre: centre, room: room, closest: layout.diameter / 2 + layout.margin,
+                                           band: PanelMetrics.orbUnitWettingBand * layout.scale)
+        guard wetting != state.wetting else { return }
+        state.wetting = wetting
     }
 
     private func savePosition() {
@@ -171,7 +229,9 @@ private final class PetOrbPanel: NSPanel {
     var contextMenu: (() -> NSMenu)?
     var onRingClick: ((CGPoint) -> Void)?
     var didMoveOrb: (() -> Void)?
+    var didDragOrb: (() -> Void)?
     private var press: (screen: CGPoint, origin: CGPoint, local: CGPoint, refreshAllowed: Bool)?
+    private var lastDrag: (point: CGPoint, time: TimeInterval)?
     private var dragged = false
 
     override var canBecomeKey: Bool { false }
@@ -196,9 +256,11 @@ private final class PetOrbPanel: NSPanel {
         case .leftMouseDown where onOrb:
             // Leave the pager's buttons to SwiftUI, not the window drag path.
             if state.isExpanded && state.layout.pagerFrame.contains(point) { break }
+            state.stopRecoil()
             state.isHeld = true
             press = (NSEvent.mouseLocation, frame.origin, point,
                      Date().timeIntervalSince(state.openedAt) >= PanelIntent.ringClickGuard)
+            lastDrag = (NSEvent.mouseLocation, event.timestamp)
             dragged = false
             return
         case .leftMouseDragged:
@@ -209,13 +271,17 @@ private final class PetOrbPanel: NSPanel {
                     state.selectedID = nil
                     setFrameOrigin(CGPoint(x: press.origin.x + now.x - press.screen.x,
                                            y: press.origin.y + now.y - press.screen.y))
+                    deform(to: now, at: event.timestamp)
+                    didDragOrb?()
                 }
                 return
             }
         case .leftMouseUp:
             if let press {
                 self.press = nil
+                lastDrag = nil
                 state.isHeld = false
+                state.recoil()
                 if dragged { didMoveOrb?() }
                 else if state.isExpanded && press.refreshAllowed { onRingClick?(press.local) }
                 else { state.expand() }
@@ -225,5 +291,15 @@ private final class PetOrbPanel: NSPanel {
         default: break
         }
         super.sendEvent(event)
+    }
+
+    private func deform(to point: CGPoint, at time: TimeInterval) {
+        defer { lastDrag = (point, time) }
+        guard let state, state.isLiquid, !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion,
+              let last = lastDrag, time > last.time else { return }
+        let elapsed = max(time - last.time, 1.0 / 240)
+        // AppKit's y grows upward; the drawing's grows downward.
+        let velocity = CGVector(dx: (point.x - last.point.x) / elapsed, dy: (last.point.y - point.y) / elapsed)
+        state.stretch = LiquidMotion.stretch(previous: state.stretch, velocity: velocity)
     }
 }

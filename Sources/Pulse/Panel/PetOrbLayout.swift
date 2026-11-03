@@ -1,5 +1,6 @@
 // Copyright (c) 2026 qunqin24. Licensed under the Apache License, Version 2.0.
-import Foundation
+// Modified by wenyen-hsu: liquid pet mode and independent-fork attribution.
+import SwiftUI
 
 extension PanelMetrics {
     static var orbUnitDiameter: CGFloat { 272 }
@@ -23,6 +24,9 @@ extension PanelMetrics {
     static var orbEmptyWidth: CGFloat { 180 * scale }
     static var orbEmptyOffset: CGFloat { 62 * scale }
     static var orbPageCapacity: Int { 8 }
+    static var orbUnitWettingBand: CGFloat { 80 }
+    static var orbUnitLiquidMargin: CGFloat { 40 }
+    static var orbUnitLiquidGap: CGFloat { 32 }
 }
 
 /// Shared top-left coordinates for drawing, pointer samples and window input.
@@ -31,11 +35,14 @@ struct PetOrbLayout {
     let scale: CGFloat
     let cardOnLeft: Bool
     var verticalCentre: CGFloat? = nil
+    var isLiquid = false
+    var stretch = CGVector.zero
+    var wetting = CGVector.zero
 
     var diameter: CGFloat { PanelMetrics.orbUnitDiameter * scale }
     var dotDiameter: CGFloat { PanelMetrics.orbUnitDotDiameter * scale }
-    var margin: CGFloat { PanelMetrics.orbUnitMargin * scale }
-    var gap: CGFloat { PanelMetrics.orbUnitGap * scale }
+    var margin: CGFloat { (isLiquid ? PanelMetrics.orbUnitLiquidMargin : PanelMetrics.orbUnitMargin) * scale }
+    var gap: CGFloat { (isLiquid ? PanelMetrics.orbUnitLiquidGap : PanelMetrics.orbUnitGap) * scale }
     var pagerFrame: CGRect {
         CGRect(x: centre.x - PanelMetrics.orbUnitPageWidth * scale / 2,
                y: centre.y + (PanelMetrics.orbUnitPageOffset - PanelMetrics.orbUnitPageHeight / 2) * scale,
@@ -48,6 +55,30 @@ struct PetOrbLayout {
     var circle: CGRect {
         CGRect(x: centre.x - diameter / 2, y: centre.y - diameter / 2,
                width: diameter, height: diameter)
+    }
+
+    func liquidLimit(expanded: Bool) -> CGFloat {
+        let radius = (expanded ? diameter : dotDiameter) / 2
+        return min((radius + gap * 0.9) / radius, 1.55)
+    }
+
+    func liquidFloor(expanded: Bool, petSize: Double) -> CGFloat {
+        let radius = (expanded ? diameter : dotDiameter) / 2
+        let covered = expanded
+            ? (PanelMetrics.orbUnitOrbitRadius + PanelMetrics.orbUnitRingHitRadius) * scale
+            : petFrame(expanded: false, petSize: petSize).width / 2
+        return min(covered / radius + 0.02, 1)
+    }
+
+    func liquidShape(expanded: Bool, petSize: Double) -> LiquidOrbShape {
+        LiquidOrbShape(stretch: stretch, wetting: wetting, phase: 0,
+                       floor: liquidFloor(expanded: expanded, petSize: petSize),
+                       limit: liquidLimit(expanded: expanded))
+    }
+
+    func liquidFrame(expanded: Bool) -> CGRect {
+        let side = (expanded ? diameter : dotDiameter) * liquidLimit(expanded: expanded)
+        return CGRect(x: centre.x - side / 2, y: centre.y - side / 2, width: side, height: side)
     }
 
     static func pageCount(for count: Int) -> Int {
@@ -79,7 +110,16 @@ struct PetOrbLayout {
     }
 
     func containsOrb(_ point: CGPoint, expanded: Bool, petSize: Double) -> Bool {
-        contains(point, around: centre, radius: (expanded ? diameter : dotDiameter) / 2 + gap)
+        let inside: Bool
+        if isLiquid {
+            let path = liquidShape(expanded: expanded, petSize: petSize).path(in: liquidFrame(expanded: expanded)).cgPath
+            let halo = path.copy(strokingWithWidth: PanelMetrics.orbUnitPetHalo * scale * 2,
+                                 lineCap: .round, lineJoin: .round, miterLimit: 1)
+            inside = path.contains(point) || halo.contains(point)
+        } else {
+            inside = contains(point, around: centre, radius: (expanded ? diameter : dotDiameter) / 2 + gap)
+        }
+        return inside
             || petFrame(expanded: expanded, petSize: petSize)
                 .insetBy(dx: -PanelMetrics.orbUnitPetHalo * scale, dy: -PanelMetrics.orbUnitPetHalo * scale).contains(point)
     }

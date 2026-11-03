@@ -12,6 +12,10 @@ Run `./Scripts/bundle.sh --zip` and `./Scripts/dmg.sh`. Identity and filenames c
 
 After signing, bundling runs the packaged executable's read-only `--json` startup probe before producing an archive. A failed or timed-out launch stops packaging; unit tests alone are not evidence that the installed app can bootstrap.
 
+Trial bundles include `LICENSE`, `NOTICE` and `THIRD_PARTY_NOTICES.md` in `Contents/Resources`. Preserve these when distributing a modified build. `NOTICE` credits qunqin24 and identifies this independent fork's modifications; the About pane and installer backdrop also thank the original author. Apache 2.0 permits modification and redistribution subject to its conditions; it does not grant trademark rights or imply endorsement.
+
+Run `swift Scripts/make-dmg-background.swift` from the repository root after changing installer branding. It generates the 1x/2x TIFF from the current application identity and retains the original author credit. No formal new brand is assigned by the liquid-mode change.
+
 ## Upstream release machinery (reference)
 
 The tagged release and Sparkle machinery below is retained from upstream. It is not configured as the Pulse Pet update channel. Establish a separately signed fork feed and update the release pipeline before enabling in-app updates; the current trial bundle deliberately contains no feed or update verification key.

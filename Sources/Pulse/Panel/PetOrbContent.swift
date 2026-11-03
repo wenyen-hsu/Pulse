@@ -1,4 +1,5 @@
 // Copyright (c) 2026 qunqin24. Licensed under the Apache License, Version 2.0.
+// Modified by wenyen-hsu: liquid pet mode and independent-fork attribution.
 import SwiftUI
 
 struct PetOrbContent: View {
@@ -77,11 +78,7 @@ struct PetOrbContent: View {
 
     private var orb: some View {
         let diameter = state.isExpanded ? layout.diameter : layout.dotDiameter
-        return PanelSurface(shape: Circle(), usesGlass: true)
-            .frame(width: diameter, height: diameter)
-            .overlay {
-                Circle().strokeBorder(.white.opacity(0.22), lineWidth: 1)
-            }
+        return surface(diameter: diameter)
             .position(layout.centre)
             .background {
                 let target = layout.circle
@@ -95,6 +92,23 @@ struct PetOrbContent: View {
             .accessibilityLabel(String.localized("Pet orb"))
             .accessibilityAction(named: Text(localized: "Show accounts")) { state.expand() }
             .accessibilityAction(named: Text(localized: "Hide accounts")) { state.collapse() }
+    }
+
+    @ViewBuilder
+    private func surface(diameter: CGFloat) -> some View {
+        if settings.panelPresentation == .liquidPet {
+            let shape = layout.liquidShape(expanded: state.isExpanded, petSize: settings.orbPetSize)
+            let frame = layout.liquidFrame(expanded: state.isExpanded)
+            PanelSurface(shape: shape, usesGlass: true)
+                .overlay { shape.stroke(.white.opacity(0.24), lineWidth: 1) }
+                .frame(width: frame.width, height: frame.height)
+        } else {
+            PanelSurface(shape: Circle(), usesGlass: true)
+                .frame(width: diameter, height: diameter)
+                .overlay {
+                    Circle().strokeBorder(.white.opacity(0.22), lineWidth: 1)
+                }
+        }
     }
 
     private func node(_ entry: RailEntry) -> some View {

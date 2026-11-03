@@ -160,13 +160,15 @@ In the sidebar's last, untitled section. It copies the actual executable's `--js
 
 **`ImageRenderer` cannot draw this window** (split view + AppKit controls). Check by running the app.
 
+**Liquid pet** is an optional third Panel style alongside Pet orb and Classic rail. It shares the pet, PNG and size controls, and persists as `liquidPet` without changing existing saved styles. The sun remains centred. See [liquid geometry](panel-geometry.md#liquid-pet) for drag deformation, recoil and Reduced Motion.
+
 ## About
 
 Two groups. The first is the app: version and update state, where the usage figures come from, and the **source address**, with the URL itself as the subtitle so it can be typed.
 
 **Opening the pane checks for an update** (`AppUpdate.probe`, Sparkle's `checkForUpdateInformation`), unless a check or update is already running: no Sparkle window, only the Version subtitle changes ("Checking…", then the answer), so "up to date" is current. It runs **even with Check automatically off** — that switch covers Pulse's own schedule; opening About is the reader asking. **Check now** still puts up Sparkle's window.
 
-The second group is **Credits**: anything shipped here that somebody else made — the design it was built from, the provider marks, and the robot (CX ArtLab's Agent Robot Avatar, said to be a port of an original character under the MIT License, with **Open** for its repository).
+The second group is **Credits**: the original Pulse by qunqin24 (Apache 2.0), with thanks and an explicit independent-version/no-endorsement notice, followed by the design it was built from, the provider marks, and CX ArtLab's Agent Robot Avatar (MIT). Each source with a link offers **Open**.
 
 ## Provider panes
 

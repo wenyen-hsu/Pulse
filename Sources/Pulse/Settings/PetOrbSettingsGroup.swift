@@ -1,4 +1,5 @@
 // Copyright (c) 2026 qunqin24. Licensed under the Apache License, Version 2.0.
+// Modified by wenyen-hsu: liquid pet mode and independent-fork attribution.
 import SwiftUI
 import AppKit
 import UniformTypeIdentifiers
@@ -20,7 +21,7 @@ struct PetOrbSettingsGroup: View {
                 .pickerStyle(.menu)
                 .frame(width: SettingsLayout.controlWidth)
             }
-            if settings.panelPresentation == .petOrb {
+            if settings.panelPresentation.usesOrb {
                 SettingsRowDivider()
                 SettingsRow(String.localized("Pet"),
                             subtitle: String.localized("Choose a companion or import a transparent PNG.")) {

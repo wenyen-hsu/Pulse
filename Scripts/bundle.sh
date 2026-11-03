@@ -1,4 +1,5 @@
 #!/bin/bash
+# Modified by wenyen-hsu: independent application and bundled attribution.
 #
 # Assembles Pulse.app from the SwiftPM build.
 #
@@ -84,6 +85,7 @@ cp "$BUILT/Pulse" "$APP/Contents/MacOS/$EXECUTABLE"
 # folders. `Bundle.module` looks in the main bundle's Resources, so this is
 # where it has to land — the app is silently English with no icons without it.
 cp -R "$BUILT/Pulse_Pulse.bundle" "$APP/Contents/Resources/"
+cp LICENSE NOTICE THIRD_PARTY_NOTICES.md "$APP/Contents/Resources/"
 # The icon is an Icon Composer document, compiled the way Xcode would: an
 # Assets.car that macOS 26 draws as Liquid Glass — light, dark, clear and
 # tinted — and an AppIcon.icns that actool flattens for the systems before it.

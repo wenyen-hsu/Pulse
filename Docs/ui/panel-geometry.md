@@ -14,6 +14,12 @@ The card opens on the side with room, with a pointer bridge that keeps it open w
 
 `PetOrbLayoutTests` checks slot targets, paging, pet placement, card bounds and the bridge. It does not prove real mouse delivery or glass appearance; those require desktop input on the bundled app.
 
+### Liquid pet
+
+**Appearance → Panel style → Liquid pet** keeps the original circle available and uses the same pet, accounts, pager and cards. The outline is a gently spread, asymmetric puddle. Drag speed pulls a bounded tail opposite the movement; release uses a one-second damped recoil. A subtle lean toward the nearest visible-screen edge suggests wetting. This is a visual approximation of surface tension and viscosity, not a capillary or volume-conserving fluid simulation.
+
+`PetOrbLayout.liquidShape` and `liquidFrame` supply both drawing and pointer containment, including the six-point approach halo. The liquid style reserves a 40-point outer margin and 32-point card gap; the maximum outline stays within that budget and outside the card. Its minimum radius protects the pet and ring targets. Recoil is sampled into shared state rather than a view-only spring, keeping input on the displayed deformation. It stops when hidden or switching away. Reduced Motion disables drag deformation and recoil; the static puddle remains. Neither deformation, expansion nor opening a card changes the window frame.
+
 ## Overlay and height
 
 - Apply `.padding(.top, railTop)` **after** the card overlay. Before it, the card is anchored to the panel top and sliced `railTop` too high (shipped once; invisible while the rail is centred).
