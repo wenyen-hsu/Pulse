@@ -12,7 +12,7 @@ struct PetOrbContent: View {
     @State private var cardHeight = DetailCardLayout.estimatedHeight
     @State private var ledgers = CardLedgers()
 
-    private var layout: PetOrbLayout { state.layout }
+    private var layout: PetOrbLayout { state.drawingLayout }
     private var visible: [RailEntry] { Array(entries[PetOrbLayout.indices(count: entries.count, page: state.page)]) }
     private var selected: RailEntry? { visible.first { $0.id == state.selectedID } }
     private var cardRect: CGRect {
@@ -48,7 +48,9 @@ struct PetOrbContent: View {
                 .position(x: pet.midX, y: pet.midY)
                 .allowsHitTesting(false)
         }
-        .frame(width: state.size.width, height: state.size.height)
+        .frame(width: layout.size.width, height: layout.size.height)
+        .scaleEffect(state.viewportScale, anchor: .topLeading)
+        .frame(width: state.size.width, height: state.size.height, alignment: .topLeading)
         .background(PanelPointerWatcher(onChange: pointerMoved, probe: state.probe))
         .animation(animation, value: state.isExpanded)
         .foregroundStyle(PanelGlass.ink(transparency: settings.glassTransparency).map(AnyShapeStyle.init) ?? AnyShapeStyle(.primary))
@@ -185,7 +187,7 @@ struct PetOrbContent: View {
             }.map(\.id)),
             pointerCenter: layout.ringCentre(index: visible.firstIndex(where: { $0.id == entry.id }) ?? 0,
                                              count: visible.count).y - cardRect.minY,
-            maxHeight: state.size.height - layout.margin * 2
+            maxHeight: layout.size.height - layout.margin * 2
         )
         .fixedSize()
         .background(GeometryReader { proxy in
@@ -198,7 +200,7 @@ struct PetOrbContent: View {
     private func select(_ entry: RailEntry) {
         guard state.isPresented, !state.isHeld, state.isExpanded,
               let point = state.probe.current(),
-              let index = layout.ringIndex(at: point, count: visible.count), visible[index].id == entry.id
+              let index = layout.ringIndex(at: state.drawingPoint(point), count: visible.count), visible[index].id == entry.id
         else { return }
         if state.selectedID != entry.id {
             state.selectedID = entry.id
@@ -214,7 +216,7 @@ struct PetOrbContent: View {
             hideTask?.cancel()
             hideTask = nil
             if !state.isExpanded { state.expand() }
-            if let point, let index = layout.ringIndex(at: point, count: visible.count) { select(visible[index]) }
+            if let point, let index = layout.ringIndex(at: state.drawingPoint(point), count: visible.count) { select(visible[index]) }
         } else if hideTask == nil {
             hideTask = Task { @MainActor in
                 try? await Task.sleep(for: .milliseconds(350))
@@ -232,7 +234,7 @@ struct PetOrbContent: View {
     }
 
     private func containsContent(_ point: CGPoint?) -> Bool {
-        point.map {
+        point.map(state.drawingPoint).map {
             layout.containsOrb($0, expanded: state.isExpanded, petSize: settings.orbPetSize)
                 || (selected != nil && layout.containsBridge($0, card: cardRect))
         } ?? false

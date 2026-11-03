@@ -12,6 +12,7 @@ final class PetOrbState {
     var page = 0
     var isHeld = false
     var size = CGSize.zero
+    var viewportScale: CGFloat = 1
     var cardOnLeft = true
     var verticalCentre: CGFloat?
     var openedAt = Date.distantPast
@@ -23,8 +24,19 @@ final class PetOrbState {
     @ObservationIgnored private var recoilTask: Task<Void, Never>?
 
     var layout: PetOrbLayout {
-        PetOrbLayout(size: size, scale: PanelMetrics.scale, cardOnLeft: cardOnLeft, verticalCentre: verticalCentre,
+        PetOrbLayout(size: size, scale: PanelMetrics.scale * viewportScale, cardOnLeft: cardOnLeft, verticalCentre: verticalCentre,
                      isLiquid: isLiquid, stretch: stretch, wetting: wetting)
+    }
+
+    var drawingLayout: PetOrbLayout {
+        PetOrbLayout(size: CGSize(width: size.width / viewportScale, height: size.height / viewportScale),
+                     scale: PanelMetrics.scale, cardOnLeft: cardOnLeft,
+                     verticalCentre: verticalCentre.map { $0 / viewportScale },
+                     isLiquid: isLiquid, stretch: stretch, wetting: wetting)
+    }
+
+    func drawingPoint(_ point: CGPoint) -> CGPoint {
+        CGPoint(x: point.x / viewportScale, y: point.y / viewportScale)
     }
 
     func stopRecoil() {
@@ -175,9 +187,13 @@ final class PetOrbPanelController {
         guard let screen, !state.isHeld else { return }
         let room = screen.visibleFrame
         let scale = PanelMetrics.scale
-        let width = min(state.layout.diameter + state.layout.gap + state.layout.margin * 2
-                        + DetailCardLayout.width + DetailCardLayout.pointerWidth, room.width)
-        let height = min(PanelMetrics.orbUnitWindowHeight * scale, room.height)
+        let preferredWidth = PetOrbLayout.preferredWidth(
+            scale: scale, isLiquid: state.isLiquid,
+            cardWidth: DetailCardLayout.width + DetailCardLayout.pointerWidth
+        )
+        let width = min(preferredWidth, room.width).rounded(.down)
+        state.viewportScale = min(1, width / preferredWidth)
+        let height = min(PanelMetrics.orbUnitWindowHeight * scale * state.viewportScale, room.height)
         state.size = CGSize(width: width.rounded(.down), height: height.rounded(.down))
         let saved = settings.defaults.array(forKey: AppSettings.Key.orbPosition) as? [Double]
         let valid = saved?.count == 2 && saved?.allSatisfy(\.isFinite) == true

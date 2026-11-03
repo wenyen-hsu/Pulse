@@ -83,6 +83,49 @@ struct LiquidOrbTests {
         }
     }
 
+    @Test("Narrow viewports keep either card and all ring targets inside shared geometry")
+    @MainActor func narrowViewport() {
+        for liquid in [false, true] {
+            for left in [false, true] {
+                for width: CGFloat in [440, 560, 574, 600, 654, 1200] {
+                    let state = PetOrbState()
+                    let naturalWidth = PetOrbLayout.preferredWidth(
+                        scale: PanelMetrics.scale, isLiquid: liquid,
+                        cardWidth: DetailCardLayout.width + DetailCardLayout.pointerWidth
+                    )
+                    state.isLiquid = liquid
+                    state.cardOnLeft = left
+                    state.size = CGSize(width: min(width, naturalWidth), height: 560)
+                    state.viewportScale = min(1, state.size.width / naturalWidth)
+                    let layout = state.layout
+                    let drawing = state.drawingLayout
+                    let card = layout.cardFrame(
+                        height: 300 * state.viewportScale,
+                        width: (DetailCardLayout.width + DetailCardLayout.pointerWidth) * state.viewportScale
+                    )
+                    let drawnCard = drawing.cardFrame(
+                        height: 300, width: DetailCardLayout.width + DetailCardLayout.pointerWidth
+                    )
+                    #expect(card.minX >= 0 && card.maxX <= state.size.width + 0.01)
+                    #expect(abs(card.midX / state.viewportScale - drawnCard.midX) < 0.01)
+                    #expect(abs(card.midY / state.viewportScale - drawnCard.midY) < 0.01)
+                    let envelope = liquid ? layout.liquidFrame(expanded: true) : layout.circle
+                    #expect(envelope.minX >= 0 && envelope.maxX <= state.size.width + 0.01)
+                    #expect(!card.intersects(envelope))
+                    for index in 0..<8 {
+                        let ring = layout.ringCentre(index: index, count: 8)
+                        let radius = PanelMetrics.orbUnitRingHitRadius * layout.scale
+                        #expect(!card.intersects(CGRect(x: ring.x - radius, y: ring.y - radius,
+                                                       width: radius * 2, height: radius * 2)))
+                        #expect(layout.ringIndex(at: ring, count: 8) == index)
+                        #expect(drawing.ringIndex(at: state.drawingPoint(ring), count: 8) == index)
+                        #expect(layout.containsOrb(ring, expanded: true, petSize: 1))
+                    }
+                }
+            }
+        }
+    }
+
     @Test("At rest the drop is spread and uneven, not a circle")
     func restingShape() {
         let shape = LiquidOrbShape(stretch: .zero, wetting: .zero, phase: 0, floor: 0.5, limit: 1.5)

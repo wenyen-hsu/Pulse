@@ -20,6 +20,8 @@ The card opens on the side with room, with a pointer bridge that keeps it open w
 
 `PetOrbLayout.liquidShape` and `liquidFrame` supply both drawing and pointer containment, including the six-point approach halo. The liquid style reserves a 40-point outer margin and 32-point card gap; the maximum outline stays within that budget and outside the card. Its minimum radius protects the pet and ring targets. Recoil is sampled into shared state rather than a view-only spring, keeping input on the displayed deformation. It stops when hidden or switching away. Reduced Motion disables drag deformation and recoil; the static puddle remains. Neither deformation, expansion nor opening a card changes the window frame.
 
+If the usable display is narrower than the full orb + card budget, the entire pet viewport scales down uniformly before it is shown. The glass, rings, fonts, pet, card, pager and input coordinates share this fit scale; neither card orientation can overlap the orbit or extend beyond the window. Pointer samples convert to drawing coordinates, while window drag/ring clicks use the fitted layout directly. This also handles narrow screens for the circular presentation without changing its normal-size layout.
+
 ## Overlay and height
 
 - Apply `.padding(.top, railTop)` **after** the card overlay. Before it, the card is anchored to the panel top and sliced `railTop` too high (shipped once; invisible while the rail is centred).

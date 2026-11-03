@@ -39,6 +39,12 @@ struct PetOrbLayout {
     var stretch = CGVector.zero
     var wetting = CGVector.zero
 
+    static func preferredWidth(scale: CGFloat, isLiquid: Bool, cardWidth: CGFloat) -> CGFloat {
+        let margin = isLiquid ? PanelMetrics.orbUnitLiquidMargin : PanelMetrics.orbUnitMargin
+        let gap = isLiquid ? PanelMetrics.orbUnitLiquidGap : PanelMetrics.orbUnitGap
+        return (PanelMetrics.orbUnitDiameter + gap + margin * 2) * scale + cardWidth
+    }
+
     var diameter: CGFloat { PanelMetrics.orbUnitDiameter * scale }
     var dotDiameter: CGFloat { PanelMetrics.orbUnitDotDiameter * scale }
     var margin: CGFloat { (isLiquid ? PanelMetrics.orbUnitLiquidMargin : PanelMetrics.orbUnitMargin) * scale }
