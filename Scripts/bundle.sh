@@ -8,8 +8,8 @@
 # version number to compare against (so no update check), `SMAppService` cannot
 # register a login item, and there is nothing to hand anyone but a build folder.
 #
-#   ./Scripts/bundle.sh            → build.noindex/Pulse.app
-#   ./Scripts/bundle.sh --zip      → and build.noindex/Pulse-<version>.zip to attach
+#   ./Scripts/bundle.sh            → build.noindex/Pulse Pet.app
+#   ./Scripts/bundle.sh --zip      → and build.noindex/PulsePet-<version>.zip to attach
 #                                    to the release
 #   ./Scripts/bundle.sh --open     → and reveal it in Finder
 #
@@ -22,15 +22,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 VERSION="$(tr -d '[:space:]' < VERSION)"
-APP="build.noindex/Pulse.app"
-BUNDLE_ID="io.github.qunqin24.Pulse"
-FEED_URL="https://raw.githubusercontent.com/qunqin24/Pulse/main/appcast.xml"
-# Public half of the EdDSA key updates are signed with. Safe to commit — it is
-# what *verifies* an update, and Sparkle refuses anything not signed by its
-# private half. See Scripts/appcast.py.
-PUBLIC_KEY="$(tr -d '[:space:]' < Scripts/sparkle-public-key.txt)"
+source Scripts/app-identity.sh
+APP="build.noindex/$APP_NAME.app"
 
-echo "Building Pulse $VERSION (universal)…"
+echo "Building $APP_NAME $VERSION (universal)…"
 
 # macOS picks which design an app gets from the SDK version recorded in its
 # binary's LC_BUILD_VERSION, not from the version it is running on. Below 26 it
@@ -83,7 +78,7 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 # it, and do not rename the directory. See Docs/releasing.md.
 touch "build.noindex/.metadata_never_index"
 
-cp "$BUILT/Pulse" "$APP/Contents/MacOS/Pulse"
+cp "$BUILT/Pulse" "$APP/Contents/MacOS/$EXECUTABLE"
 
 # The package's resource bundle carries the provider marks and both .lproj
 # folders. `Bundle.module` looks in the main bundle's Resources, so this is
@@ -121,16 +116,16 @@ cp -R "$FRAMEWORK" "$APP/Contents/Frameworks/"
 
 # The executable looks for it at @rpath; SwiftPM only ever pointed that at the
 # build directory, so without this the app launches into a dyld failure.
-install_name_tool -add_rpath "@executable_path/../Frameworks" "$APP/Contents/MacOS/Pulse" 2>/dev/null || true
+install_name_tool -add_rpath "@executable_path/../Frameworks" "$APP/Contents/MacOS/$EXECUTABLE" 2>/dev/null || true
 
 cat > "$APP/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleName</key><string>Pulse</string>
-    <key>CFBundleDisplayName</key><string>Pulse</string>
-    <key>CFBundleExecutable</key><string>Pulse</string>
+    <key>CFBundleName</key><string>$APP_NAME</string>
+    <key>CFBundleDisplayName</key><string>$APP_NAME</string>
+    <key>CFBundleExecutable</key><string>$EXECUTABLE</string>
     <key>CFBundleIdentifier</key><string>$BUNDLE_ID</string>
     <key>CFBundleIconFile</key><string>AppIcon</string>
     <!-- Points at the asset catalog's icon; without it macOS falls back to
@@ -165,29 +160,13 @@ cat > "$APP/Contents/Info.plist" <<PLIST
     <key>CFBundleURLTypes</key>
     <array><dict>
         <key>CFBundleURLName</key><string>$BUNDLE_ID.navigation</string>
-        <key>CFBundleURLSchemes</key><array><string>pulse</string></array>
+        <key>CFBundleURLSchemes</key><array><string>$URL_SCHEME</string></array>
         <key>CFBundleTypeRole</key><string>Viewer</string>
     </dict></array>
     <key>NSHighResolutionCapable</key><true/>
-    <key>NSHumanReadableCopyright</key><string>github.com/qunqin24/Pulse</string>
-    <key>SUFeedURL</key><string>$FEED_URL</string>
-    <key>SUPublicEDKey</key><string>$PUBLIC_KEY</string>
-    <!-- Checked on a schedule without asking first. Sparkle would normally put
-         up a permission prompt, but Pulse is an .accessory app whose panel
-         never becomes key, so that window can open behind everything and go
-         unanswered. The toggle is in Settings instead, where it can be found. -->
-    <key>SUEnableAutomaticChecks</key><true/>
-    <!-- Two hours, against Sparkle's default of one day. A day is sized for
-         apps that ship every few months; this one ships fixes for things it
-         is doing wrong right now, and a user burning a core on a bug that was
-         fixed yesterday should not have to wait out the rest of the day to
-         hear about it. Sparkle clamps anything under an hour, and the check
-         is measured from the last one rather than from launch, so this is at
-         most twelve requests a day and usually fewer.
-         Still only an offer: SUAutomaticallyUpdate stays false below. -->
-    <key>SUScheduledCheckInterval</key><integer>7200</integer>
-    <!-- Downloading and installing on its own stays off: an update is offered,
-         not applied behind the user's back. -->
+    <key>NSHumanReadableCopyright</key><string>github.com/$REPOSITORY</string>
+    <!-- Independent trial build: no upstream feed or updater credentials. -->
+    <key>SUEnableAutomaticChecks</key><false/>
     <key>SUAutomaticallyUpdate</key><false/>
 </dict>
 </plist>
@@ -208,7 +187,7 @@ echo "→ $APP"
 # `ditto`, not `zip`: an app bundle carries symlinks and resource forks that a
 # plain zip quietly flattens, and the unzipped copy then refuses to launch.
 if [ "${1:-}" = "--zip" ]; then
-    ZIP="build.noindex/Pulse-$VERSION.zip"
+    ZIP="build.noindex/$EXECUTABLE-$VERSION.zip"
     rm -f "$ZIP"
     ditto -c -k --keepParent "$APP" "$ZIP"
     echo "→ $ZIP"

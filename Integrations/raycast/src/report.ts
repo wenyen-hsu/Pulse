@@ -71,7 +71,7 @@ export function parseReport(text: string): Report {
 }
 
 export function accountURL(id: string): string {
-  return `pulse://account/${encodeURIComponent(id)}`;
+  return `pulse-pet://account/${encodeURIComponent(id)}`;
 }
 
 export function status(account: Account): string {

@@ -1299,3 +1299,5 @@
 "A note from the developer" = "開発者からのひとこと";
 "Don't show again" = "今後表示しない";
 "Close" = "閉じる";
+
+"Quit %@" = "%@ を終了";

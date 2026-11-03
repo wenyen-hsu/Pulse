@@ -2,7 +2,9 @@
   <img src="AppIcon/pulse-icon-1024.png" width="112" alt="Pulse">
 </p>
 
-<h1 align="center">Pulse</h1>
+<h1 align="center">Pulse Pet</h1>
+
+> **별도로 설치되는 맞춤형 Pulse Pet 버전입니다.** 기존 Pulse와 함께 사용할 수 있으며 기존 설정과 데이터를 가져오지 않습니다. 아래에 남겨 둔 원본 프로젝트의 배포 링크는 이 버전의 설치 파일이 아닙니다. 별도로 제공되는 시험용 패키지를 사용하거나 [소스에서 빌드](Docs/build-from-source.md)하세요. 원본 프로젝트의 업데이트는 비활성화되어 있습니다.
 
 <p align="center">
   <b>사용량 페이지를 하나하나 열지 않아도 Claude Code, Codex, Cursor가 얼마나 남았는지 알 수 있습니다.</b><br>
@@ -56,7 +58,7 @@
 > - **방법 1(GUI)**: Pulse를 실행하고 경고를 닫은 뒤, **시스템 설정 → 개인정보 보호 및 보안**을 열고 **그래도 열기**를 클릭합니다.
 > - **방법 2(터미널)**:
 >   ```bash
->   xattr -cr /Applications/Pulse.app
+>   xattr -cr "/Applications/Pulse Pet.app"
 >   ```
 >   *업데이트는 앱 안에서 Sparkle로 제공됩니다. 업데이트 후 macOS가 브라우저 키체인 접근을 다시 요청할 수 있습니다.*
 
@@ -132,7 +134,7 @@ cd Pulse
 ./Scripts/bundle.sh
 
 # 실행
-open build.noindex/Pulse.app
+open "build.noindex/Pulse Pet.app"
 ```
 
 `swift run Pulse`는 번들 없이 빠르게 빌드하고 실행하는 방법이지만, 알림과 앱 내 업데이트는 번들 앱에서만 동작합니다. 툴체인 설정은 [Docs/build-from-source.md](Docs/build-from-source.md)를 참고하세요. 릴리스 배포: [Docs/releasing.md](Docs/releasing.md).

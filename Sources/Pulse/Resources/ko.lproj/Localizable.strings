@@ -1299,3 +1299,5 @@
 "A note from the developer" = "개발자의 한마디";
 "Don't show again" = "다시 표시 안 함";
 "Close" = "닫기";
+
+"Quit %@" = "%@ 종료";

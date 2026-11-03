@@ -1,0 +1,8 @@
+{
+  "name": "Pulse Pet",
+  "executableName": "PulsePet",
+  "bundleIdentifier": "io.github.wenyen-hsu.PulsePet",
+  "storageDirectory": "Pulse Pet",
+  "urlScheme": "pulse-pet",
+  "repository": "wenyen-hsu/Pulse"
+}

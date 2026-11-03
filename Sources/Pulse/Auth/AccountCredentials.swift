@@ -53,7 +53,7 @@ struct AccountCredentials: Codable, Equatable, Sendable {
 /// login are different things with different lifetimes, and a corrupt file
 /// should not be able to take both down at once.
 enum AccountCredentialStore {
-    private static let purpose = "Pulse account logins"
+    private static var purpose: String { "\(AppIdentity.bundleIdentifier) account logins" }
 
     private static var file: URL {
         PulseStorage.directory.appending(path: "accounts.dat")

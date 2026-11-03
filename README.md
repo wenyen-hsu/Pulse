@@ -2,7 +2,9 @@
   <img src="AppIcon/pulse-icon-1024.png" width="112" alt="Pulse">
 </p>
 
-<h1 align="center">Pulse</h1>
+<h1 align="center">Pulse Pet</h1>
+
+> **Independent Pulse Pet fork.** Installs alongside Pulse without adopting its settings or data. The upstream release links retained below are not this custom build; use the separately supplied Pulse Pet trial package or [build from source](Docs/build-from-source.md). Upstream updates are disabled in this trial.
 
 <p align="center">
   <b>Know how much Claude Code, Codex and Cursor you have left — without opening a single usage page.</b><br>
@@ -56,7 +58,7 @@
 > - **Option 1 (GUI)**: Launch Pulse, dismiss the alert, open **System Settings → Privacy & Security**, and click **Open Anyway**.
 > - **Option 2 (Terminal)**:
 >   ```bash
->   xattr -cr /Applications/Pulse.app
+>   xattr -cr "/Applications/Pulse Pet.app"
 >   ```
 >   *Updates are offered in-app through Sparkle. macOS may request browser keychain access again after an update.*
 
@@ -132,7 +134,7 @@ cd Pulse
 ./Scripts/bundle.sh
 
 # Launch it
-open build.noindex/Pulse.app
+open "build.noindex/Pulse Pet.app"
 ```
 
 `swift run Pulse` is a quick way to build and run without a bundle, but notifications and in-app updates only work from the bundled app. See [Docs/build-from-source.md](Docs/build-from-source.md) for toolchain setup. Shipping a release: [Docs/releasing.md](Docs/releasing.md).

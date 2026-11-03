@@ -1299,3 +1299,5 @@
 "A note from the developer" = "來自開發者的話";
 "Don't show again" = "不再顯示";
 "Close" = "關閉";
+
+"Quit %@" = "結束 %@";

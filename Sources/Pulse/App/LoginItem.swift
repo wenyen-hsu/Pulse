@@ -69,7 +69,7 @@ enum LoginItem {
     /// here or in System Settings — has to stick, so "on by default" can only
     /// ever be a decision taken once.
     static func applyDefaultOnFirstRun() {
-        let defaults = UserDefaults.standard
+        let defaults = AppIdentity.defaults
         guard !defaults.bool(forKey: Key.decided) else { return }
         defaults.set(true, forKey: Key.decided)
         setEnabled(true)
@@ -108,7 +108,7 @@ enum LoginItem {
 
     // MARK: - The launch agent
 
-    private static let label = "com.pulse.launch-at-login"
+    static var label: String { AppIdentity.loginItemLabel }
 
     private static var agentURL: URL {
         URL(fileURLWithPath: NSHomeDirectory())

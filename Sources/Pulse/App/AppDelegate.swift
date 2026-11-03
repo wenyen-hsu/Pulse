@@ -463,7 +463,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         menu.addItem(.separator())
 
         let quit = NSMenuItem(
-            title: .localized("Quit Pulse"),
+            title: .localized("Quit \(AppIdentity.name)"),
             action: #selector(NSApplication.terminate(_:)),
             keyEquivalent: "q"
         )

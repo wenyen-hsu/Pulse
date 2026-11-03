@@ -8,7 +8,7 @@ import Testing
 /// format, and a rename in `AppSettings` would silently reset everybody's
 /// choice — nothing else would fail.
 ///
-/// Runs against an isolated defaults suite, never `UserDefaults.standard`.
+/// Runs against an isolated defaults suite, never `AppIdentity.defaults`.
 @Suite("AppSettings persistence")
 @MainActor
 struct AppSettingsPersistenceTests {

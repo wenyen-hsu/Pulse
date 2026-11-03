@@ -32,7 +32,7 @@ import SwiftUI
 @Observable
 final class AppSettings {
     /// Where every setting is written. The app's own settings use
-    /// `UserDefaults.standard`; a test passes a throwaway suite.
+    /// `AppIdentity.defaults`; a test passes a throwaway suite.
     @ObservationIgnored let defaults: UserDefaults
 
     var panelPresentation: PanelPresentation = .petOrb {
@@ -1041,7 +1041,7 @@ final class AppSettings {
         alertThreshold: AlertThreshold = .default,
         alertsOnReset: Bool = Default.alertsOnReset,
         alertsOnFailure: Bool = Default.alertsOnFailure,
-        defaults: UserDefaults = .standard
+        defaults: UserDefaults = AppIdentity.defaults
     ) {
         self.defaults = defaults
         self.isPanelVisible = isPanelVisible

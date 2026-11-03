@@ -8,7 +8,7 @@ struct DeveloperIntegrationsView: View {
     @State private var message: String?
 
     private var executable: String {
-        Bundle.main.executableURL?.path ?? "/Applications/Pulse.app/Contents/MacOS/Pulse"
+        Bundle.main.executableURL?.path ?? "/Applications/\(AppIdentity.name).app/Contents/MacOS/\(AppIdentity.executableName)"
     }
 
     var body: some View {
@@ -29,7 +29,7 @@ struct DeveloperIntegrationsView: View {
                 }
                 SettingsRowDivider()
                 SettingsRow(String.localized("Installation guide")) {
-                    Link(destination: URL(string: "https://github.com/qunqin24/Pulse/blob/main/Docs/integrations.md")!) {
+                    Link(destination: URL(string: "https://github.com/\(AppIdentity.repository)/blob/main/Docs/integrations.md")!) {
                         Text(localized: "Open")
                     }
                 }

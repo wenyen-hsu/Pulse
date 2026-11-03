@@ -163,7 +163,7 @@ struct RecapWindowTests {
     @MainActor
     func settingsPersist() {
         let keys = ["settings.recapMonthlyPrice", "settings.recapHidesProjects", "settings.alertsOnRecap", "settings.recapAnnouncedMonth"]
-        defer { keys.forEach { UserDefaults.standard.removeObject(forKey: $0) } }
+        defer { keys.forEach { AppIdentity.defaults.removeObject(forKey: $0) } }
 
         let settings = AppSettings()
         #expect(settings.recapMonthlyPrice == nil)
@@ -171,17 +171,17 @@ struct RecapWindowTests {
         #expect(!settings.alertsOnRecap, "off by default")
 
         settings.recapMonthlyPrice = 200
-        #expect(UserDefaults.standard.double(forKey: "settings.recapMonthlyPrice") == 200)
+        #expect(AppIdentity.defaults.double(forKey: "settings.recapMonthlyPrice") == 200)
         settings.recapMonthlyPrice = -3
         #expect(settings.recapMonthlyPrice == nil)
-        #expect(UserDefaults.standard.object(forKey: "settings.recapMonthlyPrice") == nil, "a refused price is not left on disk")
+        #expect(AppIdentity.defaults.object(forKey: "settings.recapMonthlyPrice") == nil, "a refused price is not left on disk")
         settings.recapMonthlyPrice = 20
         settings.recapMonthlyPrice = 0
         #expect(settings.recapMonthlyPrice == nil)
-        #expect(UserDefaults.standard.object(forKey: "settings.recapMonthlyPrice") == nil)
+        #expect(AppIdentity.defaults.object(forKey: "settings.recapMonthlyPrice") == nil)
 
         settings.recapHidesProjects = true
-        #expect(UserDefaults.standard.bool(forKey: "settings.recapHidesProjects"))
+        #expect(AppIdentity.defaults.bool(forKey: "settings.recapHidesProjects"))
 
         var changes = 0
         settings.onRecapAlertChange = { changes += 1 }

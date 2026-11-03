@@ -408,7 +408,7 @@ actor ModelPrices {
 
 /// Where Pulse keeps the things too big for `UserDefaults`.
 enum PulseStorage {
-    static let directory: URL = URL.applicationSupportDirectory.appending(path: "Pulse")
+    static let directory: URL = AppIdentity.storageDirectory
 
     static func prepare() {
         try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)

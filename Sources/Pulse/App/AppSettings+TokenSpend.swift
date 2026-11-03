@@ -49,7 +49,7 @@ extension AppSettings {
     /// stored no longer names an offered range.
     ///
     /// Takes the store as an argument, rather than reaching for
-    /// `UserDefaults.standard`, so the round trip can be pinned against an
+    /// `AppIdentity.defaults`, so the round trip can be pinned against an
     /// isolated suite. `restored()` and `spendSpan`'s observer both go through
     /// this and `storeSpendSpan`, so what a test exercises is the one
     /// production uses.

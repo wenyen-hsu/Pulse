@@ -28,10 +28,7 @@ enum PulseMain {
             exit(0)
         }
 
-        // Before `LegacyDefaults.migrateIfNeeded()` deliberately: this command
-        // reads settings and must not be the thing that migrates them. A
-        // status line running it every couple of seconds is not the moment to
-        // decide an installation's defaults — the app does that at launch.
+        // Read-only commands must not mark a fresh installation as configured.
         if CommandLine.arguments.contains(UsageReport.modeArgument) {
             exit(UsageReport.run())
         }
@@ -42,12 +39,7 @@ enum PulseMain {
             RecapReport.run(arguments: CommandLine.arguments)
         }
 
-        // Before anything reads a setting: running from a bundle changes
-        // which `UserDefaults` domain that means.
-        LegacyDefaults.migrateIfNeeded()
-
-        // After the migration, so it reads the bundle's domain; before the
-        // settings are restored, which marks even a fresh install as run.
+        // Before restoring settings, which marks even a fresh install as run.
         UpdateMessage.noteLaunch()
 
         PulseApp.main()

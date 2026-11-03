@@ -1,5 +1,19 @@
 # Architecture
 
+## Pulse Pet independent application
+
+This fork installs as **Pulse Pet.app**, executable **PulsePet**, identifier **io.github.wenyen-hsu.PulsePet**. Identity is defined in `Sources/Pulse/Resources/AppIdentity.json` and read by the app and packaging scripts. The SwiftPM module remains `Pulse`.
+
+Preferences always use the Pulse Pet identifier's suite, including unbundled development builds. Files (including encrypted account stores, caches and history) live in `~/Library/Application Support/Pulse Pet`. No original Pulse preferences or data are migrated. Provider accounts must be configured separately; provider-owned CLI sessions/logs can still be read through the existing read-only channels.
+
+The navigation scheme is `pulse-pet://`; the original `pulse://` handler is not registered. Login registration uses the separate app identity and launch-agent label. Notifications use the separate bundle identifier.
+
+No Sparkle feed or signing public key is embedded in this trial bundle: updates are disabled rather than pointing to the upstream app. A separately signed fork feed and release pipeline are required before enabling updates.
+
+Claude Code has only one status-line configuration. Pulse Pet uses `~/.claude/pulse-pet-usage.json`, never automatically repairs/disconnects a foreign status line, and does not offer to replace an existing one at startup. Explicit connection from Settings can chain and restore the previous command; do not connect both apps to the shared hook if independent concurrent operation is required. Shared external CLI integrations are not per-app storage.
+
+Install Pulse Pet beside Pulse, not over it. The two app names, preferences, caches, login registrations and URL handlers are distinct. Existing Pulse installations remain untouched; previous trial builds named Pulse are not migrated. App bundles remain ad-hoc signed and unnotarized.
+
 Single executable target `Pulse` at `Sources/Pulse`. No internal modules. The floating monitor is **not** a SwiftUI `WindowGroup` scene.
 
 Provider routes, credentials, cookies, and extra-account OAuth belong in [providers/README.md](providers/README.md). This file is the AppKit shell and the settings/state that every provider shares.
@@ -32,13 +46,13 @@ Four, and the menu bar is only one of them — an icon in a full menu bar is not
 - The AppKit status-item menu (`AppDelegate`), unless the user has hidden its icon.
 - A **secondary click on the rail**, which puts up `AppDelegate.panelMenu()`. [ui/input.md](ui/input.md)
 - A **global shortcut**, unset until somebody sets one. `GlobalShortcutMonitor`, held by the app delegate for the life of the process and re-applied by the settings pane whenever a combination changes. The panel's own shortcut goes through `settings.isPanelVisible` rather than `FloatingPanelController.toggle()`, so the panel is in the state the switch in settings claims and stays that way across a launch.
-- A `pulse://` link, below.
+- A `pulse-pet://` link, below.
 
 The first three are kept as an invariant: if no selected provider can supply a visible panel and neither shortcut was actually accepted by the window server, Pulse restores the menu bar item. A stored combination that conflicts with another app does not count. Hiding the icon from Settings first shows the panel when it would otherwise remove the last visible entry point; before the initial provider choice, where no panel exists, the request is refused. Later hiding that panel, clearing the last shortcut, a registration failure, or restoring an unsafe saved combination brings the icon back.
 
 ## Settings navigation from other apps
 
-`PulseLink` parses `pulse://settings`, `pulse://integrations`, and `pulse://account/<encoded-id>`. `AppDelegate.application(_:open:)` passes accepted links to `SettingsWindowController`, whose `SettingsNavigation` owns the selected pane shared with SwiftUI. A request id lets a repeated link clear sidebar search and return to the heading, even when the pane is already selected. Account targets must exist in `settings.allAccounts`; links never create a slot or run a repair. `Scripts/bundle.sh` registers the `pulse` URL scheme in `CFBundleURLTypes`. Setup and examples: [integrations.md](integrations.md).
+`PulseLink` parses `pulse-pet://settings`, `pulse-pet://integrations`, and `pulse-pet://account/<encoded-id>`. `AppDelegate.application(_:open:)` passes accepted links to `SettingsWindowController`, whose `SettingsNavigation` owns the selected pane shared with SwiftUI. A request id lets a repeated link clear sidebar search and return to the heading, even when the pane is already selected. Account targets must exist in `settings.allAccounts`; links never create a slot or run a repair. `Scripts/bundle.sh` registers the `pulse-pet` URL scheme in `CFBundleURLTypes`. Setup and examples: [integrations.md](integrations.md).
 
 ## Panel content (where it lives)
 
@@ -90,7 +104,7 @@ Upgrades preserve the saved enabled account ids, including extra-account-only ra
 
 ## UserDefaults domain
 
-A bundled app and `swift run Pulse` use **different** defaults domains (bundle id vs process name). `LegacyDefaults` copies the old `Pulse` domain into the bundle domain **once**, only keys the new domain does not already have. After that they diverge on purpose. Details: [decisions/bundle-and-defaults.md](decisions/bundle-and-defaults.md).
+Bundled and loose Pulse Pet builds use the same explicit `AppIdentity.defaults` suite. The original Pulse defaults migration is removed; no settings are adopted from either its bundle or loose executable domain. The old [bundle-and-defaults decision](decisions/bundle-and-defaults.md) describes the upstream app, not this fork.
 
 ## Related
 

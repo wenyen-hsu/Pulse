@@ -15,7 +15,7 @@ import Foundation
 /// **It writes nothing of its own.** No setting is stored (it uses the read-only
 /// `storedReadsTokenSpend`, never `AppSettings`), no file is made beyond the
 /// ledger and price caches the readers already keep. Like `--json` it is
-/// dispatched before `LegacyDefaults.migrateIfNeeded()`.
+/// dispatched before application settings are initialized.
 ///
 /// A figure Pulse cannot stand behind is **absent from the JSON**, not zero;
 /// nothing is translated. See [Docs/token-spend.md](../../Docs/token-spend.md#the-recap-and---recap).

@@ -331,7 +331,7 @@ extension AppSettings {
     }
 
     static func storedRail() -> StoredRail {
-        let defaults = UserDefaults.standard
+        let defaults = AppIdentity.defaults
 
         let extras = defaults.data(forKey: Key.extraAccounts)
             .flatMap { try? JSONDecoder().decode([ExtraAccount].self, from: $0) } ?? []

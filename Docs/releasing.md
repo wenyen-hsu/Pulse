@@ -1,8 +1,18 @@
 # Releasing
 
+> This fork is **Pulse Pet**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#pulse-pet-independent-application). Packaging produces `build.noindex/Pulse Pet.app`, `PulsePet-<version>.zip` and `PulsePet-<version>.dmg`; no upstream updater is enabled.
+
 There is no Xcode project. `Scripts/bundle.sh` turns the package executable into something macOS treats as an app. Without a bundle there is no `Bundle.main` (no version for the update check, no `SMAppService` login item — hence the launch-agent fallback), and nothing to hand anyone but a build folder.
 
 Toolchain and local `swift build`: [build-from-source.md](build-from-source.md). Why the bundle exists and how defaults migrate: [decisions/bundle-and-defaults.md](decisions/bundle-and-defaults.md). Changelog vs Sparkle: [decisions/release-notes-in-changelog.md](decisions/release-notes-in-changelog.md).
+
+## Trial packaging
+
+Run `./Scripts/bundle.sh --zip` and `./Scripts/dmg.sh`. Identity and filenames come from `Sources/Pulse/Resources/AppIdentity.json`. The bundled executable is PulsePet; the SwiftPM target remains Pulse. No tag, release, upstream feed, or settings migration is needed for a trial package.
+
+## Upstream release machinery (reference)
+
+The tagged release and Sparkle machinery below is retained from upstream. It is not configured as the Pulse Pet update channel. Establish a separately signed fork feed and update the release pipeline before enabling in-app updates; the current trial bundle deliberately contains no feed or update verification key.
 
 ## Version and tag
 
@@ -33,7 +43,7 @@ Release needs `SPARKLE_PRIVATE_KEY`. It fails without it rather than publishing 
 - Resource bundle in `Contents/Resources` (`Bundle.module` via `Bundle.main.resourceURL`). Leave it out: English, no provider marks.
 - `LSUIElement` = true.
 - **Icon: `AppIcon/AppIcon.icon`**, an Icon Composer document, compiled by `actool` into `Assets.car` plus a flattened `AppIcon.icns`; `CFBundleIconName` points at it. One layer (`mark.svg`, white stem and lime bowl), so the glass treats the P as one shape — as two layers the colour break drew a line in the clear and tinted modes. Outlines only, no strokes: Icon Composer reads an open stroked path as enclosing the area its chord closes, and the shadow drew that chord across the empty counter. Open it in Icon Composer to edit. `pulse-icon-1024.png` (README) and the Raycast icon are exported from it with `ictool`, `--rendition Default`; re-export them when it changes. `pulse-mark.svg` is the mark alone, one colour.
-- `CFBundleURLTypes` registers `pulse` for settings/account navigation. The developer kit is copied to `Contents/Resources/Integrations` from an explicit file list: scripts, Raycast source, manifest, lockfile, icon and tests; no `node_modules` or generated extension output. This copy needs no Node.js build on release CI. [integrations.md](integrations.md)
+- `CFBundleURLTypes` registers `pulse-pet` for settings/account navigation. The developer kit is copied to `Contents/Resources/Integrations` from an explicit file list: scripts, Raycast source, manifest, lockfile, icon and tests; no `node_modules` or generated extension output. This copy needs no Node.js build on release CI. [integrations.md](integrations.md)
 - Universal: `--arch arm64 --arch x86_64`. Zip with **`ditto`**, not `zip` (plain zip flattens bundle symlinks).
 - **The SDK stamp is checked, not assumed.** macOS draws an app's controls to the SDK version in its `LC_BUILD_VERSION`, and below 26 it uses the previous design. `Package.swift` stamps 26.0 in `linkerSettings` — the manifest, not this script, so that a build run from Xcode matches a release — and this script reads it back off **every slice** after linking and refuses to package anything lower. The flag alone is not enough: when SwiftPM last got this wrong there was no error and no failing test, only an app drawn the old way. [decisions/sdk-stamp-and-appearance.md](decisions/sdk-stamp-and-appearance.md)
 - **Output is `build.noindex/`.** Spotlight indexes any `.app`; a project-folder build appears beside the installed copy, and whichever is opened claims the login item and rewrites Claude Code’s status-line path to itself. A `.metadata_never_index` marker was tried and did **not** stop indexing (historical); the `.noindex` suffix is what Spotlight honours. Do not rename it back.
