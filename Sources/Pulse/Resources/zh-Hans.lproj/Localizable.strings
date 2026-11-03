@@ -729,7 +729,7 @@
 "No StepFun session found. Sign in at %@ first." = "未找到阶跃星辰的登录信息。请先在 %@ 登录。";
 
 /* Extensions */
-"An extension is a program you add yourself that reports one account's usage. %@ draws what it prints as a ring, runs it only once you switch it on, and gives it no credentials." = "扩展是你自己添加的程序，用来报告某一个账号的用量，%@ 会把它输出的数据画成圆环。只有你开启后 %@ 才会运行它，也不会交给它任何登录凭据。";
+"An extension is a program you add yourself that reports one account's usage. %@ draws what it prints as a ring, runs it only once you switch it on, and gives it no credentials." = "扩展是你自己添加的程序，用来报告某一个账号的用量，%1$@ 会把它输出的数据画成圆环。只有你开启后 %1$@ 才会运行它，也不会交给它任何登录凭据。";
 "Another extension already uses the id %@." = "另一个扩展已经在用 ID「%@」。";
 "Couldn't be used" = "无法使用";
 "Each extension is a folder of its own, holding pulse-extension.json and its program." = "每个扩展单独一个文件夹，里面放 pulse-extension.json 和它的程序。";
@@ -932,7 +932,7 @@
 "Last started" = "上次自动开始";
 "Use at your own risk" = "请自行承担风险";
 "I understand the risk, turn it on" = "我了解风险，开启";
-"This is not a feature of Anthropic or OpenAI. Starting usage windows automatically may be treated as getting around usage limits, and could get your account restricted or suspended. %@ only sends one short message through the tool you are already signed in to, and is not responsible for anything that happens to your account as a result. Turn it on only if you accept that." = "这不是 Anthropic 或 OpenAI 的功能。自动开始用量窗口可能被视为规避用量限制，你的账号可能因此被限制或封禁。%@ 只会通过你已登录的命令行工具发一条简短消息，由此给你的账号带来的任何后果，%@ 概不负责。请确认你能接受这一点，再开启。";
+"This is not a feature of Anthropic or OpenAI. Starting usage windows automatically may be treated as getting around usage limits, and could get your account restricted or suspended. %@ only sends one short message through the tool you are already signed in to, and is not responsible for anything that happens to your account as a result. Turn it on only if you accept that." = "这不是 Anthropic 或 OpenAI 的功能。自动开始用量窗口可能被视为规避用量限制，你的账号可能因此被限制或封禁。%1$@ 只会通过你已登录的命令行工具发一条简短消息，由此给你的账号带来的任何后果，%1$@ 概不负责。请确认你能接受这一点，再开启。";
 "Not started yet" = "尚未自动开始";
 "%@ · the command-line tool was not found" = "%@ · 找不到命令行工具";
 "%@ · it did not go through; check the tool is signed in" = "%@ · 未能发送，请检查工具是否已登录";

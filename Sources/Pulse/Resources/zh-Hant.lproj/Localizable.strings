@@ -729,7 +729,7 @@
 "No StepFun session found. Sign in at %@ first." = "找不到階躍星辰的登入資訊，請先在 %@ 登入。";
 
 /* Extensions */
-"An extension is a program you add yourself that reports one account's usage. %@ draws what it prints as a ring, runs it only once you switch it on, and gives it no credentials." = "擴充功能是你自己加入的程式，用來回報某一個帳號的用量，%@ 會把它輸出的資料畫成圓環。只有你開啟後 %@ 才會執行它，也不會交給它任何登入憑證。";
+"An extension is a program you add yourself that reports one account's usage. %@ draws what it prints as a ring, runs it only once you switch it on, and gives it no credentials." = "擴充功能是你自己加入的程式，用來回報某一個帳號的用量，%1$@ 會把它輸出的資料畫成圓環。只有你開啟後 %1$@ 才會執行它，也不會交給它任何登入憑證。";
 "Another extension already uses the id %@." = "另一個擴充功能已經在用 ID「%@」。";
 "Couldn't be used" = "無法使用";
 "Each extension is a folder of its own, holding pulse-extension.json and its program." = "每個擴充功能各自一個資料夾，裡面放 pulse-extension.json 和它的程式。";
@@ -932,7 +932,7 @@
 "Last started" = "上次自動開始";
 "Use at your own risk" = "請自行承擔風險";
 "I understand the risk, turn it on" = "我了解風險，開啟";
-"This is not a feature of Anthropic or OpenAI. Starting usage windows automatically may be treated as getting around usage limits, and could get your account restricted or suspended. %@ only sends one short message through the tool you are already signed in to, and is not responsible for anything that happens to your account as a result. Turn it on only if you accept that." = "這不是 Anthropic 或 OpenAI 的功能。自動開始用量視窗可能被視為規避用量限制，你的帳號可能因此被限制或停用。%@ 只會透過你已登入的命令列工具傳送一則簡短訊息，由此給你的帳號帶來的任何後果，%@ 概不負責。請確認你能接受這一點，再開啟。";
+"This is not a feature of Anthropic or OpenAI. Starting usage windows automatically may be treated as getting around usage limits, and could get your account restricted or suspended. %@ only sends one short message through the tool you are already signed in to, and is not responsible for anything that happens to your account as a result. Turn it on only if you accept that." = "這不是 Anthropic 或 OpenAI 的功能。自動開始用量視窗可能被視為規避用量限制，你的帳號可能因此被限制或停用。%1$@ 只會透過你已登入的命令列工具傳送一則簡短訊息，由此給你的帳號帶來的任何後果，%1$@ 概不負責。請確認你能接受這一點，再開啟。";
 "Not started yet" = "尚未自動開始";
 "%@ · the command-line tool was not found" = "%@ · 找不到命令列工具";
 "%@ · it did not go through; check the tool is signed in" = "%@ · 未能傳送，請檢查工具是否已登入";

@@ -4,6 +4,8 @@ Application-name references in localized interface text interpolate `AppIdentity
 
 Chrome and why it is AppKit-owned: [../architecture.md](../architecture.md). Localization rules: [../development.md](../development.md).
 
+When a translation repeats the app name, reuse its positional argument (for example `%1$@`) rather than another unindexed `%@`. The localization tests render the extension description and window-starter warning in all six languages and validate every table's referenced argument positions against its keys.
+
 `SettingsView` / `SettingsRow`: a `NavigationSplitView` source list, panes built from `SettingsGroup` + `SettingsRow` (title and optional subtitle on the left, control on the right; `controlBelow: true` puts the control under the label). **A choice in a settings row is a pop-up menu** (`.pickerStyle(.menu)`), as in System Settings, never a segmented control: one control everywhere, and a menu fits beside its label however many options it has (Position's six segments had to move under the label to fit). Segmented controls are kept for switching what a view shows — Token activity's view, the recap's Month / Year. `SettingsPane` includes `.account(AccountKey)`, so every account — each provider's first, plus any added login — has a sidebar row.
 
 ## Where the code lives

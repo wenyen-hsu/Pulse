@@ -31,6 +31,34 @@ struct LocalizationTablesTests {
         })
         let bundle = try #require(Bundle(url: folder))
         let provider = "Example Browser"
+        let repeatedNameMessages = [
+            String(localized: "An extension is a program you add yourself that reports one account's usage. \(AppIdentity.name) draws what it prints as a ring, runs it only once you switch it on, and gives it no credentials.", bundle: bundle),
+            String(localized: "This is not a feature of Anthropic or OpenAI. Starting usage windows automatically may be treated as getting around usage limits, and could get your account restricted or suspended. \(AppIdentity.name) only sends one short message through the tool you are already signed in to, and is not responsible for anything that happens to your account as a result. Turn it on only if you accept that.", bundle: bundle)
+        ]
+        for message in repeatedNameMessages {
+            #expect(message.contains(AppIdentity.name))
+            if language.hasPrefix("zh") {
+                #expect(message.components(separatedBy: AppIdentity.name).count == 3)
+            }
+        }
+        let table = try #require(Self.table(language))
+        let placeholder = try NSRegularExpression(pattern: #"(?<!%)%(?:(\d+)\$)?@"#)
+        for (rawKey, rawValue) in table {
+            let key = try #require(rawKey as? String)
+            let value = try #require(rawValue as? String)
+            let argumentCount = placeholder.numberOfMatches(in: key, range: NSRange(key.startIndex..., in: key))
+            var nextArgument = 1
+            for match in placeholder.matches(in: value, range: NSRange(value.startIndex..., in: value)) {
+                let position: Int
+                if let range = Range(match.range(at: 1), in: value) {
+                    position = try #require(Int(value[range]))
+                } else {
+                    position = nextArgument
+                    nextArgument += 1
+                }
+                #expect(position <= argumentCount, "\(language): \(key)")
+            }
+        }
         let messages = [
             String(localized: "Start \(AppIdentity.name) automatically when you log in.", bundle: bundle),
             String(localized: "Remove \(AppIdentity.name) from the menu bar; use the panel menu or shortcut to open settings.", bundle: bundle),
