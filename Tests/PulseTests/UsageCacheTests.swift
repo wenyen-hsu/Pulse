@@ -155,7 +155,14 @@ struct UsageCacheTests {
 
         #expect(window.isEstimated)
         #expect(window.estimate == .planPrice)
-        #expect(window.name.contains("estimated"))
+        let bundle = LocalizationSource.moduleBundle
+        let marks = bundle.localizations.compactMap { language -> String? in
+            guard let path = bundle.path(forResource: language, ofType: "lproj"),
+                  let translation = Bundle(path: path) else { return nil }
+            return translation.localizedString(forKey: "estimated", value: nil, table: nil)
+        }
+        let name = window.name
+        #expect(marks.contains { name.contains($0) })
 
         // And nothing writes the old shape back out.
         let rewritten = try JSONSerialization.jsonObject(
