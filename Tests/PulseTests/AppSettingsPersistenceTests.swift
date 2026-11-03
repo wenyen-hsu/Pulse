@@ -27,6 +27,21 @@ struct AppSettingsPersistenceTests {
         #expect(defaults.dictionaryRepresentation().keys.filter { $0.hasPrefix("settings.") }.isEmpty)
     }
 
+    @Test("A custom warning percentage survives restoration and preset changes")
+    func customAlertPercentage() throws {
+        let (defaults, cleanup) = Self.isolatedDefaults()
+        defer { cleanup() }
+        let settings = AppSettings(defaults: defaults)
+        settings.alertThreshold = try #require(AlertThreshold(rawValue: 83))
+        #expect(defaults.integer(forKey: "settings.alertThreshold") == 83)
+        let restored = AppSettings.restoredSettings(from: defaults, detected: [], scan: ExtensionCatalog.Scan())
+        #expect(restored.alertThreshold.percent == 83)
+        restored.alertThreshold = .eighty
+        #expect(AppSettings.restoredSettings(from: defaults, detected: [], scan: ExtensionCatalog.Scan()).alertThreshold == .eighty)
+        restored.alertThreshold = .off
+        #expect(AppSettings.restoredSettings(from: defaults, detected: [], scan: ExtensionCatalog.Scan()).alertThreshold == .off)
+    }
+
     @Test("Flags are stored as booleans under their own keys")
     func flags() {
         let (defaults, cleanup) = Self.isolatedDefaults()

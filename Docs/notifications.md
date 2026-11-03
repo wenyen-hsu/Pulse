@@ -6,6 +6,10 @@ Source: [`Sources/Pulse/Usage/UsageAlerts.swift`](../Sources/Pulse/Usage/UsageAl
 
 ## What can be said
 
+In Settings → Notifications, **Warn at** retains Off, 75%, 80%, 90% and 95%. **Custom percentage** accepts any whole number from 1 through 100; press **Apply** or Return to save and enable that threshold. Invalid, fractional or out-of-range input does not change the active setting. The selected custom percentage appears in the menu and survives relaunch; choosing a preset or Off replaces it. The setting remains one integer under the existing key, so old preferences still work.
+
+Applying a custom value uses the same authorization, current-reading reconsideration and per-window deduplication as a preset. A 100% threshold only announces exhaustion; it does not create a separate approaching alert. Alerts remain off by default and depend on fresh reported readings, not continuous monitoring.
+
 Seven things, and nothing else — each something you would want to know *while looking at something else*.
 
 | Alert | Fires when | Gated by |

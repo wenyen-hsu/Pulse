@@ -10,6 +10,8 @@ Toolchain and local `swift build`: [build-from-source.md](build-from-source.md).
 
 Run `./Scripts/bundle.sh --zip` and `./Scripts/dmg.sh`. Identity and filenames come from `Sources/Pulse/Resources/AppIdentity.json`. The bundled executable is PulsePet; the SwiftPM target remains Pulse. No tag, release, upstream feed, or settings migration is needed for a trial package.
 
+After signing, bundling runs the packaged executable's read-only `--json` startup probe before producing an archive. A failed or timed-out launch stops packaging; unit tests alone are not evidence that the installed app can bootstrap.
+
 ## Upstream release machinery (reference)
 
 The tagged release and Sparkle machinery below is retained from upstream. It is not configured as the Pulse Pet update channel. Establish a separately signed fork feed and update the release pipeline before enabling in-app updates; the current trial bundle deliberately contains no feed or update verification key.
@@ -56,6 +58,8 @@ Release needs `SPARKLE_PRIVATE_KEY`. It fails without it rather than publishing 
 The image is the install guide: Pulse is not notarised, and on macOS 15+ Control-click → Open is gone. Instructions are printed on the window (README-only instructions are not read by people downloading an app).
 
 Finder window layout is a committed `Scripts/dmg-DS_Store` (AppleScript cannot run on CI). Recapture with `./Scripts/dmg.sh --relayout` after changing the backdrop or icon positions. Finder `bounds` **include the title bar** (~28pt taller than a 660×420 backdrop). Backdrop: `Scripts/dmg-background.tiff` (1x and 2x).
+
+The backdrop names Pulse Pet in the heading, drag instruction and first-launch guidance. Refresh this image when changing the display name in `AppIdentity.json`; changing only the bundle filename leaves misleading original-Pulse installation text.
 
 Sparkle updates from the **zip**, not the DMG. The image is for people.
 

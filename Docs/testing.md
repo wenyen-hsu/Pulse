@@ -4,6 +4,8 @@
 
 Identity tests cover the independent preferences suite, storage, login label, navigation scheme and status-line ownership. Display-label assertions accept the shipped translations: parallel settings tests can switch the process-wide interface language, so English-only substring assertions are not stable evidence of a retained estimated mark.
 
+The preferences tests cover bundled and loose domain selection separately. `Scripts/bundle.sh` also runs the signed, packaged executable with the read-only `--json` mode, requiring successful exit and a JSON report before creating a ZIP. This catches bundle-only bootstrap failures that `swift test` cannot reproduce, including Foundation rejecting a suite named after the running app's own bundle identifier. It does not replace a real desktop launch test.
+
 Owns: what `swift test` covers, what it deliberately does not, and the conventions the suite depends on. Toolchain and build flags: [build-from-source.md](build-from-source.md).
 
 ```bash

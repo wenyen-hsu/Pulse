@@ -103,7 +103,7 @@ enum SettingsPane: Hashable {
             [.localized("Open at login"), .localized("Hide menu bar icon"), .localized("Shortcuts"),
              .localized("Interface language")]
         case .notifications:
-            [.localized("Warn at"), .localized("When a limit comes back"), .localized("When a reading stops arriving"),
+            [.localized("Warn at"), .localized("Custom percentage"), .localized("When a limit comes back"), .localized("When a reading stops arriving"),
              .localized("When a service is down"), .localized("When a recap is ready")]
         case .network:
             [.localized("Check every"), .localized("Proxy")]
