@@ -10,15 +10,11 @@ User-facing clone-and-run stays in the README. **This file is the toolchain cont
 swift run Pulse              # build and run (no app bundle, no Sparkle, no SMAppService)
 swift build                  # type-check, including #Preview
 ./Scripts/bundle.sh          # → build.noindex/Pulse Pet.app
-./Scripts/dmg.sh             # → build.noindex/Pulse-<version>.dmg
+./Scripts/dmg.sh             # → build.noindex/PulsePet-<version>.dmg
 ./Scripts/check-localization.sh
 ```
 
-## mise development environment
-
-The project mise configuration pins Node and Python and selects the full Xcode toolchain through `DEVELOPER_DIR` and PATH. Run `mise trust`, then `mise run build`, `mise run test`, or `mise run localization`. For packaging, use `mise exec -- ./Scripts/bundle.sh`.
-
-Swift, its preview macro plugins and the platform SDK come together from Xcode rather than a separately installed Swift runtime. This integration was checked with Xcode 27.1 / Apple Swift 6.4 / macOS SDK 27.0. Xcode remains a platform SDK installation; the project configuration selects it, and `mise exec -- swift --version` verifies the selected compiler. Change `DEVELOPER_DIR` and the toolchain path together if Xcode is installed elsewhere.
+Python 3 runs the localization and packaged-startup scripts. Swift and the preview plugins come with full Xcode; the Liquid Glass source requires a macOS 26 SDK or newer. No mise configuration is included in this repository. Use the commands above rather than undocumented task aliases.
 
 ## Xcode, not Command Line Tools
 
