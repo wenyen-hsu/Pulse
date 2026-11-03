@@ -97,6 +97,47 @@ struct PetOrbLayoutTests {
     }
 }
 
+@Suite("Pet orb interaction timing")
+@MainActor
+struct PetOrbTimingTests {
+    @Test("Pet modes sample faster without changing the classic rail's cadence")
+    func pointerCadence() {
+        let classic = PanelPointerWatcher(onChange: { _ in })
+        let pet = PanelPointerWatcher(onChange: { _ in }, interval: PetOrbTiming.pointerInterval)
+        #expect(classic.interval == 0.15)
+        #expect(pet.interval > 0)
+        #expect(pet.interval <= 0.05)
+        #expect(pet.interval < classic.interval)
+    }
+
+    @Test("Departure budgets give an open card more crossing time without a long wait")
+    func departureBudget() {
+        let plain = PetOrbTiming.departureDelay(hasCard: false)
+        let card = PetOrbTiming.departureDelay(hasCard: true)
+        #expect(plain >= .seconds(PetOrbTiming.pointerInterval * 2))
+        #expect(plain <= .milliseconds(150))
+        #expect(card > plain)
+        #expect(card <= .milliseconds(250))
+        #expect(PetOrbTiming.animationResponse > 0)
+        #expect(PetOrbTiming.animationResponse <= 0.22)
+        #expect(Duration.seconds(PetOrbTiming.pointerInterval + PetOrbTiming.animationResponse) + plain <= .milliseconds(400))
+    }
+
+    @Test("Closing clears the selected card and a fast reopening still guards refresh clicks")
+    func reopening() {
+        let state = PetOrbState()
+        state.expand()
+        state.selectedID = "selected-account"
+        state.collapse()
+        #expect(!state.isExpanded)
+        #expect(state.selectedID == nil)
+        state.expand()
+        #expect(!PanelIntent.acceptsRingClick(pressedAt: state.openedAt, railOpenedAt: state.openedAt))
+        #expect(PanelIntent.acceptsRingClick(
+            pressedAt: state.openedAt.addingTimeInterval(0.31), railOpenedAt: state.openedAt))
+    }
+}
+
 @Suite("Pet orb settings")
 @MainActor
 struct PetOrbSettingsTests {
