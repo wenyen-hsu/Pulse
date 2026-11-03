@@ -1,5 +1,7 @@
 # Settings window
 
+Application-name references in localized interface text interpolate `AppIdentity.name`, including login/menu-bar help, notifications, provider/access explanations and the current-app description in About. All six language tables use matching format keys; original Pulse/qunqin24 attribution remains literal. Multi-argument translations keep explicit format positions so the app name cannot replace a provider name. Exported developer integration folders use the current name; data domains and navigation schemes retain the stable identity documented in [branding](../branding.md).
+
 Chrome and why it is AppKit-owned: [../architecture.md](../architecture.md). Localization rules: [../development.md](../development.md).
 
 `SettingsView` / `SettingsRow`: a `NavigationSplitView` source list, panes built from `SettingsGroup` + `SettingsRow` (title and optional subtitle on the left, control on the right; `controlBelow: true` puts the control under the label). **A choice in a settings row is a pop-up menu** (`.pickerStyle(.menu)`), as in System Settings, never a segmented control: one control everywhere, and a menu fits beside its label however many options it has (Position's six segments had to move under the label to fit). Segmented controls are kept for switching what a view shows — Token activity's view, the recap's Month / Year. `SettingsPane` includes `.account(AccountKey)`, so every account — each provider's first, plus any added login — has a sidebar row.

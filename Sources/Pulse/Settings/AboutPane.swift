@@ -48,7 +48,7 @@ struct AboutPane: View {
 
                 SettingsRow(
                     String.localized("Usage data"),
-                    subtitle: String.localized("Read from each provider's own account. Pulse shows the figures they report; where it has to infer one, the figure itself says so.")
+                    subtitle: String.localized("Read from each provider's own account. \(AppIdentity.name) shows the figures they report; where it has to infer one, the figure itself says so.")
                 ) {
                     EmptyView()
                 }

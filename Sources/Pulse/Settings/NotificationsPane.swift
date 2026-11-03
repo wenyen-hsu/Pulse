@@ -191,8 +191,8 @@ struct NotificationsPane: View {
     private var testSubtitle: String {
         guard UsageAlerts.isSupported else { return .localized("Notifications need the bundled app.") }
         switch testOutcome {
-        case .denied: return .localized("Turned off for Pulse in System Settings › Notifications.")
-        case .undecided: return .localized("Pulse has not been allowed to post notifications yet. Press Send again to be asked.")
+        case .denied: return .localized("Turned off for \(AppIdentity.name) in System Settings › Notifications.")
+        case .undecided: return .localized("\(AppIdentity.name) has not been allowed to post notifications yet. Press Send again to be asked.")
         case .sent: return .localized("Sent. If nothing appeared, check Focus and System Settings › Notifications.")
         case .unsupported: return .localized("Notifications need the bundled app.")
         case nil: return .localized("Sends one now, so you can see that notifications reach you.")
@@ -211,7 +211,7 @@ struct NotificationsPane: View {
         }
 
         if settings.wantsAlerts, alerts.authorization == .denied {
-            return .localized("Turned off for Pulse in System Settings › Notifications.")
+            return .localized("Turned off for \(AppIdentity.name) in System Settings › Notifications.")
         }
         return .localized("Notify when a limit passes this, and again when it is spent.")
     }

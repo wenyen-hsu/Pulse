@@ -166,7 +166,7 @@ enum BrowserCookies {
     static func refusalMessage(_ refused: [Browser]) -> String? {
         guard let first = refused.first else { return nil }
         let named = preferred().flatMap { refused.contains($0) ? $0 : nil } ?? first
-        return String.localized("macOS didn't allow Pulse to read \(named.name)'s cookies. In System Settings › Privacy & Security › Full Disk Access, turn on Pulse (if it is already on, remove it and add it again), then quit and reopen Pulse.")
+        return String.localized("macOS didn't allow \(AppIdentity.name) to read \(named.name)'s cookies. In System Settings › Privacy & Security › Full Disk Access, turn on \(AppIdentity.name) (if it is already on, remove it and add it again), then quit and reopen \(AppIdentity.name).")
     }
 
     /// Whether opening this is refused, as opposed to missing. A path that
