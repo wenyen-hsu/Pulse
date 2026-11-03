@@ -10,6 +10,8 @@ Toolchain and local `swift build`: [build-from-source.md](build-from-source.md).
 
 Run `./Scripts/bundle.sh --zip` and `./Scripts/dmg.sh`. Identity and filenames come from `Sources/Pulse/Resources/AppIdentity.json`. The bundled executable is PulsePet; the SwiftPM target remains Pulse. No tag, release, upstream feed, or settings migration is needed for a trial package.
 
+After signing, bundling runs the packaged executable's read-only `--json` startup probe before producing an archive. A failed or timed-out launch stops packaging; unit tests alone are not evidence that the installed app can bootstrap.
+
 ## Upstream release machinery (reference)
 
 The tagged release and Sparkle machinery below is retained from upstream. It is not configured as the Pulse Pet update channel. Establish a separately signed fork feed and update the release pipeline before enabling in-app updates; the current trial bundle deliberately contains no feed or update verification key.

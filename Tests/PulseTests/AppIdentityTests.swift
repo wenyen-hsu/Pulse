@@ -19,7 +19,12 @@ struct AppIdentityTests {
         #expect(AppIdentity.repositoryURL.absoluteString == "https://github.com/wenyen-hsu/Pulse")
     }
 
-    @Test("Preferences stay in the same independent suite even outside an app bundle")
+    @Test("A packaged app uses its own standard domain, not an invalid same-name suite")
+    func packagedPreferences() {
+        #expect(AppIdentity.defaults(runningBundleIdentifier: AppIdentity.bundleIdentifier) === UserDefaults.standard)
+    }
+
+    @Test("Preferences stay in the same independent domain even outside an app bundle")
     func preferences() {
         let key = "PulsePetIdentityTest." + UUID().uuidString
         let defaults = AppIdentity.defaults

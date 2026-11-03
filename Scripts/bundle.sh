@@ -182,6 +182,24 @@ PLIST
 codesign --force --deep --sign - "$APP/Contents/Frameworks/Sparkle.framework" 2>/dev/null || true
 codesign --force --deep --sign - "$APP" 2>/dev/null || echo "  (ad-hoc signing skipped)"
 
+python3 - "$APP/Contents/MacOS/$EXECUTABLE" <<'PY'
+import json
+import subprocess
+import sys
+
+try:
+    result = subprocess.run(
+        [sys.argv[1], "--json"], capture_output=True, timeout=30
+    )
+except subprocess.TimeoutExpired:
+    raise SystemExit("Packaged executable startup probe timed out.")
+if result.returncode:
+    raise SystemExit(f"Packaged executable startup probe failed (exit {result.returncode}).")
+if not isinstance(json.loads(result.stdout), dict):
+    raise SystemExit("Packaged executable startup probe did not return a JSON report.")
+print("Packaged executable startup probe passed.")
+PY
+
 echo "→ $APP"
 
 # `ditto`, not `zip`: an app bundle carries symlinks and resource forks that a

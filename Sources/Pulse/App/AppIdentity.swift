@@ -29,6 +29,13 @@ enum AppIdentity {
     static var storageDirectory: URL {
         URL.applicationSupportDirectory.appending(path: configuration.storageDirectory)
     }
-    static var defaults: UserDefaults { UserDefaults(suiteName: bundleIdentifier)! }
+    static var defaults: UserDefaults {
+        defaults(runningBundleIdentifier: Bundle.main.bundleIdentifier)
+    }
+
+    static func defaults(runningBundleIdentifier: String?) -> UserDefaults {
+        if runningBundleIdentifier == bundleIdentifier { return .standard }
+        return UserDefaults(suiteName: bundleIdentifier)!
+    }
     static var loginItemLabel: String { "\(bundleIdentifier).launch-at-login" }
 }

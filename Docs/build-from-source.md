@@ -53,9 +53,9 @@ macOS also draws an app's controls to the SDK recorded in its binary, not to the
 
 ## What `swift run` is not
 
-A loose executable and `Pulse Pet.app` share the Pulse Pet preferences suite, but differ in system integration:
+A loose executable and `Pulse Pet.app` share the Pulse Pet preferences domain, but differ in system integration:
 
-- Explicit independent `AppIdentity.defaults` suite in both builds ([architecture.md](architecture.md))
+- Independent `AppIdentity.defaults` domain in both builds: standard defaults in the app bundle, a named suite in the loose executable ([architecture.md](architecture.md))
 - Launch-agent login item instead of `SMAppService`
 - No Sparkle (`SUFeedURL` / framework missing)
 - Safari Full Disk Access, if ever needed for a session cookie, is granted **per application** — the bundled app and `swift run` are not the same grant

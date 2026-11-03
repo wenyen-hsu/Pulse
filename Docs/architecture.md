@@ -4,7 +4,7 @@
 
 This fork installs as **Pulse Pet.app**, executable **PulsePet**, identifier **io.github.wenyen-hsu.PulsePet**. Identity is defined in `Sources/Pulse/Resources/AppIdentity.json` and read by the app and packaging scripts. The SwiftPM module remains `Pulse`.
 
-Preferences always use the Pulse Pet identifier's suite, including unbundled development builds. Files (including encrypted account stores, caches and history) live in `~/Library/Application Support/Pulse Pet`. No original Pulse preferences or data are migrated. Provider accounts must be configured separately; provider-owned CLI sessions/logs can still be read through the existing read-only channels.
+Preferences always use the Pulse Pet identifier's domain: `UserDefaults.standard` inside its app bundle, an explicit named suite for unbundled development builds. Files (including encrypted account stores, caches and history) live in `~/Library/Application Support/Pulse Pet`. No original Pulse preferences or data are migrated. Provider accounts must be configured separately; provider-owned CLI sessions/logs can still be read through the existing read-only channels.
 
 The navigation scheme is `pulse-pet://`; the original `pulse://` handler is not registered. Login registration uses the separate app identity and launch-agent label. Notifications use the separate bundle identifier.
 
@@ -104,7 +104,9 @@ Upgrades preserve the saved enabled account ids, including extra-account-only ra
 
 ## UserDefaults domain
 
-Bundled and loose Pulse Pet builds use the same explicit `AppIdentity.defaults` suite. The original Pulse defaults migration is removed; no settings are adopted from either its bundle or loose executable domain. The old [bundle-and-defaults decision](decisions/bundle-and-defaults.md) describes the upstream app, not this fork.
+`AppIdentity.defaults` selects `UserDefaults.standard` when the running bundle has the Pulse Pet identifier, and a suite with that identifier otherwise. Both reach the same independent domain. Foundation rejects opening the running application's own identifier as a named suite; force-unwrapping that initializer crashed the first standalone package even though unbundled tests passed.
+
+The original Pulse defaults migration is removed; no settings are adopted from either its bundle or loose executable domain. The old [bundle-and-defaults decision](decisions/bundle-and-defaults.md) describes the upstream app, not this fork.
 
 ## Related
 
