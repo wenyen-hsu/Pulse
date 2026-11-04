@@ -9,6 +9,10 @@ A native macOS AI-usage monitor with a centred sun pet and an optional liquid-gl
 
 > Independent development fork of [Pulse by qunqin24](https://github.com/qunqin24/Pulse). **Nokori (formerly Pulse Pet)** is the chosen name for this fork. This repository is not an official upstream release and is not endorsed by its original author.
 
+**[Download trial DMG — Apple Silicon + Intel](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)** · [Checksums and verification limits](Downloads/README.md)
+
+> **Trial, not a stable release.** Ad-hoc signed, not Apple-notarized. Keep original Pulse installed; replace only an older Nokori. First-time location permission and successful device location still need testing on your Mac.
+
 ## What changes in this fork?
 
 | Panel style | Behaviour |
@@ -19,13 +23,14 @@ A native macOS AI-usage monitor with a centred sun pet and an optional liquid-gl
 
 - Hover to expand account rings; point at a ring for its existing detail card; leave the panel and card to collapse.
 - Animated Little sun by default; Cat, Fox, Rabbit and custom transparent PNG pets, with size controls.
+- Optional [weather pets](Docs/weather-pet.md): clouds, rain, thunderstorms, snow, fog and moonlight. Choose fixed artwork offline, or enable local weather with explicit location permission and manual city fallback. Open-Meteo's free service is for non-commercial use only.
 - Existing provider usage, account management, history, menu bar, notifications and integrations remain available. [Full feature guide](Docs/features.md) · [Supported services](Docs/supported-services.md).
 - Keep the 75%, 80%, 90% and 95% warning presets, or enter a custom **1–100%** threshold.
 - Liquid motion approximates surface tension and viscosity visually; it is **not a fluid simulation**. Reduce Motion disables drag stretch and recoil.
 
 ## Install without replacing Pulse
 
-Use a **Nokori** trial package supplied by the maintainer or listed under [this fork's Releases](https://github.com/wenyen-hsu/Pulse/releases). If no fork package is available, build from source below. Upstream Pulse downloads do not contain these custom features.
+Use the **[Nokori trial DMG](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)** above, packaged from the exact native-tested app without rebuilding. [Download details and SHA-256](Downloads/README.md). This is a repository-hosted trial, not a tagged GitHub Release. Upstream Pulse downloads do not contain these custom features.
 
 1. Open the fork's DMG and drag **Nokori.app** into Applications.
 2. Leave **Pulse.app** untouched. Preferences, application data, login item and URL scheme are separate; original preferences are not migrated.
@@ -45,6 +50,10 @@ Use a **Nokori** trial package supplied by the maintainer or listed under [this 
 The links at the top switch this repository's README language; the app's language is a separate setting.
 
 > **Upgrading from Pulse Pet:** quit it, install Nokori, then remove only the old Pulse Pet application, not its data. The existing independent preferences/data identity is retained. Do not run both old and new names together; original Pulse may still run alongside Nokori. See [branding and compatibility](Docs/branding.md).
+
+## Weather source and cost
+
+For automatic weather, Nokori uses **Open-Meteo, not Apple's Weather app or WeatherKit**. It is off by default and refreshes about every 30 minutes while active, not in real time. The free API needs no key but is **non-commercial only**, rate-limited and provided without an uptime guarantee. Location authorization does not grant access to the Weather app; no WeatherKit developer quota is used. See [weather source, cost and privacy](Docs/weather-pet.md#data-source-and-cost).
 
 ## Build and verify
 

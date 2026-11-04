@@ -66,6 +66,16 @@ final class AppSettings {
         }
     }
 
+    var weatherPreferences = WeatherPreferences() {
+        didSet {
+            guard weatherPreferences != oldValue else { return }
+            defaults.set(try? JSONEncoder().encode(weatherPreferences), forKey: WeatherPreferences.key)
+            onWeatherChange?()
+        }
+    }
+    var weatherPet: PetWeatherController?
+    var onWeatherChange: (() -> Void)?
+
     // MARK: - Callbacks
 
     /// Called after any change the usage loop has to react to — a provider

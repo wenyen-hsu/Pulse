@@ -48,6 +48,12 @@ struct PetOrbSettingsGroup: View {
                         Button(String.localized("Import PNG…"), action: importImage)
                     }
                 }
+                if settings.weatherPreferences.enabled {
+                    Text(localized: "Turn off automatic weather to use the selected fixed pet.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding(12)
+                }
                 SettingsRowDivider()
                 SettingsRow(String.localized("Pet size")) {
                     Slider(value: $settings.orbPetSize, in: 0.7...1.3)

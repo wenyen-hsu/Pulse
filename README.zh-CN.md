@@ -16,12 +16,13 @@
 - **传统侧栏：** 保留原有的屏幕边缘面板。
 - 指针靠近时展开账号圆环，停在圆环上显示原有详情卡片，离开面板和卡片后收起。
 - 默认是持续活动的小太阳，也可选择猫、狐狸、兔子，或导入透明 PNG 并调整大小。
+- 可选[天气宠物](Docs/weather-pet.md)：云朵、雨、雷雨、雪、雾与月亮。可离线固定选择造型，或启用当地天气并明确授权定位；拒绝或无法定位时可手选城市。Open-Meteo 免费服务仅限非商业用途。
 - 保留服务商用量、账号、历史、菜单栏、通知和集成。[完整功能](Docs/features.md) · [支持服务](Docs/supported-services.md)。
 - 保留 75%、80%、90%、95% 提醒选项，支持自行输入 **1～100%**。
 
 ## 安装与设置
 
-请使用维护者提供或[本仓库 Releases](https://github.com/wenyen-hsu/Pulse/releases) 列出的 **Nokori** 试用包。若无定制安装包，请从源码构建；上游 Pulse 安装包不包含本版功能。
+**[下载试用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
 
 1. 打开 DMG，把 **Nokori.app** 拖到“应用程序”，不要替换原版 **Pulse.app**。
 2. 设置、应用数据、登录项和 URL scheme 独立，不迁移原版设置；上游自动更新已关闭。
@@ -37,6 +38,10 @@
 - **设置 → 通知：** 选择门槛或输入自定义百分比、应用并允许系统通知。提醒取决于实际读到的用量，不是连续实时监控。
 
 > **从 Pulse Pet 升级：** 退出旧版、安装 Nokori，再移除旧 Pulse Pet 的应用本体，不要删除数据。保留原有独立设置与数据标识；不要同时运行新旧名称的同一应用。原版 Pulse 仍可与 Nokori 同时运行。[品牌与兼容性](Docs/branding.md)。
+
+## 天气来源与费用
+
+自动天气使用 **Open-Meteo，不读取 Apple“天气”App，也没有使用 WeatherKit**。功能默认关闭；启用且浮点面板可见、未使用自定义 PNG 时，约每 30 分钟刷新，不是实时同步。免费 API 不需要密钥，但**仅限非商业用途**，有请求量限制且不保证服务可用性。定位授权只提供位置，不授予读取“天气”App 的权限；目前不会消耗 WeatherKit 开发者的共用额度。[天气来源、费用与隐私详情（英文）](Docs/weather-pet.md#data-source-and-cost)。
 
 ## 从源码构建
 

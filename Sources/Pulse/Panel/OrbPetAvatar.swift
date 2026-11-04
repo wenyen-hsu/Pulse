@@ -13,6 +13,8 @@ struct OrbPetAvatar: View {
                 Image(nsImage: image).resizable().interpolation(.high).scaledToFit()
             } else if pet == .sun {
                 sun
+            } else if pet.isWeatherShape {
+                WeatherPetAvatar(pet: pet, isAnimating: isAnimating)
             } else {
                 Canvas { context, size in
                     let unit = min(size.width, size.height)
