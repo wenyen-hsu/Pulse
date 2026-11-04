@@ -35,7 +35,7 @@ final class AppSettings {
     /// `AppIdentity.defaults`; a test passes a throwaway suite.
     @ObservationIgnored let defaults: UserDefaults
 
-    var panelPresentation: PanelPresentation = .petOrb {
+    var panelPresentation: PanelPresentation = .liquidPet {
         didSet {
             guard panelPresentation != oldValue else { return }
             defaults.set(panelPresentation.rawValue, forKey: Key.panelPresentation)

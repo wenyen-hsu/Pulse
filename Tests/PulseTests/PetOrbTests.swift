@@ -165,7 +165,7 @@ struct PetOrbSettingsTests {
         var refreshes = 0
         settings.onLayoutChange = { layouts += 1 }
         settings.onChange = { refreshes += 1 }
-        #expect(settings.panelPresentation == .petOrb)
+        #expect(settings.panelPresentation == .liquidPet)
         settings.panelPresentation = .rail
         settings.orbPet = .fox
         settings.orbPetSize = 1.2
@@ -190,6 +190,26 @@ struct PetOrbSettingsTests {
         #expect(!PanelPresentation.rail.usesOrb)
     }
 
+    @Test("Fresh settings use liquid pet without saving an explicit style")
+    func defaultPresentation() {
+        let (defaults, cleanup) = TestDefaults.make("PetOrbDefault")
+        defer { cleanup() }
+        #expect(AppSettings(defaults: defaults).panelPresentation == .liquidPet)
+        #expect(AppSettings.restoredSettings(from: defaults, detected: [], scan: ExtensionCatalog.Scan())
+            .panelPresentation == .liquidPet)
+        #expect(defaults.object(forKey: "settings.panelPresentation") == nil)
+    }
+
+    @Test("Every saved panel style survives restoration", arguments: PanelPresentation.allCases)
+    func savedPresentation(_ style: PanelPresentation) {
+        let (defaults, cleanup) = TestDefaults.make("PetOrbSaved-\(style.rawValue)")
+        defer { cleanup() }
+        defaults.set(style.rawValue, forKey: "settings.panelPresentation")
+        let restored = AppSettings.restoredSettings(from: defaults, detected: [], scan: ExtensionCatalog.Scan())
+        #expect(restored.panelPresentation == style)
+        #expect(defaults.string(forKey: "settings.panelPresentation") == style.rawValue)
+    }
+
     @Test("Invalid choices and sizes fall back to safe defaults")
     func invalidSettings() {
         let (defaults, cleanup) = TestDefaults.make("PetOrbInvalid")
@@ -199,7 +219,7 @@ struct PetOrbSettingsTests {
         defaults.set(100, forKey: "settings.orbPetSize")
         let restored = AppSettings(defaults: defaults)
         restored.restorePetOrb(from: defaults)
-        #expect(restored.panelPresentation == .petOrb)
+        #expect(restored.panelPresentation == .liquidPet)
         #expect(restored.orbPet == .sun)
         #expect(restored.orbPetSize == 1.3)
         restored.orbPetSize = .nan
