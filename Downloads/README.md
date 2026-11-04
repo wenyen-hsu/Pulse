@@ -19,6 +19,8 @@
 
 這是已交付的同一份天氣寵物試用包，使用原生桌面測試通過的程式打包，沒有重新編譯。此下載不是正式穩定版，也沒有建立版本標籤或啟用自動更新。下載檔暫放本目錄，讓訪客不需登入 Devin 就能取得。
 
+**此包尚未包含後續的天氣／手選寵物互斥控制。** 本包仍由 PNG 優先顯示並暫停天氣；原始碼新增的「啟用天氣時停用手選與圖片控制、關閉後恢復」需另經原生桌面驗證再製作新版安裝包。
+
 1. 先結束舊的 Nokori／Pulse Pet；**保留原版 Pulse**。
 2. 開啟 DMG，把 **Nokori** 拖進「應用程式」，只取代舊 Nokori，不取代 Pulse。
 3. 首次若被 macOS 阻擋，僅在信任來源時，到「系統設定 → 隱私權與安全性 → 仍要打開」。
@@ -31,6 +33,8 @@ Intel 實機、舊 macOS、窄／多螢幕、首次 Gatekeeper 放行、真實�
 ## English
 
 This is the same delivered weather-pet trial, packaged from the exact native-tested app without rebuilding. It is **not a stable release**; no version tag or automatic update was created. The installer is temporarily kept here so visitors can download it without a Devin login.
+
+**This installer predates the exclusive weather/manual-pet controls.** It still gives PNGs priority and pauses weather. The source change that disables manual/image controls while weather is on and restores them when off needs fresh native acceptance and a new installer.
 
 1. Quit the old Nokori/Pulse Pet. **Keep the original Pulse installed.**
 2. Open the DMG and drag **Nokori** into Applications, replacing only an older Nokori, never Pulse.

@@ -1,4 +1,4 @@
-"Turn off automatic weather to use the selected fixed pet." = "關閉自動天氣後，即會使用所選的固定寵物。";
+"Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "已啟用自動天氣。關閉後才能選擇固定寵物或圖片；原有選擇會保留。";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "城市資料：Open-Meteo／GeoNames（CC BY 4.0）";
 "Sun and cloud" = "太陽與雲";
 "Moon and cloud" = "月亮與雲";
@@ -11,7 +11,7 @@
 "Current location" = "目前位置";
 "Choose a city" = "選擇城市";
 "Automatic weather is off." = "自動天氣已關閉。";
-"Weather is paused while a custom image or the classic rail is in use, or the panel is hidden." = "使用自訂圖片、經典側欄或隱藏面板時，暫停查詢天氣。";
+"Weather is paused while the classic rail is in use or the panel is hidden." = "使用經典側欄或隱藏面板時，暫停查詢天氣。";
 "Allow location access, or choose a city below." = "請允許定位，或在下方選擇城市。";
 "Location access is denied. Choose a city, or allow Nokori in System Settings → Privacy & Security → Location Services." = "定位權限遭拒。請選擇城市，或至「系統設定 → 隱私權與安全性 → 定位服務」允許 Nokori。";
 "Finding your approximate location…" = "正在取得約略位置…";
@@ -33,7 +33,7 @@
 "Search cities" = "搜尋城市";
 "Could not search cities. Check your connection and try again." = "無法搜尋城市，請檢查連線後再試。";
 "No cities found. Try another name." = "找不到城市，請嘗試其他名稱。";
-"Select a search result to use that city instead of device location. Fixed pets and imported PNGs are kept; a PNG takes priority over weather." = "選取搜尋結果後，將改用該城市而非裝置位置。固定寵物與匯入的 PNG 都會保留；PNG 優先於天氣顯示。";
+"Select a search result to use that city instead of device location. Turn off automatic weather to restore your saved pet or PNG." = "選取搜尋結果後，將改用該城市而非裝置位置。關閉自動天氣後，會恢復原有寵物或 PNG 圖片。";
 "Custom percentage" = "自訂百分比";
 "Enter a whole number from 1 to 100." = "請輸入 1～100 的整數。";
 "Apply" = "套用";

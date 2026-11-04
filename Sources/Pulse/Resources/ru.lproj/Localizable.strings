@@ -1,4 +1,4 @@
-"Turn off automatic weather to use the selected fixed pet." = "Чтобы использовать выбранного постоянного питомца, отключите автоматическую погоду.";
+"Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "Автоматическая погода включена. Выключите её, чтобы выбрать питомца или изображение. Сохранённые настройки не удаляются.";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "Данные городов: GeoNames через Open-Meteo (CC BY 4.0)";
 "Sun and cloud" = "Солнце и облако";
 "Moon and cloud" = "Луна и облако";
@@ -11,7 +11,7 @@
 "Current location" = "Текущее местоположение";
 "Choose a city" = "Выбрать город";
 "Automatic weather is off." = "Автоматическая смена погоды выключена.";
-"Weather is paused while a custom image or the classic rail is in use, or the panel is hidden." = "Запросы погоды приостановлены: используется своё изображение, классическая панель или панель скрыта.";
+"Weather is paused while the classic rail is in use or the panel is hidden." = "Запросы погоды приостановлены: используется классическая панель или панель скрыта.";
 "Allow location access, or choose a city below." = "Разрешите доступ к геопозиции или выберите город ниже.";
 "Location access is denied. Choose a city, or allow Nokori in System Settings → Privacy & Security → Location Services." = "Доступ к геопозиции запрещён. Выберите город или разрешите доступ для Nokori в «Системные настройки → Конфиденциальность и безопасность → Службы геолокации».";
 "Finding your approximate location…" = "Определение примерного местоположения…";
@@ -33,7 +33,7 @@
 "Search cities" = "Найти город";
 "Could not search cities. Check your connection and try again." = "Не удалось найти города. Проверьте подключение и повторите попытку.";
 "No cities found. Try another name." = "Города не найдены. Попробуйте другое название.";
-"Select a search result to use that city instead of device location. Fixed pets and imported PNGs are kept; a PNG takes priority over weather." = "Выберите результат поиска, чтобы использовать этот город вместо геопозиции устройства. Выбранный питомец и PNG сохраняются; PNG имеет приоритет перед погодой.";
+"Select a search result to use that city instead of device location. Turn off automatic weather to restore your saved pet or PNG." = "Выберите результат поиска, чтобы использовать этот город вместо геопозиции устройства. Отключите автоматическую погоду, чтобы вернуть сохранённого питомца или PNG.";
 "Custom percentage" = "Свой порог в процентах";
 "Enter a whole number from 1 to 100." = "Введите целое число от 1 до 100.";
 "Apply" = "Применить";

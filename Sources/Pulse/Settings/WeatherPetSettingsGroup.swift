@@ -91,7 +91,7 @@ struct WeatherPetSettingsGroup: View {
                             .padding(.vertical, 3)
                         }
                     }
-                    Text(localized: "Select a search result to use that city instead of device location. Fixed pets and imported PNGs are kept; a PNG takes priority over weather.")
+                    Text(localized: "Select a search result to use that city instead of device location. Turn off automatic weather to restore your saved pet or PNG.")
                         .font(.caption).foregroundStyle(.secondary)
                 }
                 .padding(12)

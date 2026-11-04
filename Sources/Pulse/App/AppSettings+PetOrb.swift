@@ -55,6 +55,10 @@ extension AppSettings.Key {
 }
 
 extension AppSettings {
+    var isFixedPetSelectionEnabled: Bool { !weatherPreferences.enabled }
+    var effectivePetImage: Data? { isFixedPetSelectionEnabled ? orbPetImage : nil }
+    var isPetOrbVisible: Bool { panelPresentation.usesOrb && isPanelVisible }
+
     static func boundedPetSize(_ size: Double) -> Double {
         size.isFinite ? min(max(size, 0.7), 1.3) : 1
     }
