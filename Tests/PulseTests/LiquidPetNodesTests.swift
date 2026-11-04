@@ -107,4 +107,37 @@ struct LiquidPetNodesTests {
             #expect(state.viewportScale == 0.8)
         }
     }
+
+    @Test("Drag-release reselection shows details without a new hover refresh")
+    @MainActor
+    func dragSelection() {
+        let state = PetOrbState()
+        var looks = 0
+        state.selectAccount("first") { looks += 1 }
+        state.selectAccount("first") { looks += 1 }
+        #expect(looks == 1)
+        state.beginDrag()
+        #expect(state.selectedID == nil)
+        state.selectAccount("first") { looks += 1 }
+        state.selectAccount("second") { looks += 1 }
+        #expect(state.selectedID == "second")
+        #expect(looks == 1)
+        state.pointerDeparted()
+        state.selectAccount("third") { looks += 1 }
+        #expect(looks == 2)
+    }
+
+    @Test("Blank-origin dragging also defers hover refresh, while a new presentation clears it")
+    @MainActor
+    func blankDragSelection() {
+        let state = PetOrbState()
+        var looks = 0
+        state.beginDrag()
+        state.selectAccount("after blank drag") { looks += 1 }
+        #expect(looks == 0)
+        state.collapse()
+        state.expand()
+        state.selectAccount("next visit") { looks += 1 }
+        #expect(looks == 1)
+    }
 }

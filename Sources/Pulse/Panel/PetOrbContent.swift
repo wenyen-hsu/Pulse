@@ -222,11 +222,7 @@ struct PetOrbContent: View {
               let point = state.probe.current(),
               let index = layout.ringIndex(at: state.drawingPoint(point), count: visible.count), visible[index].id == entry.id
         else { return }
-        if state.selectedID != entry.id {
-            state.selectedID = entry.id
-            store.noteLooked()
-            state.probe.reportAgain()
-        }
+        state.selectAccount(entry.id) { store.noteLooked() }
     }
 
     private func pointerMoved(_ point: CGPoint?) {
@@ -237,7 +233,9 @@ struct PetOrbContent: View {
             hideTask = nil
             if !state.isExpanded { state.expand() }
             if let point, let index = layout.ringIndex(at: state.drawingPoint(point), count: visible.count) { select(visible[index]) }
-        } else if hideTask == nil {
+        } else {
+            state.pointerDeparted()
+            guard hideTask == nil else { return }
             let delay = PetOrbTiming.departureDelay(hasCard: selected != nil)
             hideTask = Task { @MainActor in
                 do { try await Task.sleep(for: delay) } catch { return }

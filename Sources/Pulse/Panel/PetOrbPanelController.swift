@@ -24,6 +24,7 @@ final class PetOrbState {
     var wetting = CGVector.zero
     @ObservationIgnored let probe = PointerProbe()
     @ObservationIgnored private var recoilTask: Task<Void, Never>?
+    @ObservationIgnored private var waitsForPointerDeparture = false
 
     var layout: PetOrbLayout {
         PetOrbLayout(size: size, scale: PanelMetrics.scale * viewportScale, cardOnLeft: cardOnLeft, verticalCentre: verticalCentre,
@@ -45,6 +46,22 @@ final class PetOrbState {
 
     func drawingPoint(_ point: CGPoint) -> CGPoint {
         CGPoint(x: point.x / viewportScale, y: point.y / viewportScale)
+    }
+
+    func beginDrag() {
+        selectedID = nil
+        waitsForPointerDeparture = true
+    }
+
+    func selectAccount(_ id: String, noteLooked: () -> Void) {
+        guard selectedID != id else { return }
+        selectedID = id
+        if !waitsForPointerDeparture { noteLooked() }
+        probe.reportAgain()
+    }
+
+    func pointerDeparted() {
+        waitsForPointerDeparture = false
     }
 
     func stopRecoil() {
@@ -87,6 +104,7 @@ final class PetOrbState {
     }
 
     func collapse() {
+        pointerDeparted()
         selectedID = nil
         isExpanded = false
     }
@@ -298,9 +316,11 @@ private final class PetOrbPanel: NSPanel {
         case .leftMouseDragged:
             if let press {
                 let now = NSEvent.mouseLocation
-                if hypot(now.x - press.screen.x, now.y - press.screen.y) > 3 { dragged = true }
+                if !dragged, hypot(now.x - press.screen.x, now.y - press.screen.y) > 3 {
+                    dragged = true
+                    state.beginDrag()
+                }
                 if dragged {
-                    state.selectedID = nil
                     setFrameOrigin(CGPoint(x: press.origin.x + now.x - press.screen.x,
                                            y: press.origin.y + now.y - press.screen.y))
                     deform(to: now, at: event.timestamp)
