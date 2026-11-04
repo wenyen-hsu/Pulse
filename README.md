@@ -5,7 +5,7 @@
 **English · [繁體中文](README.zh-Hant.md)**<br>
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)
 
-A native macOS AI-usage monitor with a centred sun pet and an optional liquid-glass puddle.
+A native macOS AI-usage monitor with a centred sun pet and a liquid-glass puddle.
 
 > Independent development fork of [Pulse by qunqin24](https://github.com/qunqin24/Pulse). **Nokori (formerly Pulse Pet)** is the chosen name for this fork. This repository is not an official upstream release and is not endorsed by its original author.
 
@@ -14,6 +14,8 @@ A native macOS AI-usage monitor with a centred sun pet and an optional liquid-gl
 > **Trial, not a stable release.** Ad-hoc signed, not Apple-notarized. Keep original Pulse installed; replace only an older Nokori. First-time location permission and successful device location still need testing on your Mac.
 
 ## What changes in this fork?
+
+New settings default to **Liquid pet**; saved style choices are preserved. The linked `58c8a96` trial DMG predates this default change.
 
 | Panel style | Behaviour |
 | --- | --- |

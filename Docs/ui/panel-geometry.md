@@ -6,7 +6,7 @@ The window **may** resize when the rail is re-docked onto the other axis (side �
 
 ## Pet orb presentation
 
-The custom build defaults to **Pet orb**; **Appearance → Panel style → Classic rail** restores the existing rail. `FloatingPanelController` shows only the selected presentation. Both use the same `FloatingUsagePanelView` account/slot builder and `UsageDetailCard`; switching presentation does not refresh providers.
+The custom build defaults to **Liquid pet** for new settings or an invalid saved style. Valid saved styles are preserved; **Appearance → Panel style → Pet orb / Classic rail** selects the circle or existing rail. `FloatingPanelController` shows only the selected presentation. All styles use the same `FloatingUsagePanelView` account/slot builder and `UsageDetailCard`; switching presentation does not refresh providers.
 
 `PetOrbPanelController` reserves a fixed window for the circle and a scrolling details card. Hovering, switching accounts and opening a card never resize that window. `PetOrbLayout` is the shared top-left coordinate space for rendering, pointer samples and window input. Its dimensions come from `PanelMetrics`; the orb is 272 points across at normal scale, with up to eight account slots on a 96-point orbit. Additional slots are paginated without changing account order or split-account identity. The pet stays at the circle's centre in both states: its base size is 28 points inside the collapsed 38-point dot, and 66 points when expanded. User sizing keeps the collapsed pet inside the dot. Reduced Motion disables the expansion spring and the sun's continuous animation.
 

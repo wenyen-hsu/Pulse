@@ -65,7 +65,7 @@ extension AppSettings {
 
     func restorePetOrb(from defaults: UserDefaults) {
         panelPresentation = defaults.string(forKey: Key.panelPresentation)
-            .flatMap(PanelPresentation.init(rawValue:)) ?? .petOrb
+            .flatMap(PanelPresentation.init(rawValue:)) ?? .liquidPet
         orbPet = defaults.string(forKey: Key.orbPet).flatMap(OrbPet.init(rawValue:)) ?? .sun
         orbPetSize = Self.boundedPetSize(defaults.object(forKey: Key.orbPetSize) as? Double ?? 1)
         orbPetImage = defaults.data(forKey: Key.orbPetImage)
