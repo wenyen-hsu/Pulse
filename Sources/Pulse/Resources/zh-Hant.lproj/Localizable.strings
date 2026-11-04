@@ -440,6 +440,7 @@
 "Add an API key in Settings." = "請在設定裡填入 API 金鑰。";
 "Devin isn't installed." = "尚未安裝 Devin。";
 "Open Devin and sign in, so it can record your plan." = "開啟 Devin 並登入，它才會記下你的方案。";
+"The app's saved plan has no usage figures. Use a signed-in browser to check usage." = "App 保存的方案未包含用量資料。請透過已登入的瀏覽器查詢用量。";
 "Add your Devin organization after the token, separated by a space." = "在 token 後面加一個空格，再填上你的 Devin 組織。";
 "Stored encrypted on this Mac." = "加密儲存在本機。";
 "From z.ai. Stored encrypted on this Mac." = "在 z.ai 取得。加密儲存在本機。";

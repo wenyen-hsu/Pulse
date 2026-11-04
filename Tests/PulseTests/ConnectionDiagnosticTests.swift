@@ -106,6 +106,13 @@ struct ConnectionDiagnosticTests {
         #expect(ConnectionRemedy.forReason(.cursorKeyRefused, account: AccountKey(.cursor)) == .retry)
     }
 
+    @Test("A plan-only snapshot points to the fork's browser setup guide")
+    func planOnlySnapshotRemedy() {
+        #expect(ConnectionRemedy.forReason(.appPlanHasNoUsage, account: AccountKey(.devin)) == .help)
+        #expect(ConnectionRemedy.helpURL(for: .devin).absoluteString
+            == "\(AppIdentity.repositoryURL.absoluteString)/blob/main/Docs/setup/devin.md")
+    }
+
     @Test("Pinned routes record credential failures without contacting a provider")
     func serviceBoundariesRecordFailures() async {
         var codex = CodexUsageService(server: CodexAppServer())

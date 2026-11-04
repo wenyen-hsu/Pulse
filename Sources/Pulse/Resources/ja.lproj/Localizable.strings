@@ -440,6 +440,7 @@
 "Add an API key in Settings." = "設定で API キーを入力してください。";
 "Devin isn't installed." = "Devin がインストールされていません。";
 "Open Devin and sign in, so it can record your plan." = "Devin を開いてサインインすると、プランが記録されます。";
+"The app's saved plan has no usage figures. Use a signed-in browser to check usage." = "アプリに保存されたプランには使用量の情報がありません。ログイン済みのブラウザから使用量を確認してください。";
 "Add your Devin organization after the token, separated by a space." = "トークンのあとに半角スペースを空けて、Devin の組織名を入力してください。";
 "Stored encrypted on this Mac." = "この Mac に暗号化して保存されます。";
 "From z.ai. Stored encrypted on this Mac." = "z.ai で取得します。この Mac に暗号化して保存されます。";

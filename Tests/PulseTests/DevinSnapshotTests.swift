@@ -35,6 +35,40 @@ struct DevinSnapshotTests {
         )
     }
 
+    @Test("A plan-only snapshot is not reported as an account with no allowance")
+    func planWithoutUsage() throws {
+        let reading = try Self.reading(
+            #"{"planName":"Pro","remainingMessages":-1,"totalMessages":-1,"remainingFlexCredits":0}"#,
+            launchedAt: Self.beforeResets.addingTimeInterval(-60), now: Self.beforeResets
+        )
+
+        #expect(reading.state == .unavailable(.appPlanHasNoUsage))
+        #expect(reading.windows.isEmpty)
+        #expect(reading.creditBalance == nil)
+        #expect(reading.observedAt == nil)
+        #expect(!reading.reportsSomething)
+    }
+
+    @Test("A plan with no usage fields does not ask for a relaunch to repair its timestamp")
+    func planWithoutUsageOrStamp() throws {
+        let reading = try Self.reading(
+            #"{"planName":"Pro","remainingMessages":-1,"totalMessages":-1}"#,
+            launchedAt: nil, now: Self.beforeResets
+        )
+
+        #expect(reading.state == .unavailable(.appPlanHasNoUsage))
+    }
+
+    @Test("Hidden quotas still report no limits, not missing fields")
+    func hiddenQuotasKeepTheirMeaning() throws {
+        let reading = try Self.reading(
+            #"{"dailyRemainingPercent":90,"weeklyRemainingPercent":95,"hideDailyQuota":true,"hideWeeklyQuota":true}"#,
+            launchedAt: Self.beforeResets.addingTimeInterval(-60), now: Self.beforeResets
+        )
+
+        #expect(reading.state == .unavailable(.noLimitsReported))
+    }
+
     @Test("A snapshot from just now is a live reading scoped to the app's own route")
     func freshSnapshotIsLive() throws {
         let reading = try Self.reading(

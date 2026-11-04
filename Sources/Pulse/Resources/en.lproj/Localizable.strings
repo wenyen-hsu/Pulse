@@ -440,6 +440,7 @@
 "Add an API key in Settings." = "Add an API key in Settings.";
 "Devin isn't installed." = "Devin isn't installed.";
 "Open Devin and sign in, so it can record your plan." = "Open Devin and sign in, so it can record your plan.";
+"The app's saved plan has no usage figures. Use a signed-in browser to check usage." = "The app's saved plan has no usage figures. Use a signed-in browser to check usage.";
 "Add your Devin organization after the token, separated by a space." = "Add your Devin organization after the token, separated by a space.";
 "Stored encrypted on this Mac." = "Stored encrypted on this Mac.";
 "From z.ai. Stored encrypted on this Mac." = "From z.ai. Stored encrypted on this Mac.";
