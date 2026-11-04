@@ -59,14 +59,21 @@ struct DevinSnapshotTests {
         #expect(reading.state == .unavailable(.appPlanHasNoUsage))
     }
 
-    @Test("Hidden quotas still report no limits, not missing fields")
-    func hiddenQuotasKeepTheirMeaning() throws {
+    @Test("Hidden quotas still report no limits, not missing fields", arguments: [
+        #"{"dailyRemainingPercent":90,"weeklyRemainingPercent":95,"hideDailyQuota":true,"hideWeeklyQuota":true}"#,
+        #"{"planName":"Pro","hideDailyQuota":true,"hideWeeklyQuota":true,"remainingMessages":-1,"totalMessages":-1}"#,
+        #"{"planName":"Pro","hideDailyQuota":true}"#,
+        #"{"planName":"Pro","hideWeeklyQuota":true}"#
+    ])
+    func hiddenQuotasKeepTheirMeaning(_ json: String) throws {
         let reading = try Self.reading(
-            #"{"dailyRemainingPercent":90,"weeklyRemainingPercent":95,"hideDailyQuota":true,"hideWeeklyQuota":true}"#,
+            json,
             launchedAt: Self.beforeResets.addingTimeInterval(-60), now: Self.beforeResets
         )
 
         #expect(reading.state == .unavailable(.noLimitsReported))
+        let undated = try Self.reading(json, launchedAt: nil, now: Self.beforeResets)
+        #expect(undated.state == .unavailable(.devinPlanUnread))
     }
 
     @Test("A snapshot from just now is a live reading scoped to the app's own route")

@@ -229,7 +229,8 @@ struct DevinUsageService: Sendable {
         let reportedWindows = Self.windows(from: plan)
         let balance = plan.overageBalance
         if reportedWindows.isEmpty, balance == nil,
-           plan.dailyRemainingPercent == nil, plan.weeklyRemainingPercent == nil {
+           plan.dailyRemainingPercent == nil, plan.weeklyRemainingPercent == nil,
+           !plan.hideDailyQuota, !plan.hideWeeklyQuota {
             return .unavailable(.devin, reason: .appPlanHasNoUsage)
         }
 
