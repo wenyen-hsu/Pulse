@@ -43,7 +43,9 @@ swift build
 
 Treat remaining warnings as failures.
 
-CI and release pin a **macOS 26** image because `glassEffect` needs that SDK to compile even behind `#available`. A local build on an older SDK will not match CI.
+CI uses the standard **`macos-26-intel`** runner; release retains `macos-26`. Both pin a **macOS 26** image because `glassEffect` needs that SDK to compile even behind `#available`. The explicit Intel label keeps CI off the ARM runner queue when GitHub reports ARM capacity constraints; it does not remove the SDK check, warning gate, tests, or universal bundle verification. See [GitHub's supported runner labels](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) and the [Intel image's Xcode and SDK inventory](https://github.com/actions/runner-images/blob/main/images/macos/macos-26-Readme.md). A local build on an older SDK will not match CI.
+
+When a workflow is red before any step starts, inspect its run annotations. A cancelled job with “The job was not acquired by Runner of type hosted even after multiple attempts” is a runner-allocation failure, not a compiler or test result; do not count it as a passed or merely skipped build.
 
 macOS also draws an app's controls to the SDK recorded in its binary, not to the version it is running on, and SwiftPM has stamped the **deployment target** there instead. `Package.swift` sets it explicitly in `linkerSettings` so that every build path agrees — including running the package from Xcode, which does not go through `Scripts/bundle.sh`. If a build ever comes out with the pre-Tahoe controls, read the stamp before looking for a UI bug: `otool -arch arm64 -l <binary> | grep -A 4 LC_BUILD_VERSION`, and anything below 26 is this. [decisions/sdk-stamp-and-appearance.md](decisions/sdk-stamp-and-appearance.md)
 

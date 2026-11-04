@@ -35,7 +35,7 @@ jobs:
     # against the macOS 26 SDK behind an #available check, and an older image
     # cannot build it at all. Pinning turns a runner change into a deliberate
     # edit instead of a surprise failure.
-    runs-on: macos-26
+    runs-on: macos-26-intel
 
     steps:
       - uses: actions/checkout@v4
