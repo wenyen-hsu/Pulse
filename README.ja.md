@@ -22,7 +22,7 @@
 
 ## インストールと設定
 
-**[試用版 DMG をダウンロード — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)** · [SHA-256 と検証範囲](Downloads/README.md)。このリポジトリから直接配布する試用版で、安定版やタグ付き GitHub Release ではありません。初回の位置情報許可と実際の位置取得は未検証です。元の Pulse の配布物には本版の変更は含まれません。
+**[試用版 DMG をダウンロード — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg?raw=true)** · [SHA-256 と検証範囲](Downloads/README.md)。このリポジトリから直接配布する試用版で、安定版やタグ付き GitHub Release ではありません。初回の位置情報許可と実際の位置取得は未検証です。元の Pulse の配布物には本版の変更は含まれません。
 
 1. DMG を開き、**Nokori.app** をアプリケーションへ移動します。元の **Pulse.app** は置き換えません。
 2. 設定、アプリデータ、ログイン項目、URL スキームは独立し、元の設定は移行しません。上流の自動更新は無効です。
