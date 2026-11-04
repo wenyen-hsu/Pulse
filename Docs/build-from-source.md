@@ -43,7 +43,9 @@ swift build
 
 Treat remaining warnings as failures.
 
-CI uses the standard **`macos-26-intel`** runner; release retains `macos-26`. Both pin a **macOS 26** image because `glassEffect` needs that SDK to compile even behind `#available`. The explicit Intel label keeps CI off the ARM runner queue when GitHub reports ARM capacity constraints; it does not remove the SDK check, warning gate, tests, or universal bundle verification. See [GitHub's supported runner labels](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) and the [Intel image's Xcode and SDK inventory](https://github.com/actions/runner-images/blob/main/images/macos/macos-26-Readme.md). A local build on an older SDK will not match CI.
+CI uses the standard **`macos-15-intel`** runner and explicitly sets `DEVELOPER_DIR` to **Xcode 26.1.1**, which includes the macOS 26.1 SDK. The runner's macOS version and the selected SDK are separate: `glassEffect` requires a macOS 26 SDK even behind `#available`, but the build host need not run macOS 26. The Sequoia image's default Xcode 16.4 is insufficient, so do not remove the Xcode selection. Release retains `macos-26` with its SDK check. See [GitHub's supported runner labels](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) and the [Sequoia Intel image's Xcode and SDK inventory](https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md).
+
+Both Tahoe ARM and Intel jobs have encountered hosted-runner allocation failures. Moving CI to the mature Sequoia Intel pool does not guarantee capacity or remove the SDK check, warning gate, tests, or universal bundle verification. This CI job runs on macOS 15; it does not replace native macOS 26 input and Liquid Glass verification. A local build on an older SDK will not match CI.
 
 When a workflow is red before any step starts, inspect its run annotations. A cancelled job with “The job was not acquired by Runner of type hosted even after multiple attempts” is a runner-allocation failure, not a compiler or test result; do not count it as a passed or merely skipped build.
 

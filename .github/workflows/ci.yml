@@ -31,11 +31,11 @@ concurrency:
 
 jobs:
   build:
-    # Pinned rather than macos-latest: Pulse's Liquid Glass surface is compiled
-    # against the macOS 26 SDK behind an #available check, and an older image
-    # cannot build it at all. Pinning turns a runner change into a deliberate
-    # edit instead of a surprise failure.
-    runs-on: macos-26-intel
+    # Pin the image and Xcode separately: Sequoia's default Xcode 16 cannot
+    # compile Liquid Glass, but its installed Xcode 26 provides the needed SDK.
+    runs-on: macos-15-intel
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_26.1.1.app/Contents/Developer
 
     steps:
       - uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
       - name: Toolchain
         run: |
           swift --version
-          echo "Xcode: $(xcode-select -p)"
+          echo "Xcode: $DEVELOPER_DIR"
           echo "macOS SDK: $(xcrun --sdk macosx --show-sdk-version)"
 
       # A clear message beats a hundred lines of "cannot find glassEffect".
