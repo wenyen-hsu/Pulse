@@ -164,7 +164,7 @@ final class PetWeatherController {
 
     func search(_ query: String, language: String) {
         clearSearch()
-        guard active, (2...100).contains(query.trimmingCharacters(in: .whitespacesAndNewlines).count) else { return }
+        guard preferences.enabled, (2...100).contains(query.trimmingCharacters(in: .whitespacesAndNewlines).count) else { return }
         isSearching = true
         didSearch = true
         let generation = searchGeneration

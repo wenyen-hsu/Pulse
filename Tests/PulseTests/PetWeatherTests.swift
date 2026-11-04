@@ -89,6 +89,32 @@ struct PetWeatherTests {
         let moving = WeatherPetPose(time: 0.8, isAnimated: true)
         #expect(moving.bob != still.bob && moving.fall != still.fall && moving.glow != still.glow)
     }
+
+    @Test("Credentialless weather and geocoding sessions honour every proxy mode and refuse redirects")
+    func proxyConfiguration() {
+        let modes: [NetworkProxySettings] = [.default,
+            .init(mode: .direct, kind: .http, host: "", port: nil),
+            .init(mode: .systemRequired, kind: .http, host: "", port: nil),
+            .init(mode: .manual, kind: .http, host: "127.0.0.1", port: 8888),
+            .init(mode: .manual, kind: .socks5, host: "127.0.0.1", port: 1080)]
+        for mode in modes {
+            let config = OpenMeteoPetWeather.configuration(for: mode)
+            #expect(config.protocolClasses?.first == ProxyGuard.self)
+            #expect(config.httpCookieStorage == nil && config.urlCredentialStorage == nil && !config.httpShouldSetCookies)
+            #expect(config.timeoutIntervalForRequest == 15 && config.timeoutIntervalForResource == 20)
+            if mode.mode == .manual { #expect(config.proxyConfigurations.count == 1) }
+            if mode.mode == .direct { #expect(config.connectionProxyDictionary?.isEmpty == true) }
+        }
+        let session = URLSession(configuration: .ephemeral)
+        defer { session.invalidateAndCancel() }
+        let url = URL(string: "https://api.open-meteo.com/v1/forecast")!
+        let task = session.dataTask(with: url)
+        let response = HTTPURLResponse(url: url, statusCode: 302, httpVersion: nil, headerFields: nil)!
+        PetWeatherRedirectGuard().urlSession(session, task: task, willPerformHTTPRedirection: response,
+                                            newRequest: URLRequest(url: URL(string: "https://example.com/")!)) { request in
+            #expect(request == nil)
+        }
+    }
 }
 
 private final class PetWeatherStub: URLProtocol, @unchecked Sendable {
@@ -137,6 +163,10 @@ struct PetWeatherHTTPTests {
         }
         PetWeatherStub.state.set("{}", status: 429)
         await #expect(throws: OpenMeteoPetWeather.Failure.self) { try await client.weather(at: weatherTestCity.coordinate) }
+        for (body, status) in [("", 200), (String(repeating: "x", count: 1_000_001), 200), ("{}", 302)] {
+            PetWeatherStub.state.set(body, status: status)
+            await #expect(throws: OpenMeteoPetWeather.Failure.self) { try await client.weather(at: weatherTestCity.coordinate) }
+        }
     }
 
     @Test("City results include regions and countries, filter invalid coordinates, and distinguish no matches from failure")
@@ -196,7 +226,7 @@ struct PetWeatherControllerTests {
         #expect(await predicate())
     }
 
-    @Test("Off and non-orb/custom-image/hidden presentation never locate, fetch or search")
+    @Test("Off never locates, fetches or searches; paused presentation permits explicit city setup without a weather request")
     func off() async {
         let client = WeatherTestClient()
         let location = WeatherTestLocation()
@@ -206,14 +236,17 @@ struct PetWeatherControllerTests {
         store.requestLocation()
         store.refresh()
         store.search("Taipei", language: "en")
+        #expect(await client.searches == 0)
         store.apply(WeatherPreferences(enabled: true, source: .automatic), visible: false)
         store.requestLocation()
         store.refresh()
         store.search("Taipei", language: "en")
+        await eventually { !store.isSearching }
         #expect(location.requests.isEmpty)
         let calls = await client.calls
         let searches = await client.searches
-        #expect(calls.isEmpty && searches == 0)
+        #expect(calls.isEmpty && searches == 1 && store.results == [weatherTestCity])
+        #expect(store.status == .paused)
     }
 
     @Test("Enabling checks existing permission; only an explicit button requests authorization; denial allows city fallback")
@@ -295,5 +328,23 @@ struct PetWeatherControllerTests {
         await eventually { store.status == .ready }
         store.apply(WeatherPreferences(enabled: true, source: .city), visible: true)
         #expect(store.reading == nil && store.status == .noCity)
+    }
+
+    @Test("A late reading for the previous city cannot overwrite the selected city's weather")
+    func cityCancellation() async {
+        let client = WeatherTestClient()
+        await client.configure(holds: true)
+        let store = PetWeatherController(client: client, location: WeatherTestLocation(), now: { weatherTestDate })
+        defer { store.stop() }
+        store.apply(WeatherPreferences(enabled: true, source: .city, city: weatherTestCity), visible: true)
+        await eventually { await client.pending != nil }
+        await client.configure()
+        let other = WeatherCity(id: 2, name: "Osaka", country: "Japan", admin1: nil, latitude: 34.69, longitude: 135.50)
+        store.apply(WeatherPreferences(enabled: true, source: .city, city: other), visible: true)
+        await eventually { store.status == .ready }
+        await client.finish()
+        try? await Task.sleep(for: .milliseconds(10))
+        #expect(store.reading?.pet == .rain && store.status == .ready)
+        #expect(await client.calls == [weatherTestCity.coordinate.approximate, other.coordinate.approximate])
     }
 }

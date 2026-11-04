@@ -29,7 +29,7 @@ struct WeatherPetAvatar: View {
                         : CGRect(x: 49, y: 6, width: 36, height: 41)
                     var crescent = Path()
                     crescent.addEllipse(in: box)
-                    crescent.addEllipse(in: box.offsetBy(dx: box.width * 0.35, dy: -box.height * 0.15))
+                    crescent.addEllipse(in: box.offsetBy(dx: box.width * 0.45, dy: -box.height * 0.15))
                     context.clip(to: Path(CGRect(x: 0, y: 0, width: 100, height: 100)))
                     var moonContext = context
                     moonContext.clip(to: Path(ellipseIn: box))
@@ -45,7 +45,7 @@ struct WeatherPetAvatar: View {
                         star.addLine(to: CGPoint(x: point.x, y: point.y + 3))
                         context.stroke(star, with: .color(.init(white: 0.97).opacity(pose.glow)), lineWidth: 2)
                     }
-                    if standalone { face(&context, x: 41, y: 53) }
+                    if standalone { face(&context, x: 40, y: 58) }
                 }
                 if pet == .cloudSun {
                     let gold = Color(red: 1, green: 0.75, blue: 0.22)

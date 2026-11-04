@@ -35,7 +35,7 @@ final class PetWeatherLocation: NSObject, PetLocationProviding, @preconcurrency 
             if requestPermission { manager.requestWhenInUseAuthorization() }
         case .denied, .restricted:
             onEvent?(.denied)
-        case .authorized:
+        case .authorized, .authorizedAlways:
             guard !requesting else { return }
             requesting = true
             onEvent?(.locating)

@@ -82,7 +82,7 @@ protocol PetWeatherFetching: Sendable {
 
 struct OpenMeteoPetWeather: PetWeatherFetching {
     enum Failure: Error { case invalidInput, invalidResponse, unsupportedWeather }
-    private static let session: URLSession = {
+    static func configuration(for settings: NetworkProxySettings) -> URLSessionConfiguration {
         let config = URLSessionConfiguration.ephemeral
         config.httpCookieStorage = nil
         config.urlCredentialStorage = nil
@@ -90,13 +90,13 @@ struct OpenMeteoPetWeather: PetWeatherFetching {
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         config.timeoutIntervalForRequest = 15
         config.timeoutIntervalForResource = 20
-        return URLSession(configuration: config)
-    }()
-    let session: URLSession
+        return NetworkSession.configured(config, for: settings)
+    }
+    let session: URLSession?
     var now: @Sendable () -> Date = { Date() }
 
     init(session: URLSession? = nil, now: @escaping @Sendable () -> Date = { Date() }) {
-        self.session = session ?? Self.session
+        self.session = session
         self.now = now
     }
 
@@ -158,11 +158,21 @@ struct OpenMeteoPetWeather: PetWeatherFetching {
     }
 
     private func get(_ url: URL) async throws -> Data {
+        let session = session ?? URLSession(configuration: Self.configuration(for: NetworkSession.currentSettings),
+                                             delegate: PetWeatherRedirectGuard(), delegateQueue: nil)
+        defer { if self.session == nil { session.finishTasksAndInvalidate() } }
         let (data, response) = try await session.data(from: url)
         try Task.checkCancellation()
         guard let response = response as? HTTPURLResponse, response.statusCode == 200,
               response.url?.scheme == "https", response.url?.host == url.host,
               !data.isEmpty, data.count <= 1_000_000 else { throw Failure.invalidResponse }
         return data
+    }
+}
+
+final class PetWeatherRedirectGuard: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse,
+                    newRequest request: URLRequest, completionHandler: @escaping @Sendable (URLRequest?) -> Void) {
+        completionHandler(nil)
     }
 }

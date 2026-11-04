@@ -39,12 +39,14 @@ struct WeatherPetSettingsGroup: View {
                     SettingsRow(String.localized("Current location"),
                                 subtitle: String.localized("You can decline location access and search for a city instead.")) {
                         Button(String.localized("Allow location access")) { settings.weatherPet?.requestLocation() }
+                            .disabled(settings.weatherPet?.status == .paused)
                     }
                 }
                 VStack(alignment: .leading, spacing: 10) {
                     TimelineView(.periodic(from: .now, by: 60)) { _ in
                         let controller = settings.weatherPet
-                        let status = controller?.isStale == true ? PetWeatherController.Status.stale : controller?.status ?? .off
+                        let status = controller?.status == .paused ? PetWeatherController.Status.paused :
+                            (controller?.isStale == true ? .stale : controller?.status ?? .off)
                         Text(status.title).font(.callout).foregroundStyle(.secondary)
                         if let reading = controller?.reading {
                             HStack(spacing: 6) {
