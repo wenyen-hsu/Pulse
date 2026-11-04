@@ -15,7 +15,9 @@ A native macOS AI-usage monitor with a centred sun pet and a liquid-glass puddle
 
 ## What changes in this fork?
 
-New settings default to **Liquid pet**; saved style choices are preserved. The linked `58c8a96` trial DMG predates this default change.
+New settings default to **Liquid pet**; saved style choices are preserved. The linked `58c8a96` trial DMG predates this default change and the scattered account layout described below.
+
+Liquid pet displays every enabled account ring inside the drop, without pages. Dense lists use smaller icons; hover opens the full name and usage card. The pet stays in the centre. Circular Pet orb keeps its existing pages.
 
 | Panel style | Behaviour |
 | --- | --- |

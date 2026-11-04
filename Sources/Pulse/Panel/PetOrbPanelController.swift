@@ -17,26 +17,51 @@ final class PetOrbState {
     var verticalCentre: CGFloat?
     var openedAt = Date.distantPast
     var isLiquid = false
+    var accountCount = 0
+    var liquidNodes = LiquidPetNodes(count: 0)
     /// Liquid pet only: the drag's trailing pull and the nearest edge's draw.
     var stretch = CGVector.zero
     var wetting = CGVector.zero
     @ObservationIgnored let probe = PointerProbe()
     @ObservationIgnored private var recoilTask: Task<Void, Never>?
+    @ObservationIgnored private var waitsForPointerDeparture = false
 
     var layout: PetOrbLayout {
         PetOrbLayout(size: size, scale: PanelMetrics.scale * viewportScale, cardOnLeft: cardOnLeft, verticalCentre: verticalCentre,
-                     isLiquid: isLiquid, stretch: stretch, wetting: wetting)
+                     isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
     }
 
     var drawingLayout: PetOrbLayout {
         PetOrbLayout(size: CGSize(width: size.width / viewportScale, height: size.height / viewportScale),
                      scale: PanelMetrics.scale, cardOnLeft: cardOnLeft,
                      verticalCentre: verticalCentre.map { $0 / viewportScale },
-                     isLiquid: isLiquid, stretch: stretch, wetting: wetting)
+                     isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
+    }
+
+    func updateAccounts(count: Int) {
+        guard accountCount != count else { return }
+        accountCount = count
+        liquidNodes = LiquidPetNodes(count: count)
     }
 
     func drawingPoint(_ point: CGPoint) -> CGPoint {
         CGPoint(x: point.x / viewportScale, y: point.y / viewportScale)
+    }
+
+    func beginDrag() {
+        selectedID = nil
+        waitsForPointerDeparture = true
+    }
+
+    func selectAccount(_ id: String, noteLooked: () -> Void) {
+        guard selectedID != id else { return }
+        selectedID = id
+        if !waitsForPointerDeparture { noteLooked() }
+        probe.reportAgain()
+    }
+
+    func pointerDeparted() {
+        waitsForPointerDeparture = false
     }
 
     func stopRecoil() {
@@ -79,6 +104,7 @@ final class PetOrbState {
     }
 
     func collapse() {
+        pointerDeparted()
         selectedID = nil
         isExpanded = false
     }
@@ -118,7 +144,7 @@ final class PetOrbPanelController {
         panel.onRingClick = { [settings, store, state] point in
             let slots = RailSlot.rail(for: settings.shownAccounts, isSplit: settings.isSplit,
                                       groups: { RailSlot.modelGroups(of: store.usage(for: $0)) })
-            let range = PetOrbLayout.indices(count: slots.count, page: state.page)
+            let range = state.layout.visibleIndices(count: slots.count, page: state.page)
             guard let local = state.layout.ringIndex(at: point, count: range.count) else { return false }
             store.refresh(slots[range.lowerBound + local].account)
             return true
@@ -277,7 +303,8 @@ private final class PetOrbPanel: NSPanel {
             }
         case .leftMouseDown where onOrb:
             // Leave the pager's buttons to SwiftUI, not the window drag path.
-            if state.isExpanded && state.layout.pagerFrame.contains(point) { break }
+            if state.isExpanded && state.layout.showsPager(count: state.accountCount)
+                && state.layout.pagerFrame.contains(point) { break }
             state.stopRecoil()
             state.isHeld = true
             press = (NSEvent.mouseLocation, frame.origin, point,
@@ -289,9 +316,11 @@ private final class PetOrbPanel: NSPanel {
         case .leftMouseDragged:
             if let press {
                 let now = NSEvent.mouseLocation
-                if hypot(now.x - press.screen.x, now.y - press.screen.y) > 3 { dragged = true }
+                if !dragged, hypot(now.x - press.screen.x, now.y - press.screen.y) > 3 {
+                    dragged = true
+                    state.beginDrag()
+                }
                 if dragged {
-                    state.selectedID = nil
                     setFrameOrigin(CGPoint(x: press.origin.x + now.x - press.screen.x,
                                            y: press.origin.y + now.y - press.screen.y))
                     deform(to: now, at: event.timestamp)
