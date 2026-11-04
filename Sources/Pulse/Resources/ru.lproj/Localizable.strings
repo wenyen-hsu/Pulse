@@ -1,3 +1,5 @@
+"Refresh weather" = "Обновить погоду";
+"Click the weather pet to refresh. At most once a minute." = "Нажмите на питомца, чтобы обновить погоду. Не чаще одного раза в минуту.";
 "Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "Автоматическая погода включена. Выключите её, чтобы выбрать питомца или изображение. Сохранённые настройки не удаляются.";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "Данные городов: GeoNames через Open-Meteo (CC BY 4.0)";
 "Sun and cloud" = "Солнце и облако";

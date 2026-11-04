@@ -43,11 +43,17 @@ struct WeatherPetSettingsGroup: View {
                     }
                 }
                 VStack(alignment: .leading, spacing: 10) {
-                    TimelineView(.periodic(from: .now, by: 60)) { _ in
+                    TimelineView(.periodic(from: .now, by: 1)) { _ in
                         let controller = settings.weatherPet
                         let status = controller?.status == .paused ? PetWeatherController.Status.paused :
                             (controller?.isStale == true ? .stale : controller?.status ?? .off)
-                        Text(status.title).font(.callout).foregroundStyle(.secondary)
+                        HStack {
+                            Text(status.title).font(.callout).foregroundStyle(.secondary)
+                            Spacer()
+                            if controller?.isRefreshing == true { ProgressView().controlSize(.small) }
+                            Button(String.localized("Refresh weather")) { controller?.refresh() }
+                                .disabled(controller?.canRefresh != true)
+                        }
                         if let reading = controller?.reading {
                             HStack(spacing: 6) {
                                 Text(reading.pet?.title ?? String.localized("Weather is unavailable. No current reading."))
@@ -57,6 +63,8 @@ struct WeatherPetSettingsGroup: View {
                             .foregroundStyle(.secondary)
                         }
                     }
+                    Text(localized: "Click the weather pet to refresh. At most once a minute.")
+                        .font(.caption).foregroundStyle(.secondary)
                     if settings.weatherPreferences.source == .city, let city = settings.weatherPreferences.city {
                         Text(city.title).font(.callout).textSelection(.enabled)
                     }

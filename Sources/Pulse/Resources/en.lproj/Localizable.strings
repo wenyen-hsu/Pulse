@@ -1,3 +1,5 @@
+"Refresh weather" = "Refresh weather";
+"Click the weather pet to refresh. At most once a minute." = "Click the weather pet to refresh. At most once a minute.";
 "Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept.";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "City data: GeoNames via Open-Meteo (CC BY 4.0)";
 "Sun and cloud" = "Sun and cloud";

@@ -119,8 +119,13 @@ final class PetOrbPanelController {
             let slots = RailSlot.rail(for: settings.shownAccounts, isSplit: settings.isSplit,
                                       groups: { RailSlot.modelGroups(of: store.usage(for: $0)) })
             let range = PetOrbLayout.indices(count: slots.count, page: state.page)
-            guard let local = state.layout.ringIndex(at: point, count: range.count) else { return }
+            guard let local = state.layout.ringIndex(at: point, count: range.count) else { return false }
             store.refresh(slots[range.lowerBound + local].account)
+            return true
+        }
+        panel.onPetClick = { [settings] in
+            guard settings.weatherPreferences.enabled else { return }
+            settings.weatherPet?.refresh()
         }
         panel.didMoveOrb = { [weak self] in self?.savePosition() }
         panel.didDragOrb = { [weak self] in self?.updateWetting() }
@@ -243,10 +248,11 @@ private final class PetOrbPanel: NSPanel {
     var state: PetOrbState?
     var petSize: (() -> Double)?
     var contextMenu: (() -> NSMenu)?
-    var onRingClick: ((CGPoint) -> Void)?
+    var onRingClick: ((CGPoint) -> Bool)?
+    var onPetClick: (() -> Void)?
     var didMoveOrb: (() -> Void)?
     var didDragOrb: (() -> Void)?
-    private var press: (screen: CGPoint, origin: CGPoint, local: CGPoint, refreshAllowed: Bool)?
+    private var press: (screen: CGPoint, origin: CGPoint, local: CGPoint, refreshAllowed: Bool, onPet: Bool)?
     private var lastDrag: (point: CGPoint, time: TimeInterval)?
     private var dragged = false
 
@@ -275,7 +281,8 @@ private final class PetOrbPanel: NSPanel {
             state.stopRecoil()
             state.isHeld = true
             press = (NSEvent.mouseLocation, frame.origin, point,
-                     Date().timeIntervalSince(state.openedAt) >= PanelIntent.ringClickGuard)
+                     Date().timeIntervalSince(state.openedAt) >= PanelIntent.ringClickGuard,
+                     state.layout.petFrame(expanded: state.isExpanded, petSize: petSize?() ?? 1).contains(point))
             lastDrag = (NSEvent.mouseLocation, event.timestamp)
             dragged = false
             return
@@ -299,8 +306,12 @@ private final class PetOrbPanel: NSPanel {
                 state.isHeld = false
                 state.recoil()
                 if dragged { didMoveOrb?() }
-                else if state.isExpanded && press.refreshAllowed { onRingClick?(press.local) }
-                else { state.expand() }
+                else if state.isExpanded && press.refreshAllowed {
+                    if onRingClick?(press.local) != true, press.onPet { onPetClick?() }
+                } else {
+                    if press.onPet { onPetClick?() }
+                    state.expand()
+                }
                 state.probe.reportAgain()
                 return
             }

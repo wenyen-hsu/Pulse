@@ -366,6 +366,84 @@ struct PetWeatherControllerTests {
         #expect(saved?.isStale(at: weatherTestDate.addingTimeInterval(3601)) == true)
     }
 
+    @Test("Manual city refresh respects cooldown, single flight and paused state")
+    func manualRefresh() async {
+        let client = WeatherTestClient()
+        var now = weatherTestDate
+        let store = PetWeatherController(client: client, location: WeatherTestLocation(), now: { now })
+        defer { store.stop() }
+        let prefs = WeatherPreferences(enabled: true, source: .city, city: weatherTestCity)
+        store.apply(prefs, visible: true)
+        await eventually { store.status == .ready }
+        #expect(!store.canRefresh)
+        now = now.addingTimeInterval(59)
+        store.refresh()
+        #expect(await client.calls.count == 1)
+        now = now.addingTimeInterval(1)
+        #expect(store.canRefresh)
+        await client.configure(holds: true)
+        store.refresh()
+        store.refresh()
+        await eventually { await client.pending != nil }
+        #expect(store.isRefreshing && !store.canRefresh)
+        #expect(await client.calls.count == 2)
+        await client.finish()
+        await eventually { store.status == .ready }
+        store.apply(prefs, visible: false)
+        now = now.addingTimeInterval(60)
+        #expect(!store.canRefresh)
+        store.refresh()
+        #expect(store.status == .paused)
+        #expect(await client.calls.count == 2)
+    }
+
+    @Test("Manual retry retains a failed reading's clock until fresh success")
+    func retryKeepsClock() async {
+        let client = WeatherTestClient()
+        var now = weatherTestDate
+        let store = PetWeatherController(client: client, location: WeatherTestLocation(), now: { now })
+        defer { store.stop() }
+        store.apply(WeatherPreferences(enabled: true, source: .city, city: weatherTestCity), visible: true)
+        await eventually { store.status == .ready }
+        let saved = store.reading
+        now = now.addingTimeInterval(60)
+        await client.configure(fails: true)
+        store.refresh()
+        await eventually { store.status == .stale }
+        now = now.addingTimeInterval(60)
+        await client.configure(holds: true)
+        store.refresh()
+        await eventually { await client.pending != nil }
+        #expect(store.isRefreshing && store.isStale && store.reading == saved)
+        await client.finish()
+        await eventually { store.status == .ready }
+        #expect(!store.isStale && !store.isRefreshing)
+    }
+
+    @Test("A pending location request is not duplicated by manual refresh or authorization")
+    func locationSingleFlight() async {
+        let location = WeatherTestLocation()
+        var now = weatherTestDate
+        let store = PetWeatherController(client: WeatherTestClient(), location: location, now: { now })
+        defer { store.stop() }
+        store.apply(WeatherPreferences(enabled: true), visible: true)
+        location.onEvent?(.locating)
+        let count = location.requests.count
+        #expect(store.isRefreshing && !store.canRefresh)
+        store.refresh()
+        store.requestLocation()
+        #expect(location.requests.count == count)
+        location.onEvent?(.unavailable)
+        #expect(store.canRefresh && !store.isRefreshing)
+        location.onEvent?(.locating)
+        location.onEvent?(.coordinate(weatherTestCity.coordinate))
+        await eventually { store.status == .ready }
+        now = now.addingTimeInterval(60)
+        #expect(store.canRefresh)
+        store.refresh()
+        #expect(location.requests.count == count + 1)
+    }
+
     @Test("Switching off or changing cities cancels and discards late results")
     func cancellation() async {
         let client = WeatherTestClient()

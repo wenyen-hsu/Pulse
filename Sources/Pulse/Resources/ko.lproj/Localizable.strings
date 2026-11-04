@@ -1,3 +1,5 @@
+"Refresh weather" = "날씨 새로고침";
+"Click the weather pet to refresh. At most once a minute." = "날씨 펫을 클릭하면 다시 조회합니다. 1분에 한 번만 새로고침할 수 있습니다.";
 "Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "자동 날씨를 사용하는 동안에는 고정 펫이나 이미지를 변경할 수 없습니다. 자동 날씨를 끄면 저장한 설정으로 돌아갑니다.";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "도시 데이터: Open-Meteo를 통한 GeoNames (CC BY 4.0)";
 "Sun and cloud" = "해와 구름";

@@ -51,7 +51,14 @@ final class PetWeatherController {
         self.location.onEvent = { [weak self] in self?.locationChanged($0) }
     }
 
-    var isStale: Bool { reading != nil && (status == .stale || reading?.isStale(at: now()) == true) }
+    private var lastRefreshFailed = false
+
+    var isStale: Bool { reading != nil && (lastRefreshFailed || reading?.isStale(at: now()) == true) }
+    var isRefreshing: Bool { status == .loading || status == .locating }
+    var canRefresh: Bool {
+        guard active, fetchTask == nil, locationTimeout == nil else { return false }
+        return lastAttempt.map { now().timeIntervalSince($0) >= 60 } ?? true
+    }
 
     func apply(_ preferences: WeatherPreferences, visible: Bool) {
         let active = preferences.enabled && visible
@@ -93,15 +100,12 @@ final class PetWeatherController {
     }
 
     func requestLocation() {
-        guard active, preferences.source == .automatic else { return }
-        if let lastAttempt, now().timeIntervalSince(lastAttempt) < 60 { return }
+        guard canRefresh, preferences.source == .automatic else { return }
         location.start(requestPermission: true)
     }
 
     func refresh() {
-        guard active, fetchTask == nil else { return }
-        // A refresh button or repeated location callbacks must not hammer the public API.
-        if let lastAttempt, now().timeIntervalSince(lastAttempt) < 60 { return }
+        guard canRefresh else { return }
         switch preferences.source {
         case .automatic:
             location.start(requestPermission: false)
@@ -114,6 +118,7 @@ final class PetWeatherController {
     private func locationChanged(_ event: PetLocationEvent) {
         guard active, preferences.source == .automatic else { return }
         locationTimeout?.cancel()
+        locationTimeout = nil
         switch event {
         case .needsPermission: fail(.needsPermission)
         case .denied: fail(.denied)
@@ -122,6 +127,7 @@ final class PetWeatherController {
             status = .locating
             locationTimeout = Task { [weak self] in
                 do { try await Task.sleep(for: .seconds(20)) } catch { return }
+                self?.locationTimeout = nil
                 self?.location.stop()
                 self?.fail(.locationUnavailable)
             }
@@ -149,6 +155,7 @@ final class PetWeatherController {
                     return
                 }
                 self.reading = reading
+                self.lastRefreshFailed = false
                 self.readingLocation = coordinate
                 self.status = .ready
                 self.fetchTask = nil
@@ -160,7 +167,10 @@ final class PetWeatherController {
         }
     }
 
-    private func fail(_ status: Status) { self.status = reading == nil ? status : .stale }
+    private func fail(_ status: Status) {
+        lastRefreshFailed = reading != nil
+        self.status = reading == nil ? status : .stale
+    }
 
     func search(_ query: String, language: String) {
         clearSearch()

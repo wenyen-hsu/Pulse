@@ -10,6 +10,14 @@ Automatic weather and manual pets are mutually exclusive modes. While weather is
 
 The primary trial from source `58c8a96` includes these exclusive-mode controls and was packaged from the exact app accepted in a fresh native Apple Silicon run, without rebuilding. See [download notes and verification limits](../Downloads/README.md). The older `64e1028` trial is retained separately and still gives PNGs priority.
 
+## Manual refresh
+
+With automatic weather enabled and the orb visible, **click the central weather pet** to check again. This works collapsed or expanded, in circular and liquid modes. Dragging moves the orb without refreshing; provider-ring clicks still refresh only that account. Appearance settings also offer **Refresh weather**, with a progress indicator while locating/fetching. Fixed pets and saved PNGs do not initiate weather requests.
+
+Manual checks share the existing **one-attempt-per-minute** limit, reject duplicate in-flight location/network requests, and do not restart or replace the half-hour automatic schedule. The settings button is disabled while paused, busy or cooling down. A previous failure's clock badge stays until a successful fresh reading, including while retrying; the condition and source timestamp can stay unchanged after a successful check. Hidden panels and Classic rail remain paused.
+
+These controls are source changes, not included in the existing `58c8a96` trial installer.
+
 ## Data source and cost
 
 - **Current source: Open-Meteo.** Nokori requests model-based current weather conditions from the Forecast API and city results from the Geocoding API. It does not read Apple's Weather app, its saved cities or cache, and does not use WeatherKit. Fixed weather artwork works offline and is not evidence of a live weather reading.
