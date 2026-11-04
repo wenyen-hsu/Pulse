@@ -22,7 +22,7 @@ struct PetOrbContent: View {
     @State private var ledgers = CardLedgers()
 
     private var layout: PetOrbLayout { state.drawingLayout }
-    private var visible: [RailEntry] { Array(entries[PetOrbLayout.indices(count: entries.count, page: state.page)]) }
+    private var visible: [RailEntry] { Array(entries[layout.visibleIndices(count: entries.count, page: state.page)]) }
     private var selected: RailEntry? { visible.first { $0.id == state.selectedID } }
     private var cardRect: CGRect {
         layout.cardFrame(height: cardHeight, width: DetailCardLayout.width + DetailCardLayout.pointerWidth)
@@ -47,7 +47,7 @@ struct PetOrbContent: View {
                         .multilineTextAlignment(.center)
                         .frame(width: PanelMetrics.orbEmptyWidth)
                         .position(x: layout.centre.x, y: layout.centre.y + PanelMetrics.orbEmptyOffset)
-                } else if PetOrbLayout.pageCount(for: entries.count) > 1 {
+                } else if layout.showsPager(count: entries.count) {
                     pager.position(x: layout.pagerFrame.midX, y: layout.pagerFrame.midY)
                 }
                 if let selected { detail(selected) }
@@ -69,7 +69,8 @@ struct PetOrbContent: View {
         .environment(\.colorScheme, PanelGlass.scheme(transparency: settings.glassTransparency))
         .environment(\.glassTransparency, settings.glassTransparency)
         .environment(\.usageWarningThreshold, settings.warningThreshold.fraction)
-        .onChange(of: entries.map(\.id)) {
+        .onChange(of: entries.map(\.id), initial: true) {
+            state.updateAccounts(count: entries.count)
             state.page = min(state.page, PetOrbLayout.pageCount(for: entries.count) - 1)
             if selected == nil { state.selectedID = nil }
             state.probe.reportAgain()
@@ -126,7 +127,8 @@ struct PetOrbContent: View {
     }
 
     private func node(_ entry: RailEntry) -> some View {
-        UsageRingView(
+        let factor = layout.nodeScale(count: visible.count)
+        return UsageRingView(
             provider: entry.usage.provider, usedFraction: entry.headline?.usedFraction,
             hasReading: entry.headline != nil || entry.figure != nil, chosenTint: entry.tint,
             isSpent: UsageTint.isSpent(entry.headline), showsRemaining: entry.showsRemaining,
@@ -136,23 +138,29 @@ struct PetOrbContent: View {
             windowClockFraction: entry.windowClock, secondFraction: entry.second?.usedFraction,
             secondIsSpent: UsageTint.isSpent(entry.second), robot: entry.robot, isLive: state.isExpanded
         )
+        .scaleEffect(factor)
+        .frame(width: DockLayout.ringDiameter * factor, height: DockLayout.ringDiameter * factor)
         .overlay(alignment: .top) {
-            Text(entry.title)
-                .font(.system(size: PanelMetrics.orbLabelSize, weight: .medium))
-                .lineLimit(1)
-                .frame(width: PanelMetrics.orbLabelWidth)
-                .offset(y: DockLayout.ringDiameter + PanelMetrics.orbTitleGap)
-                .allowsHitTesting(false)
+            if !layout.isLiquid {
+                Text(entry.title)
+                    .font(.system(size: PanelMetrics.orbLabelSize, weight: .medium))
+                    .lineLimit(1)
+                    .frame(width: PanelMetrics.orbLabelWidth)
+                    .offset(y: DockLayout.ringDiameter + PanelMetrics.orbTitleGap)
+                    .allowsHitTesting(false)
+            }
         }
         .overlay(alignment: .bottom) {
-            Text(entry.headline?.percentText(remaining: entry.showsRemaining) ?? entry.figure ?? "—")
-                .font(.system(size: PanelMetrics.orbLabelSize, weight: .semibold, design: .rounded))
-                .monospacedDigit()
-                .lineLimit(1)
-                .minimumScaleFactor(0.6)
-                .frame(width: PanelMetrics.orbLabelWidth)
-                .offset(y: -DockLayout.ringDiameter - PanelMetrics.orbFigureGap)
-                .allowsHitTesting(false)
+            if !layout.isLiquid {
+                Text(entry.headline?.percentText(remaining: entry.showsRemaining) ?? entry.figure ?? "—")
+                    .font(.system(size: PanelMetrics.orbLabelSize, weight: .semibold, design: .rounded))
+                    .monospacedDigit()
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                    .frame(width: PanelMetrics.orbLabelWidth)
+                    .offset(y: -DockLayout.ringDiameter - PanelMetrics.orbFigureGap)
+                    .allowsHitTesting(false)
+            }
         }
         .background(PointerEntryReporter { select(entry) })
         .help(entry.title)

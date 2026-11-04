@@ -17,6 +17,8 @@ final class PetOrbState {
     var verticalCentre: CGFloat?
     var openedAt = Date.distantPast
     var isLiquid = false
+    var accountCount = 0
+    var liquidNodes = LiquidPetNodes(count: 0)
     /// Liquid pet only: the drag's trailing pull and the nearest edge's draw.
     var stretch = CGVector.zero
     var wetting = CGVector.zero
@@ -25,14 +27,20 @@ final class PetOrbState {
 
     var layout: PetOrbLayout {
         PetOrbLayout(size: size, scale: PanelMetrics.scale * viewportScale, cardOnLeft: cardOnLeft, verticalCentre: verticalCentre,
-                     isLiquid: isLiquid, stretch: stretch, wetting: wetting)
+                     isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
     }
 
     var drawingLayout: PetOrbLayout {
         PetOrbLayout(size: CGSize(width: size.width / viewportScale, height: size.height / viewportScale),
                      scale: PanelMetrics.scale, cardOnLeft: cardOnLeft,
                      verticalCentre: verticalCentre.map { $0 / viewportScale },
-                     isLiquid: isLiquid, stretch: stretch, wetting: wetting)
+                     isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
+    }
+
+    func updateAccounts(count: Int) {
+        guard accountCount != count else { return }
+        accountCount = count
+        liquidNodes = LiquidPetNodes(count: count)
     }
 
     func drawingPoint(_ point: CGPoint) -> CGPoint {
@@ -118,7 +126,7 @@ final class PetOrbPanelController {
         panel.onRingClick = { [settings, store, state] point in
             let slots = RailSlot.rail(for: settings.shownAccounts, isSplit: settings.isSplit,
                                       groups: { RailSlot.modelGroups(of: store.usage(for: $0)) })
-            let range = PetOrbLayout.indices(count: slots.count, page: state.page)
+            let range = state.layout.visibleIndices(count: slots.count, page: state.page)
             guard let local = state.layout.ringIndex(at: point, count: range.count) else { return false }
             store.refresh(slots[range.lowerBound + local].account)
             return true
@@ -277,7 +285,8 @@ private final class PetOrbPanel: NSPanel {
             }
         case .leftMouseDown where onOrb:
             // Leave the pager's buttons to SwiftUI, not the window drag path.
-            if state.isExpanded && state.layout.pagerFrame.contains(point) { break }
+            if state.isExpanded && state.layout.showsPager(count: state.accountCount)
+                && state.layout.pagerFrame.contains(point) { break }
             state.stopRecoil()
             state.isHeld = true
             press = (NSEvent.mouseLocation, frame.origin, point,

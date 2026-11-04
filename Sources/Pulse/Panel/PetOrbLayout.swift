@@ -27,6 +27,7 @@ extension PanelMetrics {
     static var orbUnitWettingBand: CGFloat { 80 }
     static var orbUnitLiquidMargin: CGFloat { 40 }
     static var orbUnitLiquidGap: CGFloat { 32 }
+    static var liquidUnitRingHitRadius: CGFloat { 20 }
 }
 
 /// Shared top-left coordinates for drawing, pointer samples and window input.
@@ -38,6 +39,7 @@ struct PetOrbLayout {
     var isLiquid = false
     var stretch = CGVector.zero
     var wetting = CGVector.zero
+    var liquidNodes: LiquidPetNodes? = nil
 
     static func preferredWidth(scale: CGFloat, isLiquid: Bool, cardWidth: CGFloat) -> CGFloat {
         let margin = isLiquid ? PanelMetrics.orbUnitLiquidMargin : PanelMetrics.orbUnitMargin
@@ -97,15 +99,39 @@ struct PetOrbLayout {
         return start..<min(start + PanelMetrics.orbPageCapacity, max(count, 0))
     }
 
+    func visibleIndices(count: Int, page: Int) -> Range<Int> {
+        isLiquid ? 0..<max(count, 0) : Self.indices(count: count, page: page)
+    }
+
+    func showsPager(count: Int) -> Bool {
+        !isLiquid && Self.pageCount(for: count) > 1
+    }
+
+    func nodeScale(count: Int) -> CGFloat {
+        isLiquid ? nodes(count: count).scale : 1
+    }
+
+    private func nodes(count: Int) -> LiquidPetNodes {
+        if let liquidNodes, liquidNodes.offsets.count == max(count, 0) { return liquidNodes }
+        return LiquidPetNodes(count: count)
+    }
+
     func ringCentre(index: Int, count: Int) -> CGPoint {
+        if isLiquid {
+            let offsets = nodes(count: count).offsets
+            guard offsets.indices.contains(index) else { return centre }
+            return CGPoint(x: centre.x + offsets[index].x * scale, y: centre.y + offsets[index].y * scale)
+        }
         let angle = -Double.pi / 2 + Double(index) * 2 * .pi / Double(max(count, 1))
         return CGPoint(x: centre.x + cos(angle) * PanelMetrics.orbUnitOrbitRadius * scale,
                        y: centre.y + sin(angle) * PanelMetrics.orbUnitOrbitRadius * scale)
     }
 
     func ringIndex(at point: CGPoint, count: Int) -> Int? {
-        (0..<max(count, 0)).first {
-            contains(point, around: ringCentre(index: $0, count: count), radius: PanelMetrics.orbUnitRingHitRadius * scale)
+        let radius = isLiquid ? PanelMetrics.liquidUnitRingHitRadius * nodeScale(count: count)
+            : PanelMetrics.orbUnitRingHitRadius
+        return (0..<max(count, 0)).first {
+            contains(point, around: ringCentre(index: $0, count: count), radius: radius * scale)
         }
     }
 

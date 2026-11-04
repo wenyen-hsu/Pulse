@@ -172,6 +172,8 @@ In the sidebar's last, untitled section. It copies the actual executable's `--js
 
 **Liquid pet** is the default Panel style for new settings; Pet orb and Classic rail remain available. It shares the pet, PNG and size controls, and persists as `liquidPet` without changing existing saved styles. The sun remains centred. See [liquid geometry](panel-geometry.md#liquid-pet) for drag deformation, recoil and Reduced Motion.
 
+Liquid pet shows all enabled account slots scattered inside the drop without pagination. Dense lists use smaller provider marks and quota rings; hover opens the full name and usage card. The central pet stays clear and the panel window does not grow with the account list. Circular Pet orb keeps its eight-slot pages.
+
 ## About
 
 Two groups. The first is the app: version and update state, where the usage figures come from, and the **source address**, with the URL itself as the subtitle so it can be typed.
