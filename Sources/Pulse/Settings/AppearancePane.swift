@@ -14,6 +14,10 @@ struct AppearancePane: View {
 
             PetOrbSettingsGroup(settings: settings)
 
+            if settings.panelPresentation.usesOrb {
+                WeatherPetSettingsGroup(settings: settings)
+            }
+
             SettingsGroup {
                 SettingsRow(
                     String.localized("Size"),

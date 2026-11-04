@@ -86,6 +86,11 @@ cp "$BUILT/Pulse" "$APP/Contents/MacOS/$EXECUTABLE"
 # where it has to land — the app is silently English with no icons without it.
 cp -R "$BUILT/Pulse_Pulse.bundle" "$APP/Contents/Resources/"
 cp LICENSE NOTICE THIRD_PARTY_NOTICES.md "$APP/Contents/Resources/"
+for table in Sources/Pulse/Resources/*.lproj/InfoPlist.strings; do
+    language=$(basename "$(dirname "$table")")
+    mkdir -p "$APP/Contents/Resources/$language"
+    cp "$table" "$APP/Contents/Resources/$language/InfoPlist.strings"
+done
 # The icon is an Icon Composer document, compiled the way Xcode would: an
 # Assets.car that macOS 26 draws as Liquid Glass — light, dark, clear and
 # tinted — and an AppIcon.icns that actool flattens for the systems before it.
@@ -166,6 +171,8 @@ cat > "$APP/Contents/Info.plist" <<PLIST
         <key>CFBundleTypeRole</key><string>Viewer</string>
     </dict></array>
     <key>NSHighResolutionCapable</key><true/>
+    <key>NSLocationUsageDescription</key><string>Nokori uses your approximate location to choose a weather pet. You can choose a city instead.</string>
+    <key>NSLocationWhenInUseUsageDescription</key><string>Nokori uses your approximate location to choose a weather pet. You can choose a city instead.</string>
     <key>NSHumanReadableCopyright</key><string>github.com/$REPOSITORY</string>
     <!-- Independent trial build: no upstream feed or updater credentials. -->
     <key>SUEnableAutomaticChecks</key><false/>

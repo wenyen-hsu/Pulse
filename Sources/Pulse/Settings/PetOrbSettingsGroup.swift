@@ -26,7 +26,7 @@ struct PetOrbSettingsGroup: View {
                 SettingsRow(String.localized("Pet"),
                             subtitle: String.localized("Choose a companion or import a transparent PNG.")) {
                     HStack {
-                        OrbPetAvatar(pet: settings.orbPet, imageData: settings.orbPetImage)
+                        WeatherAwarePetAvatar(settings: settings)
                             .frame(width: 42, height: 42)
                         Picker(String.localized("Pet"), selection: $settings.orbPet) {
                             ForEach(OrbPet.allCases) { pet in

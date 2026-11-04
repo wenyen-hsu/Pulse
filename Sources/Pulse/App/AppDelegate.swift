@@ -97,13 +97,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
         settings.onChange = { [weak self] in
             self?.settingsChanged()
+            self?.applyPetWeather()
         }
         // Size, spacing, glass and the rest of what only changes how the panel
         // is drawn: re-place it and stop there. `onChange` also refreshes every
         // provider, which a layout change must not cost.
         settings.onLayoutChange = { [weak self] in
             self?.layoutChanged()
+            self?.applyPetWeather()
         }
+        settings.weatherPet = PetWeatherController()
+        settings.onWeatherChange = { [weak self] in self?.applyPetWeather() }
+        applyPetWeather()
 
         // Same issue, from the other side: a combination that works with no
         // pointer involved. Both unset until somebody sets one.
@@ -143,6 +148,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         guard DockQuit.isFromDock(NSAppleEventManager.shared().currentAppleEvent) else { return .terminateNow }
         dock.closeWindows()
         return .terminateCancel
+    }
+
+    private func applyPetWeather() {
+        settings.weatherPet?.apply(settings.weatherPreferences,
+                                   visible: settings.panelPresentation.usesOrb && settings.isPanelVisible && settings.orbPetImage == nil)
     }
 
     /// The maintainer's note for this version, if it is due and there is one

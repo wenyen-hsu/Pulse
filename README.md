@@ -19,6 +19,7 @@ A native macOS AI-usage monitor with a centred sun pet and an optional liquid-gl
 
 - Hover to expand account rings; point at a ring for its existing detail card; leave the panel and card to collapse.
 - Animated Little sun by default; Cat, Fox, Rabbit and custom transparent PNG pets, with size controls.
+- Optional [weather pets](Docs/weather-pet.md): clouds, rain, thunderstorms, snow, fog and moonlight. Choose fixed artwork offline, or enable local weather with explicit location permission and manual city fallback. Open-Meteo's free service is for non-commercial use only.
 - Existing provider usage, account management, history, menu bar, notifications and integrations remain available. [Full feature guide](Docs/features.md) · [Supported services](Docs/supported-services.md).
 - Keep the 75%, 80%, 90% and 95% warning presets, or enter a custom **1–100%** threshold.
 - Liquid motion approximates surface tension and viscosity visually; it is **not a fluid simulation**. Reduce Motion disables drag stretch and recoil.

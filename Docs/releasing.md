@@ -48,6 +48,8 @@ Release needs `SPARKLE_PRIVATE_KEY`. It fails without it rather than publishing 
 
 ## Bundle (`Scripts/bundle.sh`)
 
+The bundle includes `NSLocationUsageDescription` and `NSLocationWhenInUseUsageDescription` for optional weather pets. The six `InfoPlist.strings` tables are copied into **main-bundle** `Resources/<language>.lproj`, not just the SwiftPM nested resource bundle, so macOS can localize its permission dialog. Keep these tables in parity with the app's six declared localizations. [Weather pet](weather-pet.md)
+
 - Resource bundle in `Contents/Resources` (`Bundle.module` via `Bundle.main.resourceURL`). Leave it out: English, no provider marks.
 - `LSUIElement` = true.
 - **Icon: `AppIcon/AppIcon.icon`**, an Icon Composer document, compiled by `actool` into `Assets.car` plus a flattened `AppIcon.icns`; `CFBundleIconName` points at it. Nokori's layer is `mark.svg`, an ice-blue quota ring and warm sun on a deep-blue system background. Open strokes are converted to filled outlines: otherwise Icon Composer can close a path across the ring's gap when drawing shadows. Regenerate the SVGs and Default PNG using [branding.md](branding.md#sources-and-generation). The original `pulse-*` and integration artwork are retained separately and are not the current app icon.

@@ -53,7 +53,7 @@ struct PetOrbContent: View {
                 if let selected { detail(selected) }
             }
             let pet = layout.petFrame(expanded: state.isExpanded, petSize: settings.orbPetSize)
-            OrbPetAvatar(pet: settings.orbPet, imageData: settings.orbPetImage, isAnimating: state.isPresented)
+            WeatherAwarePetAvatar(settings: settings, isAnimating: state.isPresented)
                 .frame(width: pet.width, height: pet.height)
                 .shadow(color: .black.opacity(0.2), radius: 5, y: 4)
                 .position(x: pet.midX, y: pet.midY)

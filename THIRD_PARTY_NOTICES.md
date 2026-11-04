@@ -1,5 +1,9 @@
 # Third-Party Notices
 
+## Optional weather and city data
+
+Weather pets use [Open-Meteo](https://open-meteo.com/) weather data and its [geocoding API](https://open-meteo.com/en/docs/geocoding-api), based on [GeoNames](https://www.geonames.org/), under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Conditions are converted into locally drawn pet artwork. The public API is **non-commercial only**, subject to [Open-Meteo's terms and privacy policy](https://open-meteo.com/en/terms); a suitable subscription/provider is required for commercial weather deployment. No weather dataset or third-party weather artwork is bundled. See [weather pet](Docs/weather-pet.md) for privacy and attribution details.
+
 ## Lobe Icons
 
 Pulse bundles provider marks taken from [Lobe Icons](https://github.com/lobehub/lobe-icons)

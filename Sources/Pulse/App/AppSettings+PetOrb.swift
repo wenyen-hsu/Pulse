@@ -19,6 +19,7 @@ enum PanelPresentation: String, CaseIterable, Identifiable {
 
 enum OrbPet: String, CaseIterable, Identifiable {
     case sun, cat, fox, rabbit
+    case cloudSun, cloudMoon, cloud, rain, thunderstorm, snow, fog, moon
     var id: String { rawValue }
     var title: String {
         switch self {
@@ -26,6 +27,21 @@ enum OrbPet: String, CaseIterable, Identifiable {
         case .cat: .localized("Cat")
         case .fox: .localized("Fox")
         case .rabbit: .localized("Rabbit")
+        case .cloudSun: .localized("Sun and cloud")
+        case .cloudMoon: .localized("Moon and cloud")
+        case .cloud: .localized("Little cloud")
+        case .rain: .localized("Rain cloud")
+        case .thunderstorm: .localized("Thundercloud")
+        case .snow: .localized("Snow cloud")
+        case .fog: .localized("Little fog")
+        case .moon: .localized("Little moon")
+        }
+    }
+
+    var isWeatherShape: Bool {
+        switch self {
+        case .sun, .cat, .fox, .rabbit: false
+        default: true
         }
     }
 }
@@ -49,6 +65,7 @@ extension AppSettings {
         orbPet = defaults.string(forKey: Key.orbPet).flatMap(OrbPet.init(rawValue:)) ?? .sun
         orbPetSize = Self.boundedPetSize(defaults.object(forKey: Key.orbPetSize) as? Double ?? 1)
         orbPetImage = defaults.data(forKey: Key.orbPetImage)
+        weatherPreferences = WeatherPreferences.restored(from: defaults)
     }
 }
 
