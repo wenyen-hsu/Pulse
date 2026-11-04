@@ -46,7 +46,7 @@ A tag/VERSION mismatch fails the run. A suffix (`v1.1.0-beta.1`) is a GitHub pre
 
 `.github/workflows/release.yml` builds, packages, publishes, signs the archive, and commits the Sparkle feed. `ci.yml` runs the same build on every push.
 
-Both pin **`macos-26`**, not `macos-latest`. `PanelSurface`’s Liquid Glass needs the macOS 26 SDK to compile even behind `#available`. Workflows check `xcrun --show-sdk-version` first. Warnings fail the build.
+CI pins **`macos-26-intel`**; release retains **`macos-26`** (ARM). Neither uses `macos-latest`. `PanelSurface`’s Liquid Glass needs the macOS 26 SDK to compile even behind `#available`. Workflows check `xcrun --show-sdk-version` first. Warnings fail the build. See the [runner and SDK contract](build-from-source.md#swift-6-and-warnings) for allocation-failure diagnosis.
 
 Release needs `SPARKLE_PRIVATE_KEY`. It fails without it rather than publishing a version no installed copy would be offered.
 
