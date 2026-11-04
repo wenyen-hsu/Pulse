@@ -1,4 +1,4 @@
-"Turn off automatic weather to use the selected fixed pet." = "선택한 고정 펫을 사용하려면 자동 날씨를 끄세요.";
+"Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "자동 날씨를 사용하는 동안에는 고정 펫이나 이미지를 변경할 수 없습니다. 자동 날씨를 끄면 저장한 설정으로 돌아갑니다.";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "도시 데이터: Open-Meteo를 통한 GeoNames (CC BY 4.0)";
 "Sun and cloud" = "해와 구름";
 "Moon and cloud" = "달과 구름";
@@ -11,7 +11,7 @@
 "Current location" = "현재 위치";
 "Choose a city" = "도시 선택";
 "Automatic weather is off." = "자동 날씨가 꺼져 있습니다.";
-"Weather is paused while a custom image or the classic rail is in use, or the panel is hidden." = "사용자 이미지나 기존 레일을 사용 중이거나 패널이 숨겨져 있으면 날씨 조회를 일시 중지합니다.";
+"Weather is paused while the classic rail is in use or the panel is hidden." = "기존 레일을 사용 중이거나 패널이 숨겨져 있으면 날씨 조회를 일시 중지합니다.";
 "Allow location access, or choose a city below." = "위치 접근을 허용하거나 아래에서 도시를 선택하세요.";
 "Location access is denied. Choose a city, or allow Nokori in System Settings → Privacy & Security → Location Services." = "위치 접근이 거부되었습니다. 도시를 선택하거나 시스템 설정 → 개인정보 보호 및 보안 → 위치 서비스에서 Nokori를 허용하세요.";
 "Finding your approximate location…" = "대략적인 위치를 확인하는 중…";
@@ -33,7 +33,7 @@
 "Search cities" = "도시 검색";
 "Could not search cities. Check your connection and try again." = "도시를 검색할 수 없습니다. 연결을 확인하고 다시 시도하세요.";
 "No cities found. Try another name." = "도시를 찾을 수 없습니다. 다른 이름으로 검색하세요.";
-"Select a search result to use that city instead of device location. Fixed pets and imported PNGs are kept; a PNG takes priority over weather." = "검색 결과를 선택하면 기기 위치 대신 해당 도시를 사용합니다. 고정 펫과 가져온 PNG는 유지되며 PNG가 날씨보다 우선합니다.";
+"Select a search result to use that city instead of device location. Turn off automatic weather to restore your saved pet or PNG." = "검색 결과를 선택하면 기기 위치 대신 해당 도시를 사용합니다. 자동 날씨를 끄면 저장한 펫이나 PNG로 돌아갑니다.";
 "Custom percentage" = "사용자 지정 비율";
 "Enter a whole number from 1 to 100." = "1~100 사이의 정수를 입력하세요.";
 "Apply" = "적용";

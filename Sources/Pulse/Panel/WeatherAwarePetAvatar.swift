@@ -7,10 +7,10 @@ struct WeatherAwarePetAvatar: View {
 
     var body: some View {
         TimelineView(.periodic(from: .now, by: 60)) { _ in
-            let usesWeather = settings.weatherPreferences.enabled && settings.orbPetImage == nil
+            let usesWeather = settings.weatherPreferences.enabled
             let weather = settings.weatherPet
             let pet = usesWeather ? weather?.reading?.pet ?? .cloud : settings.orbPet
-            OrbPetAvatar(pet: pet, imageData: settings.orbPetImage, isAnimating: isAnimating)
+            OrbPetAvatar(pet: pet, imageData: settings.effectivePetImage, isAnimating: isAnimating)
                 .overlay(alignment: .bottomTrailing) {
                     if usesWeather && (weather?.reading == nil || weather?.isStale == true) {
                         GeometryReader { geometry in

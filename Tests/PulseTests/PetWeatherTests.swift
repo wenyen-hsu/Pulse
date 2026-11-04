@@ -59,6 +59,31 @@ struct PetWeatherTests {
         #expect(!WeatherPreferences.restored(from: defaults).enabled)
     }
 
+    @Test("Automatic weather locks fixed-pet controls and restores saved choices when turned off", arguments: [false, true])
+    @MainActor func exclusiveSelection(hasImage: Bool) {
+        let (defaults, cleanup) = TestDefaults.make("ExclusiveWeatherPet")
+        defer { cleanup() }
+        let settings = AppSettings(defaults: defaults)
+        let image = hasImage ? Data([1, 2, 3]) : nil
+        settings.orbPet = .rabbit
+        settings.orbPetImage = image
+        settings.orbPetSize = 1.2
+        #expect(settings.isFixedPetSelectionEnabled && settings.effectivePetImage == image)
+
+        settings.weatherPreferences.enabled = true
+        #expect(!settings.isFixedPetSelectionEnabled && settings.effectivePetImage == nil)
+        #expect(settings.orbPet == .rabbit && settings.orbPetImage == image && settings.orbPetSize == 1.2)
+        let restored = AppSettings.restoredSettings(from: defaults, detected: [], scan: ExtensionCatalog.Scan())
+        #expect(!restored.isFixedPetSelectionEnabled && restored.effectivePetImage == nil)
+        #expect(restored.orbPet == .rabbit && restored.orbPetImage == image && restored.orbPetSize == 1.2)
+
+        restored.weatherPreferences.enabled = false
+        #expect(restored.isFixedPetSelectionEnabled && restored.effectivePetImage == image)
+        let fixed = AppSettings.restoredSettings(from: defaults, detected: [], scan: ExtensionCatalog.Scan())
+        #expect(fixed.isFixedPetSelectionEnabled && fixed.effectivePetImage == image)
+        #expect(fixed.orbPet == .rabbit && fixed.orbPetImage == image && fixed.orbPetSize == 1.2)
+    }
+
     @Test("Coordinates are validated and rounded before network use; city queries are encoded")
     func urls() throws {
         let url = try OpenMeteoPetWeather.weatherURL(at: weatherTestCity.coordinate)
@@ -224,6 +249,37 @@ struct PetWeatherControllerTests {
             try? await Task.sleep(for: .milliseconds(5))
         }
         #expect(await predicate())
+    }
+
+    @Test("Saved PNGs do not pause weather; hidden panels and Classic rail still do")
+    func imageAndVisibility() async {
+        let (defaults, cleanup) = TestDefaults.make("WeatherImageVisibility")
+        defer { cleanup() }
+        let settings = AppSettings(defaults: defaults)
+        let client = WeatherTestClient()
+        let store = PetWeatherController(client: client, location: WeatherTestLocation(), now: { weatherTestDate })
+        defer { store.stop() }
+        settings.orbPetImage = Data([1, 2, 3])
+        settings.weatherPreferences = WeatherPreferences(enabled: true, source: .city, city: weatherTestCity)
+        for presentation in PanelPresentation.allCases {
+            settings.panelPresentation = presentation
+            for visible in [false, true] {
+                settings.isPanelVisible = visible
+                let expectedVisible = visible && presentation.usesOrb
+                #expect(settings.isPetOrbVisible == expectedVisible)
+                store.apply(settings.weatherPreferences, visible: settings.isPetOrbVisible)
+                if expectedVisible {
+                    await eventually { store.status == .ready }
+                    #expect(store.reading?.pet == .rain)
+                } else {
+                    #expect(store.status == .paused)
+                }
+            }
+        }
+        #expect(await client.calls.count == 2)
+        settings.weatherPreferences.enabled = false
+        store.apply(settings.weatherPreferences, visible: settings.isPetOrbVisible)
+        #expect(store.status == .off && settings.effectivePetImage == settings.orbPetImage)
     }
 
     @Test("Off never locates, fetches or searches; paused presentation permits explicit city setup without a weather request")

@@ -39,6 +39,7 @@ struct PetOrbSettingsGroup: View {
                     }
                     .frame(width: SettingsLayout.controlWidth)
                 }
+                .disabled(!settings.isFixedPetSelectionEnabled)
                 SettingsRowDivider()
                 SettingsRow(String.localized("Pet image")) {
                     HStack {
@@ -48,8 +49,9 @@ struct PetOrbSettingsGroup: View {
                         Button(String.localized("Import PNG…"), action: importImage)
                     }
                 }
+                .disabled(!settings.isFixedPetSelectionEnabled)
                 if settings.weatherPreferences.enabled {
-                    Text(localized: "Turn off automatic weather to use the selected fixed pet.")
+                    Text(localized: "Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .padding(12)

@@ -1,4 +1,4 @@
-"Turn off automatic weather to use the selected fixed pet." = "Turn off automatic weather to use the selected fixed pet.";
+"Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept.";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "City data: GeoNames via Open-Meteo (CC BY 4.0)";
 "Sun and cloud" = "Sun and cloud";
 "Moon and cloud" = "Moon and cloud";
@@ -11,7 +11,7 @@
 "Current location" = "Current location";
 "Choose a city" = "Choose a city";
 "Automatic weather is off." = "Automatic weather is off.";
-"Weather is paused while a custom image or the classic rail is in use, or the panel is hidden." = "Weather is paused while a custom image or the classic rail is in use, or the panel is hidden.";
+"Weather is paused while the classic rail is in use or the panel is hidden." = "Weather is paused while the classic rail is in use or the panel is hidden.";
 "Allow location access, or choose a city below." = "Allow location access, or choose a city below.";
 "Location access is denied. Choose a city, or allow Nokori in System Settings → Privacy & Security → Location Services." = "Location access is denied. Choose a city, or allow Nokori in System Settings → Privacy & Security → Location Services.";
 "Finding your approximate location…" = "Finding your approximate location…";
@@ -33,7 +33,7 @@
 "Search cities" = "Search cities";
 "Could not search cities. Check your connection and try again." = "Could not search cities. Check your connection and try again.";
 "No cities found. Try another name." = "No cities found. Try another name.";
-"Select a search result to use that city instead of device location. Fixed pets and imported PNGs are kept; a PNG takes priority over weather." = "Select a search result to use that city instead of device location. Fixed pets and imported PNGs are kept; a PNG takes priority over weather.";
+"Select a search result to use that city instead of device location. Turn off automatic weather to restore your saved pet or PNG." = "Select a search result to use that city instead of device location. Turn off automatic weather to restore your saved pet or PNG.";
 "Custom percentage" = "Custom percentage";
 "Enter a whole number from 1 to 100." = "Enter a whole number from 1 to 100.";
 "Apply" = "Apply";

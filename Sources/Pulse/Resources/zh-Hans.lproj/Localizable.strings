@@ -1,4 +1,4 @@
-"Turn off automatic weather to use the selected fixed pet." = "关闭自动天气后，即会使用所选的固定宠物。";
+"Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "已开启自动天气。关闭后才能选择固定宠物或图片；原有选择会保留。";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "城市数据：Open-Meteo／GeoNames（CC BY 4.0）";
 "Sun and cloud" = "太阳与云";
 "Moon and cloud" = "月亮与云";
@@ -11,7 +11,7 @@
 "Current location" = "当前位置";
 "Choose a city" = "选择城市";
 "Automatic weather is off." = "自动天气已关闭。";
-"Weather is paused while a custom image or the classic rail is in use, or the panel is hidden." = "使用自定义图片、经典侧栏或隐藏面板时，暂停查询天气。";
+"Weather is paused while the classic rail is in use or the panel is hidden." = "使用经典侧栏或隐藏面板时，暂停查询天气。";
 "Allow location access, or choose a city below." = "请允许定位，或在下方选择城市。";
 "Location access is denied. Choose a city, or allow Nokori in System Settings → Privacy & Security → Location Services." = "定位权限被拒绝。请选择城市，或前往“系统设置 → 隐私与安全性 → 定位服务”允许 Nokori。";
 "Finding your approximate location…" = "正在获取大致位置…";
@@ -33,7 +33,7 @@
 "Search cities" = "搜索城市";
 "Could not search cities. Check your connection and try again." = "无法搜索城市，请检查网络连接后重试。";
 "No cities found. Try another name." = "找不到城市，请尝试其他名称。";
-"Select a search result to use that city instead of device location. Fixed pets and imported PNGs are kept; a PNG takes priority over weather." = "选择搜索结果后，将改用该城市而非设备位置。固定宠物与导入的 PNG 都会保留；PNG 优先于天气显示。";
+"Select a search result to use that city instead of device location. Turn off automatic weather to restore your saved pet or PNG." = "选择搜索结果后，将改用该城市而非设备位置。关闭自动天气后，会恢复原有宠物或 PNG 图片。";
 "Custom percentage" = "自定义百分比";
 "Enter a whole number from 1 to 100." = "请输入 1～100 的整数。";
 "Apply" = "应用";

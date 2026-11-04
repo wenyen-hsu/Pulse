@@ -9,7 +9,7 @@ final class PetWeatherController {
         var title: String {
             switch self {
             case .off: .localized("Automatic weather is off.")
-            case .paused: .localized("Weather is paused while a custom image or the classic rail is in use, or the panel is hidden.")
+            case .paused: .localized("Weather is paused while the classic rail is in use or the panel is hidden.")
             case .needsPermission: .localized("Allow location access, or choose a city below.")
             case .denied: .localized("Location access is denied. Choose a city, or allow Nokori in System Settings → Privacy & Security → Location Services.")
             case .locating: .localized("Finding your approximate location…")

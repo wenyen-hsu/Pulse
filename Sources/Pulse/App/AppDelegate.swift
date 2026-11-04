@@ -152,7 +152,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     private func applyPetWeather() {
         settings.weatherPet?.apply(settings.weatherPreferences,
-                                   visible: settings.panelPresentation.usesOrb && settings.isPanelVisible && settings.orbPetImage == nil)
+                                   visible: settings.isPetOrbVisible)
     }
 
     /// The maintainer's note for this version, if it is due and there is one
