@@ -39,6 +39,10 @@
 
 > **从 Pulse Pet 升级：** 退出旧版、安装 Nokori，再移除旧 Pulse Pet 的应用本体，不要删除数据。保留原有独立设置与数据标识；不要同时运行新旧名称的同一应用。原版 Pulse 仍可与 Nokori 同时运行。[品牌与兼容性](Docs/branding.md)。
 
+## 天气来源与费用
+
+自动天气使用 **Open-Meteo，不读取 Apple“天气”App，也没有使用 WeatherKit**。功能默认关闭；启用且浮点面板可见、未使用自定义 PNG 时，约每 30 分钟刷新，不是实时同步。免费 API 不需要密钥，但**仅限非商业用途**，有请求量限制且不保证服务可用性。定位授权只提供位置，不授予读取“天气”App 的权限；目前不会消耗 WeatherKit 开发者的共用额度。[天气来源、费用与隐私详情（英文）](Docs/weather-pet.md#data-source-and-cost)。
+
 ## 从源码构建
 
 需要完整 Xcode、macOS 26 或更新 SDK、Swift tools 6.0+ 和 Python 3；不可删除预览或仅使用 Command Line Tools。

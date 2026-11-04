@@ -57,7 +57,6 @@
 
 ## 從原始碼建置與檢查
 
-
 需要完整 Xcode、**macOS 26 或更新 SDK**、Swift tools 6.0 以上，以及供腳本使用的 Python 3。不可刪除 SwiftUI 預覽來通過編譯，也不可僅使用 Command Line Tools。
 
 ```bash
