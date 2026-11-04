@@ -1,3 +1,5 @@
+"Refresh weather" = "天気を更新";
+"Click the weather pet to refresh. At most once a minute." = "天気のペットをクリックすると再取得します。更新は1分に1回までです。";
 "Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "自動天気が有効な間は、固定ペットや画像を変更できません。無効にすると元の設定に戻ります。";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "都市データ：Open-Meteo 経由の GeoNames（CC BY 4.0）";
 "Sun and cloud" = "太陽と雲";

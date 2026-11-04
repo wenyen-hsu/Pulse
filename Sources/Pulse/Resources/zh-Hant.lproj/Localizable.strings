@@ -1,3 +1,5 @@
+"Refresh weather" = "更新天氣";
+"Click the weather pet to refresh. At most once a minute." = "點一下天氣寵物可重新查詢，每分鐘最多一次。";
 "Automatic weather is on. Turn it off to change the fixed pet or image. Your choices are kept." = "已啟用自動天氣。關閉後才能選擇固定寵物或圖片；原有選擇會保留。";
 "City data: GeoNames via Open-Meteo (CC BY 4.0)" = "城市資料：Open-Meteo／GeoNames（CC BY 4.0）";
 "Sun and cloud" = "太陽與雲";

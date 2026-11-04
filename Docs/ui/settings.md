@@ -14,6 +14,8 @@ When a translation repeats the app name, reuse its positional argument (for exam
 
 ## Where the code lives
 
+When weather is enabled, its status row includes **Refresh weather** and a progress indicator. The button shares the pet click's active-state, single-flight and one-minute guards, and is disabled while paused, busy or cooling down; the row updates its availability once a second while displayed. Both controls preserve the half-hour polling schedule. The source timestamp can stay unchanged after a successful query. See [manual refresh](../weather-pet.md#manual-refresh).
+
 Notifications retains the preset warning menu and adds a **Custom percentage** field with **Apply**. Only whole values from 1 to 100 can be committed; invalid input leaves the saved threshold untouched. Return also commits. The current custom percentage is included in the menu, and the field follows changes made through that menu. Notification permission and reconsideration are shared by both controls.
 
 All of it is in `Sources/Pulse/Settings`. `SettingsView.swift` is the shell only: the split view, the window's title and back/forward toolbar (the pane's name is the title — no heading is drawn in the pane), the switch that picks a pane, the search text, and the three models below. A pane is a view that draws rows; what a pane edits through a button is in a model.

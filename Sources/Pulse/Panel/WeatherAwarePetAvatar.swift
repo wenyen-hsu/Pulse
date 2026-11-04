@@ -10,7 +10,7 @@ struct WeatherAwarePetAvatar: View {
             let usesWeather = settings.weatherPreferences.enabled
             let weather = settings.weatherPet
             let pet = usesWeather ? weather?.reading?.pet ?? .cloud : settings.orbPet
-            OrbPetAvatar(pet: pet, imageData: settings.effectivePetImage, isAnimating: isAnimating)
+            let avatar = OrbPetAvatar(pet: pet, imageData: settings.effectivePetImage, isAnimating: isAnimating)
                 .overlay(alignment: .bottomTrailing) {
                     if usesWeather && (weather?.reading == nil || weather?.isStale == true) {
                         GeometryReader { geometry in
@@ -24,6 +24,14 @@ struct WeatherAwarePetAvatar: View {
                 }
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel(usesWeather ? "\(pet.title). \(weather?.isStale == true ? PetWeatherController.Status.stale.title : weather?.status.title ?? PetWeatherController.Status.unavailable.title)" : pet.title)
+            if usesWeather {
+                avatar
+                    .accessibilityAddTraits(.isButton)
+                    .accessibilityAction { weather?.refresh() }
+                    .accessibilityHint(Text(localized: "Click the weather pet to refresh. At most once a minute."))
+            } else {
+                avatar
+            }
         }
     }
 }

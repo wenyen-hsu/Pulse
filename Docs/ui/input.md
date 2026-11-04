@@ -8,6 +8,8 @@ Why enter/leave are split, why the window owns the drag, and the Liquid Glass ep
 
 ## Liquid pet input
 
+In weather mode, a press that begins on the centred pet and ends without dragging refreshes weather in either presentation. `PetOrbPanel.sendEvent` owns this click, as it owns ring refreshes and drag: no SwiftUI tap gesture takes over the glass or its drag target. Account-ring clicks take priority over an overlapping pet frame; the 300ms account guard and pager handling are unchanged. A collapsed pet click still expands the orb. Weather clicks use the controller's active-state, single-flight and 60-second guards, do not enable weather, and do not refresh quota providers. The avatar also exposes an accessibility action. Geometry/unit checks are not native input evidence.
+
 Liquid mode retains the enter-only tracker, sampled-pointer departure and window-owned drag. Its glass `contentShape`, `PetOrbLayout.containsOrb` and `PetOrbPanel.sendEvent` use the same liquid outline and motion state, with a small approach halo for pointer intent. The tail and recoil never alter ring positions, the pet centre, or window size. A new press cancels recoil; hiding or switching presentation also cancels it. These geometry checks still require bundled desktop input testing.
 
 ## Hover (open / close the card)
