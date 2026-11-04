@@ -9,7 +9,7 @@
 
 > 本專案是 [qunqin24 開發的 Pulse](https://github.com/qunqin24/Pulse) 的獨立客製版。本獨立版本正式採用 **Nokori（原名 Pulse Pet）**。本儲存庫不是上游正式版本，也不代表原作者背書。
 
-**[下載試用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)** · [雜湊與驗證範圍](Downloads/README.md)
+**[下載試用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg?raw=true)** · [雜湊與驗證範圍](Downloads/README.md)
 
 > **這是試用版，不是正式穩定版。** 使用臨時簽章，未經 Apple 公證。保留原版 Pulse，只取代舊 Nokori；首次定位授權與成功裝置定位仍待在你的 Mac 驗證。
 
@@ -30,7 +30,7 @@
 
 ## 安裝，不取代原版 Pulse
 
-請使用上方的 **[Nokori 試用 DMG](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)**，由同一份通過原生桌面測試的程式打包，沒有重新編譯。[下載說明與 SHA-256](Downloads/README.md)。檔案直接放在 repo，並非已建立標籤的 GitHub Release。上游 Pulse 的下載包不含本版客製功能。
+請使用上方的 **[Nokori 試用 DMG](Downloads/Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg?raw=true)**，由同一份通過原生桌面測試的程式打包，沒有重新編譯。[下載說明與 SHA-256](Downloads/README.md)。檔案直接放在 repo，並非已建立標籤的 GitHub Release。上游 Pulse 的下載包不含本版客製功能。
 
 1. 開啟客製版 DMG，將 **Nokori.app** 拖進「應用程式」。
 2. 保留原本的 **Pulse.app**。兩者設定、應用程式資料、登入項目與 URL scheme 分開，不遷移原版設定。
