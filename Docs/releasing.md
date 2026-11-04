@@ -10,7 +10,7 @@ Toolchain and local `swift build`: [build-from-source.md](build-from-source.md).
 
 ## Trial packaging
 
-The current weather-pet DMG is temporarily published in [Downloads](../Downloads/README.md), with a SHA-256 file and native-verification limitations, without a GitHub Release, version tag or feed change. It contains the exact accepted app from source commit `64e1028`; subsequent repository documentation changes do not imply a rebuilt installer. Keep its filename and bytes immutable. Prefer GitHub Release assets for future installers once release access and the fork's release workflow are configured, rather than adding a history of binaries to git.
+The primary weather-exclusive DMG is temporarily published in [Downloads](../Downloads/README.md), with a SHA-256 file and native-verification limitations, without a GitHub Release, version tag or feed change. It contains the exact app from source commit `58c8a96` accepted in a fresh native Apple Silicon run, including weather-over-PNG and saved-selection restoration. The older `64e1028` weather trial is retained as an archive with its original PNG-priority behavior and verification history; it is not the primary download. Subsequent repository documentation changes do not imply a rebuilt installer. Keep both filenames and their bytes immutable. Prefer GitHub Release assets for future installers once release access and the fork's release workflow are configured, rather than adding a history of binaries to git.
 
 Run `./Scripts/bundle.sh --zip` and `./Scripts/dmg.sh`. Identity and filenames come from `Sources/Pulse/Resources/AppIdentity.json`. The bundled executable is Nokori; the SwiftPM target remains Pulse. No tag, release, upstream feed, or settings migration is needed for a trial package.
 
