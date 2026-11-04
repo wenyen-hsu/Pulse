@@ -9,6 +9,10 @@
 
 > 本專案是 [qunqin24 開發的 Pulse](https://github.com/qunqin24/Pulse) 的獨立客製版。本獨立版本正式採用 **Nokori（原名 Pulse Pet）**。本儲存庫不是上游正式版本，也不代表原作者背書。
 
+**[下載試用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)** · [雜湊與驗證範圍](Downloads/README.md)
+
+> **這是試用版，不是正式穩定版。** 使用臨時簽章，未經 Apple 公證。保留原版 Pulse，只取代舊 Nokori；首次定位授權與成功裝置定位仍待在你的 Mac 驗證。
+
 ## 這個版本改了什麼？
 
 | 面板樣式 | 行為 |
@@ -19,14 +23,14 @@
 
 - 滑鼠靠近展開帳號圓環，停在圓環上顯示原有詳細卡片，離開面板與卡片後收合。
 - 預設為持續動作的小太陽；也可選貓、狐狸、兔子，或匯入透明 PNG 並調整大小。
-- 可選[天氣寵物](Docs/weather-pet.md)：雲朵、雨、雷雨、雪、霧與月亮。可離線固定選擇造型，或啟用當地天氣、明確授權定位；拒絕或無法定位時可手選城市。Open-Meteo 免費服務僅限非商業用途。
+- 可選[天氣寵物](Docs/weather-pet.zh-Hant.md)：雲朵、雨、雷雨、雪、霧與月亮。可離線固定選擇造型，或啟用當地天氣、明確授權定位；拒絕或無法定位時可手選城市。Open-Meteo 免費服務僅限非商業用途。
 - 保留原有服務商用量、帳號管理、歷史、選單列、通知與整合功能。[完整功能說明](Docs/features.md) · [支援服務](Docs/supported-services.md)。
 - 保留 75%、80%、90%、95% 警告門檻，另可自行輸入 **1～100%**。
 - 液滴動作是表面張力與黏滯感的視覺近似，**不是完整流體模擬**。「減少動態效果」會停用拖曳拉伸與回彈。
 
 ## 安裝，不取代原版 Pulse
 
-請使用維護者提供，或[本客製版 Releases](https://github.com/wenyen-hsu/Pulse/releases) 列出的 **Nokori** 試用包。若尚無客製版安裝包，請依下方原始碼步驟建置。上游 Pulse 的下載包不含本版客製功能。
+請使用上方的 **[Nokori 試用 DMG](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)**，由同一份通過原生桌面測試的程式打包，沒有重新編譯。[下載說明與 SHA-256](Downloads/README.md)。檔案直接放在 repo，並非已建立標籤的 GitHub Release。上游 Pulse 的下載包不含本版客製功能。
 
 1. 開啟客製版 DMG，將 **Nokori.app** 拖進「應用程式」。
 2. 保留原本的 **Pulse.app**。兩者設定、應用程式資料、登入項目與 URL scheme 分開，不遷移原版設定。
@@ -47,7 +51,12 @@
 
 > **從 Pulse Pet 升級：** 先結束舊版、安裝 Nokori，再移除舊 Pulse Pet 的程式本體，不要刪除資料。原有獨立設定與資料識別保留；不要同時執行新舊名稱的同一程式。原版 Pulse 仍可與 Nokori 雙開。[品牌與相容性](Docs/branding.md)。
 
+## 天氣來源與費用
+
+自動天氣使用 **Open-Meteo，不是讀取 Apple「天氣」App，也沒有使用 WeatherKit**。功能預設關閉，啟用且面板可見時約每 30 分鐘更新，不是即時同步。免費 API 不需金鑰，但**僅限非商業用途**，有流量限制且不保證服務可用性。定位授權不等於取得「天氣」App 的資料存取權；目前不會消耗任何 WeatherKit 開發者共用額度。[天氣、費用與隱私說明](Docs/weather-pet.zh-Hant.md)。
+
 ## 從原始碼建置與檢查
+
 
 需要完整 Xcode、**macOS 26 或更新 SDK**、Swift tools 6.0 以上，以及供腳本使用的 Python 3。不可刪除 SwiftUI 預覽來通過編譯，也不可僅使用 Command Line Tools。
 

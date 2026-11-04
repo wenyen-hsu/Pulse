@@ -22,7 +22,7 @@
 
 ## 설치 및 설정
 
-관리자가 제공하거나 [이 저장소의 Releases](https://github.com/wenyen-hsu/Pulse/releases)에 있는 **Nokori** 시험판을 사용하세요. 배포 파일이 없으면 소스에서 빌드하세요. 원본 Pulse 배포 파일에는 이 버전의 기능이 없습니다.
+**[시험판 DMG 다운로드 — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)** · [SHA-256 및 검증 범위](Downloads/README.md). 파일은 이 저장소에서 직접 배포하며 정식 안정판이나 태그가 있는 GitHub Release가 아닙니다. 최초 위치 권한 요청과 실제 위치 확인은 아직 검증하지 못했습니다. 원본 Pulse 배포 파일에는 이 버전의 기능이 없습니다.
 
 1. DMG를 열고 **Nokori.app**을 응용 프로그램으로 옮기세요. 기존 **Pulse.app**은 교체하지 마세요.
 2. 설정, 앱 데이터, 로그인 항목, URL 스킴은 분리되며 원본 설정을 이전하지 않습니다. 원본 자동 업데이트는 비활성화되어 있습니다.

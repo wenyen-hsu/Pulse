@@ -2,7 +2,7 @@
 
 Weather pet coverage: [weather-pet.md](weather-pet.md#verification-boundaries). `PetWeatherTests.swift` uses synthetic HTTP and location fixtures; it is not native location-permission or real-weather evidence.
 
-> This fork is **Pulse Pet**, installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#pulse-pet-independent-application). Packaging produces `build.noindex/Pulse Pet.app`, `PulsePet-<version>.zip` and `PulsePet-<version>.dmg`; no upstream updater is enabled.
+> This fork is **Nokori** (formerly Pulse Pet), installed beside the original Pulse with independent preferences and data. See [independent application identity](architecture.md#nokori-independent-application). Packaging produces `build.noindex/Nokori.app`, `Nokori-<version>.zip` and `Nokori-<version>.dmg`; no upstream updater is enabled. The [trial download notes](../Downloads/README.md) distinguish native-tested behaviour from remaining validation gaps.
 
 Identity tests cover the independent preferences suite, storage, login label, navigation scheme and status-line ownership. Display-label assertions accept the shipped translations: parallel settings tests can switch the process-wide interface language, so English-only substring assertions are not stable evidence of a retained estimated mark.
 

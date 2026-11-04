@@ -22,7 +22,7 @@
 
 ## 安装与设置
 
-请使用维护者提供或[本仓库 Releases](https://github.com/wenyen-hsu/Pulse/releases) 列出的 **Nokori** 试用包。若无定制安装包，请从源码构建；上游 Pulse 安装包不包含本版功能。
+**[下载试用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
 
 1. 打开 DMG，把 **Nokori.app** 拖到“应用程序”，不要替换原版 **Pulse.app**。
 2. 设置、应用数据、登录项和 URL scheme 独立，不迁移原版设置；上游自动更新已关闭。

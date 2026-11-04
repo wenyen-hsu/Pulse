@@ -10,7 +10,11 @@ Toolchain and local `swift build`: [build-from-source.md](build-from-source.md).
 
 ## Trial packaging
 
+The current weather-pet DMG is temporarily published in [Downloads](../Downloads/README.md), with a SHA-256 file and native-verification limitations, without a GitHub Release, version tag or feed change. It contains the exact accepted app from source commit `64e1028`; subsequent repository documentation changes do not imply a rebuilt installer. Keep its filename and bytes immutable. Prefer GitHub Release assets for future installers once release access and the fork's release workflow are configured, rather than adding a history of binaries to git.
+
 Run `./Scripts/bundle.sh --zip` and `./Scripts/dmg.sh`. Identity and filenames come from `Sources/Pulse/Resources/AppIdentity.json`. The bundled executable is Nokori; the SwiftPM target remains Pulse. No tag, release, upstream feed, or settings migration is needed for a trial package.
+
+Those scripts build a new bundle. **After native acceptance, do not run them to package an already-tested app:** stage a preserved copy of that app with the committed DMG layout/background, create the image without rebuilding, mount it read-only, and compare the app manifest including permissions and symlink targets. Verify the ad-hoc signature, architectures, `--json` startup and `hdiutil verify` before publishing. A source build or a new binary requires fresh acceptance; see [testing](testing.md).
 
 After signing, bundling runs the packaged executable's read-only `--json` startup probe before producing an archive. A failed or timed-out launch stops packaging; unit tests alone are not evidence that the installed app can bootstrap.
 
