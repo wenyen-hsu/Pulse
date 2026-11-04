@@ -26,7 +26,7 @@ struct PetOrbSettingsGroup: View {
                 SettingsRow(String.localized("Pet"),
                             subtitle: String.localized("Choose a companion or import a transparent PNG.")) {
                     HStack {
-                        WeatherAwarePetAvatar(settings: settings)
+                        OrbPetAvatar(pet: settings.orbPet, imageData: settings.orbPetImage)
                             .frame(width: 42, height: 42)
                         Picker(String.localized("Pet"), selection: $settings.orbPet) {
                             ForEach(OrbPet.allCases) { pet in
@@ -47,6 +47,12 @@ struct PetOrbSettingsGroup: View {
                         }
                         Button(String.localized("Import PNG…"), action: importImage)
                     }
+                }
+                if settings.weatherPreferences.enabled {
+                    Text(localized: "Turn off automatic weather to use the selected fixed pet.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding(12)
                 }
                 SettingsRowDivider()
                 SettingsRow(String.localized("Pet size")) {

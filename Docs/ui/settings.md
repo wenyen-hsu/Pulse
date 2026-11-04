@@ -2,6 +2,8 @@
 
 **Automatic weather pet** adds optional location/city-based artwork below the pet controls. It defaults off; only its explicit button requests location permission. Fixed weather shapes work offline through the pet menu. PNGs take priority and pause weather queries. [Weather pet](../weather-pet.md) is authoritative for consent, cadence, failure badges, privacy, attribution and API terms.
 
+The **Pet** picker preview always shows the saved fixed selection (or PNG), not the automatic weather override, so each menu selection has immediate feedback. While automatic weather is enabled, a caption explains that it must be turned off to use the fixed pet in the orb.
+
 Application-name references in localized interface text interpolate `AppIdentity.name`, including login/menu-bar help, notifications, provider/access explanations and the current-app description in About. All six language tables use matching format keys; original Pulse/qunqin24 attribution remains literal. Multi-argument translations keep explicit format positions so the app name cannot replace a provider name. Exported developer integration folders use the current name; data domains and navigation schemes retain the stable identity documented in [branding](../branding.md).
 
 Chrome and why it is AppKit-owned: [../architecture.md](../architecture.md). Localization rules: [../development.md](../development.md).
