@@ -452,7 +452,7 @@ struct AlertMemoryTests {
     func steadyStatesAreNotFailures() {
         for reason: ProviderUsage.Unavailability in [
             .apiKeyMissing, .notSignedIn, .antigravityNotRunning, .grokBotNotIncluded,
-            .noLimitsReported, .loading, .codexNotInstalled, .volcengineSignInRequired
+            .noLimitsReported, .appPlanHasNoUsage, .loading, .codexNotInstalled, .volcengineSignInRequired
         ] {
             var memory = AlertMemory()
             for _ in 1...5 {

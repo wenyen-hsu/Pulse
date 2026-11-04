@@ -643,6 +643,7 @@ struct ProviderUsage: Identifiable, Equatable, Sendable {
         /// The app has run here and its store holds no plan — never signed in,
         /// or a build that stopped writing the row.
         case devinPlanUnread
+        case appPlanHasNoUsage
         /// A token was pasted with no organisation beside it. The quota path
         /// is scoped by one and nothing on this Mac carries it, so this is a
         /// separate answer from a missing token: half of what is needed is
@@ -767,6 +768,7 @@ struct ProviderUsage: Identifiable, Equatable, Sendable {
             case .zaiNoCodingPlan: .localized("That key works. The account has no Coding Plan running on it.")
             case .devinAppMissing: .localized("Devin isn't installed.")
             case .devinPlanUnread: .localized("Open Devin and sign in, so it can record your plan.")
+            case .appPlanHasNoUsage: .localized("The app's saved plan has no usage figures. Use a signed-in browser to check usage.")
             case .devinOrganizationMissing: .localized("Add your Devin organization after the token, separated by a space.")
             case .serverAddressMissing: .localized("Add the server address in Settings.")
             case .serverAddressRefused: .localized("That address can't be used. It needs https://, unless the server is on your own network.")

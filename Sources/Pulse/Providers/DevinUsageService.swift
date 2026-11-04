@@ -226,13 +226,20 @@ struct DevinUsageService: Sendable {
     /// - A snapshot older than `snapshotFreshFor` is marked `.stale`, which is
     ///   what puts "as of …" on the card.
     static func reading(for plan: Plan, launchedAt: Date?, now: Date) -> ProviderUsage {
+        let reportedWindows = Self.windows(from: plan)
+        let balance = plan.overageBalance
+        if reportedWindows.isEmpty, balance == nil,
+           plan.dailyRemainingPercent == nil, plan.weeklyRemainingPercent == nil,
+           !plan.hideDailyQuota, !plan.hideWeeklyQuota {
+            return .unavailable(.devin, reason: .appPlanHasNoUsage)
+        }
+
         guard let launchedAt, launchedAt <= now,
               now.timeIntervalSince(launchedAt) <= UsageCache.maximumAge else {
             return .unavailable(.devin, reason: .devinPlanUnread)
         }
 
-        let windows = Self.windows(from: plan).filter { ($0.resetsAt ?? .distantFuture) > now }
-        let balance = plan.overageBalance
+        let windows = reportedWindows.filter { ($0.resetsAt ?? .distantFuture) > now }
         guard !windows.isEmpty || balance != nil else {
             return .unavailable(.devin, reason: .noLimitsReported)
         }

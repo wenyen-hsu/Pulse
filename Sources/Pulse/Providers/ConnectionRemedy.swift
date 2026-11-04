@@ -54,6 +54,7 @@ enum ConnectionRemedy: Equatable {
         case .localLoginMissing, .localLoginExpired, .localAppMissing, .noPlan: return .help
         case .codexNotInstalled, .kiroNotInstalled, .kiroVersionUnsupported,
              .volcengineCLIMissing, .antigravityCLIMissing, .antigravityCLIOutdated, .noLimitsReported,
+             .appPlanHasNoUsage,
              .grokBotNotIncluded, .zaiNoCodingPlan, .xiaomiNoCodingPlan, .qoderNoCredits,
              .stepFunNoPlan,
              .ollamaPageChanged, .unreadableReply:
@@ -116,6 +117,9 @@ enum ConnectionRemedy: Equatable {
         } else {
             page = provider.profile?.setupSlug ?? provider.rawValue
         }
-        return URL(string: "https://github.com/qunqin24/Pulse/blob/main/Docs/setup/\(page).md")!
+        let repository = provider == .devin
+            ? AppIdentity.repositoryURL
+            : URL(string: "https://github.com/qunqin24/Pulse")!
+        return repository.appending(path: "blob/main/Docs/setup/\(page).md")
     }
 }

@@ -57,6 +57,18 @@ A free one reports a message pool instead — captured out of `state.vscdb.backu
 
 ## What is drawn
 
+### A saved plan without usage figures
+
+A read-only local check on **2026-11-04**, with Devin.app **3.11.238**, found a Pro plan containing `remainingMessages: -1`, `totalMessages: -1` and `remainingFlexCredits: 0`, but no daily/weekly percentages, reset fields or `overageBalanceMicros`. The plan fields were flat, not a nested quota object. This observation describes one installation, not every account or build of that version.
+
+Such a row identifies a subscription but provides no usable allowance. It returns `.appPlanHasNoUsage`, with a browser-setup explanation, rather than `.noLimitsReported`. This is detected before the launch-age check: restarting to repair a timestamp cannot supply fields that are absent from the row. The **Setup help** action opens [Nokori's Devin guide](../setup/devin.md). No browser session is read or source preference changed automatically.
+
+`remainingFlexCredits` is not treated as a percentage or as `overageBalanceMicros`. A plan name does not imply a quota size. If the saved plan lacks usage, use the existing signed-in Chromium browser route to ask for current quota; that route still reports only figures returned by the endpoint. An expired window or a plan explicitly hiding its quotas retains its existing `.noLimitsReported` result. Explicit hide flags keep the original timestamp checks and no-limits path even when the corresponding percentages are absent.
+
+Rows that do contain usable usage figures still follow the timestamp, expiry and account-scope rules below.
+
+### Field mapping
+
 | Field | Window | Notes |
 |---|---|---|
 | `dailyRemainingPercent` | `.daily`, 86,400s | Dropped entirely when `hideDailyQuota` |

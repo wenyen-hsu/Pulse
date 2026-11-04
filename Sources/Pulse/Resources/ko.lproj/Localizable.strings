@@ -442,6 +442,7 @@
 "Add an API key in Settings." = "설정에서 API 키를 입력하십시오.";
 "Devin isn't installed." = "Devin이 설치되어 있지 않습니다.";
 "Open Devin and sign in, so it can record your plan." = "Devin을 열고 로그인하면 요금제가 기록됩니다.";
+"The app's saved plan has no usage figures. Use a signed-in browser to check usage." = "앱에 저장된 요금제에는 사용량 정보가 없습니다. 로그인한 브라우저를 연결해 사용량을 확인하세요.";
 "Add your Devin organization after the token, separated by a space." = "토큰 뒤에 공백 한 칸을 두고 Devin 조직 이름을 입력하십시오.";
 "Stored encrypted on this Mac." = "이 Mac에 암호화되어 저장됩니다.";
 "From z.ai. Stored encrypted on this Mac." = "z.ai에서 발급받습니다. 이 Mac에 암호화되어 저장됩니다.";
