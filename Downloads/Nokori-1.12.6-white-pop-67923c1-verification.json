@@ -37,7 +37,7 @@
     "Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg": "a4c1d865116ba58f6eff4fa4d993465b65f120fcaf66d8d6495f031bb034401c",
     "Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg": "7e96e61f27e2c021ded1c5328f96da7d07d785aa5d54bd1bad344f02dab9add1"
   },
-  "native_installer_recheck": "failed: macOS 26.6.2 damaged DMG warning before Finder mount",
+  "native_installer_recheck": "blocked_environment: damaged warning observed before mount on VM with unavailable XProtect rules",
   "known_limitations": [
     "Classic-77 extends beyond the display; accepted trial limitation, not a pass",
     "GPS and first-time location permission remain unverified",
@@ -56,5 +56,35 @@
     "gatekeeper_enabled": true,
     "override_attempted": false
   },
-  "weather_native_recheck": "passed: visible busy/repeated click/completion/cooldown/actual PNG restoration on unchanged local-build app"
+  "weather_native_recheck": "passed: visible busy/repeated click/completion/cooldown/actual PNG restoration on unchanged local-build app",
+  "environment_acceptance_blocker": {
+    "scope": "Observed only on the session's macOS 26.6.2 VM; not a finding about the user's Mac or every Mac.",
+    "status": "blocked_environment; fresh-download acceptance remains unestablished",
+    "gatekeeper_status": "assessments enabled; this does not establish XProtect health",
+    "rule_bundle": {
+      "path": "/Library/Apple/System/Library/CoreServices/XProtect.bundle",
+      "observed_type": "zero-byte regular file, not directory",
+      "owner": "root:wheel",
+      "mode": "000",
+      "flags": "schg",
+      "created_before_this_task": true
+    },
+    "scanner_evidence": [
+      "Internal Xprotect Error from syspolicy_check distribution",
+      "XProtect.meta.plist / XProtect.yara rule paths not accessible",
+      "nil rulestring found when compiling rules",
+      "Failed to allocate a malware assessment"
+    ],
+    "benign_control": {
+      "url": "https://github.com/octocat/Hello-World/archive/refs/heads/master.zip",
+      "size": 351,
+      "sha256": "acd2fd3563d8de4b46dae1edeb96607b3d105a0a3be894e90aa5472353a93233",
+      "contents": "directory and 13-byte README only; no executable/app",
+      "native_chrome_quarantine_retained": true,
+      "outcome": "same damaged warning; Cancel; not extracted"
+    },
+    "conclusion": "The VM cannot provide reliable downloaded-archive acceptance. These warnings do not establish Nokori corruption or malware. Adhoc/notary limitations remain independent and must be rechecked on a healthy Mac.",
+    "changes_to_os_protection": false,
+    "next_required": "Healthy macOS XProtect rules and successful benign archive control, then repeat real browser/Finder installer and per-app approval testing. Do not remove quarantine, clear immutable flags, disable security or force approval."
+  }
 }

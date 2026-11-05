@@ -27,7 +27,9 @@ Use the exporter inside Icon Composer; Xcode's `xcrun ictool` may instead select
 
 `bundle.sh` compiles Icon Composer input using actool; it does not use the preview tile as a flat replacement for the system icon. The SVG's explicit white gradient and the system's automatic gradient/material are separate renderings of the same artwork, not pixel-identical images. Original Pulse and integration-specific artwork remain unchanged.
 
-The current [`67923c1` white-Pop trial](../Downloads/README.md) packages the frozen native-tested app with this artwork, without rebuilding or re-signing. The earlier `f5370ee` blue-glass installer and its checksums remain archived unchanged. Both are ad-hoc signed, not Apple-notarized; native icon tests do not establish first-download Gatekeeper approval. The installer background and download guide explain Done → Privacy & Security → Open Anyway for the verification warning, without disabling protection or removing quarantine.
+The [`67923c1` white-Pop trial candidates](../Downloads/README.md) package the frozen native-tested app with this artwork, without rebuilding or re-signing. The earlier `f5370ee` blue-glass installer and its checksums remain archived unchanged. The contained apps are ad-hoc signed, not Apple-notarized; native icon tests do not establish first-download Gatekeeper approval. The installer background and download guide explain Done → Privacy & Security → Open Anyway for the verification warning, without disabling protection or removing quarantine.
+
+**Delivery is held.** The DMG and independent diagnostic ZIP were blocked before mount/extraction on a VM whose XProtect rules are unavailable; a text-only control ZIP was rejected too. This does not establish Nokori corruption or malware, and the new downloaded installation/approval path remains unverified. Recheck on a healthy Mac before promoting either package. The primary README links lead to the blocked-status guide, not a ready download.
 
 ## Stable identity during the rename
 

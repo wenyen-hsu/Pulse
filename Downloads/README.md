@@ -4,17 +4,17 @@
 
 ## Download / 下載
 
-**Delivery blocked / 暫停交付。** The browser-downloaded DMG was rejected as damaged despite matching source bytes. Do not install this candidate. A separate ZIP built directly from the frozen app is under test, not yet accepted. / 瀏覽器下載的 DMG 與來源位元組一致，但被系統標為損毀，請勿安裝。直接由凍結程式封裝的 ZIP 正在另行驗證，尚未通過交付驗收。
+**Delivery blocked / 暫停交付。** Both independently packaged candidates encountered damage warnings before mount/extraction on the test VM. The same warning also blocked a text-only control ZIP; XProtect rules are unavailable on that VM. Neither new package is accepted or offered as ready. Retest on a healthy Mac is required; this is not proof that Nokori is corrupt or malicious. / 兩種獨立封裝在測試機上均於掛載／解壓前被損毀警告阻擋；純文字對照 ZIP 也遇到同樣警告，且該機無法讀取 XProtect 規則。新包均未通過驗收，不作為可用下載交付，需在正常的 Mac 上重驗；不能據此認定 Nokori 損毀或含有惡意程式。
 
 | Item / 項目 | Details / 說明 |
 | --- | --- |
 | Build / 版本 | Nokori 1.12.6 white-Pop Liquid trial / 白色 Pop 液態試用版 |
 | App source / 程式來源 | [67923c1](https://github.com/wenyen-hsu/Pulse/commit/67923c1dafd7a35e9c50cf64ddae4c7680f2de2d) · [PR #20](https://github.com/wenyen-hsu/Pulse/pull/20); source tree matches merged main 92f1217 |
-| Size / 大小 | 17,585,092 bytes, about 18 MB / 約 18 MB |
+| Candidate sizes / 候選包大小 | DMG 17,585,092 bytes; diagnostic ZIP 16,574,903 bytes / 均未通過下載驗收 |
 | Architecture / 架構 | Apple Silicon (arm64) + Intel (x86_64); both SDK 26.0 / 雙架構均寫入 SDK 26.0 |
 | System / 系統 | macOS 14+; full Liquid Glass requires macOS 26+ / 完整液態玻璃需 macOS 26 以上 |
 | Signing / 簽章 | Ad-hoc signed, **not Apple-notarized** / 臨時簽章，**未經 Apple 公證** |
-| Integrity / 完整性 | [Package verification](Nokori-1.12.6-white-pop-67923c1-verification.json) · [Full bundle manifest](Nokori-1.12.6-white-pop-67923c1-bundle-manifest.json) |
+| Integrity / 完整性 | [DMG verification](Nokori-1.12.6-white-pop-67923c1-verification.json) · [ZIP verification](Nokori-1.12.6-white-pop-67923c1-zip-verification.json) · [Full bundle manifest](Nokori-1.12.6-white-pop-67923c1-bundle-manifest.json) |
 
 ## 繁體中文
 
@@ -36,6 +36,8 @@ The package now includes the white-glass Pop icon: yellow sun, navy outlines and
 
 ## First launch / 首次開啟
 
+**Reference instructions only: new-package delivery remains blocked.** Do not use a security override for a damage warning. / **以下僅為標準流程說明，新包仍暫停交付。** 遇到損毀警告時請停止，不以安全性例外繞過。
+
 1. Quit older **Nokori / Pulse Pet**; keep original **Pulse**. / 結束舊 Nokori／Pulse Pet，保留原版 Pulse。
 2. Drag **Nokori** from the DMG to **Applications**, replacing only old Nokori, then open the installed app. / 把 Nokori 拖進「應用程式」，只取代舊 Nokori，再從「應用程式」開啟。
 3. For **“Apple could not verify … is free of malware”**, choose **Done**, **not Move to Trash**. This wording alone is not an explicit malware detection. / 若顯示 Apple「無法驗證」警告，選 **Done（完成）**，不要選 **Move to Trash（移到垃圾桶）**；這段文字本身不代表已偵測到惡意程式。
@@ -52,7 +54,9 @@ The user completed Apple's per-app flow for the older f5370ee blue-icon trial wi
 
 **Native-tested app:** Real mouse input on an Apple Silicon VM covered Light/Dark Finder/Dock icons; fixed arc across 16% → 87% → genuine no-limits readings; Dock close/menu Quit/relaunch; 9/17/77 labelled positive-quota fixtures without a Liquid pager and with central pet clearance; last-account hover, isolated click, 60-second hover/drag counter checks and genuine re-entry refresh; Circular Next/Previous; Taipei weather fixture and PNG disable/restore. Fixtures are not live provider evidence. Test preferences/data were restored. / **原生程式驗證：** Apple Silicon VM 真實滑鼠涵蓋明暗圖示、用量及真正無讀值時紅弧固定、退出重開、9／17／77 帳號 fixture 散排、末帳號懸停、獨立點擊、長時間懸停／拖曳不刷新、真正離開重入後刷新、圓形分頁、天氣 fixture 與 PNG 互斥還原。Fixtures 不代表真實服務商資料；測試設定／資料已還原。
 
-**Downloaded DMG acceptance: failed before mount.** The real Chrome download matches SHA-256/size and retains quarantine, but macOS 26.6.2 reports the DMG is damaged. Testing stopped without override; Finder/footer/copy/installed-app/first-launch remain untested. / **下載 DMG 驗收：掛載前失敗。** 實際 Chrome 下載的雜湊／大小一致且保留隔離，但 macOS 26.6.2 顯示映像損毀；未繞過，Finder／底圖／複製／安裝版及首開均未測。
+**Downloaded DMG and ZIP acceptance: blocked before mount/extraction.** The real Chrome download matches SHA-256/size and retains quarantine, but macOS 26.6.2 reports the DMG is damaged. Testing stopped without override; Finder/footer/copy/installed-app/first-launch remain untested. / **下載 DMG 驗收：掛載前失敗。** 實際 Chrome 下載的雜湊／大小一致且保留隔離，但 macOS 26.6.2 顯示映像損毀；未繞過，Finder／底圖／複製／安裝版及首開均未測。
+
+**Environment diagnosis (this VM only):** a separate [Hello-World data-only ZIP](https://github.com/octocat/Hello-World/archive/refs/heads/master.zip), 351 bytes with only a 13-byte README, had the expected SHA-256 and native Chrome quarantine but was rejected by normal Finder/Archive Utility too. Read-only checks found XProtect.bundle was a zero-byte immutable regular file, not a rules directory; XProtectService reported inaccessible plist/yara rules and could not create an assessment. `syspolicy_check distribution` reported Internal Xprotect Error, in addition to the independent ad-hoc/notary limitations. No malware detection verdict was observed. No security component or immutable flag was changed; no warning was bypassed. A healthy control result is required before repeating installer acceptance. / **環境診斷（僅此測試機）：** 獨立的 Hello-World 純文字 ZIP 只有 351 bytes／13-byte README，雜湊正確且保留 Chrome 隔離，仍被正常 Finder／Archive Utility 流程拒絕。唯讀檢查發現 XProtect.bundle 是零位元、不可變的普通檔案，而非規則目錄；XProtectService 無法讀取 plist／yara 規則或建立評估，分發檢查另報內部錯誤。臨時簽章／未公證限制仍獨立存在，不能因此略過。未觀察到惡意程式偵測結論，未修改安全元件／不可變旗標或繞過警告。須先在正常環境通過對照，再重做安裝驗收。
 
 **Weather gap closed on the unchanged local-build app:** Updating/spinner/disabled Refresh were visible; a real repeated click about five seconds into the request did not duplicate it. Completion advanced 9:00→9:15; immediate cooldown repeat stayed at CONNECT count2. PNG controls and the actual saved PNG restored when weather was disabled. / **未改動的本機建置版已補驗天氣：** 更新中／spinner／停用按鈕可見，請求中約五秒再次點擊沒有重複請求；完成後時間 9:00→9:15，冷卻重點仍維持 CONNECT 計數2；關閉天氣後控制項及實際 PNG 還原。此結果不代表下載首開通過。
 
@@ -64,9 +68,13 @@ Build, UTC tests, asset tests and localization do not replace native input evide
 
 ## Verify / 核對下載
 
+These hashes establish byte identity only, not downloaded first-use approval or malware clearance. / 雜湊僅核對位元組，不代表下載首開放行或惡意程式掃描通過。
+
 Run / 執行：`shasum -a 256 Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg`
 
 Expected SHA-256 / 預期雜湊：`1789447ca3b752f698e526b6e4aab8fd07039e662efb37f87629559c4a2dd6af` ([SHA256SUMS](SHA256SUMS)).
+
+Diagnostic ZIP SHA-256 / 診斷用 ZIP 雜湊：`d75ca4d915ec9dcd21b8ccdcba7d24dea1ceb5748dce072a0773303f44bd12c7`.
 
 Executable SHA-256 / 執行檔雜湊：`0ab5ba6e08a5e39df827380e41210ec3a3b22466ade59c66caf51b87c5b21d8b`.
 
