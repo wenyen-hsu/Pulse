@@ -43,6 +43,12 @@ swift build
 
 Treat remaining warnings as failures.
 
+`RobotFace` gives its sine/cosine components explicit `CGFloat` result types so Darwin and CoreGraphics overloads are unambiguous on Intel as well as ARM. A local ARM build alone does not establish Intel compiler compatibility; keep the Intel CI build and universal bundle checks.
+
+The recap DST test computes its durations and typed `Double` week length before `#expect`, rather than asking the expanded macro to infer nested arithmetic. The 167/169-hour assertions are unchanged.
+
+CI's initial build and tests use `--cache-path "$RUNNER_TEMP/swiftpm-cache"` to isolate SwiftPM downloads from the runner's shared cache. The later bundle assembly reuses the workspace's resolved dependencies and extracted artifacts; this does not disable dependency checks or any build/test gate.
+
 CI uses the standard **`macos-15-intel`** runner and explicitly sets `DEVELOPER_DIR` to **Xcode 26.1.1**, which includes the macOS 26.1 SDK. The runner's macOS version and the selected SDK are separate: `glassEffect` requires a macOS 26 SDK even behind `#available`, but the build host need not run macOS 26. The Sequoia image's default Xcode 16.4 is insufficient, so do not remove the Xcode selection. Release retains `macos-26` with its SDK check. See [GitHub's supported runner labels](https://docs.github.com/en/actions/reference/runners/github-hosted-runners) and the [Sequoia Intel image's Xcode and SDK inventory](https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md).
 
 Both Tahoe ARM and Intel jobs have encountered hosted-runner allocation failures. Moving CI to the mature Sequoia Intel pool does not guarantee capacity or remove the SDK check, warning gate, tests, or universal bundle verification. This CI job runs on macOS 15; it does not replace native macOS 26 input and Liquid Glass verification. A local build on an older SDK will not match CI.

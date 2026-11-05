@@ -46,6 +46,7 @@ struct RecapDayWeekTests {
     @Test("The days the clocks change are 23 and 25 hours, and a week across one is still seven days")
     func clockChanges() throws {
         let calendar = Self.newYork
+        let weekHours: Double = 7 * 24
         #expect(Self.hours(Recap.Period.day(year: 2026, month: 3, day: 8).bounds(calendar: calendar)) == 23)
         #expect(Self.hours(Recap.Period.day(year: 2026, month: 11, day: 1).bounds(calendar: calendar)) == 25)
         #expect(Self.hours(Recap.Period.day(year: 2026, month: 3, day: 9).bounds(calendar: calendar)) == 24)
@@ -54,9 +55,11 @@ struct RecapDayWeekTests {
         #expect(spring.end == Self.at(2026, 3, 9, 0, in: calendar))
         let across = try #require(Recap.Period.week(year: 2026, month: 3, day: 5).bounds(calendar: calendar))
         #expect(across.end == Self.at(2026, 3, 12, 0, in: calendar))
-        #expect(across.end.timeIntervalSince(across.start) / 3600 == 7 * 24 - 1)
+        let acrossHours = across.end.timeIntervalSince(across.start) / 3600
+        #expect(acrossHours == weekHours - 1)
         let autumn = try #require(Recap.Period.week(year: 2026, month: 10, day: 26).bounds(calendar: calendar))
-        #expect(autumn.end.timeIntervalSince(autumn.start) / 3600 == 7 * 24 + 1)
+        let autumnHours = autumn.end.timeIntervalSince(autumn.start) / 3600
+        #expect(autumnHours == weekHours + 1)
     }
 
     @Test("Where midnight does not exist the day starts at its first hour")

@@ -96,11 +96,13 @@ enum RobotFace {
 
         return points.map { point in
             let angle = atan2(point.y - cy, point.x - cx)
-            let xTerm = pow(abs(cos(angle)) / halfW, exponent)
-            let yTerm = pow(abs(sin(angle)) / halfH, exponent)
+            let cosine: CGFloat = cos(angle)
+            let sine: CGFloat = sin(angle)
+            let xTerm = pow(abs(cosine) / halfW, exponent)
+            let yTerm = pow(abs(sine) / halfH, exponent)
             let denominator = pow(xTerm + yTerm, 1 / exponent)
             let radius = denominator > 0 ? 1 / denominator : 0
-            let target = CGPoint(x: cx + cos(angle) * radius, y: cy + sin(angle) * radius)
+            let target = CGPoint(x: cx + cosine * radius, y: cy + sine * radius)
             return CGPoint(x: point.x + (target.x - point.x) * amount,
                            y: point.y + (target.y - point.y) * amount)
         }
