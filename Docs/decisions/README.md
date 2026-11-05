@@ -8,6 +8,7 @@ A decision records a reason, not proof the measurement still holds — a local p
 |---|---|
 | [never-strip-previews.md](never-strip-previews.md) | [../build-from-source.md](../build-from-source.md) |
 | [panel-frame.md](panel-frame.md) | [../ui/panel-geometry.md](../ui/panel-geometry.md) |
+| [liquid-scatter-trial-classic-limit.md](liquid-scatter-trial-classic-limit.md) — why the Liquid trial disclosed the large-list Classic failure instead of fixing it | [../ui/panel-geometry.md](../ui/panel-geometry.md) |
 | [hover-and-drag.md](hover-and-drag.md) | [../ui/input.md](../ui/input.md) |
 | [liquid-glass.md](liquid-glass.md) | [../ui/rings-and-surface.md](../ui/rings-and-surface.md) |
 | [adaptive-refresh.md](adaptive-refresh.md) | [../refresh-and-data.md](../refresh-and-data.md) |
