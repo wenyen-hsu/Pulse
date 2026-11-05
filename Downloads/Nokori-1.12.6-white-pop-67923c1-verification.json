@@ -1,0 +1,51 @@
+{
+  "source_commit": "67923c1dafd7a35e9c50cf64ddae4c7680f2de2d",
+  "merged_main_equivalent": "92f12178cf1b36e6fe15faac81b475fc549bc6a8",
+  "app": {
+    "bundle_identifier": "io.github.wenyen-hsu.PulsePet",
+    "version": "1.12.6",
+    "minimum_macos": "14.0",
+    "executable_sha256": "0ab5ba6e08a5e39df827380e41210ec3a3b22466ade59c66caf51b87c5b21d8b",
+    "architectures": [
+      "x86_64",
+      "arm64"
+    ],
+    "sdk_stamps": [
+      "26.0",
+      "26.0"
+    ],
+    "signature": "ad-hoc; not Apple notarized",
+    "manifest_entries": 281,
+    "updater_feed_present": false,
+    "url_schemes": [
+      "pulse-pet"
+    ],
+    "cdhash": "080359f15b4ff4bb9ea290cd8227e65de8cd1cb6"
+  },
+  "dmg_filename": "Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg",
+  "dmg_sha256": "1789447ca3b752f698e526b6e4aab8fd07039e662efb37f87629559c4a2dd6af",
+  "dmg_bytes": 17585092,
+  "bundle_manifest_filename": "Nokori-1.12.6-white-pop-67923c1-bundle-manifest.json",
+  "bundle_manifest_sha256": "7ff1ce10137832e2d49b6f4bfc30ee62dab3c04870b7e10ebabf8866d8b0d620",
+  "hdiutil_verify": "Checksumming Protective Master Boot Record (MBR : 0)\u2026\nProtective Master Boot Record (MBR :: verified   CRC32 $956984B4\nChecksumming GPT Header (Primary GPT Header : 1)\u2026\n GPT Header (Primary GPT Header : 1): verified   CRC32 $DD7BDF44\nChecksumming GPT Partition Data (Primary GPT Table : 2)\u2026\nGPT Partition Data (Primary GPT Tabl: verified   CRC32 $304F9205\nChecksumming  (Apple_Free : 3)\u2026\n                    (Apple_Free : 3): verified   CRC32 $00000000\nChecksumming disk image (Apple_HFS : 4)\u2026\n          disk image (Apple_HFS : 4): verified   CRC32 $79101AA0\nChecksumming  (Apple_Free : 5)\u2026\n                    (Apple_Free : 5): verified   CRC32 $00000000\nChecksumming GPT Partition Data (Backup GPT Table : 6)\u2026\nGPT Partition Data (Backup GPT Table: verified   CRC32 $304F9205\nChecksumming GPT Header (Backup GPT Header : 7)\u2026\n  GPT Header (Backup GPT Header : 7): verified   CRC32 $F6B12F2B\nverified   CRC32 $73ADCEEE",
+  "frozen_staged_mounted_install_copy_manifests_match": true,
+  "manifest_includes_file_bytes_permissions_and_symlink_targets": true,
+  "rebuild_after_native_acceptance": false,
+  "resign_after_native_acceptance": false,
+  "older_installers_unchanged": {
+    "Nokori-1.12.6-weather-64e1028-trial-universal.dmg": "a3f1bd9f9d782d7be427fc0bff4186458d600e3ce88491c8634918187d60b90d",
+    "Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg": "a4c1d865116ba58f6eff4fa4d993465b65f120fcaf66d8d6495f031bb034401c",
+    "Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg": "7e96e61f27e2c021ded1c5328f96da7d07d785aa5d54bd1bad344f02dab9add1"
+  },
+  "native_installer_recheck": "pending",
+  "known_limitations": [
+    "Classic-77 extends beyond the display; accepted trial limitation, not a pass",
+    "GPS and first-time location permission remain unverified",
+    "Downloaded first-use approval for this new bundle is not yet established",
+    "Intel hardware, older macOS, narrow/multiple displays and real provider authentication/usage/notifications remain unverified or non-exhaustive",
+    "Exact sub-second input timing and every live weather transition are not established"
+  ],
+  "read_only_mounted_startup_json": "passed (cache-only; output not retained)",
+  "architectures_and_sdk_stamps_rechecked": true,
+  "installer_footer": "Done (not Move to Trash), then Privacy & Security \u2192 Open Anyway; do not disable Gatekeeper"
+}

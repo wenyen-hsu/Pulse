@@ -7,13 +7,13 @@
 
 原生 macOS AI 用量监视器：中央小太阳宠物，可切换圆形或液态玻璃外观。
 
-新版白色玻璃 Pop 图标的**红弧是固定品牌造型，不是实时用量**。下方现有试用下载仍使用先前的蓝色玻璃图标。[图标与生成方式](Docs/branding.md)。
+下方试用版已采用白色玻璃 Pop 图标，**红弧是固定品牌造型，不代表实时用量**。[图标与生成方式](Docs/branding.md)。
 
 > 本项目是 [qunqin24 开发的 Pulse](https://github.com/qunqin24/Pulse) 的独立定制版，不代表原作者背书。本独立版本正式采用 **Nokori（原名 Pulse Pet）**。
 
 ## 定制功能
 
-首次设置默认使用**液态宠物**，已保存的面板样式不会更改。`f5370ee` 试用版已包含液态默认值、全部账号分散布局、点击天气更新，以及拖动放开后不再意外刷新全部账号的修复。
+首次设置默认使用**液态宠物**，已保存的面板样式不会更改。`67923c1` 试用版已包含液态默认值、全部账号分散布局、点击天气更新，以及拖动放开后不再意外刷新全部账号的修复。
 
 **已知限制：** 启用 77 个账号时，经典侧栏会超出屏幕，可能无法显示。大量账号请使用液态宠物或圆形宠物浮点。[试用版验证范围与限制](Downloads/README.md)。
 
@@ -30,12 +30,12 @@
 
 ## 安装与设置
 
-**[下载试用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg?raw=true)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
+**[下载试用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
 
 1. 打开 DMG，把 **Nokori.app** 拖到“应用程序”，不要替换原版 **Pulse.app**。
 2. 设置、应用数据、登录项和 URL scheme 独立，不迁移原版设置；上游自动更新已关闭。
 3. 启动后选择要监控的服务。应用常驻菜单栏，也可右键点击面板打开设置。
-4. 试用包仅临时签名，**未经 Apple 公证**。只对可信安装包使用“系统设置 → 隐私与安全性 → 仍要打开”。
+4. 试用包仅临时签名，**未经 Apple 公证**。如果 Apple 提示“无法验证”，先选 **Done（完成）**，不要移到废纸篓；再仅对可信来源使用“系统设置 → 隐私与安全性 → 仍要打开”。如果明确提示已检测到恶意软件或“将损坏电脑”，请停止。[首次打开说明](Downloads/README.md)。
 
 需要 macOS 14+，完整 Liquid Glass 外观需要 macOS 26+。Universal 包包含 Apple Silicon 和 Intel；定制面板尚未在 Intel 硬件及旧版系统实测。
 

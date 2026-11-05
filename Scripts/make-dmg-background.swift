@@ -32,8 +32,9 @@ let drawing = NSImage(size: size, flipped: true) { _ in
     arrow.stroke()
     line("Based on Pulse by qunqin24 · Apache 2.0", y: 288, size: 12)
     line("Thank you to the original author and contributors.", y: 306, size: 11, shade: 0.45)
-    line("If macOS blocks \(name), open Privacy & Security in System Settings.", y: 354, size: 12)
-    line("Choose Open Anyway. This trial build is not notarized.", y: 374, size: 12, shade: 0.45)
+    line("Cannot verify? Choose Done (not Move to Trash).", y: 346, size: 12)
+    line("Then System Settings → Privacy & Security → Open Anyway.", y: 366, size: 12)
+    line("Unnotarized trial. Trust the source first; never disable Gatekeeper.", y: 386, size: 11, shade: 0.45)
     return true
 }
 let representations: [NSBitmapImageRep] = [1, 2].map { scale in

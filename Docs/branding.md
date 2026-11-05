@@ -27,7 +27,7 @@ Use the exporter inside Icon Composer; Xcode's `xcrun ictool` may instead select
 
 `bundle.sh` compiles Icon Composer input using actool; it does not use the preview tile as a flat replacement for the system icon. The SVG's explicit white gradient and the system's automatic gradient/material are separate renderings of the same artwork, not pixel-identical images. Original Pulse and integration-specific artwork remain unchanged.
 
-The existing `f5370ee` trial download still contains the earlier blue-glass icon. Updating source artwork does not change that archived installer, its checksums, or its ad-hoc signing/notarization status. A new icon build needs separate bundle and native verification before it is offered as a download.
+The current [`67923c1` white-Pop trial](../Downloads/README.md) packages the frozen native-tested app with this artwork, without rebuilding or re-signing. The earlier `f5370ee` blue-glass installer and its checksums remain archived unchanged. Both are ad-hoc signed, not Apple-notarized; native icon tests do not establish first-download Gatekeeper approval. The installer background and download guide explain Done → Privacy & Security → Open Anyway for the verification warning, without disabling protection or removing quarantine.
 
 ## Stable identity during the rename
 
