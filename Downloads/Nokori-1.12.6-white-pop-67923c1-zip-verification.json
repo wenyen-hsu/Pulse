@@ -81,6 +81,15 @@
     },
     "conclusion": "The VM cannot provide reliable downloaded-archive acceptance. These warnings do not establish Nokori corruption or malware. Adhoc/notary limitations remain independent and must be rechecked on a healthy Mac.",
     "changes_to_os_protection": false,
-    "next_required": "Healthy macOS XProtect rules and successful benign archive control, then repeat real browser/Finder installer and per-app approval testing. Do not remove quarantine, clear immutable flags, disable security or force approval."
+    "next_required": "Healthy macOS XProtect rules and successful benign archive control, then repeat real browser/Finder installer and per-app approval testing. Do not remove quarantine, clear immutable flags, disable security or force approval.",
+    "official_update_attempt": {
+      "tool": "Apple /usr/bin/xprotect update",
+      "administrator_authorization": "existing noninteractive sudo",
+      "result": "Failed to create update staging directory, aborting update",
+      "exit_code": 0,
+      "succeeded": false,
+      "bundle_version_after_attempt": "0",
+      "immutable_placeholders_and_gatekeeper_configuration_unchanged": true
+    }
   }
 }
