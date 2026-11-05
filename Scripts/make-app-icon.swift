@@ -26,68 +26,115 @@ func svg(_ path: CGPath) -> String {
     return parts.joined(separator: " ")
 }
 
-func arc(radius: CGFloat, start: CGFloat = -.pi / 6, end: CGFloat = .pi * 1.5) -> CGPath {
+func arc(radius: CGFloat, start: CGFloat = -90, end: CGFloat = 180) -> CGPath {
     let path = CGMutablePath()
     path.addArc(center: CGPoint(x: 512, y: 512), radius: radius,
-                startAngle: start, endAngle: end, clockwise: false)
+                startAngle: start * .pi / 180, endAngle: end * .pi / 180,
+                clockwise: false)
     return path
 }
 
-let ring = arc(radius: 274)
+func circle(_ x: CGFloat, _ y: CGFloat, radius: CGFloat) -> CGPath {
+    CGPath(ellipseIn: CGRect(x: x - radius, y: y - radius,
+                            width: radius * 2, height: radius * 2), transform: nil)
+}
+
+func filled(_ path: CGPath, _ color: String, opacity: String = "1") -> String {
+    "<path d=\"\(svg(path))\" fill=\"\(color)\" opacity=\"\(opacity)\"/>"
+}
+
+let ink = "#152246"
+let yellow = "#FFE23E"
+let ring = circle(512, 512, radius: 296)
 let rays = CGMutablePath()
 for index in 0..<8 {
     let angle = CGFloat(index) * .pi / 4
-    rays.move(to: CGPoint(x: 512 + 174 * cos(angle), y: 512 + 174 * sin(angle)))
-    rays.addLine(to: CGPoint(x: 512 + 198 * cos(angle), y: 512 + 198 * sin(angle)))
+    let cosine: CGFloat = cos(angle)
+    let sine: CGFloat = sin(angle)
+    rays.move(to: CGPoint(x: 512 + 190 * cosine, y: 512 + 190 * sine))
+    rays.addLine(to: CGPoint(x: 512 + 217 * cosine, y: 512 + 217 * sine))
 }
 let smile = CGMutablePath()
-smile.move(to: CGPoint(x: 487, y: 550))
-smile.addQuadCurve(to: CGPoint(x: 537, y: 550), control: CGPoint(x: 512, y: 575))
+smile.move(to: CGPoint(x: 483, y: 549))
+smile.addQuadCurve(to: CGPoint(x: 541, y: 549), control: CGPoint(x: 512, y: 583))
+
+let shade = CGMutablePath()
+shade.move(to: CGPoint(x: 648, y: 425))
+shade.addCurve(to: CGPoint(x: 402, y: 634),
+               control1: CGPoint(x: 665, y: 607), control2: CGPoint(x: 533, y: 655))
+shade.addLine(to: CGPoint(x: 685, y: 694))
+shade.addLine(to: CGPoint(x: 700, y: 416))
+shade.closeSubpath()
+
+let sparkle = CGMutablePath()
+sparkle.move(to: CGPoint(x: 828, y: 197))
+sparkle.addQuadCurve(to: CGPoint(x: 853, y: 222), control: CGPoint(x: 833, y: 217))
+sparkle.addQuadCurve(to: CGPoint(x: 828, y: 247), control: CGPoint(x: 833, y: 227))
+sparkle.addQuadCurve(to: CGPoint(x: 803, y: 222), control: CGPoint(x: 823, y: 227))
+sparkle.addQuadCurve(to: CGPoint(x: 828, y: 197), control: CGPoint(x: 823, y: 217))
+sparkle.closeSubpath()
+
+var dots = ""
+for row in 0..<9 {
+    for column in 0..<(10 - row) {
+        let radius = CGFloat(5) - CGFloat(row) * 0.25
+        dots += filled(circle(154 + CGFloat(column) * 23, 163 + CGFloat(row) * 23,
+                              radius: radius), "#8292A8", opacity: ".1") + "\n"
+        dots += filled(circle(863 - CGFloat(column) * 23, 865 - CGFloat(row) * 23,
+                              radius: radius), "#8292A8", opacity: ".1") + "\n"
+    }
+}
 
 let definitions = """
 <defs>
-  <linearGradient id="background" x1=".15" y1="0" x2=".85" y2="1">
-    <stop stop-color="#183956"/><stop offset=".52" stop-color="#103E66"/><stop offset="1" stop-color="#176E9D"/>
+  <linearGradient id="background" x1=".06" y1="0" x2=".88" y2="1">
+    <stop stop-color="#FFFFFF"/><stop offset=".3" stop-color="#F6F8FB"/>
+    <stop offset=".72" stop-color="#E1E7EE"/><stop offset="1" stop-color="#F7F9FC"/>
   </linearGradient>
-  <radialGradient id="glow" cx=".12" cy=".16" r=".9">
-    <stop stop-color="#91DCFF" stop-opacity=".35"/><stop offset="1" stop-color="#67D2FF" stop-opacity="0"/>
+  <radialGradient id="glow" cx=".1" cy=".06" r=".8">
+    <stop stop-color="#FFFFFF" stop-opacity=".85"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
   </radialGradient>
-  <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
-    <stop stop-color="#E7F8FF" stop-opacity=".8"/><stop offset=".5" stop-color="#6AC6FF" stop-opacity=".13"/><stop offset="1" stop-color="#D6F2FF" stop-opacity=".6"/>
-  </linearGradient>
-  <linearGradient id="glass" x1=".08" y1="0" x2=".85" y2="1">
-    <stop stop-color="#F0FCFF" stop-opacity=".96"/><stop offset=".35" stop-color="#A6DEFA" stop-opacity=".87"/>
-    <stop offset=".67" stop-color="#65B8EE" stop-opacity=".62"/><stop offset="1" stop-color="#B6EBFF" stop-opacity=".93"/>
-  </linearGradient>
-  <linearGradient id="sun" x1=".2" y1="0" x2=".8" y2="1">
-    <stop stop-color="#FFF2BC"/><stop offset=".45" stop-color="#FFDA7F"/><stop offset="1" stop-color="#F4B452"/>
-  </linearGradient>
+  <clipPath id="sun-clip"><circle cx="512" cy="512" r="154"/></clipPath>
+  <clipPath id="tile-clip"><rect x="64" y="64" width="896" height="896" rx="208"/></clipPath>
 </defs>
 """
 let mark = """
-<path d="\(svg(outline(ring, width: 66)))" fill="url(#edge)"/>
-<path d="\(svg(outline(ring, width: 60)))" fill="url(#glass)"/>
-<path d="\(svg(outline(arc(radius: 303), width: 2.5)))" fill="#E2F6FF" opacity=".55"/>
-<path d="\(svg(outline(arc(radius: 246), width: 2)))" fill="#1A6295" opacity=".6"/>
-<path d="\(svg(outline(arc(radius: 275, start: .pi * 195 / 180, end: .pi * 259 / 180), width: 5)))" fill="#F3FCFF" opacity=".8"/>
-<circle cx="649" cy="275" r="28" fill="#D7F5FF"/>
-<circle cx="649" cy="275" r="26" fill="url(#glass)"/>
-<ellipse cx="641" cy="267" rx="10" ry="5" fill="#FFFFFF" opacity=".6" transform="rotate(-35 641 267)"/>
-<path d="\(svg(outline(rays, width: 15)))" fill="#FFDA87"/>
-<circle cx="512" cy="512" r="132" fill="url(#sun)"/>
-<ellipse cx="481" cy="450" rx="64" ry="25" fill="#FFFFFF" opacity=".19" transform="rotate(-24 481 450)"/>
-<g fill="#604524"><ellipse cx="474" cy="510" rx="8" ry="11"/><ellipse cx="550" cy="510" rx="8" ry="11"/></g>
-<path d="\(svg(outline(smile, width: 9)))" fill="#604524"/>
+\(dots)
+<g transform="translate(0 9)">\(filled(outline(ring, width: 86), "#7C8DA0", opacity: ".18"))</g>
+<g id="glass-track">
+\(filled(outline(ring, width: 80), "#B5C4D4", opacity: ".33"))
+\(filled(outline(circle(512, 512, radius: 335), width: 2.5), "#71869D", opacity: ".5"))
+\(filled(outline(circle(512, 512, radius: 257), width: 3), "#71869D", opacity: ".5"))
+</g>
+<g id="static-brand-arc">
+\(filled(outline(arc(radius: 296), width: 51), "#B51B40"))
+\(filled(outline(arc(radius: 296), width: 42), "#FF354F"))
+\(filled(outline(arc(radius: 300, start: -86, end: 176), width: 6), "#FF9BB0", opacity: ".75"))
+</g>
+\(filled(outline(rays, width: 40), ink))
+\(filled(outline(rays, width: 23), yellow))
+\(filled(circle(522, 526, radius: 156), ink))
+\(filled(circle(512, 512, radius: 154), yellow))
+<g clip-path="url(#sun-clip)">\(filled(shade, "#FFAC29"))</g>
+\(filled(outline(circle(512, 512, radius: 154), width: 13), ink))
+<ellipse cx="471" cy="428" rx="42" ry="12" fill="#FFFBE8" transform="rotate(-25.714286 471 428)"/>
+<g fill="#FF786C"><ellipse cx="456.5" cy="542" rx="13.5" ry="7"/><ellipse cx="567.5" cy="542" rx="13.5" ry="7"/></g>
+<g fill="\(ink)"><ellipse cx="475" cy="513.5" rx="9" ry="13.5"/><ellipse cx="549" cy="513.5" rx="9" ry="13.5"/></g>
+\(filled(outline(smile, width: 10), ink))
+\(filled(sparkle, "#FFFBE8"))
 """
 
 func document(background: Bool) -> String {
     let tile = background ? """
     <rect x="64" y="64" width="896" height="896" rx="208" fill="url(#background)"/>
     <rect x="64" y="64" width="896" height="896" rx="208" fill="url(#glow)"/>
+    <g clip-path="url(#tile-clip)"><path d="M20 380 C310 80 690 210 1010 150 L1010 -80 L20 -80 Z" fill="#FFFFFF" opacity=".48"/></g>
+    \(filled(outline(CGPath(roundedRect: CGRect(x: 64, y: 64, width: 896, height: 896), cornerWidth: 208, cornerHeight: 208, transform: nil), width: 3), "#BAC8D7", opacity: ".85"))
+    \(filled(outline(CGPath(roundedRect: CGRect(x: 72, y: 72, width: 880, height: 880), cornerWidth: 202, cornerHeight: 202, transform: nil), width: 4), "#FFFFFF", opacity: ".95"))
     """ : ""
     return """
     <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-    <!-- Original Nokori blue-glass remaining-quota ring and sun artwork. Apache-2.0. -->
+    <!-- Original Nokori white-glass Pop sun. The red arc is a fixed brand mark, not live usage. Apache-2.0. -->
     \(definitions)
     \(tile)
     \(mark)
@@ -108,6 +155,6 @@ let range = NSRange(composer.startIndex..., in: composer)
 precondition(background.numberOfMatches(in: composer, range: range) == 1)
 let updatedComposer = background.stringByReplacingMatches(
     in: composer, range: range,
-    withTemplate: #""automatic-gradient": "srgb:0.06275,0.24314,0.40000,1.00000""#
+    withTemplate: #""automatic-gradient": "srgb:0.96471,0.97255,0.98431,1.00000""#
 )
 try updatedComposer.write(toFile: composerPath, atomically: true, encoding: .utf8)

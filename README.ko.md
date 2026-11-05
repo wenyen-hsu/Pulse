@@ -1,4 +1,4 @@
-<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori 파란 유리와 태양 로고" /></p>
+<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori 흰색 유리와 팝 스타일 태양, 고정된 빨간 호 로고" /></p>
 
 # Nokori
 
@@ -6,6 +6,8 @@
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)
 
 중앙의 태양 반려동물과 원형·액체 유리 패널을 제공하는 macOS AI 사용량 모니터입니다.
+
+새 흰색 유리 팝 스타일 아이콘의 **빨간 호는 고정된 브랜드 디자인이며 실시간 사용량이 아닙니다**. 아래의 기존 시험판에는 이전 파란 유리 아이콘이 그대로 포함되어 있습니다. [아이콘 및 생성 방법](Docs/branding.md).
 
 > [qunqin24의 Pulse](https://github.com/qunqin24/Pulse)를 기반으로 한 독립 버전이며 원저작자의 보증을 뜻하지 않습니다. 독립 버전의 이름은 **Nokori(이전 이름 Pulse Pet)**로 정했습니다.
 

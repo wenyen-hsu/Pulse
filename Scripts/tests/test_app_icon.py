@@ -60,8 +60,26 @@ class AppIconTests(unittest.TestCase):
         layers = [layer for group in document["groups"] for layer in group["layers"]]
         self.assertEqual(len(layers), 1)
         self.assertEqual(layers[0]["image-name"], "mark.svg")
-        self.assertTrue(layers[0]["glass"])
+        self.assertFalse(layers[0]["glass"])
         self.assertFalse(layers[0]["hidden"])
+        self.assertFalse(document["groups"][0]["translucency"]["enabled"])
+        self.assertEqual(
+            document["fill"]["automatic-gradient"],
+            "srgb:0.96471,0.97255,0.98431,1.00000",
+        )
+
+    def test_pop_brand_arc_and_no_blue_dot(self):
+        for name in SVG_FILES:
+            with self.subTest(name=name):
+                root = ET.fromstring((ROOT / name).read_text())
+                groups = {node.attrib.get("id"): node for node in root.iter()}
+                self.assertIn("glass-track", groups)
+                self.assertIn("static-brand-arc", groups)
+                colors = {node.attrib.get("fill") for node in root.iter()}
+                self.assertIn("#FF354F", colors)
+                self.assertIn("#FFE23E", colors)
+                self.assertIn("#152246", colors)
+                self.assertNotIn("#42F2F5", colors)
 
     def test_png_has_a_1024_pixel_canvas(self):
         data = (ROOT / "AppIcon/nokori-icon-1024.png").read_bytes()
