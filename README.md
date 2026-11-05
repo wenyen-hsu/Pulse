@@ -7,11 +7,13 @@
 
 A native macOS AI-usage monitor with a centred sun pet and a liquid-glass puddle.
 
+> **Download not ready:** macOS blocked the new DMG. A separately packaged ZIP is under test; wait for acceptance before installing. [Status](Downloads/README.md).
+
 The trial below includes the white-glass Pop icon. Its **red arc is fixed branding, not live usage**. [Artwork and generation](Docs/branding.md).
 
 > Independent development fork of [Pulse by qunqin24](https://github.com/qunqin24/Pulse). **Nokori (formerly Pulse Pet)** is the chosen name for this fork. This repository is not an official upstream release and is not endorsed by its original author.
 
-**[Download trial DMG — Apple Silicon + Intel](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** · [Checksums and verification limits](Downloads/README.md)
+**[Download trial DMG — Apple Silicon + Intel](Downloads/README.md)** · [Checksums and verification limits](Downloads/README.md)
 
 > **Trial, not a stable release.** Ad-hoc signed, not Apple-notarized. Keep original Pulse installed; replace only an older Nokori. First-time location permission and successful device location still need testing on your Mac.
 
@@ -38,7 +40,7 @@ Liquid pet displays every enabled account ring inside the drop, without pages. D
 
 ## Install without replacing Pulse
 
-Use the **[Nokori trial DMG](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** above, packaged from the exact native-tested app without rebuilding. [Download details and SHA-256](Downloads/README.md). This is a repository-hosted trial, not a tagged GitHub Release. Upstream Pulse downloads do not contain these custom features.
+Use the **[Nokori trial DMG](Downloads/README.md)** above, packaged from the exact native-tested app without rebuilding. [Download details and SHA-256](Downloads/README.md). This is a repository-hosted trial, not a tagged GitHub Release. Upstream Pulse downloads do not contain these custom features.
 
 1. Open the fork's DMG and drag **Nokori.app** into Applications.
 2. Leave **Pulse.app** untouched. Preferences, application data, login item and URL scheme are separate; original preferences are not migrated.

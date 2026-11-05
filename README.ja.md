@@ -7,6 +7,8 @@
 
 中央の太陽ペットと、円形・液体ガラスの表示を備えた macOS 用 AI 使用量モニター。
 
+> **ダウンロードは準備中です。** 新しい DMG は macOS にブロックされました。別途作成した ZIP を検証中です。確認が完了するまでインストールしないでください。[状況](Downloads/README.md)。
+
 下記の試用版には、白いガラスのポップなアイコンが含まれます。**赤い弧は固定のブランド意匠で、実際の使用量を示しません**。[アイコンと生成方法](Docs/branding.md)。
 
 > [qunqin24 氏の Pulse](https://github.com/qunqin24/Pulse) を基にした独立版です。原作者による公認を意味しません。本独立版の名前は **Nokori（旧 Pulse Pet）** に決定しました。
@@ -30,7 +32,7 @@ Liquid pet は有効な全アカウントのアイコンと使用量リングを
 
 ## インストールと設定
 
-**[試用版 DMG をダウンロード — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** · [SHA-256 と検証範囲](Downloads/README.md)。このリポジトリから直接配布する試用版で、安定版やタグ付き GitHub Release ではありません。初回の位置情報許可と実際の位置取得は未検証です。元の Pulse の配布物には本版の変更は含まれません。
+**[試用版 DMG をダウンロード — Apple Silicon＋Intel](Downloads/README.md)** · [SHA-256 と検証範囲](Downloads/README.md)。このリポジトリから直接配布する試用版で、安定版やタグ付き GitHub Release ではありません。初回の位置情報許可と実際の位置取得は未検証です。元の Pulse の配布物には本版の変更は含まれません。
 
 1. DMG を開き、**Nokori.app** をアプリケーションへ移動します。元の **Pulse.app** は置き換えません。
 2. 設定、アプリデータ、ログイン項目、URL スキームは独立し、元の設定は移行しません。上流の自動更新は無効です。

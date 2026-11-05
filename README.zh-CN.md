@@ -7,6 +7,8 @@
 
 原生 macOS AI 用量监视器：中央小太阳宠物，可切换圆形或液态玻璃外观。
 
+> **下载尚未就绪：** macOS 阻止了新 DMG，另行打包的 ZIP 正在验证。请等待验收完成后再安装。[当前状态](Downloads/README.md)。
+
 下方试用版已采用白色玻璃 Pop 图标，**红弧是固定品牌造型，不代表实时用量**。[图标与生成方式](Docs/branding.md)。
 
 > 本项目是 [qunqin24 开发的 Pulse](https://github.com/qunqin24/Pulse) 的独立定制版，不代表原作者背书。本独立版本正式采用 **Nokori（原名 Pulse Pet）**。
@@ -30,7 +32,7 @@
 
 ## 安装与设置
 
-**[下载试用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
+**[下载试用 DMG — Apple Silicon＋Intel](Downloads/README.md)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
 
 1. 打开 DMG，把 **Nokori.app** 拖到“应用程序”，不要替换原版 **Pulse.app**。
 2. 设置、应用数据、登录项和 URL scheme 独立，不迁移原版设置；上游自动更新已关闭。

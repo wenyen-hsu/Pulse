@@ -7,6 +7,8 @@
 
 중앙의 태양 반려동물과 원형·액체 유리 패널을 제공하는 macOS AI 사용량 모니터입니다.
 
+> **다운로드 준비 중입니다.** macOS에서 새 DMG가 차단되었습니다. 별도로 만든 ZIP을 검증 중이므로 완료될 때까지 설치하지 마세요. [진행 상황](Downloads/README.md).
+
 아래 시험판에는 흰색 유리 팝 스타일 아이콘이 포함되어 있습니다. **빨간 호는 고정된 브랜드 디자인이며 실시간 사용량이 아닙니다**. [아이콘 및 생성 방법](Docs/branding.md).
 
 > [qunqin24의 Pulse](https://github.com/qunqin24/Pulse)를 기반으로 한 독립 버전이며 원저작자의 보증을 뜻하지 않습니다. 독립 버전의 이름은 **Nokori(이전 이름 Pulse Pet)**로 정했습니다.
@@ -30,7 +32,7 @@ Liquid pet은 활성화된 모든 계정의 아이콘과 사용량 링을 물방
 
 ## 설치 및 설정
 
-**[시험판 DMG 다운로드 — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** · [SHA-256 및 검증 범위](Downloads/README.md). 파일은 이 저장소에서 직접 배포하며 정식 안정판이나 태그가 있는 GitHub Release가 아닙니다. 최초 위치 권한 요청과 실제 위치 확인은 아직 검증하지 못했습니다. 원본 Pulse 배포 파일에는 이 버전의 기능이 없습니다.
+**[시험판 DMG 다운로드 — Apple Silicon＋Intel](Downloads/README.md)** · [SHA-256 및 검증 범위](Downloads/README.md). 파일은 이 저장소에서 직접 배포하며 정식 안정판이나 태그가 있는 GitHub Release가 아닙니다. 최초 위치 권한 요청과 실제 위치 확인은 아직 검증하지 못했습니다. 원본 Pulse 배포 파일에는 이 버전의 기능이 없습니다.
 
 1. DMG를 열고 **Nokori.app**을 응용 프로그램으로 옮기세요. 기존 **Pulse.app**은 교체하지 마세요.
 2. 설정, 앱 데이터, 로그인 항목, URL 스킴은 분리되며 원본 설정을 이전하지 않습니다. 원본 자동 업데이트는 비활성화되어 있습니다.

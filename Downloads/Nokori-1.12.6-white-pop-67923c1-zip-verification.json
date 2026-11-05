@@ -1,0 +1,49 @@
+{
+  "source_commit": "67923c1dafd7a35e9c50cf64ddae4c7680f2de2d",
+  "merged_main_equivalent": "92f12178cf1b36e6fe15faac81b475fc549bc6a8",
+  "app": {
+    "bundle_identifier": "io.github.wenyen-hsu.PulsePet",
+    "version": "1.12.6",
+    "minimum_macos": "14.0",
+    "executable_sha256": "0ab5ba6e08a5e39df827380e41210ec3a3b22466ade59c66caf51b87c5b21d8b",
+    "architectures": [
+      "x86_64",
+      "arm64"
+    ],
+    "sdk_stamps": [
+      "26.0",
+      "26.0"
+    ],
+    "signature": "ad-hoc; not Apple notarized",
+    "manifest_entries": 281,
+    "updater_feed_present": false,
+    "url_schemes": [
+      "pulse-pet"
+    ],
+    "cdhash": "080359f15b4ff4bb9ea290cd8227e65de8cd1cb6"
+  },
+  "archive_filename": "Nokori-1.12.6-white-pop-67923c1-trial-universal.zip",
+  "archive_sha256": "d75ca4d915ec9dcd21b8ccdcba7d24dea1ceb5748dce072a0773303f44bd12c7",
+  "archive_bytes": 16574903,
+  "archive_tool": "ditto -c -k --sequesterRsrc --keepParent",
+  "bundle_manifest_filename": "Nokori-1.12.6-white-pop-67923c1-bundle-manifest.json",
+  "bundle_manifest_sha256": "7ff1ce10137832e2d49b6f4bfc30ee62dab3c04870b7e10ebabf8866d8b0d620",
+  "frozen_staged_extracted_manifests_match": true,
+  "manifest_includes_file_bytes_permissions_and_symlink_targets": true,
+  "rebuild_after_native_acceptance": false,
+  "resign_after_native_acceptance": false,
+  "native_browser_installation": "pending",
+  "quarantine_after_browser_extract": "pending",
+  "older_installers_unchanged": {
+    "Nokori-1.12.6-weather-64e1028-trial-universal.dmg": "a3f1bd9f9d782d7be427fc0bff4186458d600e3ce88491c8634918187d60b90d",
+    "Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg": "a4c1d865116ba58f6eff4fa4d993465b65f120fcaf66d8d6495f031bb034401c",
+    "Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg": "7e96e61f27e2c021ded1c5328f96da7d07d785aa5d54bd1bad344f02dab9add1"
+  },
+  "known_limitations": [
+    "Classic-77 extends beyond the display; accepted trial limitation, not a pass",
+    "GPS and first-time location permission remain unverified",
+    "Downloaded first-use approval for this new bundle is not yet established",
+    "Intel hardware, older macOS, narrow/multiple displays and real provider authentication/usage/notifications remain unverified or non-exhaustive",
+    "Exact sub-second input timing and every live weather transition are not established"
+  ]
+}

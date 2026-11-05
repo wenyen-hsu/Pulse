@@ -4,7 +4,7 @@
 
 ## Download / 下載
 
-**[Download universal DMG / 下載 Universal DMG](Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** · [SHA-256](SHA256SUMS)
+**Delivery blocked / 暫停交付。** The browser-downloaded DMG was rejected as damaged despite matching source bytes. Do not install this candidate. A separate ZIP built directly from the frozen app is under test, not yet accepted. / 瀏覽器下載的 DMG 與來源位元組一致，但被系統標為損毀，請勿安裝。直接由凍結程式封裝的 ZIP 正在另行驗證，尚未通過交付驗收。
 
 | Item / 項目 | Details / 說明 |
 | --- | --- |
@@ -52,7 +52,9 @@ The user completed Apple's per-app flow for the older f5370ee blue-icon trial wi
 
 **Native-tested app:** Real mouse input on an Apple Silicon VM covered Light/Dark Finder/Dock icons; fixed arc across 16% → 87% → genuine no-limits readings; Dock close/menu Quit/relaunch; 9/17/77 labelled positive-quota fixtures without a Liquid pager and with central pet clearance; last-account hover, isolated click, 60-second hover/drag counter checks and genuine re-entry refresh; Circular Next/Previous; Taipei weather fixture and PNG disable/restore. Fixtures are not live provider evidence. Test preferences/data were restored. / **原生程式驗證：** Apple Silicon VM 真實滑鼠涵蓋明暗圖示、用量及真正無讀值時紅弧固定、退出重開、9／17／77 帳號 fixture 散排、末帳號懸停、獨立點擊、長時間懸停／拖曳不刷新、真正離開重入後刷新、圓形分頁、天氣 fixture 與 PNG 互斥還原。Fixtures 不代表真實服務商資料；測試設定／資料已還原。
 
-**New DMG UI recheck: pending before delivery.** Finder installation and weather busy/cooldown frames are being rechecked separately. / **新 DMG 原生補驗：交付前待完成。** Finder 安裝與天氣查詢中／冷卻畫面另行確認。
+**Downloaded DMG acceptance: failed before mount.** The real Chrome download matches SHA-256/size and retains quarantine, but macOS 26.6.2 reports the DMG is damaged. Testing stopped without override; Finder/footer/copy/installed-app/first-launch remain untested. / **下載 DMG 驗收：掛載前失敗。** 實際 Chrome 下載的雜湊／大小一致且保留隔離，但 macOS 26.6.2 顯示映像損毀；未繞過，Finder／底圖／複製／安裝版及首開均未測。
+
+**Weather gap closed on the unchanged local-build app:** Updating/spinner/disabled Refresh were visible; a real repeated click about five seconds into the request did not duplicate it. Completion advanced 9:00→9:15; immediate cooldown repeat stayed at CONNECT count2. PNG controls and the actual saved PNG restored when weather was disabled. / **未改動的本機建置版已補驗天氣：** 更新中／spinner／停用按鈕可見，請求中約五秒再次點擊沒有重複請求；完成後時間 9:00→9:15，冷卻重點仍維持 CONNECT 計數2；關閉天氣後控制項及實際 PNG 還原。此結果不代表下載首開通過。
 
 **Still unverified or non-exhaustive:** first-time location permission, grant/denial and successful GPS; Intel hardware; older macOS; narrow/multiple displays; this bundle's downloaded first-use approval; all real provider usage/notifications and live weather transitions; exact sub-second input timing. / **仍未驗證或未完整驗證：** 首次定位授權、允許／拒絕與成功 GPS、Intel 實機、舊 macOS、窄／多螢幕、新包下載首開放行、所有真實用量／通知與天氣轉換及精確次秒輸入時序。
 
