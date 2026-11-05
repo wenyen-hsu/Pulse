@@ -2,7 +2,9 @@
 
 Nokori (のこり, “what remains”) is the chosen name for this independent Pulse fork, formerly called Pulse Pet. An existing coding-agent tool also uses Nokori; choosing this name is not trademark clearance or an assertion of exclusivity.
 
-The original fork artwork uses an ice-blue glass remaining-quota ring with a gap, a smiling warm sun, and a deep-blue background. The former mint liquid silhouette is no longer part of the icon; both circular and liquid panel modes remain available. The icon's ring is a brand mark, not a live usage reading. This artwork is licensed with the repository under Apache 2.0; the original Pulse author is not its designer and does not endorse the fork.
+The fork artwork uses a white-glass background, a complete glass track with a fixed red inner arc, and a saturated yellow sun with navy outlines and a hard shadow. Subtle halftone dots retain the Pop style; there is no blue accent dot. Both circular and liquid panel modes remain available.
+
+The red arc is a static brand illustration, not current usage, a quota percentage, or a live Dock indicator. It stays unchanged regardless of account data, including when no quota is reported. Actual usage remains in the panel's account rings and cards. Dock visibility is unchanged. This artwork is licensed with the repository under Apache 2.0; the original Pulse author is not its designer and does not endorse the fork.
 
 ## Sources and generation
 
@@ -10,7 +12,7 @@ The original fork artwork uses an ice-blue glass remaining-quota ring with a gap
 - `AppIcon/nokori-icon.svg`: preview tile used by the READMEs.
 - `AppIcon/nokori-icon-1024.png`: Default macOS rendition exported from Icon Composer with `ictool`.
 - `AppIcon/AppIcon.icon`: Icon Composer input; the system supplies the macOS icon mask/material.
-- `Scripts/make-app-icon.swift`: reproduces both SVGs and the Composer foreground from the same geometry, and updates the Composer background to deep blue. Open strokes are outlined so their shadows do not close across the ring's gap. The source uses filled gradients rather than SVG blur filters; Icon Composer supplies the native glass, shadow and appearance variants.
+- `Scripts/make-app-icon.swift`: reproduces both SVGs and the Composer foreground from the same geometry, and updates the Composer background to white. Strokes are outlined; curved arcs avoid overlapping polygon joins. Filled gradients and shapes provide the preview's glass highlights without SVG blur filters. The Composer foreground is opaque and does not use glass/translucency effects, preserving the saturated Pop colours and outlines; the system supplies the white background material, mask, shadow and appearance variants.
 - `Scripts/make-dmg-background.swift`: reproduces the independent installer heading and author credits from AppIdentity.json.
 
 Run the relevant Swift script from the repository root after editing artwork or display identity. After changing icon artwork, export its PNG as well:
@@ -23,7 +25,9 @@ python3 -m unittest discover -s Scripts/tests -p 'test_*.py'
 
 Use the exporter inside Icon Composer; Xcode's `xcrun ictool` may instead select the asset compiler, which does not support `--export-image`.
 
-`bundle.sh` compiles Icon Composer input using actool; it does not use the preview tile as a flat replacement for the system icon. The SVG's explicit blue gradient and the system's automatic gradient/material are separate renderings of the same artwork, not pixel-identical images. Original Pulse and integration-specific artwork remain unchanged.
+`bundle.sh` compiles Icon Composer input using actool; it does not use the preview tile as a flat replacement for the system icon. The SVG's explicit white gradient and the system's automatic gradient/material are separate renderings of the same artwork, not pixel-identical images. Original Pulse and integration-specific artwork remain unchanged.
+
+The existing `f5370ee` trial download still contains the earlier blue-glass icon. Updating source artwork does not change that archived installer, its checksums, or its ad-hoc signing/notarization status. A new icon build needs separate bundle and native verification before it is offered as a download.
 
 ## Stable identity during the rename
 

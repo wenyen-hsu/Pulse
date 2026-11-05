@@ -1,4 +1,4 @@
-<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori blue glass sun logo" /></p>
+<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori white-glass Pop sun logo with a fixed red arc" /></p>
 
 # Nokori
 
@@ -6,6 +6,8 @@
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)
 
 A native macOS AI-usage monitor with a centred sun pet and a liquid-glass puddle.
+
+The new white-glass Pop icon uses a **fixed red brand arc, not live usage**. The existing trial download below still has the earlier blue-glass icon. [Artwork and generation](Docs/branding.md).
 
 > Independent development fork of [Pulse by qunqin24](https://github.com/qunqin24/Pulse). **Nokori (formerly Pulse Pet)** is the chosen name for this fork. This repository is not an official upstream release and is not endorsed by its original author.
 

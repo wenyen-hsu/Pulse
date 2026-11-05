@@ -1,4 +1,4 @@
-<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori 藍色玻璃太陽標誌" /></p>
+<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori 白色玻璃 Pop 太陽與固定紅弧標誌" /></p>
 
 # Nokori
 
@@ -6,6 +6,8 @@
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)
 
 原生 macOS AI 用量監視器：中央小太陽寵物，可切換圓形或液態玻璃外觀。
+
+新版白色玻璃 Pop 圖示的**紅弧是固定品牌造型，不是即時用量**。下方既有試用下載仍使用先前的藍色玻璃圖示。[圖示與產生方式](Docs/branding.md)。
 
 > 本專案是 [qunqin24 開發的 Pulse](https://github.com/qunqin24/Pulse) 的獨立客製版。本獨立版本正式採用 **Nokori（原名 Pulse Pet）**。本儲存庫不是上游正式版本，也不代表原作者背書。
 

@@ -1,4 +1,4 @@
-<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori 青いガラスと太陽のロゴ" /></p>
+<p align="center"><img src="AppIcon/nokori-icon.svg" width="144" height="144" alt="Nokori 白いガラスとポップな太陽、固定の赤い弧のロゴ" /></p>
 
 # Nokori
 
@@ -6,6 +6,8 @@
 [简体中文](README.zh-CN.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Русский](README.ru.md)
 
 中央の太陽ペットと、円形・液体ガラスの表示を備えた macOS 用 AI 使用量モニター。
+
+新しい白いガラスのポップなアイコンは、**固定の赤い弧をブランドの意匠として使い、実際の使用量を示しません**。下記の既存の試用版は、以前の青いガラスのアイコンのままです。[アイコンと生成方法](Docs/branding.md)。
 
 > [qunqin24 氏の Pulse](https://github.com/qunqin24/Pulse) を基にした独立版です。原作者による公認を意味しません。本独立版の名前は **Nokori（旧 Pulse Pet）** に決定しました。
 
