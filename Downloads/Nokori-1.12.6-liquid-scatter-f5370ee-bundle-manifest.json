@@ -1,0 +1,1797 @@
+[
+  {
+    "path": ".",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Autoupdate",
+    "mode": "0o755",
+    "type": "symlink",
+    "target": "Versions/Current/Autoupdate"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Headers",
+    "mode": "0o755",
+    "type": "symlink",
+    "target": "Versions/Current/Headers"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Modules",
+    "mode": "0o755",
+    "type": "symlink",
+    "target": "Versions/Current/Modules"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/PrivateHeaders",
+    "mode": "0o755",
+    "type": "symlink",
+    "target": "Versions/Current/PrivateHeaders"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Resources",
+    "mode": "0o755",
+    "type": "symlink",
+    "target": "Versions/Current/Resources"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Sparkle",
+    "mode": "0o755",
+    "type": "symlink",
+    "target": "Versions/Current/Sparkle"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Updater.app",
+    "mode": "0o755",
+    "type": "symlink",
+    "target": "Versions/Current/Updater.app"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate",
+    "mode": "0o755",
+    "type": "file",
+    "size": 725664,
+    "sha256": "b728048926998f2d65225025dd8d2e88d4963d5d69bc33f9099f4a2b7a679134"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUAppcastSigningValidationStatus.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1007,
+    "sha256": "513d4607ac9ba03c2203b03df307f404216c3ce7f3436784fbbef1842c742749"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUDownloadData.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1222,
+    "sha256": "58184c2c068a8d43b1ee85651f9edd30a6a9e5899ac936baf4a5f15a6081d7b7"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUStandardUpdaterController.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5604,
+    "sha256": "f45dfdf2315664c5891b97ad0d7ffce9ab09d067effbd2921b10b58b4831ef0f"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUStandardUserDriver.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1311,
+    "sha256": "0a0e476b61932196027dd7b94e78d187f810f80c7900168eb4a5956b63d54a77"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUStandardUserDriverDelegate.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 11256,
+    "sha256": "d906e549f7b108979727fa56f13c029906fe48c5602538513a4b480bb45a8c2d"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUUpdateCheck.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 874,
+    "sha256": "1f7d05da2e466263aefe3e09130e56b2e65b8862579e07b9829c9bf5ed921c03"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUUpdatePermissionRequest.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1093,
+    "sha256": "8c227246c2ea7461741db8bd7274936c3cbcbc7375fe814654d479b2650cd6bd"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUUpdater.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 20262,
+    "sha256": "a30b876dc722a2861fb8f271a0bf0c95bd664db4cf2af57d216d190f2e010ee7"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUUpdaterDelegate.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 23537,
+    "sha256": "20ea4bf5273eaa6560160941d680acec6565965162737f50ea4240845a7dde24"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUUpdaterSettings.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3428,
+    "sha256": "ad7bdfc719775fe4cdf1490f45ef902ded4dcb3756402e64884397bee425edff"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUUserDriver.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 16622,
+    "sha256": "db9fe6cf78aca0f2f79a99898d38daff566f96c823de2bb2b985511ad77017dc"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SPUUserUpdateState.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2052,
+    "sha256": "59f95e933f8b5b2b39c1e7c465aa39af021a2c88820b4b09dbcfc55b1dd19c30"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUAppcast.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1327,
+    "sha256": "251d6ffa7cbc890999ddda3406834f45396cf887a71e5be9ff581883559df0a0"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUAppcastItem.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 18836,
+    "sha256": "95e15231e3965d480f8b14f5c911e392b72849549f314750c851128bf66ac314"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUErrors.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3289,
+    "sha256": "e7e84fa6ef85b549810682ec883593f560d79b776ebec5fb11d9558a6f1f78e5"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUExport.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 302,
+    "sha256": "5cef024266c54e12db620f78f4d106860de0fa2a2e230dffdfe04208bb447451"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUStandardVersionComparator.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1845,
+    "sha256": "7d407b9ce721d5c650e741ecb692e77f12ef3b5e18ea8136f72448e8d7208c6c"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUUpdatePermissionResponse.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2509,
+    "sha256": "f9355c8044c7dc168bdaefa37ac2e986002ec328895f17119293e084dad96f21"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUUpdater.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 6874,
+    "sha256": "96f6f598d582ca87c9d17f3ccd7bccb0ae4f057ac6e8fafb854ad8d04de336f6"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUUpdaterDelegate.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 13764,
+    "sha256": "a1a08c33fd41ebdd105916d8181d222417f9feda01cdc42afa6a3151106cde36"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUVersionComparisonProtocol.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1011,
+    "sha256": "28bbb424ac7ab81e2b93f61e359fefa3ed09d6a38d0b265004d2103c0f46bdb4"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/SUVersionDisplayProtocol.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3773,
+    "sha256": "3f23c4fb9bbdbc19714580ee4dd7f73ffc31436ea733c9bb308c3f74e7ab512c"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Headers/Sparkle.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1170,
+    "sha256": "3a442a32eb22a77bb5a08e61ac678daffdf6c697d33020b82a683baf40228e0c"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Modules",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Modules/module.modulemap",
+    "mode": "0o644",
+    "type": "file",
+    "size": 95,
+    "sha256": "2bcae1eb66d55dc49f58acfe856375a5bbc91c6e83bdb298d19442ae6264cfa6"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Modules/module.private.modulemap",
+    "mode": "0o644",
+    "type": "file",
+    "size": 833,
+    "sha256": "db1d60f57b43a9eb17f3550f5720ac53466d4385368670fb5148da5b71f43f3a"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/PrivateHeaders",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/PrivateHeaders/SPUAppcastItemStateResolver.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1105,
+    "sha256": "1c3be298008c19757ae3b27083622a005bce809a01f06d2c74f6dea16f3214ee"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/PrivateHeaders/SPUGentleUserDriverReminders.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 475,
+    "sha256": "f56d9d277f16417d79d66a484b4afcfc47c2a9957a8c487adb5c709dad895402"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/PrivateHeaders/SPUInstallationType.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 828,
+    "sha256": "52a1a445f58e7c6de94ac558c23913f8081647a499262affe9ac38ff790971d4"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/PrivateHeaders/SPUStandardUserDriver+Private.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1097,
+    "sha256": "acc764e731fe9e6d307fe32dea4d06b451964225c2b2a9745a23f035a9cdeaad"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/PrivateHeaders/SPUUserAgent+Private.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 751,
+    "sha256": "0c3ea7c6aabab32840e41c56bb22cfab4dee4dde3302603b6f4aba9ac1b5850c"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/PrivateHeaders/SUAppcastItem+Private.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1641,
+    "sha256": "642ecbeecb323f7201a732b5953d60fefefa13cf894af28936dd0d7d001a101a"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/PrivateHeaders/SUInstallerLauncher+Private.h",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1240,
+    "sha256": "cb2e9c465f08ab0309c2bf3a4d2f7c35d9c76ff5a4480694700a22298520dd94"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/Base.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/Base.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 6249,
+    "sha256": "bf93bdde8ad020f2ba210ecfa0e84b5365d0342355a3ca39d88fec0acb1e4a40"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/Info.plist",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1340,
+    "sha256": "266d38e5b075d8641d2ccc4613de81c53904ef8ca3c16c5abb661072b1b914bd"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ReleaseNotesColorStyle.css",
+    "mode": "0o644",
+    "type": "file",
+    "size": 231,
+    "sha256": "76bd6999758fd8e51d17e6b482db434f9b4768c02b037af6bd2e3a000ce8cbc1"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/SUStatus.nib",
+    "mode": "0o644",
+    "type": "file",
+    "size": 13016,
+    "sha256": "bba15dd37a26af87476214b68b06d6455118ce507fd77863f4947d654a6045af"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/SUUpdateAlert.nib",
+    "mode": "0o644",
+    "type": "file",
+    "size": 18490,
+    "sha256": "3987a333da7c2728ef2cb9656e5eeaf0832884873cabf78353fcb9099c5d8fbe"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/SUUpdatePermissionPrompt.nib",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/SUUpdatePermissionPrompt.nib/keyedobjects-101300.nib",
+    "mode": "0o644",
+    "type": "file",
+    "size": 25430,
+    "sha256": "35149511ba9d78cd63198940a4d5e8c7f6e12e18c243c00215d45eeab8448b79"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/SUUpdatePermissionPrompt.nib/keyedobjects-110000.nib",
+    "mode": "0o644",
+    "type": "file",
+    "size": 25407,
+    "sha256": "b35425caab26a59cd6ee148dcb5a5f1a18d75933407ef1ab8eae9331af41e0a4"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ar.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ar.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3554,
+    "sha256": "441182787471a3998908044515fe13e92230edaa7e2730638e72a49610f56cba"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ca.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ca.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3501,
+    "sha256": "7ed0d5ca300649a7f13304015008f2dede98ad743a625c17d5a5fedacc1a3b1a"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/cs.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/cs.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 10774,
+    "sha256": "99e66decf9bc46cf5622eead4e65b3b502e3775a4e8e0f03ef1b41683ea8d518"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/da.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/da.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 4882,
+    "sha256": "8d0ff69b79460185f941372655433bad3934f49e63bef0b4171bd66da71e55f0"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/de.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/de.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 11559,
+    "sha256": "311035a15227fb12e85eba2a46f3f6198d98ac5590d1d38c43c4ff7430d06599"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/el.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/el.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5934,
+    "sha256": "638981a4f095d8b1dabb6230d452e470359711b81803bc5df8c21e1211fd3757"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/es.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/es.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 7026,
+    "sha256": "047b9affd0e995039072c24b8d7aa830624d03c89c524e4f58d7d6f13eca8352"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/fa.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/fa.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5716,
+    "sha256": "ed9dda9e271f7a97b8a7f327e71a1b6d06e5e061b367e7da3d153e47dc319263"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/fi.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/fi.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3252,
+    "sha256": "c14af9bac3fce436222a4ea277a7a6c0f9b42b2d84aceea75e758ce7538acae2"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/fr.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/fr.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 7855,
+    "sha256": "3d554dcd167b085e25a75248533f21f389593aeace912ab9952c825ffe141ce1"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/he.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/he.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 9657,
+    "sha256": "1d795bd7329d04b7ce84b6bdc845f917369e858b2b292f117b89a6666a185723"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/hr.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/hr.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 6367,
+    "sha256": "920041380a08b3ba50d44e8a83f59de551139845a72748d58f2387c65920b33a"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/hu.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/hu.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 4449,
+    "sha256": "cc2a16e4d487c6fab357b4f7d0fbbf7ec882371b2130413ffcb1b69cd540d2cf"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/is.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/is.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3954,
+    "sha256": "403feba503410e9455cd0eaafe592a2576eedb24130ccf2cdb13dda4b101f87e"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/it.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/it.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 10956,
+    "sha256": "56a7445c1b68d76849ac59b98aa5c20c9002d5e07e9f0a2720486160f85b7366"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ja.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ja.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 8697,
+    "sha256": "e404910028af70579cfa208bb4fadd9e3592505fc89af208f4071f2309553fb2"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ko.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ko.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 7797,
+    "sha256": "a6269eb3f5a07d0c4f5d7467d5065372085aef7484c518a9d784ffd6c8f5aae4"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/nb.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/nb.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5539,
+    "sha256": "ef6f0dcae90c440b47ece09909e9cdf35f3383f34e72a614c8c5c0752ecbffe0"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/nl.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/nl.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 9574,
+    "sha256": "ca9adf34fb93fe3f394ccc92114bf6a6b1f8a128bb5f362cb9f3247d7c26c77d"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/nn.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/nn.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5671,
+    "sha256": "1db8c6853a550aa25382da2d55431a1c1d308d6a37676c4f8593cc1633f8a5ae"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/pl.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/pl.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5453,
+    "sha256": "5c54b3f8e1eb3026e142e710e2167f2f839b73ab5ad7f18719230f33ae682aa9"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/pt-BR.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/pt-BR.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 9976,
+    "sha256": "0292cadc2acfc34875c1e0b54e2d50de3833cd5e20c8660c8effe2b859aac84c"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/pt-PT.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/pt-PT.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5984,
+    "sha256": "fc958532d26a8e1e74622d3f558fc26a12800e8c49fb614afd0e1883acce4700"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ro.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ro.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 6115,
+    "sha256": "b2bf064222c38a3672b01fe09406f799718cb0fc4e715121662639d6fdfea6ed"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ru.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/ru.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5784,
+    "sha256": "7193af28eb2a09b9fe7119cf6065a2150c6590971b22f98c56f356cd90851923"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/sk.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/sk.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5675,
+    "sha256": "e158daaa4f3f91b57cee05ab896f2c1bc467317932cc53bb7c01e7daee9e5238"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/sl.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/sl.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5646,
+    "sha256": "c62770c604a6c8c89e283357c8b322d8ce6a85f4d85c09002048331f65f8d980"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/sv.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/sv.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5160,
+    "sha256": "4a21ad5bcf8d836d265710c2e4a0a64f07c9551f1c49694d6734a931d23efd39"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/th.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/th.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5339,
+    "sha256": "4b6c8dc2ab69a0425de3aa9dc386c6539348e3983e47aa10f94c17e345a157a5"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/tr.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/tr.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 6183,
+    "sha256": "b040d3f02d341eba047c15dfcafb60406d0847096a94466ecab512dcfb16abb5"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/uk.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/uk.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5842,
+    "sha256": "ff44d58635b3e8409d54b42b72c876a43e17fa98f6ea96b32583b9e88c747ab6"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/vi.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/vi.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 12418,
+    "sha256": "2b3b4acbadf534cd0e812b97e589f80a4e1655b07c8907e98cc31df458ffd8b7"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/zh_CN.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/zh_CN.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 7475,
+    "sha256": "e7f543b92977e9abc907241c411d8db0f59c4fee480859b3e88e4b495e0976c8"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/zh_HK.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/zh_HK.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 6469,
+    "sha256": "3fc210132f33d89af3d25d27c7ea19426cf6d304be50254538456e0ec4fb7858"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/zh_TW.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Resources/zh_TW.lproj/Sparkle.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 7625,
+    "sha256": "76321e1dd844c9b6568cb4af7c63bb57d9d1b700109aeedd7e5721d78727b12d"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Sparkle",
+    "mode": "0o755",
+    "type": "file",
+    "size": 977616,
+    "sha256": "8d6ae46126ebb0eb7148051266fda2c6fbdc1b36d8372689d1ca5aac2e568329"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/Info.plist",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2399,
+    "sha256": "b4149c93ca37cfd4bb31eeb1cdcd88ef9d129058434187c86841f89eadc19b0b"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/MacOS/Updater",
+    "mode": "0o755",
+    "type": "file",
+    "size": 290224,
+    "sha256": "702110234e9cfdcdca8d3b541f4ff5bd72156a4d91eeade2ab960fe325ec07aa"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/PkgInfo",
+    "mode": "0o644",
+    "type": "file",
+    "size": 8,
+    "sha256": "82502191c9484b04d685374f9879a0066069c49b8acae7a04b01d38d07e8eca0"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/Resources",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/Resources/SUStatus.nib",
+    "mode": "0o644",
+    "type": "file",
+    "size": 13016,
+    "sha256": "bba15dd37a26af87476214b68b06d6455118ce507fd77863f4947d654a6045af"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app/Contents/_CodeSignature/CodeResources",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2446,
+    "sha256": "25328c7eccf8a37f15b84aaa7ee766c3ac7dc091baaac7318d4de6221407e60e"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/Info.plist",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1716,
+    "sha256": "ce59d16b9b572dfc70fc6b5ea9724ec49e63b1a030563a08098793139335790a"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/MacOS",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/MacOS/Downloader",
+    "mode": "0o755",
+    "type": "file",
+    "size": 188320,
+    "sha256": "af42f31db3ecb6aa5e08ac50d082a25c35fa06213e7cbf2cd6ca84748104a22d"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/_CodeSignature",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Downloader.xpc/Contents/_CodeSignature/CodeResources",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2200,
+    "sha256": "6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/Info.plist",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1604,
+    "sha256": "4960a8760c14af71ebac852b7398adeb8ddc7255aa35b4dcc5e34e6508d9734d"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/MacOS",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/MacOS/Installer",
+    "mode": "0o755",
+    "type": "file",
+    "size": 223104,
+    "sha256": "04b47fcdf9e083896b4edcdf1f8194947630a076585d862a114677439a2e85dd"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/_CodeSignature",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/Installer.xpc/Contents/_CodeSignature/CodeResources",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2200,
+    "sha256": "6686de10a28a2fe11b36cbb86dcbacc827cfc4ea116b4dabf1845e5aee629e9b"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/_CodeSignature",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/B/_CodeSignature/CodeResources",
+    "mode": "0o644",
+    "type": "file",
+    "size": 22785,
+    "sha256": "09b748f0cacba8a83ce604b8785d8f465edaea8e86ff16963c2ffb4a94f28d29"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/Versions/Current",
+    "mode": "0o755",
+    "type": "symlink",
+    "target": "B"
+  },
+  {
+    "path": "Contents/Frameworks/Sparkle.framework/XPCServices",
+    "mode": "0o755",
+    "type": "symlink",
+    "target": "Versions/Current/XPCServices"
+  },
+  {
+    "path": "Contents/Info.plist",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2941,
+    "sha256": "ca780434cf9e9e0f0389ffa6c7e429249697d201e57e69ffe25ef727858165bd"
+  },
+  {
+    "path": "Contents/MacOS",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/MacOS/Nokori",
+    "mode": "0o755",
+    "type": "file",
+    "size": 48854864,
+    "sha256": "102dcf3f3061d0ada007a9d32f7c4723bc649f915ff7992d7b6a55d435c6f706"
+  },
+  {
+    "path": "Contents/Resources",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/AppIcon.icns",
+    "mode": "0o644",
+    "type": "file",
+    "size": 61660,
+    "sha256": "5051752a2b2444ed58fa6c93ce11c7b8c8d7f653bd6b83cf3dff9bf2f63ae275"
+  },
+  {
+    "path": "Contents/Resources/Assets.car",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2082696,
+    "sha256": "eb111db433c09b07d34a1369c2c90f165fbc950d9ca6ab5029f9be3caf136d43"
+  },
+  {
+    "path": "Contents/Resources/Integrations",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Integrations/pulse-sketchybar.sh",
+    "mode": "0o644",
+    "type": "file",
+    "size": 306,
+    "sha256": "3bba06bd7e2abb0bfe4ebdf128ea2a6ae6b9b168ed94f9225d62978355272800"
+  },
+  {
+    "path": "Contents/Resources/Integrations/pulse-status.sh",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2155,
+    "sha256": "6d0b7437cf0e75345a304a5112c4296f5ff606ad68b6966fb9784e11a6557880"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/assets",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/assets/icon.png",
+    "mode": "0o644",
+    "type": "file",
+    "size": 113247,
+    "sha256": "40d5f3d35a4611bc4e4152a530474840f1047c78f1d371555e2b3f9860012c01"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/package-lock.json",
+    "mode": "0o644",
+    "type": "file",
+    "size": 53592,
+    "sha256": "0539304f6aedb3441b8519ea645c0b35ced2acf0531448a32e77303893c6e316"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/package.json",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1264,
+    "sha256": "7e755a0257c7d71025577c718b5be755bddc13ee0ba6bfede1b962e1ff89be41"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/src",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/src/report.ts",
+    "mode": "0o644",
+    "type": "file",
+    "size": 4153,
+    "sha256": "5930da148d9047dd85c9dc08c9e6c243189e287880ba539156adc6ca9f209ac8"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/src/usage.tsx",
+    "mode": "0o644",
+    "type": "file",
+    "size": 4601,
+    "sha256": "aa531e884b66cf04b2f7aa258554797365ed335e31ee5fe6ea543f99dedf1e00"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/tests",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/tests/report.mjs",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3448,
+    "sha256": "e781fb9507faef08ccbacb48520c227b3161fdfbb04f53349642326fb98db842"
+  },
+  {
+    "path": "Contents/Resources/Integrations/raycast/tsconfig.json",
+    "mode": "0o644",
+    "type": "file",
+    "size": 300,
+    "sha256": "0efc8ce76c3eb972247d030ddaee95a1d2c0175e4b5e3de3f4f98c487e4c46ed"
+  },
+  {
+    "path": "Contents/Resources/LICENSE",
+    "mode": "0o644",
+    "type": "file",
+    "size": 11338,
+    "sha256": "70bb8a2fe5879d148ef66a069beb84929727879c4a0323d1045b3f166ebbab9e"
+  },
+  {
+    "path": "Contents/Resources/NOTICE",
+    "mode": "0o644",
+    "type": "file",
+    "size": 711,
+    "sha256": "bd4624324e144e35fe00c8f4db6288d97df3fd6682b64adbf01d555058b055dc"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Info.plist",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1175,
+    "sha256": "ccae74fc294c9996b96b9682d71bdefa165c76081a5346d18e535aec8afa5e18"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/AppIdentity.json",
+    "mode": "0o644",
+    "type": "file",
+    "size": 207,
+    "sha256": "71b02d8221c8d18b5bfd1ec91103ba2a55684d00f95802b10f93cf5d6c1fd98d"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/alibabacloud.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 746,
+    "sha256": "ecd207d58ca05888cbb8d5c9c9ced99940fcf717639ad1f50703682a508f4c23"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/amp.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 552,
+    "sha256": "73da84fb683ec9c9845ecab7a96a12bf5cef6737f088ac1a835799fd2bcbfb4f"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/antigravity.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 429,
+    "sha256": "3ee2f31e6abe7c810dec2ea768264e3c68f69d882b2192678f195cf8f1fe5403"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/atlascloud.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 491,
+    "sha256": "5870fc2e7db2752c4e5240f4d1049555f5c8c3ff2b3fe72595bfe4fe669f2fbd"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/cherrystudio.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1610,
+    "sha256": "4adeb202fe841ef561f86ae57467bc02a0a28e68fffcf83a22a21bf22f0b0ec9"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/chutes.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 862,
+    "sha256": "547b92bd03a546452d3f0f5cdd3a17b41ce9749d582b92d3a4b3e41aba92ce1d"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/claude.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1991,
+    "sha256": "a5a4a191d2ed52619ec37a25285ae9699ec90706464b8bfee303ed318864b16b"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/cline.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 848,
+    "sha256": "f3b28c300d9e8b73ff73c0e5cd2c95bf34531156051c798f3752a31172bcfae2"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/commandcode.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1746,
+    "sha256": "0dc10496eec7cd81d0df1f16cf249365876ff20e8b32fca8eb9d38bc474fe605"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/cursor.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 634,
+    "sha256": "3926c742b009cd7a70ff7be23c0957f3dffd918bba080341617c7c314107419f"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/deepinfra.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 4051,
+    "sha256": "5535f437674e3725a619b4f8752630cf40c25fb18bb7cc3780c6db631903b3ff"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/deepseek.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2566,
+    "sha256": "eedb7698ca33d38bf7fd0aed0e0fa1ee9375d52f0e69e0133b3cdb1145643e6f"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/devin.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 4084,
+    "sha256": "50a4e7f17d7a76f03e2f72f59007c46c09e6a3d6d0e16e7c26c564c9b356f75a"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/dimagent.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 992,
+    "sha256": "7ade561936822d7d8f04dde3724a7c6bbc1afb0a3b48a3688c8974bef9d4630b"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/elevenlabs.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 257,
+    "sha256": "9118d5257c140f4b1b458ea300d7409bf3a4585ba3b81d66d1b84b84f0478cfe"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/en.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/en.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 265,
+    "sha256": "0c3755fb84cb795c64f054ea71bfaf0b0e56d34b269e2faff8499fc26ba5297a"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/en.lproj/Localizable.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 96132,
+    "sha256": "4ae04c103ee01d0def36dfa2829a783b204326c8237b2a96981c35ef867c02fa"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/extension.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 287,
+    "sha256": "a4fc3a8183b97635fa7b05df5a05bf1749cd80143f1f30f8fc718627737e7916"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/gemini.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 719,
+    "sha256": "dd1c612362a901bfc4c9d580987a5e6874e8c03cabd5265de2466a445f6f0c83"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/geminicli.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 677,
+    "sha256": "80fd218ed3a7b131bf9227ed8c93148c608f65d3eadfea1e77525626d96594c0"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/github.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1006,
+    "sha256": "a2e1bd327592cd5fb4b67af703e4a3272320775d2ca43331a2a00d42aa8b3f03"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/goose.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2086,
+    "sha256": "a5843d9aa523c244741a1fc7a8850f5cd6264623f68fb09db597a41a862cab1f"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/grok.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 838,
+    "sha256": "6c69e4e6397ae3a4a43bfb2e3cc67658ea1291806eb9ac8eb0298db47a9f42d1"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/hermesagent.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 24362,
+    "sha256": "5b245100f88aff2760fa2c5c69bbb60345fe562780ff51798d4c05e7ce42419c"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/huggingface.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 5530,
+    "sha256": "3b0a59cc3d6441792c79a8a3cdab92268c27ab1b47325b825f2600876cfdfe7c"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ibm.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2124,
+    "sha256": "e4a7156fe574bc076dbc2973c6bd8af603730b7876814f291d50f1b26d77fd73"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ja.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ja.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 327,
+    "sha256": "3a087e4791a60ed2084feb64dff13cc39ae6fe8f19ac8e441eb70d6047304309"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ja.lproj/Localizable.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 120691,
+    "sha256": "3b9ca3d1f695d844a70ba9cae9fdb3c3a1146f35026c75abd6b8378570ae22e4"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/junie.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 346,
+    "sha256": "5cf4c16c9dfa9a77ac0d436b248685149a73cb27c29864767ea30846b0df679a"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/kilocode.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 801,
+    "sha256": "1f44fce5a3cebb2f3ac665d5c7107ef80e0dca1110e4ab4039cd0452c2524a42"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/kimi.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 921,
+    "sha256": "9e8dd71899abafb856fbe276c016358e050dfc87bc7b3d50f37a24ce6ac903e8"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/kiro.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 934,
+    "sha256": "e556f6e8e1a2173196dad9fefaebfbefe6c94e5beb4d340207028f571544af71"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ko.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ko.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 315,
+    "sha256": "67f9bb314c54aba98fdbcd0504e1cb3bb14b0c191bae6deb542a599ad3e37160"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ko.lproj/Localizable.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 112542,
+    "sha256": "23ce8799f23df5d01f3535c741b25a161cdf33dccda0d027c445c2ba8f994493"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/lmstudio.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1471,
+    "sha256": "23909d984dc1c89eb13cceea9fb5fa3dfca5679fc3a26a70460fbc3f42fdb5c9"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/longcat.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 922,
+    "sha256": "b077fc934166e6c839ca54098ea09338d3a4e81204c80a08aa1e0092dbb81095"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/manus.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3842,
+    "sha256": "3eae276814e2639c718de8875f50db1678576b51e99fe7257bf20ad441287462"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/minimax.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1581,
+    "sha256": "e9ec03e6caa282cd2fc501c543f33877ecacbeb9f35b9350a7b0a017e83b8123"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/mistral.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 479,
+    "sha256": "10e092a01a3b847836e53d81dfb8b16d6a1b067426953b2d82153f76447a1fd6"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/moonshot.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 4888,
+    "sha256": "66c927366f5aa9c5766f9b3a0ef7963913992ab9b2b1df69b25ee8d231ade2d6"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/newapi.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 471,
+    "sha256": "f9cca0c729caf971d31fee6558800ddde830bfcce04255c86709c1e7ce6edc64"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/notion.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1351,
+    "sha256": "a4067383843b31800b59402438e517dcc2c9c23921552576ed155aaf66f3c395"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ollama.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3958,
+    "sha256": "0a76e936781c68723158d69630608ed26a02313b6c4ad353d443a4ad26d1255f"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/openai.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1964,
+    "sha256": "daa18c8fd454658c6259ead081a491554165ed778387902686e6b2b971098008"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/openclaw.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3450,
+    "sha256": "8e8308bed6998d9ea345612b0e86494cfba759e6e6cd1e68d3865a095faef58a"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/opencode.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 256,
+    "sha256": "e610004abbffc3cfb0027c86687783790a870365498b9d9e38a5aee139f34f35"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/perplexity.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 723,
+    "sha256": "17c46ecf4002fed4d2209471bda9a1fd0a9d08a34beab73f28786e6d07a705a6"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/pi.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 352,
+    "sha256": "a3485d02e8d587c90482120d6b1ab891527d1b73a9b6dd1b4a1127fa453ef460"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/poe.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1904,
+    "sha256": "520521734f775ccf2975e938ae952d0a348d14b197b405b8e03f5297cf1d2584"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/qoder.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 7668,
+    "sha256": "229dcb3e3d4b934e0d5634262233917f14cf95de3cd5dbd577ab7ae6b6aaaeaf"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/qwen.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2158,
+    "sha256": "2c6f9d933c3a47ef368df8c4c10994bf97becb88d471c0a88e168bf7f4e2d7a3"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/replicate.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 357,
+    "sha256": "ba86f1889149afefd6ff593a84729efe9966b80268328bd326abe767dcff397a"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/roocode.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 907,
+    "sha256": "fa4ad466d4df7d6568cfb8cb72398ced9c9e1c42da1cfedfcd69e14bd7a587c8"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ru.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ru.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 463,
+    "sha256": "7c841b3cf9fce243ef379023e3e6c1735d76d7ebbcc1ff8506f0e068af455374"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/ru.lproj/Localizable.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 138973,
+    "sha256": "e5090ca955c179308af66c34e890ce3a6505f4bf792e61e48e10163d899fe41d"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/sakana.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1376,
+    "sha256": "ea7f1f5d600c983d687c25be7e4ecec15f10c16fa3ef78a08949725c89fbfcb0"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/stepfun.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 515,
+    "sha256": "987206e5fedabd551d47ccd6ebf542dbf2045276993695e8a7c5f47d92dc8c9a"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/sub2api.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 541,
+    "sha256": "c863fee8ed00018d75cf4b8c3ecd67f5cbdf277f8fe5b1434353c618010c4288"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/tencent.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 303,
+    "sha256": "937e5d18d6aa818704ead94752488d963b46b155b4744f7a1fc741c6e4614d1c"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/trae.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 445,
+    "sha256": "ea3a4b844edd1d40735d54512b56fcc454adc93ca09a5358c41335d638a5a6b0"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/unsloth.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 8518,
+    "sha256": "2903429184c3f9ef445e5f94de0394d914f37832e79d7b358665b72154006c1f"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/v0.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 636,
+    "sha256": "3aea9b95c9534eb8d11eae2d3beb91226e48df164a5b47f900285b7238d126af"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/v2ex.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 284,
+    "sha256": "931c063c71a5030cbc839dc0099c5f8bb10806a0657d4be4b52d1106c9e84344"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/venice.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3140,
+    "sha256": "6d474399282460245fece1e6c94c4edbccb6303d52048cd5de24d63891cd96f8"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/vercel.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 233,
+    "sha256": "b95bf73e7530c0bbb44fb76c2b5131258d23a9f5e966eae047014188a345625f"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/volcengine.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 1084,
+    "sha256": "8e27188d23197569d41cdd84f41f4c8b1b75764f3f974e3d765227f51cb9b4a0"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/windsurf.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 933,
+    "sha256": "79d2f88e9c720a1cad1ca1f5c41d75e7869c3b9703901a7a04df75ad5621c4b5"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/xai.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 416,
+    "sha256": "6bf6b39f140eecb44178fccefafe3cb45574677f30829ee1fba4160105e9bdb2"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/xiaomimimo.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 3085,
+    "sha256": "9161fd92d69c1f0c98b773fc9c90bbbdc267a8c93680ec89ab7f7135b29429e1"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/zai.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 352,
+    "sha256": "0a041c8357a7cff4bd7a6cafa7c4d8625fcb9aa7cad2afcfbfc2b229bbfdac8c"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/zenmux.svg",
+    "mode": "0o644",
+    "type": "file",
+    "size": 2600,
+    "sha256": "91dc3268320ce4772c9dbb32a4cad0681c5753b5b598113ff1583cafd58a3329"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/zh-Hans.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/zh-Hans.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 231,
+    "sha256": "19c651fccba5cafd7fac279e991df1150c0fe494384696c2273ad76a0872be96"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/zh-Hans.lproj/Localizable.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 97660,
+    "sha256": "c70da9cdb7f63a98661bf2f83c23eed359982f8bac59ce709103c9fbb32b7345"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/zh-Hant.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/zh-Hant.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 231,
+    "sha256": "4be23d9fc64d4cc6c8446d782d8bfadb0fc3f5735320eee6df3bf9311654cb01"
+  },
+  {
+    "path": "Contents/Resources/Pulse_Pulse.bundle/Contents/Resources/zh-Hant.lproj/Localizable.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 98380,
+    "sha256": "66fdaafd41476fef96290bd252de5d2657e7ee088b7ccf53a1642e482f392b97"
+  },
+  {
+    "path": "Contents/Resources/THIRD_PARTY_NOTICES.md",
+    "mode": "0o644",
+    "type": "file",
+    "size": 13511,
+    "sha256": "d063e9ad661e39075a63ce7dae7d5ef86257d50e476497e952519c18ed11f65f"
+  },
+  {
+    "path": "Contents/Resources/en.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/en.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 265,
+    "sha256": "0c3755fb84cb795c64f054ea71bfaf0b0e56d34b269e2faff8499fc26ba5297a"
+  },
+  {
+    "path": "Contents/Resources/ja.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/ja.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 327,
+    "sha256": "3a087e4791a60ed2084feb64dff13cc39ae6fe8f19ac8e441eb70d6047304309"
+  },
+  {
+    "path": "Contents/Resources/ko.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/ko.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 315,
+    "sha256": "67f9bb314c54aba98fdbcd0504e1cb3bb14b0c191bae6deb542a599ad3e37160"
+  },
+  {
+    "path": "Contents/Resources/ru.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/ru.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 463,
+    "sha256": "7c841b3cf9fce243ef379023e3e6c1735d76d7ebbcc1ff8506f0e068af455374"
+  },
+  {
+    "path": "Contents/Resources/zh-Hans.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/zh-Hans.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 231,
+    "sha256": "19c651fccba5cafd7fac279e991df1150c0fe494384696c2273ad76a0872be96"
+  },
+  {
+    "path": "Contents/Resources/zh-Hant.lproj",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/Resources/zh-Hant.lproj/InfoPlist.strings",
+    "mode": "0o644",
+    "type": "file",
+    "size": 231,
+    "sha256": "4be23d9fc64d4cc6c8446d782d8bfadb0fc3f5735320eee6df3bf9311654cb01"
+  },
+  {
+    "path": "Contents/_CodeSignature",
+    "mode": "0o755",
+    "type": "directory"
+  },
+  {
+    "path": "Contents/_CodeSignature/CodeResources",
+    "mode": "0o644",
+    "type": "file",
+    "size": 33430,
+    "sha256": "dda66e9ddd464150cce1554f1b6c2ed9d666b7c12ddf662c8a7b5ab00b07afd9"
+  }
+]

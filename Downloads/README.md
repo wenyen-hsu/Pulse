@@ -1,66 +1,82 @@
-# Nokori trial download / Nokori 試用下載
+# Nokori Liquid trial / 液態試用版
 
 **[English project page](../README.md) · [繁體中文首頁](../README.zh-Hant.md)**
 
 ## Download / 下載
 
-**[Download universal DMG / 下載 Universal DMG](Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg?raw=true)** · [SHA-256](SHA256SUMS)
+**[Download universal DMG / 下載 Universal DMG](Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg?raw=true)** · [SHA-256](SHA256SUMS)
 
 | Item / 項目 | Details / 說明 |
 | --- | --- |
-| Build / 版本 | Nokori 1.12.6 weather-exclusive trial / 天氣互斥試用版 |
-| Source / 程式來源 | [`58c8a96`](https://github.com/wenyen-hsu/Pulse/commit/58c8a9619017519b11a758f9cf6b5d5334d676e5) · [PR #9](https://github.com/wenyen-hsu/Pulse/pull/9) |
-| Size / 大小 | 17,918,290 bytes, about 18 MB / 約 18 MB |
+| Build / 版本 | Nokori 1.12.6 Liquid-scatter trial / 液態散排試用版 |
+| Source / 程式來源 | [`f5370ee`](https://github.com/wenyen-hsu/Pulse/commit/f5370eeba337ce03cb5280e7e3688d90a9b5bef1) · [PR #16](https://github.com/wenyen-hsu/Pulse/pull/16) |
+| Size / 大小 | 17,945,282 bytes, about 18 MB / 約 18 MB |
 | Architecture / 架構 | Apple Silicon (`arm64`) + Intel (`x86_64`) |
 | System / 系統 | macOS 14+; full Liquid Glass requires macOS 26+ / 完整液態玻璃外觀需 macOS 26 以上 |
 | Signing / 簽章 | Ad-hoc signed, **not Apple-notarized** / 臨時簽章，**未經 Apple 公證** |
+| Integrity / 完整性 | [Package verification](Nokori-1.12.6-liquid-scatter-f5370ee-verification.json) · [Full bundle manifest](Nokori-1.12.6-liquid-scatter-f5370ee-bundle-manifest.json) |
 
 ## 繁體中文
 
-此包使用通過新一輪原生桌面測試的程式打包，沒有在驗證後重新編譯。這不是正式穩定版，也沒有建立版本標籤或啟用自動更新。下載檔放在本目錄，訪客不需登入 Devin 就能取得。
+這是**已揭露限制的液態試用版，不是全模式完整驗收或正式穩定版**。使用同一份原生受測程式打包，沒有在驗證後重新編譯或重新簽章；沒有版本標籤、正式 GitHub Release 或自動更新。訪客不需登入 Devin 即可下載。
 
-**此包已包含天氣與手選寵物互斥。** 啟用自動天氣時，固定寵物選單、匯入 PNG 與使用內建寵物按鈕會停用；天氣暫時取代已儲存的 PNG，不刪除原設定。關閉天氣後恢復原寵物或圖片，大小仍可調整。
+**本版包含液態預設與全部帳號散排。** 新設定預設使用液態寵物，保留已儲存的樣式。液態模式不再分頁，中央保留寵物，周圍圖示與額度環隨數量一起縮放。圓形寵物浮點保留每頁八個帳號。也包含點擊天氣更新、每分鐘一次與單次查詢防護，以及拖曳放開後不再意外刷新全部帳號的修正。
 
-1. 先結束舊的 Nokori／Pulse Pet；**保留原版 Pulse**。
-2. 開啟 DMG，把 **Nokori** 拖進「應用程式」，只取代舊 Nokori，不取代 Pulse。
-3. 首次若被 macOS 阻擋，僅在信任來源時，到「系統設定 → 隱私權與安全性 → 仍要打開」。
-4. 在「設定 → 外觀 → 自動天氣寵物」啟用天氣。預設關閉；顯示浮點面板後，可選目前位置並按「允許定位」，或搜尋城市後選取結果。詳見[天氣來源、費用與隱私](../Docs/weather-pet.zh-Hant.md)。
+**已知限制：77 個帳號時，經典側欄會超出螢幕而無法看見。** 此問題未修正，已由使用者接受列為試用限制，不列為通過。大量帳號請使用液態寵物或圓形寵物浮點。
 
-**原生驗證範圍：** Apple Silicon 上以真實滑鼠操作驗證手選／圖片控制停用、台北城市天氣資料取代已存 PNG、重開後保留圖片與大小、關閉天氣後還原、隱藏面板暫停與恢復、圓形／液態互動、拖曳回彈及原版 Pulse 雙開。DMG 完整性、簽章及包內完整程式與受測版本一致性已核對。
+1. 結束舊 Nokori／Pulse Pet；**保留原版 Pulse**。
+2. 開啟 DMG，把 **Nokori** 拖進「應用程式」，只取代舊 Nokori。
+3. 首次若被 macOS 阻擋，僅在信任來源時，使用「系統設定 → 隱私權與安全性 → 仍要打開」。
+4. 天氣預設關閉。在「設定 → 外觀」啟用自動天氣後，可手選城市或主動允許定位。天氣會暫時取代已存 PNG，關閉後恢復；不刪除圖片。[天氣來源、費用與隱私](../Docs/weather-pet.zh-Hant.md)。
 
-**仍未驗證：** 首次定位授權彈窗、App 個別允許／拒絕及成功裝置定位待使用者在自己的 Mac 測試；VM 系統定位服務維持關閉。經典側欄可操作，切回浮點會恢復天氣，但側欄內部暫停狀態只有自動測試覆蓋，未由原生介面直接證實。Intel 實機、舊 macOS、窄／多螢幕、首次安全性放行、精確重入延遲、真實服務商用量／通知及所有真實天氣轉換仍未驗證，不能把城市備援測試當成這些項目已通過。
+**原生驗證：** 在 Apple Silicon VM 使用真實滑鼠及明確標示的本機正額度 fixtures，驗證 9／17／77 帳號同時散排、最後帳號懸停／獨立點擊、位置穩定與最大 PNG 中央淨空；不是 77 個真實服務商的登入或用量驗證。拖曳測試以帳號計數及匿名天氣連線計數確認沒有意外刷新。圓形 Next 到 10/10，另以九帳號驗證 Previous。真實台北天氣、兩模式點擊更新、冷卻／查詢中防重複、受控逾時後保留小時鐘與成功重試、隱藏暫停、重開後 PNG 還原、樣式保存與無效值回退、原版 Pulse 雙開及設定隔離均有原生證據。測試狀態已還原。
 
-這次不包含 Devin Mac App 用量讀取相容性修正，該回報仍待診斷。
+**量測邊界：** 減少動態效果只量測 avatar 區域的 ON／OFF 對照，不代表量測全部動畫。經典側欄九帳號可見、可操作，啟動及約 12 分 39 秒觀察窗沒有天氣連線；不能據此宣稱所有排程路徑均已驗證。
+
+**仍未驗證：** 首次定位授權、個別允許／拒絕與成功 GPS 待使用者自己的 Mac 驗證，VM 全域定位服務維持關閉。按下瞬間仍收合的精確狀態、精確重入延遲、Intel 實機、舊 macOS、窄／多螢幕、首次安全性放行、真實帳號用量／通知及所有真實天氣轉換未完整驗證。
+
+**Devin 用量：** 本版改善「桌面快照未提供適用額度」的說明，不會把缺少欄位解釋成零或用完；沒有為缺少用量的 Mac App 快照新增即時數字。
 
 ## English
 
-This trial is packaged from the app accepted in a fresh native desktop run, without rebuilding afterward. It is not a stable release, has no version tag, and does not enable automatic updates. The file is hosted here so visitors do not need a Devin account to download it.
+This is a **Liquid trial with disclosed limitations, not complete acceptance of every mode or a stable release**. It packages the exact native-tested app without rebuilding or re-signing. There is no tag, formal GitHub Release or enabled updater.
 
-**This installer includes exclusive weather/manual-pet controls.** Automatic weather disables the fixed-pet picker, Import PNG and Use built-in pet. Weather temporarily replaces a saved PNG without deleting it; switching weather off restores the saved pet or image. Size remains adjustable.
+New settings default to Liquid pet, while saved choices remain unchanged. All enabled Liquid accounts appear together, with shared visual/hit-target scaling and a clear central pet area. Circular Pet orb retains eight accounts per page. This build also includes weather-click refresh with a one-minute cooldown/single-flight guard, and the drag-release refresh fix.
 
-1. Quit the older Nokori/Pulse Pet; **keep original Pulse**.
-2. Open the DMG and drag **Nokori** into Applications. Replace only the older Nokori, not Pulse.
-3. If macOS blocks first launch, use **System Settings → Privacy & Security → Open Anyway** only if you trust this download.
-4. Enable **Settings → Appearance → Automatic weather pet**. It is off by default. With the orb visible, choose current location and press **Allow location access**, or search for a city and select its result. See [weather source, costs and privacy](../Docs/weather-pet.md).
+**Known failure: the legacy Classic rail is not visible with 77 enabled accounts because its window extends beyond the display.** The user accepted this as a trial limitation; it was not fixed or counted as passed. Use Liquid pet or circular Pet orb for large lists.
 
-**Native verification:** On Apple Silicon, real pointer input covered disabled manual/image controls, live Taipei city weather overriding a saved PNG, image/size persistence across relaunch, restoration with weather off, hidden-panel pause/resume, circular/liquid interaction, drag settling and coexistence with original Pulse. Image integrity, signing and the full packaged bundle's identity with the tested app were verified.
+Quit the older Nokori/Pulse Pet, open the DMG and replace only **Nokori** in Applications; **keep original Pulse**. If blocked on first launch, use **System Settings → Privacy & Security → Open Anyway** only if you trust the download. Weather is off by default. Choose a city or explicitly allow location access in Appearance; saved PNGs return when weather is disabled. [Source, costs and privacy](../Docs/weather-pet.md).
 
-**Not verified:** First-time OS permission, app-specific grant/denial and successful device location still require the user's Mac; global Location Services was unchanged and off in the VM. Classic rail works and weather resumes on returning to an orb, but its internal paused state is covered by automated tests, not direct native UI evidence. Intel hardware, older macOS, narrow/multiple displays, first-use security approval, exact re-entry timing, real provider usage/notifications and every possible live weather transition remain untested. City fallback does not prove those cases.
+**Native evidence:** Real mouse input on an Apple Silicon VM covered 9/17/77 labelled local positive-quota fixtures, final-slot hover/isolated clicks, stable packing, maximum PNG clearance, and drag counter checks. These are not 77 live provider authentication/usage tests. Circular Next reached 10/10; Previous was separately tested with nine fixtures. Live Taipei weather, centre clicks in both modes, cooldown/in-flight guards, controlled timeout/clock/retry, hidden pause, PNG restoration after relaunch, saved/invalid style handling, genuine Pulse coexistence and settings isolation were exercised. Temporary state was restored.
 
-This build does not fix the reported Devin Mac App usage compatibility issue; that report still needs diagnosis.
+**Measurement boundaries:** Reduce Motion was measured only in the sampled avatar region. Classic-nine was visible and interactive; no weather CONNECT occurred at startup or during the approximately 12-minute-39-second observation window. This does not establish every scheduling path.
 
-## Previous trial / 舊試用版
+**Not verified:** First-time location permission, app-specific grant/denial and successful GPS remain for the user's Mac; global Location Services was unchanged and off. Exact collapsed-at-mouse-down and re-entry timing, Intel hardware, older macOS, narrow/multiple displays, first-use security approval, real provider usage/notifications and every live weather transition remain unverified or non-exhaustive.
 
-[`64e1028` weather trial / 舊天氣試用版](Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true) remains available with its original checksum. It predates the exclusive controls: PNGs take priority and pause weather. / 保留原檔及原雜湊；此舊包尚無互斥控制，PNG 會優先顯示並暫停天氣。
+The Devin diagnostic now explains when a desktop snapshot reports no applicable limits; missing fields are not treated as zero/exhausted usage. This does not add real-time usage to snapshots that contain none.
+
+## Package integrity / 安裝包完整性
+
+The preserved, built, installed, staged, read-only mounted and extracted installation-copy bundles matched the full manifest, including file bytes, permissions and symlink targets. Strict/deep code signature checks, both architectures' SDK 26.0 stamps, identity/resources, mounted read-only `--json` startup and `hdiutil verify` passed. / 保存、建置、安裝、暫存、唯讀掛載及解出的安裝副本完整清單一致；包含檔案內容、權限與符號連結目標，並通過簽章、兩架構 SDK、識別／資源及啟動檢查。
+
+Executable SHA-256 / 執行檔雜湊：`102dcf3f3061d0ada007a9d32f7c4723bc649f915ff7992d7b6a55d435c6f706`.
+
+GitHub CI is separate evidence. Earlier merged-source jobs were cancelled before steps because no hosted runner was acquired, not a compilation/test pass. Consult the publication PR and [Actions](https://github.com/wenyen-hsu/Pulse/actions) for fresh results. / GitHub CI 與原生驗證分開記錄；先前未分配到 runner 而取消的作業不算通過。
 
 ## Verify / 核對下載
 
-Run this beside the downloaded DMG and compare with its row in [SHA256SUMS](SHA256SUMS). / 在下載檔所在資料夾執行，並與雜湊表中同檔名一行比較：
-
 ```bash
-shasum -a 256 Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg
+shasum -a 256 Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg
 ```
 
-Expected SHA-256 / 預期雜湊：`7e96e61f27e2c021ded1c5328f96da7d07d785aa5d54bd1bad344f02dab9add1`.
+Expected SHA-256 / 預期雜湊：`a4c1d865116ba58f6eff4fa4d993465b65f120fcaf66d8d6495f031bb034401c` ([SHA256SUMS](SHA256SUMS)).
 
-The source retains [Apache 2.0](../LICENSE), [NOTICE](../NOTICE) and [third-party notices](../THIRD_PARTY_NOTICES.md). Open-Meteo's free API has separate **non-commercial-only** terms; this is not an unlimited or commercial weather subscription. / 程式保留原作者致謝與授權；Open-Meteo 免費 API 另有**僅限非商業用途**與流量限制，不因程式採 Apache 2.0 就免除。
+## Archived trials / 舊試用版
+
+Both files and original checksums remain unchanged. Neither contains Liquid default/scatter, weather-click refresh or the later drag fix. / 兩份原檔及原雜湊保留；均不包含液態預設／散排、點擊天氣更新與後續拖曳修正。
+
+- [`58c8a96` weather-exclusive trial / 天氣互斥版](Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg?raw=true): weather overrides PNG and restores it when disabled. Its Devin diagnostic predates the newer explanation. / 包含天氣覆蓋 PNG 與關閉還原，Devin 提示仍為舊版。
+- [`64e1028` weather trial / 舊天氣版](Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true): original PNG-priority behavior pauses weather. / PNG 優先並暫停天氣。
+- [Previous packaging/verification record / 舊版驗證紀錄](https://github.com/wenyen-hsu/Pulse/blob/d843e2db2773a4c3464477775e0b9000324c1dfb/Downloads/README.md).
+
+The source retains [Apache 2.0](../LICENSE), [NOTICE](../NOTICE) and [third-party notices](../THIRD_PARTY_NOTICES.md). Open-Meteo's free API is **non-commercial only**, rate-limited and not Apple Weather/WeatherKit. No WeatherKit quota is used. / 保留原作者致謝與授權；Open-Meteo 免費 API 另有非商業用途及流量限制，不是 Apple 天氣／WeatherKit，也不消耗 WeatherKit 額度。

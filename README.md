@@ -9,13 +9,15 @@ A native macOS AI-usage monitor with a centred sun pet and a liquid-glass puddle
 
 > Independent development fork of [Pulse by qunqin24](https://github.com/qunqin24/Pulse). **Nokori (formerly Pulse Pet)** is the chosen name for this fork. This repository is not an official upstream release and is not endorsed by its original author.
 
-**[Download trial DMG — Apple Silicon + Intel](Downloads/Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg?raw=true)** · [Checksums and verification limits](Downloads/README.md)
+**[Download trial DMG — Apple Silicon + Intel](Downloads/Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg?raw=true)** · [Checksums and verification limits](Downloads/README.md)
 
 > **Trial, not a stable release.** Ad-hoc signed, not Apple-notarized. Keep original Pulse installed; replace only an older Nokori. First-time location permission and successful device location still need testing on your Mac.
 
 ## What changes in this fork?
 
-New settings default to **Liquid pet**; saved style choices are preserved. The linked `58c8a96` trial DMG predates this default change and the scattered account layout described below.
+New settings default to **Liquid pet**; saved style choices are preserved. The `f5370ee` trial includes this default, all-account Liquid scatter, weather-click refresh and the drag-release refresh fix.
+
+**Known limitation:** With 77 enabled accounts, the legacy Classic rail extends beyond the display and may not be visible. Use Liquid pet or the circular Pet orb for large lists. See the [trial's verification scope and limitations](Downloads/README.md).
 
 Liquid pet displays every enabled account ring inside the drop, without pages. Dense lists use smaller icons; hover opens the full name and usage card. The pet stays in the centre. Circular Pet orb keeps its existing pages.
 
@@ -34,7 +36,7 @@ Liquid pet displays every enabled account ring inside the drop, without pages. D
 
 ## Install without replacing Pulse
 
-Use the **[Nokori trial DMG](Downloads/Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg?raw=true)** above, packaged from the exact native-tested app without rebuilding. [Download details and SHA-256](Downloads/README.md). This is a repository-hosted trial, not a tagged GitHub Release. Upstream Pulse downloads do not contain these custom features.
+Use the **[Nokori trial DMG](Downloads/Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg?raw=true)** above, packaged from the exact native-tested app without rebuilding. [Download details and SHA-256](Downloads/README.md). This is a repository-hosted trial, not a tagged GitHub Release. Upstream Pulse downloads do not contain these custom features.
 
 1. Open the fork's DMG and drag **Nokori.app** into Applications.
 2. Leave **Pulse.app** untouched. Preferences, application data, login item and URL scheme are separate; original preferences are not migrated.

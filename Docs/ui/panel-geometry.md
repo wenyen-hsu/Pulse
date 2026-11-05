@@ -176,6 +176,8 @@ Behind **Settings → Experimental → Liquid docking** (`AppSettings.liquidDock
 
 ## Flare, sliver, labels, scale
 
+**Known large-list Classic limitation:** The legacy count-sized rail can extend beyond the display and become invisible with large account lists. This is an accepted trial limitation, not Liquid packing or circular paging failure. Use either orb mode for large lists; see the [trial decision and measurements](../decisions/liquid-scatter-trial-classic-limit.md) and [verification scope](../../Downloads/README.md).
+
 - `DockLayout.endPadding(docked:)`: floating drops the flare's padding so visible breathing room matches docked. Anything measuring the rail (ring centres, `PanelHitArea.slot`) must be told docked or not.
 - Auto-collapse to a 6pt sliver (`AppSettings.autoCollapse`, default on) **only while docked** (at a notch the collapsed surface is empty instead). The sliver **is** `DockBerthShape` at `openness` 0 (`animatableData`), not a second view. Layout stays at full rail size so the card's geometry holds. Rings keep tracking areas only while expanded (`isInteractive`).
 - The sliver takes usage colour past the warning threshold; at a notch, `NotchAlertShape` carries it.
