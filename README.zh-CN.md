@@ -11,7 +11,9 @@
 
 ## 定制功能
 
-首次设置默认使用**液态宠物**，已保存的面板样式不会更改。当前链接的 `58c8a96` 试用 DMG 尚未包含这项默认值调整及下述分散布局。
+首次设置默认使用**液态宠物**，已保存的面板样式不会更改。`f5370ee` 试用版已包含液态默认值、全部账号分散布局、点击天气更新，以及拖动放开后不再意外刷新全部账号的修复。
+
+**已知限制：** 启用 77 个账号时，经典侧栏会超出屏幕，可能无法显示。大量账号请使用液态宠物或圆形宠物浮点。[试用版验证范围与限制](Downloads/README.md)。
 
 液态宠物会将所有已启用账号的图标与额度圆环分散排列在水滴内，不再分页。账号较多时图标会缩小，悬停可查看完整名称与用量卡片，宠物仍在中央。圆形宠物浮点保留原有分页。
 
@@ -26,7 +28,7 @@
 
 ## 安装与设置
 
-**[下载试用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg?raw=true)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
+**[下载试用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg?raw=true)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
 
 1. 打开 DMG，把 **Nokori.app** 拖到“应用程序”，不要替换原版 **Pulse.app**。
 2. 设置、应用数据、登录项和 URL scheme 独立，不迁移原版设置；上游自动更新已关闭。

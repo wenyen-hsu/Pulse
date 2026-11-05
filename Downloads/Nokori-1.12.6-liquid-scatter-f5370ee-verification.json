@@ -1,0 +1,45 @@
+{
+  "source_commit": "f5370eeba337ce03cb5280e7e3688d90a9b5bef1",
+  "app": {
+    "bundle_identifier": "io.github.wenyen-hsu.PulsePet",
+    "version": "1.12.6",
+    "minimum_macos": "14.0",
+    "executable_sha256": "102dcf3f3061d0ada007a9d32f7c4723bc649f915ff7992d7b6a55d435c6f706",
+    "architectures": [
+      "x86_64",
+      "arm64"
+    ],
+    "sdk_stamps": [
+      "26.0",
+      "26.0"
+    ],
+    "cdhash": "51f4674658feabead6944fac59a93f0abfa22b41",
+    "signature": "ad-hoc; not Apple notarized",
+    "updater_feed_present": false,
+    "url_schemes": [
+      "pulse-pet"
+    ],
+    "manifest_entries": 282
+  },
+  "dmg_filename": "Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg",
+  "dmg_sha256": "a4c1d865116ba58f6eff4fa4d993465b65f120fcaf66d8d6495f031bb034401c",
+  "dmg_bytes": 17945282,
+  "bundle_manifest_filename": "Nokori-1.12.6-liquid-scatter-f5370ee-bundle-manifest.json",
+  "bundle_manifest_sha256": "f72e3673f185e27a8476cd1be433fbe0160d546ac40d2047cf49f941a8414027",
+  "hdiutil_verify": "Checksumming Protective Master Boot Record (MBR : 0)\u2026\nProtective Master Boot Record (MBR :: verified   CRC32 $B04D02C0\nChecksumming GPT Header (Primary GPT Header : 1)\u2026\n GPT Header (Primary GPT Header : 1): verified   CRC32 $DE6CB172\nChecksumming GPT Partition Data (Primary GPT Table : 2)\u2026\nGPT Partition Data (Primary GPT Tabl: verified   CRC32 $CAFF515D\nChecksumming  (Apple_Free : 3)\u2026\n                    (Apple_Free : 3): verified   CRC32 $00000000\nChecksumming disk image (Apple_HFS : 4)\u2026\n          disk image (Apple_HFS : 4): verified   CRC32 $6512A02D\nChecksumming GPT Partition Data (Backup GPT Table : 5)\u2026\nGPT Partition Data (Backup GPT Table: verified   CRC32 $CAFF515D\nChecksumming GPT Header (Backup GPT Header : 6)\u2026\n  GPT Header (Backup GPT Header : 6): verified   CRC32 $A495CF72\nverified   CRC32 $7D228525",
+  "read_only_mounted_startup_json": "passed",
+  "preserved_built_staged_mounted_install_copy_manifests_match": true,
+  "manifest_includes_file_bytes_permissions_and_symlink_targets": true,
+  "rebuild_after_native_acceptance": false,
+  "older_installers_unchanged": {
+    "Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg": "7e96e61f27e2c021ded1c5328f96da7d07d785aa5d54bd1bad344f02dab9add1",
+    "Nokori-1.12.6-weather-64e1028-trial-universal.dmg": "a3f1bd9f9d782d7be427fc0bff4186458d600e3ce88491c8634918187d60b90d"
+  },
+  "known_limitations": [
+    "Classic rail with 77 enabled accounts extends beyond display; accepted trial limitation, not a pass",
+    "First-time location permission and successful GPS remain delegated to user Mac",
+    "Intel hardware, older macOS, narrow/multiple displays and first-use Gatekeeper approval untested",
+    "Real provider authentication/usage/notification delivery and all live weather transitions not exhaustively tested",
+    "Exact sub-second re-entry and collapsed mouse-down timing are not established by visual tests"
+  ]
+}
