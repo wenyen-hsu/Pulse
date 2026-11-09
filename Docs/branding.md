@@ -27,7 +27,7 @@ Use the exporter inside Icon Composer; Xcode's `xcrun ictool` may instead select
 
 `bundle.sh` compiles Icon Composer input using actool; it does not use the preview tile as a flat replacement for the system icon. The SVG's explicit white gradient and the system's automatic gradient/material are separate renderings of the same artwork, not pixel-identical images. Original Pulse and integration-specific artwork remain unchanged.
 
-The [`67923c1` white-Pop trial](../Downloads/README.md) package the frozen native-tested app with this artwork, without rebuilding or re-signing. The earlier `f5370ee` blue-glass installer and its checksums remain archived unchanged. The contained apps are ad-hoc signed, not Apple-notarized; native icon tests do not establish first-download Gatekeeper approval. The installer background and download guide explain Done → Privacy & Security → Open Anyway for the verification warning, without disabling protection or removing quarantine.
+The [notarized trial](../Downloads/README.md) packages the native-tested app source with this artwork, Developer ID signed and Apple-notarized. Older ad-hoc installers were removed from Downloads and remain in git history; native icon tests alone do not establish first-download Gatekeeper approval.
 
 **Accepted on a healthy Mac.** On the owner's Apple Silicon Mac (macOS 27.2) the downloaded DMG kept quarantine, mounted without a damage warning and opened after the standard Done → Privacy & Security → Open Anyway step. The earlier block came from a test VM whose XProtect rules were missing. The diagnostic ZIP was not retested; the DMG is the recommended download.
 
