@@ -7,13 +7,13 @@
 
 A native macOS AI-usage monitor with a centred sun pet and a liquid-glass puddle.
 
-> **Download acceptance is blocked:** the test VM's XProtect rules are unavailable; even a text-only control ZIP is rejected. Neither new package is accepted for delivery. [Status](Downloads/README.md).
+> **Download accepted on a healthy Mac:** the white-Pop DMG downloaded, mounted and opened on macOS 27.2 after Apple's standard per-app Open Anyway step. It is ad-hoc signed and not notarized, so each Mac needs that step once per build. [Download and status](Downloads/README.md).
 
 The trial below includes the white-glass Pop icon. Its **red arc is fixed branding, not live usage**. [Artwork and generation](Docs/branding.md).
 
 > Independent development fork of [Pulse by qunqin24](https://github.com/qunqin24/Pulse). **Nokori (formerly Pulse Pet)** is the chosen name for this fork. This repository is not an official upstream release and is not endorsed by its original author.
 
-**[Download trial DMG — Apple Silicon + Intel](Downloads/README.md)** · [Checksums and verification limits](Downloads/README.md)
+**[Download trial DMG — Apple Silicon + Intel](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** · [Checksums and verification limits](Downloads/README.md)
 
 > **Trial, not a stable release.** Ad-hoc signed, not Apple-notarized. Keep original Pulse installed; replace only an older Nokori. First-time location permission and successful device location still need testing on your Mac.
 
@@ -40,12 +40,14 @@ Liquid pet displays every enabled account ring inside the drop, without pages. D
 
 ## Install without replacing Pulse
 
-Use the **[Nokori trial DMG](Downloads/README.md)** above, packaged from the exact native-tested app without rebuilding. [Download details and SHA-256](Downloads/README.md). This is a repository-hosted trial, not a tagged GitHub Release. Upstream Pulse downloads do not contain these custom features.
+Use the **[Nokori trial DMG](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** above, packaged from the exact native-tested app without rebuilding. [Download details and SHA-256](Downloads/README.md). This is a repository-hosted trial, not a tagged GitHub Release. Upstream Pulse downloads do not contain these custom features.
 
 1. Open the fork's DMG and drag **Nokori.app** into Applications.
 2. Leave **Pulse.app** untouched. Preferences, application data, login item and URL scheme are separate; original preferences are not migrated.
 3. Open Nokori and select the services to monitor. It runs in the menu bar; right-click the floating panel for Settings.
-4. This ad-hoc trial is **not Apple-notarized**. For the “Apple could not verify” warning, choose **Done**, not Move to Trash; then use **System Settings → Privacy & Security → Open Anyway** only if you trust the source. Stop for an explicit malware detection or “will damage your computer” warning. [First-launch guide](Downloads/README.md).
+4. Open **Nokori** from Applications. Because this trial is ad-hoc signed and **not Apple-notarized**, macOS shows “Apple could not verify ‘Nokori’ is free of malware…”. Choose **Done**, **not Move to Trash**.
+5. Only if you trust the source, open **System Settings → Privacy & Security**, scroll to **Security**, choose **Open Anyway** next to Nokori, confirm with Touch ID or your password, then choose **Open**. Stop for an explicit malware detection or “will damage your computer” warning; never disable Gatekeeper or remove quarantine.
+6. Each Mac needs steps 4–5 **once per new build**; later launches open normally. Removing this step for recipients requires a Developer ID and Apple notarization, not App Store publication. [First-launch guide](Downloads/README.md).
 
 **Requirements:** macOS 14+; full Liquid Glass appearance on macOS 26+. Universal packages target Apple Silicon and Intel; Intel hardware and older macOS behaviour are not yet verified for these custom surfaces. Upstream automatic updates are disabled.
 
