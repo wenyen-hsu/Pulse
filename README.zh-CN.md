@@ -32,12 +32,14 @@
 
 ## 安装与设置
 
-**[下载试用 DMG — Apple Silicon＋Intel](Downloads/README.md)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
+**[下载试用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** · [SHA-256 与验证范围](Downloads/README.md)。文件直接保存在本仓库，不是正式稳定版或已标记的 GitHub Release；首次定位授权和成功设备定位仍待实测。上游 Pulse 安装包不包含本版功能。
 
 1. 打开 DMG，把 **Nokori.app** 拖到“应用程序”，不要替换原版 **Pulse.app**。
 2. 设置、应用数据、登录项和 URL scheme 独立，不迁移原版设置；上游自动更新已关闭。
 3. 启动后选择要监控的服务。应用常驻菜单栏，也可右键点击面板打开设置。
-4. 试用包仅临时签名，**未经 Apple 公证**。如果 Apple 提示“无法验证”，先选 **Done（完成）**，不要移到废纸篓；再仅对可信来源使用“系统设置 → 隐私与安全性 → 仍要打开”。如果明确提示已检测到恶意软件或“将损坏电脑”，请停止。[首次打开说明](Downloads/README.md)。
+4. 从“应用程序”打开 **Nokori**。试用包为临时签名、**未经 Apple 公证**，macOS 会提示“Apple 无法验证‘Nokori’不含恶意软件…”。请选 **完成（Done）**，**不要选“移到废纸篓”**。
+5. 仅在信任来源时，打开“**系统设置 → 隐私与安全性**”，滚动到“**安全性**”，在 Nokori 旁点按“**仍要打开**”，用触控 ID 或密码确认后再点按“**打开**”。如果明确提示已检测到恶意软件或“将损坏电脑”，请停止；不要关闭 Gatekeeper 或移除隔离标记。
+6. 每台 Mac 的**每个新版本**需执行一次步骤 4–5，之后即可正常打开。若要让收件人免去此步骤，需要 Developer ID 签名与 Apple 公证，而不是上架 App Store。[首次打开说明](Downloads/README.md)。
 
 需要 macOS 14+，完整 Liquid Glass 外观需要 macOS 26+。Universal 包包含 Apple Silicon 和 Intel；定制面板尚未在 Intel 硬件及旧版系统实测。
 
