@@ -68,6 +68,14 @@ for arch in arm64 x86_64; do
     fi
 done
 
+# Something on a real Mac (Finder, Spotlight, antivirus) can still hold the
+# previous bundle open for a moment, and rm then reports "Directory not
+# empty". Retry briefly; anything still in the way after that is a real
+# failure and set -e stops the build.
+for attempt in 1 2 3 4 5; do
+    rm -rf "$APP" 2>/dev/null && break
+    [ "$attempt" -lt 5 ] && sleep 1
+done
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
