@@ -31,6 +31,8 @@ The [`67923c1` white-Pop trial](../Downloads/README.md) package the frozen nativ
 
 **Accepted on a healthy Mac.** On the owner's Apple Silicon Mac (macOS 27.2) the downloaded DMG kept quarantine, mounted without a damage warning and opened after the standard Done → Privacy & Security → Open Anyway step. The earlier block came from a test VM whose XProtect rules were missing. The diagnostic ZIP was not retested; the DMG is the recommended download.
 
+**Notarized distribution.** The recommended download is now the Developer ID-signed, Apple-notarized `Nokori-1.12.6-notarized-32ecd7f.dmg` (see [Downloads](../Downloads/README.md)): built on the owner's Mac with the hardened runtime, notary submission `a8fe5651-1424-40fe-b36c-81b71163e401` Accepted, ticket stapled, Gatekeeper assesses the app as Notarized Developer ID and the installed copy launched without the Open Anyway step. The ad-hoc white-Pop DMG remains archived for comparison and still requires the per-app approval.
+
 ## Stable identity during the rename
 
 The display name, executable and download filenames become Nokori. The bundle identifier `io.github.wenyen-hsu.PulsePet`, preferences domain, Application Support/Pulse Pet directory, login label, `pulse-pet://` links and status-line cache deliberately remain stable. This is the same app renamed, not a second copy of its data, and never imports original Pulse data.

@@ -68,6 +68,14 @@ for arch in arm64 x86_64; do
     fi
 done
 
+# Something on a real Mac (Finder, Spotlight, antivirus) can still hold the
+# previous bundle open for a moment, and rm then reports "Directory not
+# empty". Retry briefly; anything still in the way after that is a real
+# failure and set -e stops the build.
+for attempt in 1 2 3 4 5; do
+    rm -rf "$APP" 2>/dev/null && break
+    [ "$attempt" -lt 5 ] && sleep 1
+done
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
@@ -181,15 +189,35 @@ cat > "$APP/Contents/Info.plist" <<PLIST
 </plist>
 PLIST
 
-# Unsigned builds are quarantined on download and refused by Gatekeeper. An
-# ad-hoc signature does not fix that — only a Developer ID and notarisation do
-# — but it does keep macOS from complaining about a *damaged* bundle when the
-# app is moved or the binary is touched.
+# The default is an ad-hoc signature: it keeps macOS from calling the bundle
+# damaged when it is moved, but Gatekeeper still warns on first open. Setting
+# SIGNING_IDENTITY to a Developer ID Application certificate signs with the
+# hardened runtime and a secure timestamp instead — the two things Apple's
+# notary service requires — so Scripts/notarize.sh can then notarise the DMG
+# and recipients open it without the Open Anyway step. The value is matched
+# against the keychain's code-signing identities, so the exact name printed
+# by security find-identity -v -p codesigning works, or a substring of it;
+# "-" forces ad-hoc.
+SIGNING_IDENTITY="${SIGNING_IDENTITY:-}"
+if [ -z "$SIGNING_IDENTITY" ]; then SIGNING_IDENTITY="-"; fi
+if [ "$SIGNING_IDENTITY" != "-" ] &&
+    ! security find-identity -v -p codesigning | grep -F "$SIGNING_IDENTITY" >/dev/null; then
+    echo "No code-signing identity matching '$SIGNING_IDENTITY' in the keychain." >&2
+    security find-identity -v -p codesigning >&2 || true
+    exit 1
+fi
+
 # Inside out: a nested bundle signed after its container invalidates the
 # container's signature, and Sparkle brings several of them (XPC services and
 # its own updater app).
-codesign --force --deep --sign - "$APP/Contents/Frameworks/Sparkle.framework" 2>/dev/null || true
-codesign --force --deep --sign - "$APP" 2>/dev/null || echo "  (ad-hoc signing skipped)"
+if [ "$SIGNING_IDENTITY" = "-" ]; then
+    codesign --force --deep --sign - "$APP/Contents/Frameworks/Sparkle.framework" 2>/dev/null || true
+    codesign --force --deep --sign - "$APP" 2>/dev/null || echo "  (ad-hoc signing skipped)"
+else
+    echo "Signing with $SIGNING_IDENTITY (hardened runtime, timestamp)…"
+    codesign --force --deep --options runtime --timestamp --sign "$SIGNING_IDENTITY" "$APP/Contents/Frameworks/Sparkle.framework"
+    codesign --force --deep --options runtime --timestamp --sign "$SIGNING_IDENTITY" "$APP"
+fi
 
 python3 - "$APP/Contents/MacOS/$EXECUTABLE" <<'PY'
 import json
