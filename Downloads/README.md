@@ -1,4 +1,4 @@
-# Nokori white-Pop Liquid trial / 白色 Pop 液態試用版
+# Nokori notarized Liquid trial / Nokori 公證版液態試用版
 
 **[English project page](../README.md) · [繁體中文首頁](../README.zh-Hant.md)**
 
@@ -8,24 +8,22 @@
 
 Built on the owner's Mac (macOS 27.2, Apple Silicon) from source commit 32ecd7f with `Developer ID Application: WenYen Hsu (QSJ2X775UA)` and the hardened runtime; Apple notary service submission `a8fe5651-1424-40fe-b36c-81b71163e401` returned **Accepted** and the ticket is stapled to the image. Gatekeeper assesses the app inside as `Notarized Developer ID`, and the installed copy launched without the Open Anyway step. SHA-256 `fcff572ac85fc8754040d181c6301aa1cdcc9229ee4e9a4a151b104e5440d2dd`, 16,831,332 bytes. / 在擁有者的 Mac（macOS 27.2、Apple Silicon）以 Developer ID 簽章與強化執行環境建置，Apple 公證服務回覆 Accepted，票據已釘入映像；Gatekeeper 判定內含 App 為 Notarized Developer ID，安裝後直接開啟，無需「仍要打開」。
 
-**Ad-hoc archive (still needs Open Anyway) / 臨時簽章封存版（仍需「仍要打開」）：** [white-Pop trial DMG](Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true) — accepted on a healthy Mac with the per-app Open Anyway step / 已在正常的 Mac 上通過驗收，但每台 Mac 需做一次「仍要打開」。
 
-A real Chrome download on the owner's Apple Silicon Mac (macOS 27.2, Gatekeeper on, XProtect rules 5371) matched the published SHA-256 and kept quarantine, mounted without a damage warning and opened after Apple's standard per-app **Open Anyway** step. The earlier damage warning came from the test VM, whose XProtect rules were missing. / 在擁有者的 Apple Silicon Mac（macOS 27.2、Gatekeeper 啟用、XProtect 規則 5371）以 Chrome 實際下載，雜湊與公布值一致且保留隔離標記；掛載時沒有損毀警告，經 Apple 標準的單一 App「仍要打開」後正常啟動。先前的損毀警告來自缺少 XProtect 規則的測試機。
 
 | Item / 項目 | Details / 說明 |
 | --- | --- |
-| Build / 版本 | Nokori 1.12.6 white-Pop Liquid trial / 白色 Pop 液態試用版 |
+| Build / 版本 | Nokori 1.12.6 Liquid trial (notarized) / Nokori 1.12.6 液態試用版（公證版） |
 | Notarized build / 公證版 | `Nokori-1.12.6-notarized-32ecd7f.dmg` · Developer ID + notarized / 已公證，16,831,332 bytes · SHA-256 `fcff572a…d2dd` · [verification](Nokori-1.12.6-notarized-32ecd7f-verification.json) |
-| App source / 程式來源 | [67923c1](https://github.com/wenyen-hsu/Pulse/commit/67923c1dafd7a35e9c50cf64ddae4c7680f2de2d) · [PR #20](https://github.com/wenyen-hsu/Pulse/pull/20); source tree matches merged main 92f1217 |
-| Size / 大小 | DMG 17,585,092 bytes; diagnostic ZIP 16,574,903 bytes (not retested; use the DMG) / 診斷用 ZIP 未重驗，請使用 DMG |
+| App source / 程式來源 | [32ecd7f](https://github.com/wenyen-hsu/Pulse/commit/32ecd7fd2a59b228dd60c7121f823a677cb99555) · app source matches main after [PR #20](https://github.com/wenyen-hsu/Pulse/pull/20) (white-Pop icon) / 程式原始碼與 main 一致（白色 Pop 圖示，PR #20） |
+| Size / 大小 | DMG 16,831,332 bytes / DMG 16,831,332 bytes |
 | Architecture / 架構 | Apple Silicon (arm64) + Intel (x86_64); both SDK 26.0 / 雙架構均寫入 SDK 26.0 |
 | System / 系統 | macOS 14+; full Liquid Glass requires macOS 26+ / 完整液態玻璃需 macOS 26 以上 |
-| Signing / 簽章 | Ad-hoc signed, **not Apple-notarized** / 臨時簽章，**未經 Apple 公證** |
-| Integrity / 完整性 | [DMG verification](Nokori-1.12.6-white-pop-67923c1-verification.json) · [ZIP verification](Nokori-1.12.6-white-pop-67923c1-zip-verification.json) · [Full bundle manifest](Nokori-1.12.6-white-pop-67923c1-bundle-manifest.json) |
+| Signing / 簽章 | Developer ID Application: WenYen Hsu (QSJ2X775UA), hardened runtime, Apple-notarized / Developer ID 簽章、強化執行環境、Apple 公證 |
+| Integrity / 完整性 | [DMG verification](Nokori-1.12.6-notarized-32ecd7f-verification.json) · [SHA256SUMS](SHA256SUMS) |
 
 ## 繁體中文
 
-這是**已揭露限制的試用版，不是全模式完整驗收或正式穩定版**。使用同一份已完成原生驗證的 67923c1 程式，驗證後沒有重新編譯或重新簽章；沒有版本標籤、正式 GitHub Release 或自動更新。
+這是**已揭露限制的試用版，不是全模式完整驗收或正式穩定版**。以通過原生驗證的程式原始碼建置，使用 Developer ID 簽章與 Apple 公證；沒有版本標籤、正式 GitHub Release 或自動更新。
 
 **安裝包已包含白色玻璃 Pop 圖示。** 黃色太陽、深藍輪廓與固定紅弧不隨帳號用量改變，沒有藍色裝飾點；不是即時 Dock 用量。液態預設、全部帳號散排、圓形每頁八帳號、天氣點擊更新及拖曳放開後的刷新防護均保留；已儲存的樣式不變。
 
@@ -35,7 +33,7 @@ A real Chrome download on the owner's Apple Silicon Mac (macOS 27.2, Gatekeeper 
 
 ## English
 
-This is a **trial with disclosed limitations, not complete acceptance of every mode or a stable release**. It packages the frozen, native-tested 67923c1 app without rebuilding or re-signing. There is no tag, formal GitHub Release or enabled updater.
+This is a **trial with disclosed limitations, not complete acceptance of every mode or a stable release**. It is built from the native-tested app source with Developer ID signing and Apple notarization. There is no tag, formal GitHub Release or enabled updater.
 
 The package now includes the white-glass Pop icon: yellow sun, navy outlines and a fixed red brand arc, without a blue accent dot. It is not live usage or a dynamic Dock indicator. Liquid defaults, all-account scatter, eight-account Circular pages, weather-click refresh and drag-release protection remain; saved style choices are preserved.
 
@@ -45,7 +43,7 @@ The package now includes the white-glass Pop icon: yellow sun, navy outlines and
 
 **Notarized DMG (recommended) / 公證版 DMG（建議）：** quit older **Nokori / Pulse Pet** (keep original **Pulse**), drag **Nokori** into **Applications**, then open it. It opens directly; no Open Anyway step. / 結束舊 Nokori／Pulse Pet（保留原版 Pulse），把 Nokori 拖進「應用程式」後開啟，可直接啟動，不需要「仍要打開」。
 
-**Ad-hoc archive / 臨時簽章封存版：** the Open Anyway steps below are required **once per Mac and per new build**, because the app is ad-hoc signed and not notarized. Do not use a security override for a damage warning. / 因為 App 是臨時簽章且未經公證，**每台 Mac、每個新版本**都需要做一次以下步驟。遇到損毀警告時請停止，不以安全性例外繞過。
+**Older ad-hoc DMGs (in git history) / 舊的臨時簽章 DMG（在 git 歷史中）：** the Open Anyway steps below apply only to those archived builds, because they are ad-hoc signed and not notarized. Do not use a security override for a damage warning. / 以下步驟僅適用於 git 歷史中的舊臨時簽章版本：因為它們是臨時簽章且未經公證，**每台 Mac、每個新版本**都需要做一次。遇到損毀警告時請停止，不以安全性例外繞過。
 
 1. Quit older **Nokori / Pulse Pet**; keep original **Pulse**. / 結束舊 Nokori／Pulse Pet，保留原版 Pulse。
 2. Drag **Nokori** from the DMG to **Applications**, replacing only old Nokori, then open the installed app. / 把 Nokori 拖進「應用程式」，只取代舊 Nokori，再從「應用程式」開啟。
@@ -55,7 +53,7 @@ The package now includes the white-glass Pop icon: yellow sun, navy outlines and
 
 **Stop for an explicit malware detection or “will damage your computer” warning; do not override it.** Do not disable Gatekeeper/XProtect, remove quarantine or use global overrides. / **若明確指出已偵測到惡意程式或「將會損害電腦」，請停止，不繞過警告。** 不關閉 Gatekeeper／XProtect、不移除隔離標記或使用全域例外。[Apple's official guidance / Apple 官方說明](https://support.apple.com/en-us/102445)。
 
-Private testing does not require App Store publication. Ad-hoc signing does not provide Developer ID/notarization trust for Internet downloads; this trial can still require per-app approval. / 私下試用不需要上架 App Store；臨時簽章不等於 Developer ID／公證，網路下載仍可能需要單一 App 放行。
+Private testing does not require App Store publication; notarization is Apple's security check, not store listing. / 私下試用不需要上架 App Store；公證是 Apple 的安全檢查，不是商店上架。
 
 The owner completed this flow for the 67923c1 white-Pop DMG with Gatekeeper enabled and quarantine retained. Without a Developer ID and notarization, every recipient must do the same once; it cannot be removed by changing the package. / 擁有者已以此流程開啟 67923c1 白色 Pop DMG，Gatekeeper 保持啟用、隔離標記保留。沒有 Developer ID 與公證時，每位收件者都需要各做一次；改變封裝格式無法省略這個步驟。
 
@@ -85,23 +83,13 @@ Build, UTC tests, asset tests and localization do not replace native input evide
 
 These hashes establish byte identity only, not malware clearance. / 雜湊僅核對位元組，不代表惡意程式掃描通過。
 
-Notarized / 公證版：`fcff572ac85fc8754040d181c6301aa1cdcc9229ee4e9a4a151b104e5440d2dd` — `shasum -a 256 Nokori-1.12.6-notarized-32ecd7f.dmg`
-Ad-hoc archive / 臨時簽章封存版：
+Notarized / 公證版：`fcff572ac85fc8754040d181c6301aa1cdcc9229ee4e9a4a151b104e5440d2dd` — `shasum -a 256 Nokori-1.12.6-notarized-32ecd7f.dmg` ([SHA256SUMS](SHA256SUMS)).
 
-Run / 執行：`shasum -a 256 Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg`
-
-Expected SHA-256 / 預期雜湊：`1789447ca3b752f698e526b6e4aab8fd07039e662efb37f87629559c4a2dd6af` ([SHA256SUMS](SHA256SUMS)).
-
-Diagnostic ZIP SHA-256 / 診斷用 ZIP 雜湊：`d75ca4d915ec9dcd21b8ccdcba7d24dea1ceb5748dce072a0773303f44bd12c7`.
-
-Executable SHA-256 / 執行檔雜湊：`0ab5ba6e08a5e39df827380e41210ec3a3b22466ade59c66caf51b87c5b21d8b`.
+Older ad-hoc-signed trial DMGs were removed from this folder; their hashes remain in git history. / 舊的臨時簽章試用 DMG 已從此資料夾移除，雜湊仍保留在 git 歷史中。
 
 ## Archived trials / 舊試用版
 
-Original files, manifests and checksums remain unchanged. / 原檔、清單與雜湊均保留不變。
+Older ad-hoc-signed trial DMGs (f5370ee, 58c8a96, 64e1028, 67923c1 white-Pop) were removed from this folder so the download page stays focused on the notarized build. Their bytes, manifests and checksums remain in git history, and their verification records stay in this directory. / 舊的臨時簽章試用 DMG（f5370ee、58c8a96、64e1028、67923c1 白色 Pop）已從此資料夾移除，讓下載頁只保留公證版。原始檔、清單與雜湊仍保留在 git 歷史中，本目錄也保留各版本的驗證紀錄。
 
-- [f5370ee blue-icon Liquid scatter trial / 藍色圖示液態散排版](Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg?raw=true): Liquid default/scatter, weather-click and drag fixes; no white-Pop icon or later Intel source portability fixes. / 包含液態預設／散排、點擊天氣與拖曳修正，不含白色 Pop 圖示與後續 Intel 原始碼相容性修正。[Original verification / 原驗證](Nokori-1.12.6-liquid-scatter-f5370ee-verification.json) · [Original guide / 原說明](https://github.com/wenyen-hsu/Pulse/blob/67923c1dafd7a35e9c50cf64ddae4c7680f2de2d/Downloads/README.md).
-- [58c8a96 weather-exclusive trial / 天氣互斥版](Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg?raw=true): weather overrides PNG and restores it when disabled; predates scatter/click-refresh. / 天氣覆蓋 PNG 與關閉還原，早於散排／點擊更新。
-- [64e1028 weather trial / 舊天氣版](Nokori-1.12.6-weather-64e1028-trial-universal.dmg?raw=true): original PNG-priority behaviour. / PNG 優先的舊行為。
 
 [Apache 2.0](../LICENSE), [NOTICE](../NOTICE) and [third-party notices](../THIRD_PARTY_NOTICES.md) are retained. Open-Meteo's free API is **non-commercial only**, rate-limited and not Apple Weather/WeatherKit. No WeatherKit quota is used. / 保留原作者致謝與授權；Open-Meteo 免費 API 另有非商業用途及流量限制，不是 Apple 天氣／WeatherKit，也不消耗 WeatherKit 額度。
