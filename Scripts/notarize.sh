@@ -21,7 +21,7 @@
 
 set -euo pipefail
 
-PROFILE="$NOTARY_PROFILE"
+PROFILE="${NOTARY_PROFILE:-}"
 [ -z "$PROFILE" ] && PROFILE="notarytool-profile"
 
 DMG="$1"
