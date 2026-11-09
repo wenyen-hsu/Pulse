@@ -3,10 +3,12 @@
 # Builds build.noindex/Nokori-<version>.dmg: the app, a shortcut to Applications, and a
 # backdrop telling you what to do with them.
 #
-# The disk image is the install guide. Pulse is not signed with an Apple
-# Developer ID, so macOS blocks the first launch and the user has to go and
-# allow it by hand — instructions that live only in a README are instructions
-# nobody downloading a zip ever sees, so they are printed on the window itself.
+# The disk image is the install guide. An ad-hoc build is blocked on first
+# launch and the user has to allow it by hand — instructions that live only
+# in a README are instructions nobody downloading a zip ever sees, so they
+# are printed on the window itself. A Developer ID build (SIGNING_IDENTITY)
+# notarised with Scripts/notarize.sh opens without that step; the window
+# text stays either way.
 #
 #   ./Scripts/dmg.sh
 #

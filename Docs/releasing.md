@@ -16,6 +16,25 @@ Run `./Scripts/bundle.sh --zip` and `./Scripts/dmg.sh`. Identity and filenames c
 
 Those scripts build a new bundle. **After native acceptance, do not run them to package an already-tested app:** stage a preserved copy of that app with the committed DMG layout/background, create the image without rebuilding, mount it read-only, and compare the app manifest including permissions and symlink targets. Verify the ad-hoc signature, architectures, `--json` startup and `hdiutil verify` before publishing. A source build or a new binary requires fresh acceptance; see [testing](testing.md).
 
+## Notarised distribution
+
+The trial DMGs in Downloads are ad-hoc signed, so every Mac repeats the Open Anyway step once per build. For wider distribution, sign with a Developer ID Application certificate and notarise:
+
+```bash
+SIGNING_IDENTITY="Developer ID Application: Your Name (TEAMID)" ./Scripts/dmg.sh
+./Scripts/notarize.sh build.noindex/Nokori-<version>.dmg build.noindex/Nokori-<version>.zip
+```
+
+bundle.sh matches SIGNING_IDENTITY against the keychain's code-signing identities and adds the hardened runtime and a secure timestamp, which the notary service requires. One-time setup on the release Mac:
+
+```bash
+xcrun notarytool store-credentials notarytool-profile \
+    --apple-id you@example.com --team-id TEAMID \
+    --password <app-specific-password>
+```
+
+The app-specific password comes from appleid.apple.com and is stored in that Mac's keychain; nothing is committed. notarize.sh submits the DMG, staples the ticket and validates it, then submits the zip so Gatekeeper can find the notarisation online. A notarised build still needs fresh native acceptance before it replaces a published download, and the older ad-hoc DMGs stay as they are.
+
 After signing, bundling runs the packaged executable's read-only `--json` startup probe before producing an archive. A failed or timed-out launch stops packaging; unit tests alone are not evidence that the installed app can bootstrap.
 
 Trial bundles include `LICENSE`, `NOTICE` and `THIRD_PARTY_NOTICES.md` in `Contents/Resources`. Preserve these when distributing a modified build. `NOTICE` credits qunqin24 and identifies this independent fork's modifications; the About pane and installer backdrop also thank the original author. Apache 2.0 permits modification and redistribution subject to its conditions; it does not grant trademark rights or imply endorsement.
