@@ -4,13 +4,15 @@
 
 ## Download / 下載
 
-**Delivery blocked / 暫停交付。** Both independently packaged candidates encountered damage warnings before mount/extraction on the test VM. The same warning also blocked a text-only control ZIP; XProtect rules are unavailable on that VM. Neither new package is accepted or offered as ready. Retest on a healthy Mac is required; this is not proof that Nokori is corrupt or malicious. / 兩種獨立封裝在測試機上均於掛載／解壓前被損毀警告阻擋；純文字對照 ZIP 也遇到同樣警告，且該機無法讀取 XProtect 規則。新包均未通過驗收，不作為可用下載交付，需在正常的 Mac 上重驗；不能據此認定 Nokori 損毀或含有惡意程式。
+**[Download the DMG / 下載 DMG](Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** — accepted on a healthy Mac / 已在正常的 Mac 上通過驗收。
+
+A real Chrome download on the owner's Apple Silicon Mac (macOS 27.2, Gatekeeper on, XProtect rules 5371) matched the published SHA-256 and kept quarantine, mounted without a damage warning and opened after Apple's standard per-app **Open Anyway** step. The earlier damage warning came from the test VM, whose XProtect rules were missing. / 在擁有者的 Apple Silicon Mac（macOS 27.2、Gatekeeper 啟用、XProtect 規則 5371）以 Chrome 實際下載，雜湊與公布值一致且保留隔離標記；掛載時沒有損毀警告，經 Apple 標準的單一 App「仍要打開」後正常啟動。先前的損毀警告來自缺少 XProtect 規則的測試機。
 
 | Item / 項目 | Details / 說明 |
 | --- | --- |
 | Build / 版本 | Nokori 1.12.6 white-Pop Liquid trial / 白色 Pop 液態試用版 |
 | App source / 程式來源 | [67923c1](https://github.com/wenyen-hsu/Pulse/commit/67923c1dafd7a35e9c50cf64ddae4c7680f2de2d) · [PR #20](https://github.com/wenyen-hsu/Pulse/pull/20); source tree matches merged main 92f1217 |
-| Candidate sizes / 候選包大小 | DMG 17,585,092 bytes; diagnostic ZIP 16,574,903 bytes / 均未通過下載驗收 |
+| Size / 大小 | DMG 17,585,092 bytes; diagnostic ZIP 16,574,903 bytes (not retested; use the DMG) / 診斷用 ZIP 未重驗，請使用 DMG |
 | Architecture / 架構 | Apple Silicon (arm64) + Intel (x86_64); both SDK 26.0 / 雙架構均寫入 SDK 26.0 |
 | System / 系統 | macOS 14+; full Liquid Glass requires macOS 26+ / 完整液態玻璃需 macOS 26 以上 |
 | Signing / 簽章 | Ad-hoc signed, **not Apple-notarized** / 臨時簽章，**未經 Apple 公證** |
@@ -36,7 +38,7 @@ The package now includes the white-glass Pop icon: yellow sun, navy outlines and
 
 ## First launch / 首次開啟
 
-**Reference instructions only: new-package delivery remains blocked.** Do not use a security override for a damage warning. / **以下僅為標準流程說明，新包仍暫停交付。** 遇到損毀警告時請停止，不以安全性例外繞過。
+This step is required **once per Mac and per new build**, because the app is ad-hoc signed and not notarized. Do not use a security override for a damage warning. / 因為 App 是臨時簽章且未經公證，**每台 Mac、每個新版本**都需要做一次以下步驟。遇到損毀警告時請停止，不以安全性例外繞過。
 
 1. Quit older **Nokori / Pulse Pet**; keep original **Pulse**. / 結束舊 Nokori／Pulse Pet，保留原版 Pulse。
 2. Drag **Nokori** from the DMG to **Applications**, replacing only old Nokori, then open the installed app. / 把 Nokori 拖進「應用程式」，只取代舊 Nokori，再從「應用程式」開啟。
@@ -48,21 +50,23 @@ The package now includes the white-glass Pop icon: yellow sun, navy outlines and
 
 Private testing does not require App Store publication. Ad-hoc signing does not provide Developer ID/notarization trust for Internet downloads; this trial can still require per-app approval. / 私下試用不需要上架 App Store；臨時簽章不等於 Developer ID／公證，網路下載仍可能需要單一 App 放行。
 
-The user completed Apple's per-app flow for the older f5370ee blue-icon trial with Gatekeeper enabled and quarantine retained. This is **not proof of fresh-download approval for the new bundle**. / 使用者曾以此流程開啟舊 f5370ee 藍色圖示包，當時 Gatekeeper 啟用且隔離標記保留；**不據此把新包首開放行算成通過**。
+The owner completed this flow for the 67923c1 white-Pop DMG with Gatekeeper enabled and quarantine retained. Without a Developer ID and notarization, every recipient must do the same once; it cannot be removed by changing the package. / 擁有者已以此流程開啟 67923c1 白色 Pop DMG，Gatekeeper 保持啟用、隔離標記保留。沒有 Developer ID 與公證時，每位收件者都需要各做一次；改變封裝格式無法省略這個步驟。
 
 ## Verification and limits / 驗證與限制
 
 **Native-tested app:** Real mouse input on an Apple Silicon VM covered Light/Dark Finder/Dock icons; fixed arc across 16% → 87% → genuine no-limits readings; Dock close/menu Quit/relaunch; 9/17/77 labelled positive-quota fixtures without a Liquid pager and with central pet clearance; last-account hover, isolated click, 60-second hover/drag counter checks and genuine re-entry refresh; Circular Next/Previous; Taipei weather fixture and PNG disable/restore. Fixtures are not live provider evidence. Test preferences/data were restored. / **原生程式驗證：** Apple Silicon VM 真實滑鼠涵蓋明暗圖示、用量及真正無讀值時紅弧固定、退出重開、9／17／77 帳號 fixture 散排、末帳號懸停、獨立點擊、長時間懸停／拖曳不刷新、真正離開重入後刷新、圓形分頁、天氣 fixture 與 PNG 互斥還原。Fixtures 不代表真實服務商資料；測試設定／資料已還原。
 
-**Downloaded DMG and ZIP acceptance: blocked before mount/extraction.** The real Chrome download matches SHA-256/size and retains quarantine, but macOS 26.6.2 reports the DMG is damaged. Testing stopped without override; Finder/footer/copy/installed-app/first-launch remain untested. / **下載 DMG 驗收：掛載前失敗。** 實際 Chrome 下載的雜湊／大小一致且保留隔離，但 macOS 26.6.2 顯示映像損毀；未繞過，Finder／底圖／複製／安裝版及首開均未測。
+**Downloaded DMG acceptance on a healthy Mac: passed.** On the owner's Apple Silicon Mac (macOS 27.2): Chrome download with matching SHA-256/size and quarantine; hdiutil verify valid; quarantined read-only mount without a damage warning; strict/deep signature valid; identity, URL scheme and both architectures confirmed; the copy in Applications inherited quarantine and its executable hash matched. First launch showed Gatekeeper's prompt; after the owner chose Done and Open Anyway, Nokori ran with the same executable hash, the Liquid orb was visible and hover expanded the details. The copy was made with ditto rather than a Finder drag, so the app ran under App Translocation; the Finder window and footer were not observed by the tester. No protection was disabled and quarantine was not removed. [Evidence](Nokori-1.12.6-white-pop-67923c1-verification.json). / **正常 Mac 上的下載 DMG 驗收：通過。** 在擁有者的 Apple Silicon Mac（macOS 27.2）：Chrome 下載的雜湊／大小一致且保留隔離；映像驗證有效；帶隔離標記唯讀掛載沒有損毀警告；嚴格簽章有效；識別、URL scheme 與雙架構確認；複製到「應用程式」後繼承隔離標記且執行檔雜湊一致。首次開啟出現 Gatekeeper 提示，擁有者選擇完成並「仍要打開」後正常執行，執行檔雜湊相同，液態圓點可見，懸停可展開詳情。複製使用 ditto 而非 Finder 拖曳，因此以 App Translocation 執行；測試者未觀察 Finder 視窗與底圖。未停用任何防護，也未移除隔離標記。
+
+**Earlier VM result: environmental.** The same DMG, an independent ZIP and a text-only control ZIP were all rejected on a test VM whose XProtect rules were missing; the healthy-Mac result above shows this was not a package defect. / **先前測試機結果屬環境問題。** 同一 DMG、獨立 ZIP 與純文字對照 ZIP 都在缺少 XProtect 規則的測試機上被拒；上述正常 Mac 結果顯示並非封裝問題。
 
 **Environment diagnosis (this VM only):** a separate [Hello-World data-only ZIP](https://github.com/octocat/Hello-World/archive/refs/heads/master.zip), 351 bytes with only a 13-byte README, had the expected SHA-256 and native Chrome quarantine but was rejected by normal Finder/Archive Utility too. Read-only checks found XProtect.bundle was a zero-byte immutable regular file, not a rules directory; XProtectService reported inaccessible plist/yara rules and could not create an assessment. `syspolicy_check distribution` reported Internal Xprotect Error, in addition to the independent ad-hoc/notary limitations. No malware detection verdict was observed. No security component or immutable flag was changed; no warning was bypassed. A healthy control result is required before repeating installer acceptance. / **環境診斷（僅此測試機）：** 獨立的 Hello-World 純文字 ZIP 只有 351 bytes／13-byte README，雜湊正確且保留 Chrome 隔離，仍被正常 Finder／Archive Utility 流程拒絕。唯讀檢查發現 XProtect.bundle 是零位元、不可變的普通檔案，而非規則目錄；XProtectService 無法讀取 plist／yara 規則或建立評估，分發檢查另報內部錯誤。臨時簽章／未公證限制仍獨立存在，不能因此略過。未觀察到惡意程式偵測結論，未修改安全元件／不可變旗標或繞過警告。須先在正常環境通過對照，再重做安裝驗收。
 
-**Normal repair attempt did not succeed:** Apple's built-in XProtect updater aborted because it could not create the update staging directory. Rules remain version0; protected placeholders were not unlocked/replaced and security settings were not disabled. A healthy Mac is still required. / **正常修復未成功：** Apple 內建 XProtect 更新工具無法建立更新暫存目錄，規則仍為版本0；未解鎖／替換受保護檔案，也未停用安全設定，仍需正常的 Mac 才能續驗。
+**VM repair attempt did not succeed:** Apple's built-in XProtect updater could not create its staging directory on the test VM; protected files were not unlocked/replaced and security settings were not disabled. / **測試機修復未成功：** Apple 內建 XProtect 更新工具無法在測試機建立暫存目錄；未解鎖／替換受保護檔案，也未停用安全設定。
 
 **Weather gap closed on the unchanged local-build app:** Updating/spinner/disabled Refresh were visible; a real repeated click about five seconds into the request did not duplicate it. Completion advanced 9:00→9:15; immediate cooldown repeat stayed at CONNECT count2. PNG controls and the actual saved PNG restored when weather was disabled. / **未改動的本機建置版已補驗天氣：** 更新中／spinner／停用按鈕可見，請求中約五秒再次點擊沒有重複請求；完成後時間 9:00→9:15，冷卻重點仍維持 CONNECT 計數2；關閉天氣後控制項及實際 PNG 還原。此結果不代表下載首開通過。
 
-**Still unverified or non-exhaustive:** first-time location permission, grant/denial and successful GPS; Intel hardware; older macOS; narrow/multiple displays; this bundle's downloaded first-use approval; all real provider usage/notifications and live weather transitions; exact sub-second input timing. / **仍未驗證或未完整驗證：** 首次定位授權、允許／拒絕與成功 GPS、Intel 實機、舊 macOS、窄／多螢幕、新包下載首開放行、所有真實用量／通知與天氣轉換及精確次秒輸入時序。
+**Still unverified or non-exhaustive:** first-time location permission, grant/denial and successful GPS; Intel hardware; older macOS; narrow/multiple displays; all real provider usage/notifications and live weather transitions; exact sub-second input timing. / **仍未驗證或未完整驗證：** 首次定位授權、允許／拒絕與成功 GPS、Intel 實機、舊 macOS、窄／多螢幕、所有真實用量／通知與天氣轉換及精確次秒輸入時序。
 
 **Package integrity:** All 281 entries match the frozen native-tested, staged, read-only mounted and extracted installation-copy bundles, including bytes, permissions and symlink targets. Strict/deep signatures, architectures, both SDK 26.0 stamps, identity/resources, disabled updater feed, mounted read-only cache-only JSON startup and hdiutil verification passed. / **封裝完整性：** 凍結程式、暫存、唯讀掛載及解出的副本 281 筆內容／權限／symlink 一致；嚴格簽章、雙架構 SDK、識別／資源、停用更新來源、唯讀快取 JSON 啟動與映像驗證通過。
 
@@ -70,7 +74,7 @@ Build, UTC tests, asset tests and localization do not replace native input evide
 
 ## Verify / 核對下載
 
-These hashes establish byte identity only, not downloaded first-use approval or malware clearance. / 雜湊僅核對位元組，不代表下載首開放行或惡意程式掃描通過。
+These hashes establish byte identity only, not malware clearance. / 雜湊僅核對位元組，不代表惡意程式掃描通過。
 
 Run / 執行：`shasum -a 256 Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg`
 

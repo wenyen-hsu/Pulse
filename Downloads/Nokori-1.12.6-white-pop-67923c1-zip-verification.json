@@ -91,5 +91,6 @@
       "bundle_version_after_attempt": "0",
       "immutable_placeholders_and_gatekeeper_configuration_unchanged": true
     }
-  }
+  },
+  "healthy_mac_recheck": "not performed: the DMG was accepted on the user's healthy Mac; the ZIP remains a diagnostic artifact and is not the recommended download"
 }

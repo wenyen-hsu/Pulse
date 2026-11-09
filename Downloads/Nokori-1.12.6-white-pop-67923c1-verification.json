@@ -37,18 +37,18 @@
     "Nokori-1.12.6-liquid-scatter-f5370ee-trial-universal.dmg": "a4c1d865116ba58f6eff4fa4d993465b65f120fcaf66d8d6495f031bb034401c",
     "Nokori-1.12.6-weather-exclusive-58c8a96-trial-universal.dmg": "7e96e61f27e2c021ded1c5328f96da7d07d785aa5d54bd1bad344f02dab9add1"
   },
-  "native_installer_recheck": "blocked_environment: damaged warning observed before mount on VM with unavailable XProtect rules",
+  "native_installer_recheck": "passed on the user's healthy Mac (macOS 27.2): quarantined Chrome download, mount, install copy and standard per-app Open Anyway first launch; the earlier VM block was environmental",
   "known_limitations": [
     "Classic-77 extends beyond the display; accepted trial limitation, not a pass",
     "GPS and first-time location permission remain unverified",
-    "Downloaded first-use approval for this new bundle is not yet established",
+    "Downloaded first-use approval established on one healthy Apple Silicon Mac (macOS 27.2) only; requires the standard per-app Open Anyway step because the app is ad-hoc signed and not notarized",
     "Intel hardware, older macOS, narrow/multiple displays and real provider authentication/usage/notifications remain unverified or non-exhaustive",
     "Exact sub-second input timing and every live weather transition are not established"
   ],
   "read_only_mounted_startup_json": "passed (cache-only; output not retained)",
   "architectures_and_sdk_stamps_rechecked": true,
   "installer_footer": "Done (not Move to Trash), then Privacy & Security → Open Anyway; do not disable Gatekeeper",
-  "delivery_accepted": false,
+  "delivery_accepted": true,
   "browser_download": {
     "sha256": "1789447ca3b752f698e526b6e4aab8fd07039e662efb37f87629559c4a2dd6af",
     "bytes": 17585092,
@@ -95,5 +95,60 @@
       "bundle_version_after_attempt": "0",
       "immutable_placeholders_and_gatekeeper_configuration_unchanged": true
     }
+  },
+  "healthy_mac_acceptance": {
+    "scope": "User's own Apple Silicon Mac (macOS 27.2, build 26B123); not every Mac, Intel hardware or older macOS",
+    "date": "2026-11-09",
+    "environment_health": {
+      "gatekeeper": "assessments enabled",
+      "xprotect_bundle_version": "5371",
+      "xprotect_rules": "directory present (not a placeholder)"
+    },
+    "browser_download": {
+      "browser": "Google Chrome",
+      "source": "main branch raw URL",
+      "sha256": "1789447ca3b752f698e526b6e4aab8fd07039e662efb37f87629559c4a2dd6af",
+      "bytes": 17585092,
+      "quarantine_retained": true,
+      "note": "Chrome left the completed bytes under its temporary name; size was stable and the hash matched before the file was renamed to the published name. Quarantine stayed on the file."
+    },
+    "hdiutil_verify": "VALID",
+    "quarantined_dmg_mount": "passed (read-only); no damage warning",
+    "mounted_app": {
+      "codesign_deep_strict": "valid on disk; satisfies Designated Requirement",
+      "bundle_identifier": "io.github.wenyen-hsu.PulsePet",
+      "version": "1.12.6",
+      "url_scheme": "pulse-pet",
+      "architectures": "x86_64 arm64",
+      "spctl": "rejected (expected for ad-hoc, unnotarized)",
+      "syspolicy_check_distribution": "Adhoc Signed App (warning) and Notary Ticket Missing (fatal); no Internal Xprotect Error"
+    },
+    "installation": {
+      "method": "ditto copy from the mounted DMG to /Applications (not a Finder drag observed by the tester)",
+      "quarantine_inherited": true,
+      "installed_executable_sha256": "0ab5ba6e08a5e39df827380e41210ec3a3b22466ade59c66caf51b87c5b21d8b",
+      "original_pulse_untouched": true
+    },
+    "first_launch": {
+      "gatekeeper_prompt": "shown (syspolicyd: Prompt shown, waiting for response)",
+      "user_reported_warning": "the standard could-not-verify warning described in the guide",
+      "user_action": "Done, then System Settings → Privacy & Security → Open Anyway, confirmed on the device by the user",
+      "result": "launched and kept running; main thread idle in the normal event loop",
+      "running_executable_sha256": "0ab5ba6e08a5e39df827380e41210ec3a3b22466ade59c66caf51b87c5b21d8b",
+      "app_translocation": "running from an App Translocation path because the quarantined copy was not moved by Finder; expected macOS behaviour"
+    },
+    "user_confirmed_ui": [
+      "Liquid pet orb visible",
+      "hover expands to agent details"
+    ],
+    "devin_card": "honest no-usage message shown; the Devin 3.11.238 saved plan contains plan name and end date but no daily/weekly figures",
+    "security_changes": "none: Gatekeeper/XProtect not disabled, quarantine not removed, no spctl --add or global override",
+    "not_covered": [
+      "Finder drag-to-Applications and installer footer as seen in Finder",
+      "ZIP candidate on a healthy Mac",
+      "Intel hardware and older macOS",
+      "GPS first-time permission",
+      "live provider usage/notifications"
+    ]
   }
 }

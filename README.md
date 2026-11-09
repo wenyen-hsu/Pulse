@@ -7,7 +7,7 @@
 
 A native macOS AI-usage monitor with a centred sun pet and a liquid-glass puddle.
 
-> **Download acceptance is blocked:** the test VM's XProtect rules are unavailable; even a text-only control ZIP is rejected. Neither new package is accepted for delivery. [Status](Downloads/README.md).
+> **Download accepted on a healthy Mac:** the white-Pop DMG downloaded, mounted and opened on macOS 27.2 after Apple's standard per-app Open Anyway step. It is ad-hoc signed and not notarized, so each Mac needs that step once per build. [Download and status](Downloads/README.md).
 
 The trial below includes the white-glass Pop icon. Its **red arc is fixed branding, not live usage**. [Artwork and generation](Docs/branding.md).
 
