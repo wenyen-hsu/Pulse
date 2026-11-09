@@ -38,6 +38,11 @@ FINAL="build.noindex/$EXECUTABLE-$VERSION.dmg"
 ./Scripts/bundle.sh
 
 echo "Staging the disk image…"
+# Same transient locks as bundle.sh: give Finder and Spotlight a moment.
+for attempt in 1 2 3 4 5; do
+    rm -rf "$STAGING" "$WRITABLE" "$FINAL" 2>/dev/null && break
+    [ "$attempt" -lt 5 ] && sleep 1
+done
 rm -rf "$STAGING" "$WRITABLE" "$FINAL"
 mkdir -p "$STAGING/.background"
 cp -R "build.noindex/$APP_NAME.app" "$STAGING/"
