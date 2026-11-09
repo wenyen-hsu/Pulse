@@ -24,12 +24,12 @@ set -euo pipefail
 PROFILE="${NOTARY_PROFILE:-}"
 [ -z "$PROFILE" ] && PROFILE="notarytool-profile"
 
-DMG="$1"
+DMG="${1:-}"
 if [ -z "$DMG" ]; then
     echo "usage: notarize.sh <dmg> [zip]" >&2
     exit 1
 fi
-ZIP="$2"
+ZIP="${2:-}"
 
 if ! xcrun notarytool history --keychain-profile "$PROFILE" >/dev/null 2>&1; then
     echo "No notarytool keychain profile '$PROFILE'." >&2
