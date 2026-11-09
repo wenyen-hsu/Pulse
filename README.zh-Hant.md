@@ -7,13 +7,13 @@
 
 原生 macOS AI 用量監視器：中央小太陽寵物，可切換圓形或液態玻璃外觀。
 
-> **已在正常的 Mac 上通過下載驗收：** 白色 Pop DMG 在 macOS 27.2 上完成下載、掛載，並經 Apple 標準的單一 App「仍要打開」後正常開啟。安裝包為臨時簽章、未經公證，每台 Mac 的每個新版本都需要做一次此步驟。[下載與狀態](Downloads/README.md)。
+> **公證版下載：** Developer ID 簽章並經 Apple 公證的 DMG，任何 Mac 下載後可直接開啟，不需要「仍要打開」。已在 macOS 27.2 上建置並驗證。[下載與狀態](Downloads/README.md)。
 
 下方試用版已採用白色玻璃 Pop 圖示，**紅弧固定為品牌造型，不代表即時用量**。[圖示與產生方式](Docs/branding.md)。
 
 > 本專案是 [qunqin24 開發的 Pulse](https://github.com/qunqin24/Pulse) 的獨立客製版。本獨立版本正式採用 **Nokori（原名 Pulse Pet）**。本儲存庫不是上游正式版本，也不代表原作者背書。
 
-**[下載試用 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** · [雜湊與驗證範圍](Downloads/README.md)
+**[下載公證版 DMG — Apple Silicon＋Intel](Downloads/Nokori-1.12.6-notarized-32ecd7f.dmg?raw=true)** · [雜湊與驗證範圍](Downloads/README.md)
 
 > **這是試用版，不是正式穩定版。** 使用臨時簽章，未經 Apple 公證。保留原版 Pulse，只取代舊 Nokori；首次定位授權與成功裝置定位仍待在你的 Mac 驗證。
 
@@ -40,14 +40,12 @@
 
 ## 安裝，不取代原版 Pulse
 
-請使用上方的 **[Nokori 試用 DMG](Downloads/Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)**，由同一份通過原生桌面測試的程式打包，沒有重新編譯。[下載說明與 SHA-256](Downloads/README.md)。檔案直接放在 repo，並非已建立標籤的 GitHub Release。上游 Pulse 的下載包不含本版客製功能。
+請使用上方的 **[Nokori 公證版 DMG](Downloads/Nokori-1.12.6-notarized-32ecd7f.dmg?raw=true)**，以同一份通過原生桌面測試的程式來源搭配 Developer ID 簽章與 Apple 公證建置。[下載說明與 SHA-256](Downloads/README.md)。檔案直接放在 repo，並非已建立標籤的 GitHub Release。上游 Pulse 的下載包不含本版客製功能。
 
 1. 開啟客製版 DMG，將 **Nokori.app** 拖進「應用程式」。
 2. 保留原本的 **Pulse.app**。兩者設定、應用程式資料、登入項目與 URL scheme 分開，不遷移原版設定。
 3. 開啟 Nokori，選擇要監控的服務。程式常駐選單列；也可右鍵點按浮動面板開啟設定。
-4. 從「應用程式」開啟 **Nokori**。試用包為臨時簽章、**未經 Apple 公證**，macOS 會顯示「Apple 無法驗證『Nokori』不含惡意軟體…」。請選 **完成（Done）**，**不要選「移到垃圾桶」**。
-5. 僅在信任來源時，開啟「**系統設定 → 隱私權與安全性**」，捲到「**安全性**」，在 Nokori 旁按「**仍要打開**」，以 Touch ID 或密碼確認後再按「**打開**」。若明確表示已偵測到惡意程式或「將會損害電腦」，請停止；不要關閉 Gatekeeper 或移除隔離標記。
-6. 每台 Mac 的**每個新版本**需做一次步驟 4–5，之後即可正常開啟。若要讓收件者免除此步驟，需要 Developer ID 簽章與 Apple 公證，而不是上架 App Store。[首次開啟說明](Downloads/README.md)。
+4. 從「應用程式」開啟 **Nokori**。公證版為 Developer ID 簽章並經 Apple 公證，可直接開啟，不需要「仍要打開」。若明確表示已偵測到惡意程式或「將會損害電腦」，請停止；不要關閉 Gatekeeper 或移除隔離標記。舊的臨時簽章封存版仍需「仍要打開」步驟。[首次開啟說明](Downloads/README.md)。
 
 **系統需求：** macOS 14 以上，完整 Liquid Glass 外觀需要 macOS 26 以上。Universal 安裝包包含 Apple Silicon 與 Intel；本客製面板尚未在 Intel 硬體及舊版 macOS 實測。已停用上游自動更新。
 

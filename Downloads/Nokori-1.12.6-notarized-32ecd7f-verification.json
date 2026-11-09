@@ -1,0 +1,44 @@
+{
+  "artifact": "Nokori-1.12.6-notarized-32ecd7f.dmg",
+  "version": "1.12.6",
+  "sha256": "fcff572ac85fc8754040d181c6301aa1cdcc9229ee4e9a4a151b104e5440d2dd",
+  "size_bytes": 16831332,
+  "source_commit": "32ecd7f",
+  "built_on": "owner's Mac, macOS 27.2, Apple Silicon",
+  "signing": {
+    "identity": "Developer ID Application: WenYen Hsu (QSJ2X775UA)",
+    "team_id": "QSJ2X775UA",
+    "hardened_runtime": true,
+    "secure_timestamp": true,
+    "sparkle_framework_signed_inside_out": true,
+    "dmg_image_signed": true
+  },
+  "notarization": {
+    "submission_id": "a8fe5651-1424-40fe-b36c-81b71163e401",
+    "status": "Accepted",
+    "ticket_stapled": true,
+    "stapler_validate_dmg": "passed"
+  },
+  "gatekeeper": {
+    "spctl_app_inside_dmg": "accepted, source=Notarized Developer ID, origin=Developer ID Application: WenYen Hsu (QSJ2X775UA)",
+    "spctl_dmg_as_openable": "rejected, source=Insufficient Context (expected: a DMG is assessed through the app it contains, not as a standalone executable)"
+  },
+  "installation": {
+    "method": "ditto from read-only mounted DMG into /Applications",
+    "quarantine": "not applicable: installed locally from the build machine, not downloaded by a browser",
+    "previous_adhoc_app": "backed up on the owner's Mac before replacement"
+  },
+  "first_launch": {
+    "command": "open /Applications/Nokori.app",
+    "result": "process running as /Applications/Nokori.app/Contents/MacOS/Nokori",
+    "gatekeeper_interaction": "none required"
+  },
+  "known_limitations": [
+    "Not a fresh browser download with quarantine on a second Mac",
+    "Intel hardware not tested",
+    "Older macOS not tested",
+    "Finder drag installation not observed (ditto used)",
+    "Classic rail 77-account limitation unchanged",
+    "Live provider usage and notifications not retested on this build"
+  ]
+}

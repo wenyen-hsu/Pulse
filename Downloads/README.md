@@ -4,13 +4,18 @@
 
 ## Download / 下載
 
-**[Download the DMG / 下載 DMG](Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true)** — accepted on a healthy Mac / 已在正常的 Mac 上通過驗收。
+**[Download the notarized DMG / 下載公證版 DMG](Nokori-1.12.6-notarized-32ecd7f.dmg?raw=true)** — Developer ID signed and Apple-notarized; opens directly on any Mac / Developer ID 簽章並經 Apple 公證，任何 Mac 下載後可直接開啟。
+
+Built on the owner's Mac (macOS 27.2, Apple Silicon) from source commit 32ecd7f with `Developer ID Application: WenYen Hsu (QSJ2X775UA)` and the hardened runtime; Apple notary service submission `a8fe5651-1424-40fe-b36c-81b71163e401` returned **Accepted** and the ticket is stapled to the image. Gatekeeper assesses the app inside as `Notarized Developer ID`, and the installed copy launched without the Open Anyway step. SHA-256 `fcff572ac85fc8754040d181c6301aa1cdcc9229ee4e9a4a151b104e5440d2dd`, 16,831,332 bytes. / 在擁有者的 Mac（macOS 27.2、Apple Silicon）以 Developer ID 簽章與強化執行環境建置，Apple 公證服務回覆 Accepted，票據已釘入映像；Gatekeeper 判定內含 App 為 Notarized Developer ID，安裝後直接開啟，無需「仍要打開」。
+
+**Ad-hoc archive (still needs Open Anyway) / 臨時簽章封存版（仍需「仍要打開」）：** [white-Pop trial DMG](Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg?raw=true) — accepted on a healthy Mac with the per-app Open Anyway step / 已在正常的 Mac 上通過驗收，但每台 Mac 需做一次「仍要打開」。
 
 A real Chrome download on the owner's Apple Silicon Mac (macOS 27.2, Gatekeeper on, XProtect rules 5371) matched the published SHA-256 and kept quarantine, mounted without a damage warning and opened after Apple's standard per-app **Open Anyway** step. The earlier damage warning came from the test VM, whose XProtect rules were missing. / 在擁有者的 Apple Silicon Mac（macOS 27.2、Gatekeeper 啟用、XProtect 規則 5371）以 Chrome 實際下載，雜湊與公布值一致且保留隔離標記；掛載時沒有損毀警告，經 Apple 標準的單一 App「仍要打開」後正常啟動。先前的損毀警告來自缺少 XProtect 規則的測試機。
 
 | Item / 項目 | Details / 說明 |
 | --- | --- |
 | Build / 版本 | Nokori 1.12.6 white-Pop Liquid trial / 白色 Pop 液態試用版 |
+| Notarized build / 公證版 | `Nokori-1.12.6-notarized-32ecd7f.dmg` · Developer ID + notarized / 已公證，16,831,332 bytes · SHA-256 `fcff572a…d2dd` · [verification](Nokori-1.12.6-notarized-32ecd7f-verification.json) |
 | App source / 程式來源 | [67923c1](https://github.com/wenyen-hsu/Pulse/commit/67923c1dafd7a35e9c50cf64ddae4c7680f2de2d) · [PR #20](https://github.com/wenyen-hsu/Pulse/pull/20); source tree matches merged main 92f1217 |
 | Size / 大小 | DMG 17,585,092 bytes; diagnostic ZIP 16,574,903 bytes (not retested; use the DMG) / 診斷用 ZIP 未重驗，請使用 DMG |
 | Architecture / 架構 | Apple Silicon (arm64) + Intel (x86_64); both SDK 26.0 / 雙架構均寫入 SDK 26.0 |
@@ -38,7 +43,9 @@ The package now includes the white-glass Pop icon: yellow sun, navy outlines and
 
 ## First launch / 首次開啟
 
-This step is required **once per Mac and per new build**, because the app is ad-hoc signed and not notarized. Do not use a security override for a damage warning. / 因為 App 是臨時簽章且未經公證，**每台 Mac、每個新版本**都需要做一次以下步驟。遇到損毀警告時請停止，不以安全性例外繞過。
+**Notarized DMG (recommended) / 公證版 DMG（建議）：** quit older **Nokori / Pulse Pet** (keep original **Pulse**), drag **Nokori** into **Applications**, then open it. It opens directly; no Open Anyway step. / 結束舊 Nokori／Pulse Pet（保留原版 Pulse），把 Nokori 拖進「應用程式」後開啟，可直接啟動，不需要「仍要打開」。
+
+**Ad-hoc archive / 臨時簽章封存版：** the Open Anyway steps below are required **once per Mac and per new build**, because the app is ad-hoc signed and not notarized. Do not use a security override for a damage warning. / 因為 App 是臨時簽章且未經公證，**每台 Mac、每個新版本**都需要做一次以下步驟。遇到損毀警告時請停止，不以安全性例外繞過。
 
 1. Quit older **Nokori / Pulse Pet**; keep original **Pulse**. / 結束舊 Nokori／Pulse Pet，保留原版 Pulse。
 2. Drag **Nokori** from the DMG to **Applications**, replacing only old Nokori, then open the installed app. / 把 Nokori 拖進「應用程式」，只取代舊 Nokori，再從「應用程式」開啟。
@@ -53,6 +60,8 @@ Private testing does not require App Store publication. Ad-hoc signing does not 
 The owner completed this flow for the 67923c1 white-Pop DMG with Gatekeeper enabled and quarantine retained. Without a Developer ID and notarization, every recipient must do the same once; it cannot be removed by changing the package. / 擁有者已以此流程開啟 67923c1 白色 Pop DMG，Gatekeeper 保持啟用、隔離標記保留。沒有 Developer ID 與公證時，每位收件者都需要各做一次；改變封裝格式無法省略這個步驟。
 
 ## Verification and limits / 驗證與限制
+
+**Notarized build:** assembled on the owner's Mac (macOS 27.2, Apple Silicon) from commit 32ecd7f with Developer ID Application: WenYen Hsu (QSJ2X775UA), hardened runtime and secure timestamp; Sparkle framework and app signed inside out. Apple notary service submission a8fe5651-1424-40fe-b36c-81b71163e401 returned Accepted; the ticket is stapled and `stapler validate` passes on the DMG. Gatekeeper assesses the app inside as `accepted / source=Notarized Developer ID`. The DMG image itself is also Developer ID signed. Installed to /Applications with ditto and launched with `open`: spctl accepted it as Notarized Developer ID and the process started without any Gatekeeper interaction. SHA-256 fcff572ac85fc8754040d181c6301aa1cdcc9229ee4e9a4a151b104e5440d2dd. Not covered: a fresh browser download with quarantine on a second Mac, Intel hardware, Finder drag installation. / **公證版：** 在擁有者的 Mac（macOS 27.2、Apple Silicon）以 Developer ID Application: WenYen Hsu（QSJ2X775UA）、強化執行環境與安全時間戳建置，Sparkle 框架與 App 由內而外簽署。Apple 公證服務回覆 Accepted，票據已釘入且 DMG 驗證通過；Gatekeeper 判定內含 App 為 accepted／Notarized Developer ID，DMG 映像本身亦已簽署。以 ditto 安裝至「應用程式」並以 open 啟動：spctl 判定通過，程序在無 Gatekeeper 互動下啟動。未涵蓋：第二台 Mac 的瀏覽器隔離下載、Intel 實機、Finder 拖曳安裝。
 
 **Native-tested app:** Real mouse input on an Apple Silicon VM covered Light/Dark Finder/Dock icons; fixed arc across 16% → 87% → genuine no-limits readings; Dock close/menu Quit/relaunch; 9/17/77 labelled positive-quota fixtures without a Liquid pager and with central pet clearance; last-account hover, isolated click, 60-second hover/drag counter checks and genuine re-entry refresh; Circular Next/Previous; Taipei weather fixture and PNG disable/restore. Fixtures are not live provider evidence. Test preferences/data were restored. / **原生程式驗證：** Apple Silicon VM 真實滑鼠涵蓋明暗圖示、用量及真正無讀值時紅弧固定、退出重開、9／17／77 帳號 fixture 散排、末帳號懸停、獨立點擊、長時間懸停／拖曳不刷新、真正離開重入後刷新、圓形分頁、天氣 fixture 與 PNG 互斥還原。Fixtures 不代表真實服務商資料；測試設定／資料已還原。
 
@@ -75,6 +84,9 @@ Build, UTC tests, asset tests and localization do not replace native input evide
 ## Verify / 核對下載
 
 These hashes establish byte identity only, not malware clearance. / 雜湊僅核對位元組，不代表惡意程式掃描通過。
+
+Notarized / 公證版：`fcff572ac85fc8754040d181c6301aa1cdcc9229ee4e9a4a151b104e5440d2dd` — `shasum -a 256 Nokori-1.12.6-notarized-32ecd7f.dmg`
+Ad-hoc archive / 臨時簽章封存版：
 
 Run / 執行：`shasum -a 256 Nokori-1.12.6-white-pop-67923c1-trial-universal.dmg`
 
