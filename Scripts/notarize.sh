@@ -40,7 +40,7 @@ fi
 echo "Submitting $DMG to the notary service…"
 xcrun notarytool submit "$DMG" --keychain-profile "$PROFILE" --wait
 
-echo "Stapling the ticket to $DMG…"
+echo "Stapling the ticket to ${DMG}…"
 xcrun stapler staple "$DMG"
 xcrun stapler validate "$DMG"
 

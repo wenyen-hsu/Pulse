@@ -101,4 +101,12 @@ echo "Compressing…"
 hdiutil convert "$WRITABLE" -format UDZO -imagekey zlib-level=9 -o "$FINAL" -quiet
 rm -rf "$WRITABLE" "$STAGING"
 
+# A Developer ID build signs the image too, so Gatekeeper can assess the
+# download itself and not only the app inside it. Notarise after this step:
+# signing a stapled image would invalidate its ticket.
+SIGNING_IDENTITY="${SIGNING_IDENTITY:-}"
+if [ -n "$SIGNING_IDENTITY" ] && [ "$SIGNING_IDENTITY" != "-" ]; then
+    codesign --force --timestamp --sign "$SIGNING_IDENTITY" "$FINAL"
+fi
+
 echo "→ $FINAL"
