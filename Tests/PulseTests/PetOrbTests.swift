@@ -252,3 +252,55 @@ struct PetOrbSettingsTests {
         #expect(throws: PetImageImport.ImportError.self) { try PetImageImport.png(from: url) }
     }
 }
+
+@Suite("Pet orb edge lift")
+@MainActor
+struct PetOrbEdgeLiftTests {
+    private func makeState(_ centreY: CGFloat, expanded: Bool, liquid: Bool) -> PetOrbState {
+        let state = PetOrbState()
+        state.isLiquid = liquid
+        state.size = CGSize(width: 640, height: 560)
+        state.viewportScale = 1
+        state.verticalCentre = centreY
+        if expanded { state.expand() }
+        return state
+    }
+
+    @Test("Collapsed dots and circle pets never lift")
+    func noLift() {
+        let collapsed = makeState(59, expanded: false, liquid: true)
+        #expect(collapsed.edgeLift == 0)
+        #expect(collapsed.layout.centre.y == 59)
+        let circle = makeState(59, expanded: true, liquid: false)
+        #expect(circle.edgeLift == 0)
+        #expect(circle.layout.centre.y == 59)
+    }
+
+    @Test("Expanded liquid near the top shifts down and stays inside the window")
+    func topLift() {
+        let state = makeState(59, expanded: true, liquid: true)
+        #expect(state.edgeLift > 0)
+        #expect(state.layout.centre.y == 59 + state.edgeLift)
+        let frame = state.layout.liquidFrame(expanded: true)
+        #expect(frame.minY >= -0.5)
+        #expect(frame.maxY <= state.size.height + 0.5)
+        #expect(state.layout.unliftedCentre.y == 59)
+    }
+
+    @Test("Expanded liquid near the bottom shifts up and stays inside the window")
+    func bottomLift() {
+        let state = makeState(501, expanded: true, liquid: true)
+        #expect(state.edgeLift < 0)
+        let frame = state.layout.liquidFrame(expanded: true)
+        #expect(frame.minY >= -0.5)
+        #expect(frame.maxY <= state.size.height + 0.5)
+        #expect(state.layout.unliftedCentre.y == 501)
+    }
+
+    @Test("Expanded liquid in the middle does not move")
+    func middle() {
+        let state = makeState(280, expanded: true, liquid: true)
+        #expect(state.edgeLift == 0)
+        #expect(state.layout.centre.y == 280)
+    }
+}
