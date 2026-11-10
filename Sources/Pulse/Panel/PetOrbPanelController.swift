@@ -317,6 +317,13 @@ private final class PetOrbPanel: NSPanel {
     override var canBecomeKey: Bool { false }
     override var canBecomeMain: Bool { false }
 
+    // place(on:) clamps the resting frame itself. Letting the pointer drag the
+    // window past the visible top edge is what lets the centred dot reach the
+    // top inset instead of stopping one window-radius below it.
+    override func constrainFrameRect(_ frameRect: NSRect, to screen: NSScreen?) -> NSRect {
+        frameRect
+    }
+
     @objc(_hasActiveAppearanceIgnoringKeyFocus)
     private func hasActiveAppearanceIgnoringKeyFocus() -> Bool { true }
 
