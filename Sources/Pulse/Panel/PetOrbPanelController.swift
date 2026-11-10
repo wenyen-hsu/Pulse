@@ -310,19 +310,12 @@ private final class PetOrbPanel: NSPanel {
     var onPetClick: (() -> Void)?
     var didMoveOrb: (() -> Void)?
     var didDragOrb: (() -> Void)?
-    private var press: (screen: CGPoint, origin: CGPoint, local: CGPoint, refreshAllowed: Bool, onPet: Bool)?
+    private var press: (screen: CGPoint, origin: CGPoint, local: CGPoint, refreshAllowed: Bool, onPet: Bool, grabY: CGFloat)?
     private var lastDrag: (point: CGPoint, time: TimeInterval)?
     private var dragged = false
 
     override var canBecomeKey: Bool { false }
     override var canBecomeMain: Bool { false }
-
-    // place(on:) clamps the resting frame itself. Letting the pointer drag the
-    // window past the visible top edge is what lets the centred dot reach the
-    // top inset instead of stopping one window-radius below it.
-    override func constrainFrameRect(_ frameRect: NSRect, to screen: NSScreen?) -> NSRect {
-        frameRect
-    }
 
     @objc(_hasActiveAppearanceIgnoringKeyFocus)
     private func hasActiveAppearanceIgnoringKeyFocus() -> Bool { true }
@@ -346,9 +339,11 @@ private final class PetOrbPanel: NSPanel {
                 && state.layout.pagerFrame.contains(point) { break }
             state.stopRecoil()
             state.isHeld = true
+            let grabY = NSEvent.mouseLocation.y - (frame.maxY - state.layout.centre.y)
             press = (NSEvent.mouseLocation, frame.origin, point,
                      Date().timeIntervalSince(state.openedAt) >= PanelIntent.ringClickGuard,
-                     state.layout.petFrame(expanded: state.isExpanded, petSize: petSize?() ?? 1).contains(point))
+                     state.layout.petFrame(expanded: state.isExpanded, petSize: petSize?() ?? 1).contains(point),
+                     grabY)
             lastDrag = (NSEvent.mouseLocation, event.timestamp)
             dragged = false
             return
@@ -362,6 +357,10 @@ private final class PetOrbPanel: NSPanel {
                 if dragged {
                     setFrameOrigin(CGPoint(x: press.origin.x + now.x - press.screen.x,
                                            y: press.origin.y + now.y - press.screen.y))
+                    // The window can be pinned against the visible top edge while
+                    // the pointer keeps rising; slide the dot within the window so
+                    // it still reaches the top inset. A no-op when the window moves freely.
+                    state.verticalCentre = min(max(frame.maxY - (now.y - press.grabY), 0), state.size.height)
                     deform(to: now, at: event.timestamp)
                     didDragOrb?()
                 }
