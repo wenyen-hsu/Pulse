@@ -26,15 +26,32 @@ final class PetOrbState {
     @ObservationIgnored private var recoilTask: Task<Void, Never>?
     @ObservationIgnored private var waitsForPointerDeparture = false
 
+    /// How far the expanded liquid orb shifts vertically to stay inside the
+    /// window, in window points; zero while collapsed or when it already fits.
+    var edgeLift: CGFloat {
+        guard isExpanded, isLiquid, size.height > 0 else { return 0 }
+        let scale = PanelMetrics.scale * viewportScale
+        let diameter = PanelMetrics.orbUnitDiameter * scale
+        let radius = diameter / 2
+        let limit = min((radius + PanelMetrics.orbUnitLiquidGap * scale * 0.9) / radius, 1.55)
+        let half = diameter * limit / 2 + PanelMetrics.orbUnitMargin * scale
+        let centreY = verticalCentre ?? size.height / 2
+        guard half * 2 < size.height else { return size.height / 2 - centreY }
+        if centreY - half < 0 { return half - centreY }
+        if centreY + half > size.height { return size.height - half - centreY }
+        return 0
+    }
+
     var layout: PetOrbLayout {
         PetOrbLayout(size: size, scale: PanelMetrics.scale * viewportScale, cardOnLeft: cardOnLeft, verticalCentre: verticalCentre,
-                     isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
+                     edgeLift: edgeLift, isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
     }
 
     var drawingLayout: PetOrbLayout {
         PetOrbLayout(size: CGSize(width: size.width / viewportScale, height: size.height / viewportScale),
                      scale: PanelMetrics.scale, cardOnLeft: cardOnLeft,
                      verticalCentre: verticalCentre.map { $0 / viewportScale },
+                     edgeLift: edgeLift / viewportScale,
                      isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
     }
 
@@ -233,7 +250,12 @@ final class PetOrbPanelController {
         state.cardOnLeft = x >= 0.5
         state.verticalCentre = nil
         let centre = state.layout.centre
-        let inset = state.layout.diameter / 2 + state.layout.margin
+        // Liquid expands by spreading along the screen edge, so the resting
+        // dot only needs its own radius; the circle pet still needs the full
+        // expanded circle to stay on screen.
+        let inset = state.isLiquid
+            ? state.layout.dotDiameter / 2 + state.layout.margin
+            : state.layout.diameter / 2 + state.layout.margin
         let targetY = min(max(room.minY + room.height * y, room.minY + inset), room.maxY - inset)
         let desired = CGPoint(x: room.minX + room.width * x - centre.x,
                               y: targetY - (state.size.height - centre.y))
@@ -261,7 +283,7 @@ final class PetOrbPanelController {
     private func savePosition() {
         guard let screen = panel.screen else { return }
         let room = screen.visibleFrame
-        let centre = state.layout.centre
+        let centre = state.layout.unliftedCentre
         let x = (panel.frame.minX + centre.x - room.minX) / max(room.width, 1)
         let y = (panel.frame.maxY - centre.y - room.minY) / max(room.height, 1)
         settings.defaults.set([x, y], forKey: AppSettings.Key.orbPosition)
