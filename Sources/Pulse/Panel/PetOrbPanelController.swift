@@ -4,6 +4,13 @@ import AppKit
 import Observation
 import SwiftUI
 
+func petOrbDebug(_ s: String) {
+    let url = URL(fileURLWithPath: "/tmp/nokori-edge.log")
+    if !FileManager.default.fileExists(atPath: url.path) { FileManager.default.createFile(atPath: url.path, contents: nil) }
+    guard let h = try? FileHandle(forWritingTo: url) else { return }
+    h.seekToEndOfFile(); h.write(Data((s + "\n").utf8)); try? h.close()
+}
+
 @MainActor @Observable
 final class PetOrbState {
     var isPresented = false
@@ -118,12 +125,14 @@ final class PetOrbState {
         if !isExpanded { openedAt = Date() }
         isExpanded = true
         probe.reportAgain()
+        petOrbDebug("expand edgeLift=\(edgeLift) vc=\(verticalCentre ?? -1) sizeH=\(size.height) sizeW=\(size.width) isLiquid=\(isLiquid) viewport=\(viewportScale) scale=\(PanelMetrics.scale)")
     }
 
     func collapse() {
         pointerDeparted()
         selectedID = nil
         isExpanded = false
+        petOrbDebug("collapse edgeLift=\(edgeLift) vc=\(verticalCentre ?? -1)")
     }
 }
 
@@ -262,6 +271,7 @@ final class PetOrbPanelController {
         let origin = CGPoint(x: min(max(desired.x, room.minX), room.maxX - state.size.width),
                              y: min(max(desired.y, room.minY), room.maxY - state.size.height))
         state.verticalCentre = origin.y + state.size.height - targetY
+        petOrbDebug("place inset=\(inset) targetY=\(targetY) vc=\(state.verticalCentre ?? -1) origin=\(origin) size=\(state.size) isLiquid=\(state.isLiquid) viewport=\(state.viewportScale) scale=\(scale) roomMinY=\(room.minY) roomMaxY=\(room.maxY)")
         panel.setFrame(CGRect(origin: origin, size: state.size), display: true)
         updateWetting()
         state.probe.reportAgain()
