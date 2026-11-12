@@ -25,12 +25,14 @@
 "Weather is unavailable. No current reading." = "Weather is unavailable. No current reading.";
 "Automatic weather pet" = "Automatic weather pet";
 "Changes the pet with local weather, including moonlight at night. Updates every 30 minutes." = "Changes the pet with local weather, including moonlight at night. Updates every 30 minutes.";
-"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested only when you choose Allow location access." = "When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested only when you choose Allow location access.";
+"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested when you enable it or choose Allow location access." = "When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested when you enable it or choose Allow location access.";
 "Weather data: Open-Meteo (CC BY 4.0)" = "Weather data: Open-Meteo (CC BY 4.0)";
 "Free weather service: non-commercial use only. Terms and privacy" = "Free weather service: non-commercial use only. Terms and privacy";
 "Weather location" = "Weather location";
 "You can decline location access and search for a city instead." = "You can decline location access and search for a city instead.";
 "Allow location access" = "Allow location access";
+"Location permission" = "Location permission";
+"Open Location Settings" = "Open Location Settings";
 "City name" = "City name";
 "Search cities" = "Search cities";
 "Could not search cities. Check your connection and try again." = "Could not search cities. Check your connection and try again.";

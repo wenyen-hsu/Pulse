@@ -25,12 +25,14 @@
 "Weather is unavailable. No current reading." = "날씨를 확인할 수 없습니다. 현재 정보가 없습니다.";
 "Automatic weather pet" = "날씨에 따라 바뀌는 펫";
 "Changes the pet with local weather, including moonlight at night. Updates every 30 minutes." = "현지 날씨에 따라 펫이 바뀌며 밤에는 달이 표시됩니다. 30분마다 업데이트합니다.";
-"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested only when you choose Allow location access." = "활성화하면 대략적인 좌표 또는 도시 검색어와 IP 주소가 Open-Meteo에 전송됩니다. 계정이나 사용량 데이터는 전송하지 않습니다. ‘위치 접근 허용’을 선택할 때만 위치 권한을 요청합니다.";
+"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested when you enable it or choose Allow location access." = "활성화하면 대략적인 좌표 또는 도시 검색어와 IP 주소가 Open-Meteo에 전송됩니다. 계정이나 사용량 데이터는 전송하지 않습니다. 활성화할 때 또는 ‘위치 접근 허용’을 선택할 때 위치 권한을 요청합니다.";
 "Weather data: Open-Meteo (CC BY 4.0)" = "날씨 데이터: Open-Meteo (CC BY 4.0)";
 "Free weather service: non-commercial use only. Terms and privacy" = "무료 날씨 서비스는 비상업적 용도로만 사용 가능: 약관 및 개인정보 보호";
 "Weather location" = "날씨 위치";
 "You can decline location access and search for a city instead." = "위치 접근을 거부하고 대신 도시를 검색할 수 있습니다.";
 "Allow location access" = "위치 접근 허용";
+"Location permission" = "위치 권한";
+"Open Location Settings" = "위치 설정 열기";
 "City name" = "도시 이름";
 "Search cities" = "도시 검색";
 "Could not search cities. Check your connection and try again." = "도시를 검색할 수 없습니다. 연결을 확인하고 다시 시도하세요.";

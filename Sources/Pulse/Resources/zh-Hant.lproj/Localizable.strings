@@ -25,12 +25,14 @@
 "Weather is unavailable. No current reading." = "無法取得天氣，目前沒有有效資料。";
 "Automatic weather pet" = "自動天氣寵物";
 "Changes the pet with local weather, including moonlight at night. Updates every 30 minutes." = "依當地天氣切換寵物，夜間顯示月亮；每 30 分鐘更新。";
-"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested only when you choose Allow location access." = "啟用後，Open-Meteo 會收到約略座標或城市搜尋內容，以及你的 IP 位址；不會收到帳號或用量資料。只有按下「允許定位」才會要求定位授權。";
+"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested when you enable it or choose Allow location access." = "啟用後，Open-Meteo 會收到約略座標或城市搜尋內容，以及你的 IP 位址；不會收到帳號或用量資料。啟用時或按下「允許定位」時會要求定位授權。";
 "Weather data: Open-Meteo (CC BY 4.0)" = "天氣資料：Open-Meteo（CC BY 4.0）";
 "Free weather service: non-commercial use only. Terms and privacy" = "免費天氣服務僅限非商業用途：條款與隱私權說明";
 "Weather location" = "天氣地點";
 "You can decline location access and search for a city instead." = "可以拒絕定位，改用城市搜尋。";
 "Allow location access" = "允許定位";
+"Location permission" = "定位權限";
+"Open Location Settings" = "開啟定位設定";
 "City name" = "城市名稱";
 "Search cities" = "搜尋城市";
 "Could not search cities. Check your connection and try again." = "無法搜尋城市，請檢查連線後再試。";

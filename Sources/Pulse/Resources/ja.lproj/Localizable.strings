@@ -25,12 +25,14 @@
 "Weather is unavailable. No current reading." = "天気を取得できません。現在の情報はありません。";
 "Automatic weather pet" = "天気連動ペット";
 "Changes the pet with local weather, including moonlight at night. Updates every 30 minutes." = "現地の天気に合わせてペットを切り替え、夜は月を表示します。30 分ごとに更新します。";
-"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested only when you choose Allow location access." = "有効にすると、おおよその座標または都市の検索内容と IP アドレスが Open-Meteo に送信されます。アカウントや使用量のデータは送信しません。「位置情報を許可」を押したときだけ、位置情報の利用許可を求めます。";
+"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested when you enable it or choose Allow location access." = "有効にすると、おおよその座標または都市の検索内容と IP アドレスが Open-Meteo に送信されます。アカウントや使用量のデータは送信しません。有効にしたとき、または「位置情報を許可」を押したときに、位置情報の利用許可を求めます。";
 "Weather data: Open-Meteo (CC BY 4.0)" = "天気データ：Open-Meteo（CC BY 4.0）";
 "Free weather service: non-commercial use only. Terms and privacy" = "無料の天気サービスは非商用のみ：利用規約とプライバシー";
 "Weather location" = "天気の場所";
 "You can decline location access and search for a city instead." = "位置情報を許可せず、都市を検索することもできます。";
 "Allow location access" = "位置情報を許可";
+"Location permission" = "位置情報の許可";
+"Open Location Settings" = "位置情報設定を開く";
 "City name" = "都市名";
 "Search cities" = "都市を検索";
 "Could not search cities. Check your connection and try again." = "都市を検索できません。接続を確認して、もう一度お試しください。";
