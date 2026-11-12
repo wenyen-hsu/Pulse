@@ -36,9 +36,15 @@ struct PetOrbLayout {
     let scale: CGFloat
     let cardOnLeft: Bool
     var verticalCentre: CGFloat? = nil
+    /// Horizontal centre within the window, mirroring verticalCentre, so the
+    /// resting dot can sit a consistent inset from the left/right screen edges.
+    var horizontalCentre: CGFloat? = nil
     /// Vertical shift applied only while the liquid orb is expanded, so the
     /// drop can hang from the screen edge instead of being pushed away from it.
     var edgeLift: CGFloat = 0
+    /// Horizontal shift applied only while the liquid orb is expanded, so the
+    /// drop can hang from the left/right screen edge; mirrors edgeLift.
+    var edgePushX: CGFloat = 0
     var isLiquid = false
     var stretch = CGVector.zero
     var wetting = CGVector.zero
@@ -60,14 +66,14 @@ struct PetOrbLayout {
                width: PanelMetrics.orbUnitPageWidth * scale, height: PanelMetrics.orbUnitPageHeight * scale)
     }
     var centre: CGPoint {
-        CGPoint(x: cardOnLeft ? size.width - margin - diameter / 2 : margin + diameter / 2,
+        CGPoint(x: (horizontalCentre ?? (cardOnLeft ? size.width - margin - diameter / 2 : margin + diameter / 2)) + edgePushX,
                 y: (verticalCentre ?? size.height / 2) + edgeLift)
     }
 
     /// The resting centre before the expanded liquid's edge lift, used when
     /// saving where the user placed the orb.
     var unliftedCentre: CGPoint {
-        CGPoint(x: centre.x, y: centre.y - edgeLift)
+        CGPoint(x: centre.x - edgePushX, y: centre.y - edgeLift)
     }
     var circle: CGRect {
         CGRect(x: centre.x - diameter / 2, y: centre.y - diameter / 2,
