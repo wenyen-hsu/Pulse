@@ -25,12 +25,14 @@
 "Weather is unavailable. No current reading." = "Погода недоступна. Актуальных данных нет.";
 "Automatic weather pet" = "Питомец по погоде";
 "Changes the pet with local weather, including moonlight at night. Updates every 30 minutes." = "Меняет питомца в зависимости от местной погоды; ночью показывает луну. Обновляется каждые 30 минут.";
-"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested only when you choose Allow location access." = "При включении Open-Meteo получает примерные координаты или поисковый запрос города, а также ваш IP-адрес. Данные аккаунтов и расхода не передаются. Разрешение на геопозицию запрашивается только по кнопке «Разрешить геопозицию».";
+"When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested when you enable it or choose Allow location access." = "При включении Open-Meteo получает примерные координаты или поисковый запрос города, а также ваш IP-адрес. Данные аккаунтов и расхода не передаются. Разрешение на геопозицию запрашивается при включении или по кнопке «Разрешить геопозицию».";
 "Weather data: Open-Meteo (CC BY 4.0)" = "Данные о погоде: Open-Meteo (CC BY 4.0)";
 "Free weather service: non-commercial use only. Terms and privacy" = "Бесплатный сервис — только для некоммерческого использования. Условия и конфиденциальность";
 "Weather location" = "Место для погоды";
 "You can decline location access and search for a city instead." = "Можно отказаться от геопозиции и найти город вручную.";
 "Allow location access" = "Разрешить геопозицию";
+"Location permission" = "Разрешение на геопозицию";
+"Open Location Settings" = "Открыть настройки геопозиции";
 "City name" = "Название города";
 "Search cities" = "Найти город";
 "Could not search cities. Check your connection and try again." = "Не удалось найти города. Проверьте подключение и повторите попытку.";

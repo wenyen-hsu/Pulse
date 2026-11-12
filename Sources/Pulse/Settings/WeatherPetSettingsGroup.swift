@@ -12,9 +12,10 @@ struct WeatherPetSettingsGroup: View {
                 Toggle(String.localized("Automatic weather pet"), isOn: $settings.weatherPreferences.enabled)
                     .labelsHidden()
                     .toggleStyle(.switch)
+                    .onChange(of: settings.weatherPreferences.enabled) { settings.weatherPet?.requestLocation() }
             }
             VStack(alignment: .leading, spacing: 10) {
-                Text(localized: "When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested only when you choose Allow location access.")
+                Text(localized: "When enabled, Open-Meteo receives your approximate coordinates or city search, plus your IP address. No account or usage data is sent. Location permission is requested when you enable it or choose Allow location access.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Link(String.localized("Weather data: Open-Meteo (CC BY 4.0)"), destination: URL(string: "https://open-meteo.com/")!)
@@ -34,12 +35,20 @@ struct WeatherPetSettingsGroup: View {
                     }
                     .labelsHidden()
                     .frame(width: SettingsLayout.controlWidth)
+                    .onChange(of: settings.weatherPreferences.source) { settings.weatherPet?.requestLocation() }
                 }
                 if settings.weatherPreferences.source == .automatic {
                     SettingsRow(String.localized("Current location"),
                                 subtitle: String.localized("You can decline location access and search for a city instead.")) {
                         Button(String.localized("Allow location access")) { settings.weatherPet?.requestLocation() }
                             .disabled(settings.weatherPet?.status == .paused)
+                    }
+                    if settings.weatherPet?.status == .denied || settings.weatherPet?.status == .needsPermission {
+                        SettingsRowDivider()
+                        SettingsRow(String.localized("Location permission")) {
+                            Link(String.localized("Open Location Settings"),
+                                 destination: URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_LocationServices")!)
+                        }
                     }
                 }
                 VStack(alignment: .leading, spacing: 10) {
