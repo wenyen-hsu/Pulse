@@ -304,3 +304,55 @@ struct PetOrbEdgeLiftTests {
         #expect(state.layout.centre.y == 280)
     }
 }
+
+@Suite("Pet orb edge push")
+@MainActor
+struct PetOrbEdgePushXTests {
+    private func makeState(_ centreX: CGFloat, expanded: Bool, liquid: Bool) -> PetOrbState {
+        let state = PetOrbState()
+        state.isLiquid = liquid
+        state.size = CGSize(width: 640, height: 560)
+        state.viewportScale = 1
+        state.horizontalCentre = centreX
+        if expanded { state.expand() }
+        return state
+    }
+
+    @Test("Collapsed dots and circle pets never push horizontally")
+    func noPushX() {
+        let collapsed = makeState(59, expanded: false, liquid: true)
+        #expect(collapsed.edgePushX == 0)
+        #expect(collapsed.layout.centre.x == 59)
+        let circle = makeState(59, expanded: true, liquid: false)
+        #expect(circle.edgePushX == 0)
+        #expect(circle.layout.centre.x == 59)
+    }
+
+    @Test("Expanded liquid near the left shifts right and stays inside the window")
+    func leftPush() {
+        let state = makeState(59, expanded: true, liquid: true)
+        #expect(state.edgePushX > 0)
+        #expect(state.layout.centre.x == 59 + state.edgePushX)
+        let frame = state.layout.liquidFrame(expanded: true)
+        #expect(frame.minX >= -0.5)
+        #expect(frame.maxX <= state.size.width + 0.5)
+        #expect(state.layout.unliftedCentre.x == 59)
+    }
+
+    @Test("Expanded liquid near the right shifts left and stays inside the window")
+    func rightPush() {
+        let state = makeState(581, expanded: true, liquid: true)
+        #expect(state.edgePushX < 0)
+        let frame = state.layout.liquidFrame(expanded: true)
+        #expect(frame.minX >= -0.5)
+        #expect(frame.maxX <= state.size.width + 0.5)
+        #expect(state.layout.unliftedCentre.x == 581)
+    }
+
+    @Test("Expanded liquid in the middle does not move horizontally")
+    func middleX() {
+        let state = makeState(320, expanded: true, liquid: true)
+        #expect(state.edgePushX == 0)
+        #expect(state.layout.centre.x == 320)
+    }
+}

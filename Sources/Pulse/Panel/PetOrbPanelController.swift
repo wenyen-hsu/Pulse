@@ -15,6 +15,7 @@ final class PetOrbState {
     var viewportScale: CGFloat = 1
     var cardOnLeft = true
     var verticalCentre: CGFloat?
+    var horizontalCentre: CGFloat?
     var openedAt = Date.distantPast
     var isLiquid = false
     var accountCount = 0
@@ -42,16 +43,36 @@ final class PetOrbState {
         return 0
     }
 
+    /// Horizontal counterpart of edgeLift: shifts the expanded liquid orb so it
+    /// hangs from the left/right window edge instead of being pushed off-screen.
+    var edgePushX: CGFloat {
+        guard isExpanded, isLiquid, size.width > 0 else { return 0 }
+        let scale = PanelMetrics.scale * viewportScale
+        let margin = PanelMetrics.orbUnitLiquidMargin * scale
+        let diameter = PanelMetrics.orbUnitDiameter * scale
+        let radius = diameter / 2
+        let limit = min((radius + PanelMetrics.orbUnitLiquidGap * scale * 0.9) / radius, 1.55)
+        let half = diameter * limit / 2 + PanelMetrics.orbUnitMargin * scale
+        let baseX = cardOnLeft ? size.width - margin - diameter / 2 : margin + diameter / 2
+        let centreX = horizontalCentre ?? baseX
+        guard half * 2 < size.width else { return size.width / 2 - centreX }
+        if centreX - half < 0 { return half - centreX }
+        if centreX + half > size.width { return size.width - half - centreX }
+        return 0
+    }
+
     var layout: PetOrbLayout {
         PetOrbLayout(size: size, scale: PanelMetrics.scale * viewportScale, cardOnLeft: cardOnLeft, verticalCentre: verticalCentre,
-                     edgeLift: edgeLift, isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
+                     horizontalCentre: horizontalCentre, edgeLift: edgeLift, edgePushX: edgePushX,
+                     isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
     }
 
     var drawingLayout: PetOrbLayout {
         PetOrbLayout(size: CGSize(width: size.width / viewportScale, height: size.height / viewportScale),
                      scale: PanelMetrics.scale, cardOnLeft: cardOnLeft,
                      verticalCentre: verticalCentre.map { $0 / viewportScale },
-                     edgeLift: edgeLift / viewportScale,
+                     horizontalCentre: horizontalCentre.map { $0 / viewportScale },
+                     edgeLift: edgeLift / viewportScale, edgePushX: edgePushX / viewportScale,
                      isLiquid: isLiquid, stretch: stretch, wetting: wetting, liquidNodes: liquidNodes)
     }
 
@@ -249,6 +270,7 @@ final class PetOrbPanelController {
         let y = valid ? min(max(saved![1], 0), 1) : 0.5
         state.cardOnLeft = x >= 0.5
         state.verticalCentre = nil
+        state.horizontalCentre = nil
         let centre = state.layout.centre
         // Liquid expands by spreading along the screen edge, so the resting
         // dot only needs its own radius; the circle pet still needs the full
@@ -256,11 +278,13 @@ final class PetOrbPanelController {
         let inset = state.isLiquid
             ? state.layout.dotDiameter / 2 + state.layout.margin
             : state.layout.diameter / 2 + state.layout.margin
+        let targetX = min(max(room.minX + room.width * x, room.minX + inset), room.maxX - inset)
         let targetY = min(max(room.minY + room.height * y, room.minY + inset), room.maxY - inset)
-        let desired = CGPoint(x: room.minX + room.width * x - centre.x,
+        let desired = CGPoint(x: targetX - centre.x,
                               y: targetY - (state.size.height - centre.y))
         let origin = CGPoint(x: min(max(desired.x, room.minX), room.maxX - state.size.width),
                              y: min(max(desired.y, room.minY), room.maxY - state.size.height))
+        state.horizontalCentre = min(max(targetX - origin.x, 0), state.size.width)
         state.verticalCentre = origin.y + state.size.height - targetY
         panel.setFrame(CGRect(origin: origin, size: state.size), display: true)
         updateWetting()
@@ -300,7 +324,7 @@ private final class PetOrbPanel: NSPanel {
     var onPetClick: (() -> Void)?
     var didMoveOrb: (() -> Void)?
     var didDragOrb: (() -> Void)?
-    private var press: (screen: CGPoint, origin: CGPoint, local: CGPoint, refreshAllowed: Bool, onPet: Bool)?
+    private var press: (screen: CGPoint, origin: CGPoint, local: CGPoint, refreshAllowed: Bool, onPet: Bool, grabY: CGFloat, grabX: CGFloat)?
     private var lastDrag: (point: CGPoint, time: TimeInterval)?
     private var dragged = false
 
@@ -329,9 +353,12 @@ private final class PetOrbPanel: NSPanel {
                 && state.layout.pagerFrame.contains(point) { break }
             state.stopRecoil()
             state.isHeld = true
+            let grabY = NSEvent.mouseLocation.y - (frame.maxY - state.layout.centre.y)
+            let grabX = NSEvent.mouseLocation.x - (frame.minX + state.layout.centre.x)
             press = (NSEvent.mouseLocation, frame.origin, point,
                      Date().timeIntervalSince(state.openedAt) >= PanelIntent.ringClickGuard,
-                     state.layout.petFrame(expanded: state.isExpanded, petSize: petSize?() ?? 1).contains(point))
+                     state.layout.petFrame(expanded: state.isExpanded, petSize: petSize?() ?? 1).contains(point),
+                     grabY, grabX)
             lastDrag = (NSEvent.mouseLocation, event.timestamp)
             dragged = false
             return
@@ -343,8 +370,19 @@ private final class PetOrbPanel: NSPanel {
                     state.beginDrag()
                 }
                 if dragged {
-                    setFrameOrigin(CGPoint(x: press.origin.x + now.x - press.screen.x,
-                                           y: press.origin.y + now.y - press.screen.y))
+                    let draggedOrigin = CGPoint(x: press.origin.x + now.x - press.screen.x,
+                                                y: press.origin.y + now.y - press.screen.y)
+                    let dragRoom = self.screen?.visibleFrame
+                    let clampedOrigin = dragRoom.map {
+                        CGPoint(x: min(max(draggedOrigin.x, $0.minX), $0.maxX - state.size.width),
+                                y: min(max(draggedOrigin.y, $0.minY), $0.maxY - state.size.height))
+                    } ?? draggedOrigin
+                    setFrameOrigin(clampedOrigin)
+                    // The window can be pinned against the visible top edge while
+                    // the pointer keeps rising; slide the dot within the window so
+                    // it still reaches the top inset. A no-op when the window moves freely.
+                    state.verticalCentre = min(max(frame.maxY - (now.y - press.grabY), 0), state.size.height)
+                    state.horizontalCentre = min(max(now.x - press.grabX - frame.minX, 0), state.size.width)
                     deform(to: now, at: event.timestamp)
                     didDragOrb?()
                 }
