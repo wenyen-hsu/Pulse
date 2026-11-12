@@ -380,8 +380,14 @@ private final class PetOrbPanel: NSPanel {
                     state.beginDrag()
                 }
                 if dragged {
-                    setFrameOrigin(CGPoint(x: press.origin.x + now.x - press.screen.x,
-                                           y: press.origin.y + now.y - press.screen.y))
+                    let draggedOrigin = CGPoint(x: press.origin.x + now.x - press.screen.x,
+                                                y: press.origin.y + now.y - press.screen.y)
+                    let dragRoom = self.screen?.visibleFrame
+                    let clampedOrigin = dragRoom.map {
+                        CGPoint(x: min(max(draggedOrigin.x, $0.minX), $0.maxX - state.size.width),
+                                y: min(max(draggedOrigin.y, $0.minY), $0.maxY - state.size.height))
+                    } ?? draggedOrigin
+                    setFrameOrigin(clampedOrigin)
                     // The window can be pinned against the visible top edge while
                     // the pointer keeps rising; slide the dot within the window so
                     // it still reaches the top inset. A no-op when the window moves freely.
